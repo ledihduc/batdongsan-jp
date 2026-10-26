@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- TẢI SẴN FONT — khoản tiết kiệm lớn nhất ở màn khởi động.
+       Đo trên staging: font chỉ được yêu cầu ở giây 7,5, tức là SAU khi
+       main.dart.js (5,4s) chạy xong và đọc bảng kê asset. Trình duyệt không thể
+       tự biết trước, nên chuỗi này chạy NỐI TIẾP. Khai báo preload ở đây cho
+       font tải SONG SONG với JavaScript.
+       `crossorigin` là bắt buộc với font, thiếu nó trình duyệt tải hai lần. -->
+  <link rel="preload" as="font" type="font/ttf" crossorigin
+        href="assets/assets/google_fonts/HankenGrotesk-Regular.ttf">
+  <link rel="preload" as="font" type="font/ttf" crossorigin
+        href="assets/assets/google_fonts/HankenGrotesk-Bold.ttf">
+  <link rel="preload" as="font" type="font/ttf" crossorigin
+        href="assets/assets/google_fonts/HankenGrotesk-SemiBold.ttf">
+  <link rel="preload" as="font" type="font/ttf" crossorigin
+        href="assets/assets/google_fonts/HankenGrotesk-Medium.ttf">
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Vua Nhà — thuê nhà, mua bán nhà đất và đặt thợ dịch vụ nhà cửa">
+  <meta name="theme-color" content="#E31B23">
+
+  <!-- Thẻ chia sẻ (Open Graph). ĐO ĐƯỢC: kênh vào app THẬT SỰ đang có người
+       là link chia sẻ trên Zalo (utm_source=zalo trong log truy cập), còn
+       Googlebot chưa từng ghé. Không có thẻ này thì mọi link dán lên Zalo/
+       Facebook hiện ra trơ trụi: không ảnh, không mô tả -> ít ai bấm vào. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vua Nhà">
+  <meta property="og:title" content="Vua Nhà — Thuê nhà, mua bán nhà đất & tìm đơn vị thi công">
+  <meta property="og:description" content="Tin đăng cho thuê, mua bán bất động sản và đặt thợ dịch vụ nhà cửa: sửa điện, sửa nước, thông tắc, vệ sinh.">
+  <meta property="og:image" content="https://ancu365.ddns.net/icons/Icon-512.png?v=3">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:url" content="https://ancu365.ddns.net/">
+  <meta property="og:locale" content="vi_VN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vua Nhà — Thuê nhà, mua bán nhà đất & tìm đơn vị thi công">
+  <meta name="twitter:description" content="Tin đăng cho thuê, mua bán bất động sản và đặt thợ dịch vụ nhà cửa: sửa điện, sửa nước, thông tắc, vệ sinh.">
+  <meta name="twitter:image" content="https://ancu365.ddns.net/icons/Icon-512.png?v=3">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Vua Nhà">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png?v=3">
+
+  <!-- Favicon. `?v=` là BẮT BUỘC mỗi lần đổi logo: trình duyệt giữ favicon
+       trong một bộ nhớ đệm RIÊNG, rất lì — không đổi đường dẫn thì tab vẫn
+       hiện icon cũ hàng tuần dù server đã trả tệp mới. Đổi logo lần sau nhớ
+       tăng số này (và cả ở apple-touch-icon + og:image bên trên).
+       Khai báo thêm bản 192px cho tab trên màn retina và cho "thêm vào màn
+       hình chính" của Android. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=3"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/Icon-192.png?v=3"/>
+
+  <title>Vua Nhà</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // Firebase web app configuration.
+    // TODO ops: Replace placeholder values with real values from Firebase Console
+    //   → Project Settings → General → Your apps → Web app → Firebase SDK snippet (Config)
+    // VAPID key is injected at build time via --dart-define=FIREBASE_VAPID_KEY=<key>
+    // These values are safe to commit (restricted by domain/bundle ID in Firebase Console).
+    const firebaseConfig = {
+      apiKey: "__FIREBASE_API_KEY__",
+      authDomain: "__FIREBASE_AUTH_DOMAIN__",
+      projectId: "__FIREBASE_PROJECT_ID__",
+      storageBucket: "__FIREBASE_STORAGE_BUCKET__",
+      messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
+      appId: "__FIREBASE_APP_ID__",
+    };
+
+    // SDK Firebase nay TAI THEO NHU CAU, không nhúng cứng ở <head> nữa.
+    // Vì sao: hai thẻ <script> gstatic kia CHẶN hiển thị trang trên MỌI lượt
+    // truy cập, trong khi `firebaseConfig` vẫn còn nguyên placeholder (ops chưa
+    // điền) nên `initializeApp` chưa từng chạy — tức là mọi khách phải chờ tải
+    // hai tệp dùng cho việc gì cả. Đo được: chỉ ~50% người vào trang trụ được
+    // tới lúc app khởi động xong.
+    // Khi nào ops điền khoá thật thì nhánh dưới tự tải SDK rồi khởi tạo.
+    if (firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith('__')) {
+      var _fbBase = 'https://www.gstatic.com/firebasejs/10.13.0/';
+      var _load = function (src) {
+        return new Promise(function (ok, fail) {
+          var s = document.createElement('script');
+          s.src = src; s.onload = ok; s.onerror = fail;
+          document.head.appendChild(s);
+        });
+      };
+      _load(_fbBase + 'firebase-app-compat.js')
+        .then(function () { return _load(_fbBase + 'firebase-messaging-compat.js'); })
+        .then(function () { firebase.initializeApp(firebaseConfig); })
+        .catch(function (e) { console.warn('[Vua Nhà] Firebase SDK load failed:', e); });
+    }
+  </script>
+</head>
+<body>
+  <!-- MÀN CHỜ. Gói app nén xong vẫn ~1,5MB; trên mạng di động VN người dùng
+       nhìn TRANG TRẮNG im lặng vài giây rồi thoát. Đo được trong log: 52 khách
+       lạ vào trang, chỉ 26 tải hết gói, 16 xem được tin -> mất một nửa ở khâu
+       tải. Vài dòng HTML/CSS thuần này hiện NGAY (không chờ JS) để người dùng
+       biết app đang mở, và tự biến mất ở khung hình đầu tiên của Flutter. -->
+  <style>
+    #man-cho{position:fixed;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:14px;background:#fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      z-index:9999}
+    #man-cho .dau{width:88px;height:88px;display:block}
+    #man-cho .ten{font-size:22px;font-weight:700;color:#E31B23;letter-spacing:.2px}
+    #man-cho .phu{font-size:13px;color:#65676B}
+    #man-cho .vong{width:28px;height:28px;border:3px solid #E4E6EB;
+      border-top-color:#E31B23;border-radius:50%;animation:quay .8s linear infinite}
+    @keyframes quay{to{transform:rotate(360deg)}}
+  </style>
+  <div id="man-cho">
+    <!-- Logo ở màn chờ: đây là hình ảnh DUY NHẤT khách thấy trong mấy giây
+         đầu, trước khi Flutter kịp vẽ khung hình nào. Dùng luôn icon 192 đã
+         khai báo ở <link rel="icon"> nên trình duyệt thường đã tải sẵn.
+         Có width/height cứng để không xô lệch bố cục lúc ảnh về; `onerror`
+         gỡ thẻ đi để ảnh hỏng không để lại ô trống. -->
+    <img class="dau" src="icons/Icon-192.png?v=3" width="88" height="88"
+         alt="Vua Nhà" onerror="this.remove()">
+    <div class="ten">Vua Nhà</div>
+    <div class="vong"></div>
+    <div class="phu">Đang tải ứng dụng…</div>
+  </div>
+  <script>
+    (function () {
+      var go = function () {
+        var el = document.getElementById('man-cho');
+        if (el) el.remove();
+      };
+      // Flutter phát sự kiện này khi vẽ xong khung hình đầu tiên.
+      window.addEventListener('flutter-first-frame', go);
+      // VAN AN TOÀN: nếu vì lý do nào đó sự kiện trên không tới (đổi phiên bản
+      // Flutter, lỗi khởi động), màn chờ sẽ che app VĨNH VIỄN — hỏng nặng hơn
+      // hẳn cái nó định chữa. Sau 20 giây thì gỡ vô điều kiện.
+      setTimeout(go, 20000);
+    })();
+  </script>
+
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script src="flutter_bootstrap.js" async></script>
+
+  <!-- FCM Service Worker registration — must run after body load -->
+  <!-- firebase-messaging-sw.js handles background push messages -->
+  <!--
+    Phase 5 (AC-N6): Safari < 16.4 does not support Web Push / ServiceWorker
+    for push messaging. We skip SW registration on unsupported Safari versions
+    to avoid a console error and to match the capability detection in
+    PlatformCapability.supportsWebPush (Dart side).
+
+    Detection logic:
+      - UA contains "Safari" AND does NOT contain "Chrome"/"Chromium"/"CriOS":
+        genuine Safari.
+      - Extract "Version/X.Y" from UA. If major < 16 or (major == 16 && minor < 4):
+        skip registration and log the reason.
+      - All other browsers (Chrome, Firefox, Edge, modern Safari) proceed normally.
+  -->
+  <!--
+    CẬP NHẬT NGAY SAU DEPLOY — service worker của Flutter cache main.dart.js
+    trong Cache Storage và mặc định chỉ kích hoạt bản mới ở LẦN TẢI TRANG SAU
+    ("phải F5 hai lần"). Người dùng vì thế thấy giao diện cũ sau khi deploy dù
+    server đã trả no-cache. Đoạn dưới: ép kiểm tra bản mới mỗi lần mở, và khi
+    worker mới giành quyền điều khiển thì tải lại ĐÚNG MỘT LẦN.
+  -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      // Ép kiểm tra bản mới cho MỌI worker đã đăng ký (Flutter SW + FCM SW).
+      navigator.serviceWorker.getRegistrations().then(function (regs) {
+        regs.forEach(function (r) {
+          try { r.update(); } catch (e) { /* không chặn app */ }
+          // Worker mới đã tải xong nhưng đang chờ → bảo nó nhận quyền luôn.
+          if (r.waiting) { r.waiting.postMessage({ type: 'SKIP_WAITING' }); }
+        });
+      }).catch(function () { /* fail-soft */ });
+
+      // Khi worker mới nắm quyền, tải lại một lần để chạy code mới.
+      var _reloadedForSw = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (_reloadedForSw) return;
+        _reloadedForSw = true;
+        window.location.reload();
+      });
+    }
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      var _ua = navigator.userAgent;
+      var _isSafariOnly = _ua.indexOf('Safari') !== -1
+        && _ua.indexOf('Chrome') === -1
+        && _ua.indexOf('Chromium') === -1
+        && _ua.indexOf('CriOS') === -1
+        && _ua.indexOf('FxiOS') === -1
+        && _ua.indexOf('EdgA') === -1;
+
+      var _shouldRegister = true;
+
+      if (_isSafariOnly) {
+        // Extract Version/X.Y from WebKit UA string (e.g. "Version/16.4 Safari/...")
+        var _versionMatch = _ua.match(/Version\/(\d+)\.(\d+)/);
+        if (_versionMatch) {
+          var _major = parseInt(_versionMatch[1], 10);
+          var _minor = parseInt(_versionMatch[2], 10);
+          if (_major < 16 || (_major === 16 && _minor < 4)) {
+            _shouldRegister = false;
+            console.log(
+              '[Vua Nhà] FCM service worker skipped: Safari ' + _major + '.' + _minor +
+              ' does not support Web Push (requires Safari ≥ 16.4 as PWA). ' +
+              'Notification priming is hidden for this browser.'
+            );
+          }
+        } else {
+          // Cannot determine Safari version — skip to be safe.
+          _shouldRegister = false;
+          console.log(
+            '[Vua Nhà] FCM service worker skipped: Safari version could not be ' +
+            'determined from UA. Web Push requires Safari ≥ 16.4 as a PWA.'
+          );
+        }
+      }
+
+      if (_shouldRegister) {
+        navigator.serviceWorker.register('/firebase-messaging-sw.js')
+          .then(function(reg) {
+            console.log('[Vua Nhà] FCM service worker registered, scope:', reg.scope);
+          })
+          .catch(function(err) {
+            // Non-fatal: app still works without push in background
+            console.warn('[Vua Nhà] FCM service worker registration failed:', err);
+          });
+      }
+    }
+  </script>
+</body>
+</html>

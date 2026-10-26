@@ -1,0 +1,43 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy==2.0.35
+pydantic==2.9.2
+pydantic-settings==2.5.2
+python-jose[cryptography]==3.3.0
+bcrypt==4.2.0
+python-multipart==0.0.10
+websockets==13.1
+python-dotenv==1.0.1
+
+# Planning / PostGIS deps (Postgres mode)
+psycopg2-binary==2.9.9
+geoalchemy2==0.15.2
+shapely==2.0.4
+pyproj==3.6.1
+httpx==0.27.0
+APScheduler==3.10.4
+slowapi==0.1.9
+# Kho đếm rate-limit dùng chung (RATE_LIMIT_REDIS_URL). Thiếu gói này thì
+# slowapi im lặng quay về bộ nhớ tiến trình — bộ đếm mất mỗi lần restart.
+redis==5.2.1
+alembic==1.13.2
+requests==2.34.2
+click==8.1.7
+jinja2==3.1.4
+weasyprint>=60.0
+firebase-admin==6.6.0
+
+# Excel export — Phase 09 TT200 export
+openpyxl==3.1.5
+
+# Test deps
+pytest==8.3.2
+pytest-cov==5.0.0
+pytest-asyncio==0.23.8
+pytest-mock==3.14.0
+pytest-postgresql==8.1.0
+pytest-benchmark==4.0.0
+# Đo độ phủ: coverage[toml] để đọc cấu hình trong pyproject; diff-cover để
+# kiểm độ phủ RIÊNG phần code vừa thay đổi (chỉ số hữu ích hơn tổng thể).
+coverage[toml]==7.15.2
+diff-cover==9.2.0

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!-- AC-54: Contract PDF dual-disclosure template — Owner-Operator Delegation v1 -->
+<!-- NFR-12: Vietnamese diacritics — UTF-8 declared, DejaVu Sans font for PDF renderer -->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hợp đồng thuê phòng</title>
+  <style>
+    /* NFR-12: DejaVu Sans ships with weasyprint and covers full Vietnamese Unicode block */
+    @import url("https://fonts.googleapis.com/css2?family=DejaVu+Sans");
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DejaVu Sans', 'Liberation Sans', Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.55;
+      color: #1a1a1a;
+      background: #ffffff;
+      padding: 28mm 22mm 28mm 22mm;
+    }
+
+    /* ── Page header ─────────────────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 24pt;
+      padding-bottom: 12pt;
+      border-bottom: 1.5pt solid #1a1a1a;
+    }
+    .page-header .country {
+      font-weight: bold;
+      font-size: 13pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .page-header .motto {
+      font-size: 11pt;
+      margin-top: 3pt;
+      font-weight: bold;
+    }
+    .page-header h1 {
+      font-size: 16pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 16pt;
+      font-weight: bold;
+    }
+    .page-header .contract-ref {
+      font-size: 10pt;
+      color: #555;
+      margin-top: 6pt;
+    }
+
+    /* ── Section headings ────────────────────────────────────────────── */
+    .section {
+      margin-top: 18pt;
+    }
+    .section-title {
+      font-size: 12pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 0.75pt solid #1a1a1a;
+      padding-bottom: 4pt;
+      margin-bottom: 10pt;
+    }
+
+    /* ── Field grid ──────────────────────────────────────────────────── */
+    .field-row {
+      display: table;
+      width: 100%;
+      margin-bottom: 6pt;
+    }
+    .field-label {
+      display: table-cell;
+      width: 44%;
+      color: #444;
+      padding-right: 8pt;
+      vertical-align: top;
+    }
+    .field-value {
+      display: table-cell;
+      width: 56%;
+      font-weight: 500;
+      border-bottom: 0.5pt dotted #aaa;
+      padding-bottom: 2pt;
+      vertical-align: top;
+    }
+
+    /* ── Disclosure boxes ────────────────────────────────────────────── */
+    .disclosure-box {
+      border: 1pt solid #1a1a1a;
+      padding: 10pt 14pt;
+      margin-top: 10pt;
+    }
+    .disclosure-box .box-title {
+      font-weight: bold;
+      font-size: 11pt;
+      margin-bottom: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* AC-54: Dual-disclosure operator block — highlighted with left accent bar */
+    .operator-block {
+      border-left: 3pt solid #b85d3a;
+      padding-left: 11pt;
+      margin-top: 12pt;
+    }
+    .operator-block .box-title {
+      color: #b85d3a;
+    }
+    .poa-notice {
+      margin-top: 8pt;
+      padding: 7pt 10pt;
+      background: #fff8f5;
+      border: 0.75pt solid #e8c5b0;
+      font-size: 10pt;
+      color: #6b3520;
+    }
+    .poa-notice strong {
+      display: block;
+      margin-bottom: 3pt;
+      font-size: 10.5pt;
+    }
+
+    /* ── Điều khoản ──────────────────────────────────────────────────── */
+    .clause-list {
+      list-style: decimal;
+      padding-left: 18pt;
+      margin-top: 8pt;
+    }
+    .clause-list li {
+      margin-bottom: 6pt;
+    }
+
+    /* ── Signature area ──────────────────────────────────────────────── */
+    .signature-row {
+      display: table;
+      width: 100%;
+      margin-top: 30pt;
+    }
+    .signature-col {
+      display: table-cell;
+      width: 33.3%;
+      text-align: center;
+      vertical-align: top;
+      padding: 0 6pt;
+    }
+    .signature-col .sig-role {
+      font-weight: bold;
+      font-size: 11pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4pt;
+    }
+    .signature-col .sig-hint {
+      font-size: 9.5pt;
+      color: #666;
+      font-style: italic;
+    }
+    .sig-line {
+      border-top: 0.75pt solid #1a1a1a;
+      margin: 52pt 8pt 6pt;
+    }
+    .sig-name {
+      font-size: 10pt;
+      color: #333;
+    }
+
+    /* ── Footer note ─────────────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 28pt;
+      padding-top: 10pt;
+      border-top: 0.75pt solid #ccc;
+      font-size: 9pt;
+      color: #777;
+    }
+
+    @page {
+      margin: 28mm 22mm;
+      @bottom-right {
+        content: "Trang " counter(page) " / " counter(pages);
+        font-family: 'DejaVu Sans', Arial, sans-serif;
+        font-size: 9pt;
+        color: #888;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Tiêu đề ───────────────────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="country">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+    <div class="motto">Độc lập — Tự do — Hạnh phúc</div>
+    <h1>HỢP ĐỒNG THUÊ PHÒNG</h1>
+    <div class="contract-ref">
+      Số hợp đồng: <strong>#{{ contract.id }}</strong>
+      &nbsp;|&nbsp;
+      Phòng: <strong>#{{ contract.room_id }}</strong>
+    </div>
+  </div>
+
+  <!-- ── I. BÊN CHO THUÊ (Owner) ─────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">I. Bên cho thuê (Chủ sở hữu)</div>
+    <div class="disclosure-box">
+      <div class="box-title">Thông tin chủ sở hữu hợp pháp</div>
+
+      <div class="field-row">
+        <span class="field-label">Họ và tên:</span>
+        <span class="field-value">{{ owner.name if owner else '' }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Số CCCD / CMND:</span>
+        <span class="field-value">{{ owner_cccd if owner_cccd else '(chưa cung cấp)' }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Vai trò:</span>
+        <span class="field-value">Chủ sở hữu bất động sản — bên cho thuê theo pháp luật</span>
+      </div>
+    </div>
+
+    {# AC-54: Dual-disclosure block — only rendered when operator is present #}
+    {% if has_operator %}
+    <div class="disclosure-box operator-block">
+      <div class="box-title">Đại diện được ủy quyền (Operator)</div>
+      <p style="font-size:10.5pt; margin-bottom:8pt; color:#444;">
+        Chủ sở hữu đã ủy quyền cho bên dưới thực hiện các giao dịch thuê phòng
+        theo Giấy ủy quyền (POA) đính kèm. Người thuê có quyền yêu cầu xem
+        Giấy ủy quyền để xác minh thẩm quyền của đại diện.
+      </p>
+
+      <div class="field-row">
+        <span class="field-label">Họ và tên người được ủy quyền:</span>
+        <span class="field-value">{{ operator.name if operator else '' }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Số CCCD / CMND người được ủy quyền:</span>
+        <span class="field-value">{{ operator_cccd if operator_cccd else '(chưa cung cấp)' }}</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Mã ủy quyền hệ thống:</span>
+        <span class="field-value">{{ delegation_id if delegation_id else '(chưa liên kết)' }}</span>
+      </div>
+
+      <div class="poa-notice">
+        <strong>Thông tin Giấy ủy quyền (POA):</strong>
+        Hình thức:
+        {% if poa_format == 'notarized' %}
+          Công chứng (Notarized)
+        {% elif poa_format == 'digital' %}
+          Điện tử có chữ ký số (Digital)
+        {% else %}
+          {{ poa_format if poa_format else '(chưa xác định)' }}
+        {% endif %}
+
+        {% if poa_document_path %}
+        &nbsp;|&nbsp; Tài liệu POA đã được tải lên hệ thống và lưu trữ an toàn.
+        Người thuê có thể liên hệ chủ sở hữu để được cung cấp bản sao.
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- ── II. BÊN THUÊ (Tenant) ───────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">II. Bên thuê</div>
+    <div class="field-row">
+      <span class="field-label">Họ và tên:</span>
+      <span class="field-value">&nbsp;</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Số CCCD / CMND:</span>
+      <span class="field-value">&nbsp;</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Số điện thoại:</span>
+      <span class="field-value">&nbsp;</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Địa chỉ thường trú:</span>
+      <span class="field-value">&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ── III. ĐIỀU KHOẢN HỢP ĐỒNG ───────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">III. Điều khoản hợp đồng</div>
+
+    <div class="field-row">
+      <span class="field-label">Thời hạn thuê — từ ngày:</span>
+      <span class="field-value">{{ contract.start_date }}</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Đến ngày:</span>
+      <span class="field-value">{{ contract.end_date }}</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label">Tiền thuê hàng tháng (VNĐ):</span>
+      <span class="field-value">
+        {{ "{:,.0f}".format(contract.monthly_rent) if contract.monthly_rent is not none else '' }} đồng
+      </span>
+    </div>
+
+    <ul class="clause-list">
+      <li>
+        Bên thuê có nghĩa vụ thanh toán tiền thuê đúng hạn vào ngày 05 hàng tháng.
+        Tôi cam đoan thực hiện đúng các điều khoản đã thỏa thuận.
+      </li>
+      <li>
+        Bên thuê chịu trách nhiệm giữ gìn tài sản, không được tự ý sửa chữa,
+        cải tạo khi chưa có sự đồng ý bằng văn bản của bên cho thuê.
+      </li>
+      <li>
+        Hợp đồng có thể được chấm dứt trước hạn khi một trong hai bên thông báo
+        trước tối thiểu 30 ngày bằng văn bản.
+      </li>
+      <li>
+        {% if has_operator %}
+        Bên thuê đã được thông báo và xác nhận rằng bên cho thuê hành động thông qua
+        đại diện được ủy quyền. Mọi giao dịch với đại diện này có giá trị pháp lý
+        như giao dịch trực tiếp với chủ sở hữu.
+        {% else %}
+        Bên cho thuê là chủ sở hữu hợp pháp của bất động sản và ký kết hợp đồng
+        này với tư cách cá nhân, không thông qua đại diện ủy quyền.
+        {% endif %}
+      </li>
+      <li>
+        Các tranh chấp phát sinh (nếu có) sẽ được giải quyết theo quy định của
+        pháp luật Việt Nam hiện hành.
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── IV. KÝ XÁC NHẬN ──────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-title">IV. Ký xác nhận</div>
+    <p style="font-size:10.5pt; color:#444; margin-bottom:6pt;">
+      Các bên đã đọc, hiểu và đồng ý với toàn bộ nội dung hợp đồng này.
+    </p>
+
+    <div class="signature-row">
+      <!-- Chủ sở hữu -->
+      <div class="signature-col">
+        <div class="sig-role">Bên cho thuê</div>
+        <div class="sig-hint">
+          (Chủ sở hữu{% if has_operator %} / hoặc đại diện{% endif %})
+        </div>
+        <div class="sig-line"></div>
+        <div class="sig-name">{{ owner.name if owner else '' }}</div>
+      </div>
+
+      <!-- Đại diện ủy quyền — chỉ hiện khi có operator -->
+      {% if has_operator %}
+      <div class="signature-col">
+        <div class="sig-role">Đại diện ủy quyền</div>
+        <div class="sig-hint">(Operator ký thay mặt chủ sở hữu)</div>
+        <div class="sig-line"></div>
+        <div class="sig-name">{{ operator.name if operator else '' }}</div>
+      </div>
+      {% else %}
+      <div class="signature-col"></div>
+      {% endif %}
+
+      <!-- Bên thuê -->
+      <div class="signature-col">
+        <div class="sig-role">Bên thuê</div>
+        <div class="sig-hint">(Ký và ghi rõ họ tên)</div>
+        <div class="sig-line"></div>
+        <div class="sig-name">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+  <div class="doc-footer">
+    Tài liệu này được tạo tự động bởi hệ thống ANCU365.
+    Mã hợp đồng: #{{ contract.id }} | Phòng: #{{ contract.room_id }}.
+    {% if has_operator %}
+    Hợp đồng này có điều khoản ủy quyền (AC-54). Người thuê có quyền
+    yêu cầu xem Giấy ủy quyền gốc để xác minh thẩm quyền của đại diện.
+    {% endif %}
+  </div>
+
+</body>
+</html>

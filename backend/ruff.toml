@@ -1,0 +1,19 @@
+# Ruff — cấu hình BẢO THỦ (Tech Lead B3): bắt lỗi thật, ít nhiễu.
+# Mục tiêu: chặn undefined name / dead code trước deploy; KHÔNG style-nazi.
+target-version = "py311"
+line-length = 100
+extend-exclude = ["alembic/versions", "tests/_archive"]
+
+[lint]
+# F = pyflakes (undefined names F821, unused imports F401, unused vars F841...)
+# E9 = lỗi cú pháp; B = một số bug-prone (bugbear) an toàn.
+select = ["F", "E9"]
+ignore = [
+  "F401",  # unused import — nhiều & auto-fixable, bật sau
+  "F841",  # unused local — nhiễu ở code cũ, bật sau
+]
+
+[lint.per-file-ignores]
+# SQLAlchemy dùng chuỗi forward-ref ("User", "Delegation"...) — F821 báo nhầm.
+"app/domain/*.py" = ["F821"]
+"app/models.py" = ["F821"]

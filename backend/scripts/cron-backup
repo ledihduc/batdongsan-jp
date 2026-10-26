@@ -1,0 +1,28 @@
+# /etc/cron.d/ancu365-backup
+#
+# Daily database backup at 3:00 AM server time (Vietnam = UTC+7 → 20:00 UTC prev day).
+# Runs as the 'ancu365' system user who owns the deployment.
+#
+# Installation:
+#   sudo cp /opt/ancu365/ancu365-backend/scripts/cron-backup /etc/cron.d/ancu365-backup
+#   sudo chmod 644 /etc/cron.d/ancu365-backup
+#
+# Logs:
+#   /var/log/ancu365-backup.log  (rotate with logrotate; see notes below)
+#
+# Logrotate config (optional, save to /etc/logrotate.d/ancu365-backup):
+#   /var/log/ancu365-backup.log {
+#       weekly
+#       rotate 4
+#       compress
+#       missingok
+#       notifempty
+#   }
+#
+# Note: Runs AFTER ETL cron (ETL at 2 AM → backup at 3 AM) to capture nightly data.
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Minute  Hour  Day  Month  Weekday  User      Command
+0         3     *    *      *        ancu365   /opt/ancu365/ancu365-backend/scripts/backup.sh >> /var/log/ancu365-backup.log 2>&1

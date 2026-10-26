@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><title>Nhắc nhở cuối - ancu365</title></head>
+<body style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+<div style="background:#D32F2F;padding:16px;border-radius:8px 8px 0 0;">
+  <h2 style="color:white;margin:0;">ancu365 — Nhắc nhở CUỐI</h2>
+</div>
+<div style="border:1px solid #e0e0e0;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
+  <h3 style="color:#D32F2F;">Nhắc nhở cuối: Còn 24 giờ!</h3>
+  <p>Xin chào <strong>{{ owner_name }}</strong>,</p>
+  <p>Đây là lần nhắc cuối cùng. Yêu cầu phê duyệt sẽ TỰ ĐỘNG BỊ TỪ CHỐI sau 24 giờ nữa.</p>
+  <div style="background:#ffebee;padding:16px;border-radius:8px;margin:16px 0;border-left:4px solid #D32F2F;">
+    <p><strong>Operator:</strong> {{ operator_name }}</p>
+    <p><strong>Tài sản:</strong> {{ property_name }}</p>
+    <p><strong>Loại yêu cầu:</strong> {{ request_type_label }}</p>
+    {% if monthly_rent_vnd %}<p><strong>Giá trị:</strong> {{ "{:,.0f}".format(monthly_rent_vnd) }} VND/tháng</p>{% endif %}
+  </div>
+  <div style="text-align:center;margin:24px 0;">
+    <a href="{{ approval_url }}" style="background:#D32F2F;color:white;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold;">
+      Phê duyệt NGAY
+    </a>
+  </div>
+  <hr style="border:1px solid #e0e0e0;">
+  <p style="color:#666;font-size:12px;">ancu365 — Nếu bạn không muốn nhận email, hãy cập nhật cài đặt thông báo trong ứng dụng.</p>
+</div>
+</body>
+</html>

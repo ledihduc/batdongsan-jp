@@ -1,0 +1,68 @@
+# docker-compose.jp.yml — JP-specific overrides for Tokyo (ap-northeast-1) deployment.
+#
+# Usage (production):
+#   docker compose -f docker-compose.prod.yml -f deploy/jp/docker-compose.jp.yml up -d
+#
+# This file ONLY overrides JP-specific settings. Base config is docker-compose.prod.yml.
+# All secrets must be injected via environment variables from the host — never hardcoded.
+
+version: "3.9"
+
+services:
+  backend:
+    image: "${JP_IMAGE_TAG:-ancu365-backend:jp-latest}"
+    environment:
+      # JP market region gate — activates jp cron, jp routes, disables VN-only routes
+      REGION: jp
+      # Tokyo timezone — used by APScheduler for cron jobs
+      TZ: Asia/Tokyo
+      DEFAULT_TZ: Asia/Tokyo
+      # JP-specific database (Tokyo RDS endpoint)
+      DATABASE_URL: "${TOKYO_RDS_URL}"
+      # Fernet key for PII field-level encryption (jp_user_consents.ip_address_encrypted etc.)
+      FERNET_KEY: "${JP_FERNET_KEY}"
+      # HMAC shared secret seed for multi-org webhook verification
+      HMAC_SECRET_SEED: "${JP_HMAC_SECRET_SEED}"
+      # Nominatim geocoding user-agent (required by OSM usage policy)
+      NOMINATIM_UA: "${NOMINATIM_UA:-ancu365-jp/1.0 (contact@ancu365.jp)}"
+      # JWT secret (must match client expectations)
+      JWT_SECRET: "${JWT_SECRET}"
+      # Log level
+      LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+      # Disable VN-specific planning module (PostGIS — not in JP stack)
+      PLANNING_ENABLED: "false"
+    volumes:
+      # Uploads directory — mount encrypted EBS volume in production
+      - jp_uploads:/app/uploads
+    ports:
+      - "3000:3000"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    labels:
+      jp.region: "ap-northeast-1"
+      jp.compliance: "appi"
+
+  nginx:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./nginx.jp.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  jp_uploads:
+    driver: local
+    driver_opts:
+      # In production: replace with EBS-backed encrypted volume
+      type: none
+      o: bind
+      device: /data/jp_uploads

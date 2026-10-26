@@ -1,0 +1,6 @@
+# Local dev override — avoid port collision with existing local Postgres on 5432.
+# Host 5433 -> container 5432. Martin/backend INSIDE docker network still use postgis:5432.
+services:
+  postgis:
+    ports: !override
+      - "127.0.0.1:5433:5432"

@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # PostgreSQL THẬT cho bộ test xếp hạng reel: công thức `sort=hot` dùng
+      # extract(epoch)/power() — SQLite KHÔNG có. Không có service này thì nhánh
+      # đó tự skip và CI vẫn xanh dù chưa bao giờ chạy tới nó.
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpw
+          POSTGRES_DB: reeltest
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U testuser -d reeltest"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      # ffmpeg là phụ thuộc THẬT của bộ test: test video_processor dựng video
+      # HEVC rồi kiểm đầu ra đúng là H.264. Mock đi thì test chỉ kiểm cái mock.
+      - name: Cài ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Cài thư viện Python
+        run: pip install -q -r requirements.txt
+
+      - name: Test + độ phủ
+        env:
+          DATABASE_URL: sqlite:///:memory:
+          JWT_SECRET: ci-only-secret-not-used-anywhere-else
+          REELS_TEST_PG_URL: postgresql://testuser:testpw@localhost:5432/reeltest
+        run: |
+          python -m pytest tests/ -q -p no:cacheprovider \
+            --cov=app.routers.reels \
+            --cov=app.routers.content_reports \
+            --cov=app.services.media.video_processor \
+            --cov=app.workers.media_worker \
+            --cov-report=term-missing --cov-report=xml
+
+      - name: Lưu báo cáo độ phủ
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-backend
+          path: coverage.xml
+          if-no-files-found: ignore

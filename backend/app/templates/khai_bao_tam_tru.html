@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phiếu khai báo tạm trú — TK1</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --paper: #fdfcf7;
+      --hairline: #c8c5be;
+      --muted: #666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Times New Roman", Times, serif;
+      line-height: 1.45;
+      padding: 24px 16px 64px;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .header .country {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .header .motto {
+      font-weight: 700;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .header h1 {
+      font-size: 18px;
+      margin-top: 14px;
+      letter-spacing: 0.02em;
+    }
+    .header .form-code {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-style: italic;
+    }
+    .section {
+      margin-top: 18px;
+      padding: 14px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .section h2 {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      column-gap: 14px;
+      row-gap: 8px;
+      font-size: 14px;
+    }
+    .grid .label { color: var(--muted); }
+    .grid .value {
+      border-bottom: 1px dotted var(--hairline);
+      padding-bottom: 2px;
+      min-height: 18px;
+    }
+    .deadline-box {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-left: 3px solid #b85d3a;
+      background: #faf5ee;
+      font-size: 13px;
+    }
+    .deadline-box strong { color: #b85d3a; }
+    .footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hairline);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer ul { padding-left: 18px; }
+    .footer a { color: #b85d3a; text-decoration: none; }
+    .actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-print {
+      background: var(--ink);
+      color: var(--paper);
+      border: 0;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .deadline-box { background: transparent; }
+      .actions { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="country">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+      <div class="motto">Độc lập — Tự do — Hạnh phúc</div>
+      <h1>PHIẾU KHAI BÁO TẠM TRÚ</h1>
+      <div class="form-code">(Mẫu TK1 ban hành kèm Thông tư 56/2021/TT-BCA)</div>
+    </div>
+
+    <div class="section">
+      <h2>I. Thông tin chủ nhà / người cho thuê</h2>
+      <div class="grid">
+        <span class="label">Họ và tên</span>
+        <span class="value">{{ host_user.name if host_user else '' }}</span>
+        <span class="label">Số điện thoại</span>
+        <span class="value">{{ host_user.phone if host_user else '' }}</span>
+        <span class="label">Địa chỉ cho thuê</span>
+        <span class="value">
+          {% if building %}{{ building.name }}{% if room %} — Phòng {{ room.code }}{% endif %}<br />
+          {{ building.address }}, {{ building.ward }}, {{ building.district }}, {{ building.city }}
+          {% endif %}
+        </span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>II. Thông tin người tạm trú</h2>
+      <div class="grid">
+        <span class="label">Họ và tên</span>
+        <span class="value">{{ tenant.full_name if tenant else '' }}</span>
+        <span class="label">Ngày sinh</span>
+        <span class="value">{{ tenant.birthday if tenant and tenant.birthday else '' }}</span>
+        <span class="label">Số điện thoại</span>
+        <span class="value">{{ tenant.phone if tenant else '' }}</span>
+        <span class="label">Quê quán / nơi thường trú</span>
+        <span class="value">{{ tenant.address_origin if tenant and tenant.address_origin else '' }}</span>
+        <span class="label">Số CCCD / CMND</span>
+        <span class="value" style="font-style: italic; color: var(--muted);">
+          (Điền thủ công trước khi nộp — hệ thống không lưu số CCCD)
+        </span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>III. Thời gian tạm trú</h2>
+      <div class="grid">
+        <span class="label">Ngày bắt đầu</span>
+        <span class="value">{{ record.check_in_at.strftime('%d/%m/%Y') }}</span>
+        <span class="label">Ngày dự kiến kết thúc</span>
+        <span class="value">
+          {% if contract %}{{ contract.end_date }}{% endif %}
+        </span>
+        <span class="label">Lý do tạm trú</span>
+        <span class="value">Thuê nhà / phòng trọ</span>
+      </div>
+    </div>
+
+    <div class="deadline-box">
+      <strong>Hạn khai báo:</strong>
+      Trong vòng 12 giờ kể từ khi người tạm trú bắt đầu lưu trú (Nghị định 144/2021/NĐ-CP).
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn-print" onclick="window.print()">In phiếu</button>
+    </div>
+
+    <div class="footer">
+      <p style="margin-bottom: 8px;"><strong>Hướng dẫn nộp:</strong></p>
+      <ul>
+        <li>Cách 1 — Trực tuyến: nộp tại
+          <a href="https://dichvucong.dancuquocgia.gov.vn" target="_blank">dichvucong.dancuquocgia.gov.vn</a>
+          hoặc qua ứng dụng <strong>VNeID</strong>.</li>
+        <li>Cách 2 — Trực tiếp: in phiếu, ký tên rồi mang đến Công an xã/phường nơi cho thuê.</li>
+      </ul>
+      <p style="margin-top: 10px;">
+        Sau khi nộp, quay lại ứng dụng và bấm <strong>"Đã khai báo"</strong> để cập nhật trạng thái.
+      </p>
+      <p style="margin-top: 12px; font-size: 11px;">
+        Liên kết này hết hạn vào {{ record.public_token_expires_at.strftime('%d/%m/%Y') }} —
+        chỉ chia sẻ với người thuê liên quan.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

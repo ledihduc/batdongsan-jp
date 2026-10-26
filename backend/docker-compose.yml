@@ -1,0 +1,161 @@
+# ancu365 Docker Stack — PostGIS + Martin + Backend (default) + Nominatim + Nginx (profile: full)
+# Usage:
+#   Dev (postgis + martin + backend only):  docker compose up -d
+#   Full stack (+ nominatim + nginx):        docker compose --profile full up -d
+# Requires: .env file (cp .env.example .env, then set passwords)
+
+services:
+
+  # ─────────────────────────────────────────────────────────────
+  # PostGIS 16 — planning data (parcels, etl_runs) + app data
+  # ─────────────────────────────────────────────────────────────
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: ancu365-postgis
+    ports:
+      - "127.0.0.1:5432:5432"  # Internal only — nginx/backend proxy
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_INITDB_ARGS: "-c shared_buffers=2GB -c work_mem=64MB -c effective_cache_size=6GB"
+    volumes:
+      - postgis-data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s  # Phase 01: bumped from 30s for safer large-DB startup
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+  # ─────────────────────────────────────────────────────────────
+  # Martin v0.14 — vector tile server (auto-publish schema: planning)
+  # ─────────────────────────────────────────────────────────────
+  martin:
+    image: ghcr.io/maplibre/martin:v0.14.0
+    container_name: ancu365-martin
+    ports:
+      - "127.0.0.1:3001:3000"  # Host 3001 → container 3000
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgis:5432/${POSTGRES_DB}
+      RUST_LOG: warn
+    volumes:
+      - ./infra/martin/config.yaml:/config.yaml:ro
+    command: ["--config", "/config.yaml"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      postgis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+  # ─────────────────────────────────────────────────────────────
+  # Backend (FastAPI) — built from ./Dockerfile
+  # ─────────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ancu365-backend
+    ports:
+      - "127.0.0.1:3000:3000"  # Internal; nginx proxies /api/ → this
+    env_file:
+      - .env
+    environment:
+      # Override DATABASE_URL to point at the postgis container (not sqlite)
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgis:5432/${POSTGRES_DB}
+      NOMINATIM_URL: http://nominatim:8080
+      MARTIN_URL: http://martin:3000
+    volumes:
+      - ../secrets:/run/secrets:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:3000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    depends_on:
+      postgis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+  # ─────────────────────────────────────────────────────────────
+  # Nominatim 4.4 — reverse geocoding (Vietnam OSM)
+  # Profile: full — skip for local dev (needs ~3-4 GB RAM + 40 min import)
+  # ─────────────────────────────────────────────────────────────
+  nominatim:
+    image: mediagis/nominatim:4.4
+    container_name: ancu365-nominatim
+    profiles: ["full"]
+    ports:
+      - "127.0.0.1:8080:8080"  # Internal only — FastAPI proxies; NEVER expose public
+    environment:
+      PBF_URL: ${PBF_URL:-https://download.geofabrik.de/asia/vietnam-latest.osm.pbf}
+      REPLICATION_URL: https://download.geofabrik.de/asia/vietnam-updates/
+      NOMINATIM_PASSWORD: ${NOMINATIM_PASSWORD}
+      IMPORT_STYLE: address
+      THREADS: 4
+    volumes:
+      - nominatim-data:/var/lib/postgresql/14/main
+    shm_size: 2g  # osm2pgsql import cache; reduce to 1g on 8 GB VPS
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf 'http://localhost:8080/search?q=ho+chi+minh&format=json' | grep -q '\\['"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 3600s  # 1 hour — first import takes ~40 min
+    depends_on:
+      postgis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+  # ─────────────────────────────────────────────────────────────
+  # Nginx — reverse proxy + TLS termination (prod)
+  # Profile: full — skip for local dev; backend exposed directly on 3000
+  # ─────────────────────────────────────────────────────────────
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: ancu365-nginx
+    profiles: ["full"]
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infra/nginx/ancu365.prod.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./infra/certs:/etc/nginx/certs:ro   # TLS certs from certbot (P09)
+      - nginx-cache:/var/cache/nginx
+    depends_on:
+      backend:
+        condition: service_healthy
+      martin:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+volumes:
+  postgis-data:
+    name: ancu365-postgis-data
+  nominatim-data:
+    name: ancu365-nominatim-data
+  nginx-cache:
+    name: ancu365-nginx-cache
+
+networks:
+  ancu-net:
+    name: ancu365-net
+    driver: bridge

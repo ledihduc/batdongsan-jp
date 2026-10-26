@@ -1,0 +1,21 @@
+line_cd,line_name_ja,line_name_en,operator,station_cd,station_name_ja,station_name_en,prefecture,latitude,longitude
+11302,山手線,Yamanote Line,JR東日本,1130201,渋谷,Shibuya,東京都,35.6580,139.7016
+11302,山手線,Yamanote Line,JR東日本,1130202,新宿,Shinjuku,東京都,35.6896,139.7006
+11302,山手線,Yamanote Line,JR東日本,1130203,池袋,Ikebukuro,東京都,35.7281,139.7139
+11302,山手線,Yamanote Line,JR東日本,1130204,東京,Tokyo,東京都,35.6812,139.7671
+11302,山手線,Yamanote Line,JR東日本,1130205,上野,Ueno,東京都,35.7141,139.7774
+11302,山手線,Yamanote Line,JR東日本,1130206,秋葉原,Akihabara,東京都,35.6981,139.7731
+11302,山手線,Yamanote Line,JR東日本,1130207,品川,Shinagawa,東京都,35.6285,139.7388
+11302,山手線,Yamanote Line,JR東日本,1130208,恵比寿,Ebisu,東京都,35.6467,139.7101
+11302,山手線,Yamanote Line,JR東日本,1130209,目黒,Meguro,東京都,35.6333,139.7156
+11302,山手線,Yamanote Line,JR東日本,1130210,五反田,Gotanda,東京都,35.6264,139.7232
+28001,東京メトロ銀座線,Ginza Line,東京メトロ,2800101,浅草,Asakusa,東京都,35.7111,139.7966
+28001,東京メトロ銀座線,Ginza Line,東京メトロ,2800102,上野,Ueno,東京都,35.7141,139.7774
+28001,東京メトロ銀座線,Ginza Line,東京メトロ,2800103,銀座,Ginza,東京都,35.6715,139.7649
+28001,東京メトロ銀座線,Ginza Line,東京メトロ,2800104,表参道,Omotesando,東京都,35.6654,139.7124
+28001,東京メトロ銀座線,Ginza Line,東京メトロ,2800105,渋谷,Shibuya,東京都,35.6580,139.7016
+28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802101,新宿,Shinjuku,東京都,35.6896,139.7006
+28021,東京メトロ丸ノ内線,Marunouchi線,東京メトロ,2802102,赤坂見附,Akasaka-Mitsuke,東京都,35.6797,139.7362
+28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802103,東京,Tokyo,東京都,35.6812,139.7671
+28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802104,後楽園,Korakuen,東京都,35.7075,139.7515
+28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802105,池袋,Ikebukuro,東京都,35.7281,139.7139

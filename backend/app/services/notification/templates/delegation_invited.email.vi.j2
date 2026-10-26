@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><title>Lời mời Operator - ancu365</title></head>
+<body style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+<div style="background:#1A73E8;padding:16px;border-radius:8px 8px 0 0;">
+  <h2 style="color:white;margin:0;">ancu365</h2>
+</div>
+<div style="border:1px solid #e0e0e0;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
+  <h3>Bạn được mời làm Operator</h3>
+  <p>Xin chào <strong>{{ operator_name }}</strong>,</p>
+  <p>Chủ nhà <strong>{{ owner_name }}</strong> mời bạn trở thành Operator quản lý bất động sản của họ trên ancu365.</p>
+  <div style="background:#f5f5f5;padding:16px;border-radius:8px;margin:16px 0;">
+    <p><strong>Vai trò đề xuất:</strong> {{ role_preset_label }}</p>
+    <p><strong>Phạm vi:</strong> {{ scope_label }}</p>
+    {% if expires_at %}<p><strong>Lời mời hết hạn:</strong> {{ expires_at }}</p>{% endif %}
+  </div>
+  <div style="text-align:center;margin:24px 0;">
+    <a href="{{ invite_url }}" style="background:#1A73E8;color:white;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold;">
+      Xem và Chấp nhận
+    </a>
+  </div>
+  <hr style="border:1px solid #e0e0e0;">
+  <p style="color:#666;font-size:12px;">Nếu không phải bạn, bỏ qua email này. ancu365 sẽ không liên hệ thêm.</p>
+</div>
+</body>
+</html>

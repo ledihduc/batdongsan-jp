@@ -1,0 +1,225 @@
+DATA FLOW ARCHITECTURE — REVENUE ANALYTICS
+==========================================
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                         FLUTTER CLIENT (APP)                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │ UI LAYER — Host Dashboard / Reports                          │   │
+│  ├──────────────────────────────────────────────────────────────┤   │
+│  │                                                               │   │
+│  │  HostHomeScreen                ReportsHomeScreen             │   │
+│  │       │                              │                       │   │
+│  │   [Dashboard]                    [TabBar]                    │   │
+│  │   • KPI bars                     ├─ RevenueReportScreen      │   │
+│  │   • Debt aging widget            ├─ OccupancyReportScreen    │   │
+│  │   • Needs reminder               └─ AdrReportScreen          │   │
+│  │                                                               │   │
+│  │  RevenueBreakdownTable    PeriodSelector                     │   │
+│  │  • Breakdown rows         • Month/year toggle                │   │
+│  │  • By-building section    • Date navigation                  │   │
+│  │  • CSV export button      • [TODO] Date picker               │   │
+│  │                                                               │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+│                                 ↓                                     │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │ STATE MANAGEMENT — Providers                                 │   │
+│  ├──────────────────────────────────────────────────────────────┤   │
+│  │                                                               │   │
+│  │  ReportProvider                    InvoiceProvider            │   │
+│  │  • _revenue: RevenueReportModel    • _invoices: List          │   │
+│  │  • _occupancy: OccupancyModel      • _debtAging: Report       │   │
+│  │  • _isLoading, _error             • _needsReminder: List      │   │
+│  │                                   • _selected: Detail         │   │
+│  │  fetchRevenue(period, date)       fetchInvoices(...)         │   │
+│  │  fetchOccupancy(month, building)  fetchDebtAging()           │   │
+│  │  downloadInvoicesCsv()            generateBatch()             │   │
+│  │  [TODO] Cache + timestamp         recordPayment()             │   │
+│  │                                   issueCreditNote()           │   │
+│  │                                                               │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+│                                 ↓                                     │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │ REPOSITORY LAYER — API Clients                               │   │
+│  ├──────────────────────────────────────────────────────────────┤   │
+│  │                                                               │   │
+│  │  ApiReportRepository               ApiInvoiceRepository       │   │
+│  │  • fetchRevenue()                  • fetchInvoices()          │   │
+│  │  • fetchOccupancy()                • getInvoice()             │   │
+│  │  • exportInvoicesCsv()             • generateBatch()          │   │
+│  │                                    • sendInvoice()            │   │
+│  │  ApiClient (generic HTTP)          • recordPayment()          │   │
+│  │  • GET /api/host/reports/*         • issueCreditNote()        │   │
+│  │  • POST, PATCH, DELETE helpers     • fetchDebtAging()         │   │
+│  │  • JWT auth injection              • fetchNeedsReminder()     │   │
+│  │  • Error handling                  • fetchZaloLink()          │   │
+│  │                                                               │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+│                                 ↓                                     │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │ DATA MODELS — JSON Serialization                             │   │
+│  ├──────────────────────────────────────────────────────────────┤   │
+│  │                                                               │   │
+│  │  Invoice ← → InvoiceLineItem (categories)                    │   │
+│  │  Payment ← → PaymentModel (method, amount, paid_at)          │   │
+│  │  Contract ← → ContractServiceFee + ContractTenantInfo        │   │
+│  │  RevenueReport → RevenueByBuilding breakdown                 │   │
+│  │  OccupancyReport → OccupancyRow (per room)                   │   │
+│  │  ServiceFee, MeterReading (supporting data)                  │   │
+│  │                                                               │   │
+│  │  [TODO] CurrencyFormatter service                            │   │
+│  │  [TODO] PeriodHelper service (date arithmetic)               │   │
+│  │                                                               │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+│                                                                       │
+└─────────────────────────────────────────────────────────────────────┘
+                                 ↓ NETWORK (HTTP)
+                    (Bearer JWT in Authorization header)
+┌─────────────────────────────────────────────────────────────────────┐
+│                         BACKEND API (Django/FastAPI)                 │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                       │
+│  GET  /api/host/reports/revenue?period=month&date=2026-06            │
+│       ↓ Query: invoices.period_start/end IN [month]                 │
+│       ↓ Sum: line_items grouped by category, by building             │
+│       ← Response: { period, date, total, breakdown{}, byBuilding[] }│
+│                                                                       │
+│  GET  /api/host/reports/occupancy?month=2026-06&building_id=?       │
+│       ↓ Query: contracts.start_date ≤ month < end_date               │
+│       ↓ Count: occupied_days per room in that month                  │
+│       ← Response: { month, byRoom[], buildingAvgPct, roomCount }    │
+│                                                                       │
+│  GET  /api/host/reports/export?type=invoices&month=2026-06          │
+│       ↓ Generate CSV: headers + invoice lines                        │
+│       ← Response: CSV bytes (Content-Type: text/csv)                │
+│                                                                       │
+│  GET  /api/host/invoices?month=&status=&contract_id=                │
+│  POST /api/host/invoices/generate-batch                              │
+│  PATCH /api/host/invoices/{id}/send                                  │
+│  PATCH /api/host/invoices/{id}/pay                                   │
+│  POST /api/host/invoices/{id}/credit-note                            │
+│  GET  /api/host/invoices/{id}/debt-aging                             │
+│  GET  /api/host/invoices/{id}/needs-reminder                         │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────┐  │
+│  │ DATABASE TABLES (PostgreSQL)                                  │  │
+│  ├───────────────────────────────────────────────────────────────┤  │
+│  │                                                                │  │
+│  │  invoices (id, host_id, contract_id, period_start/end,        │  │
+│  │            status, total_amount, paid_amount, paid_at, ...)  │  │
+│  │    ↓ FK: contract_id → contracts                             │  │
+│  │                                                                │  │
+│  │  invoice_line_items (id, invoice_id, category, quantity,      │  │
+│  │                      unit_price, amount, ...)                │  │
+│  │    ↓ FK: invoice_id → invoices                               │  │
+│  │                                                                │  │
+│  │  payments (id, host_id, invoice_id, amount, method,           │  │
+│  │            paid_at, created_at)                              │  │
+│  │    ↓ FK: invoice_id → invoices                               │  │
+│  │                                                                │  │
+│  │  contracts (id, host_id, room_id, status, start_date,        │  │
+│  │             end_date, monthly_rent, deposit, ...)            │  │
+│  │    ↓ FK: room_id → rooms                                     │  │
+│  │                                                                │  │
+│  │  meter_readings (id, host_id, room_id, reading_date,          │  │
+│  │                  electricity_kwh, water_m3, ...)             │  │
+│  │    ↓ FK: room_id → rooms                                     │  │
+│  │                                                                │  │
+│  │  service_fees (id, host_id, building_id, name, unit_price,    │  │
+│  │               billing_cycle, ...)                            │  │
+│  │                                                                │  │
+│  │  rooms (id, building_id, room_code, ...)                      │  │
+│  │    ↓ FK: building_id → buildings                             │  │
+│  │                                                                │  │
+│  │  buildings (id, host_id, name, address, city, ...)            │  │
+│  │    ↓ FK: host_id → users                                     │  │
+│  │                                                                │  │
+│  │  users (id, role='host'|'guest'|'admin', ...)                 │  │
+│  │                                                                │  │
+│  └───────────────────────────────────────────────────────────────┘  │
+│                                                                       │
+└─────────────────────────────────────────────────────────────────────┘
+
+KEY RELATIONSHIPS
+=================
+
+Building  ─── (1:N) ──→ Room        ─── (1:N) ──→ Contract     ─── (1:N) ──→ Invoice
+                      ↓                            ↓                           ↓
+                   ServiceFee                   MeterReading            InvoiceLineItem
+                                                                        Payment
+
+COMPUTATION PIPELINE
+====================
+
+User selects: Month = 2026-06, Period = month
+                   ↓
+         [PeriodSelector]
+                   ↓
+   ReportProvider.fetchRevenue(period='month', date='2026-06')
+                   ↓
+   ApiReportRepository.fetchRevenue()
+                   ↓
+   HTTP GET /api/host/reports/revenue?period=month&date=2026-06
+                   ↓
+   [Backend calculates]
+   • SELECT invoice_line_items WHERE period_start/end IN [2026-06]
+   • Group by category (rent, electricity, water, service, ...)
+   • Sum amounts by category and building
+                   ↓
+   Response: RevenueReportModel
+   { period: 'month', date: '2026-06', total: 50000000,
+     breakdown: { rent: 40M, electricity: 5M, water: 3M, service: 2M },
+     byBuilding: [{ buildingId: 1, name: 'Building A', total: 30M }, ...] }
+                   ↓
+   [Client renders]
+   • RevenueBreakdownTable displays:
+     - "Tổng doanh thu: 50.000.000 VND" (hero)
+     - Category breakdown (sorted by amount)
+     - By-building breakdown
+     - CSV export button
+                   ↓
+   CSV download:
+   ReportProvider.downloadInvoicesCsv(month='2026-06')
+                   ↓
+   HTTP GET /api/host/reports/export?type=invoices&month=2026-06
+                   ↓
+   [Backend generates]
+   CSV: header row + one row per invoice line item
+   Response: Raw bytes (UTF-8, Content-Type: text/csv)
+                   ↓
+   [Client saves + shares]
+   File saved: /tmp/invoices-2026-06.csv
+   Share via Share.shareXFiles() → native intent (email, Zalo, etc.)
+
+MISSING IN REBUILD
+==================
+
+[TODO] Charts:
+  • Pie chart of breakdown categories (rent vs. electricity vs. water vs. service)
+  • Line chart of revenue trend (last 12 months)
+  • Bar chart of occupancy by room (current month)
+
+[TODO] Exports:
+  • PDF invoice batch
+  • Excel (.xlsx) with multiple sheets (summary + detail)
+  • Print-friendly HTML
+
+[TODO] Filters:
+  • By-building filter (shows only selected building's revenue)
+  • By-category filter (shows only specific line item categories)
+  • Date range picker (not just month/year chips)
+
+[TODO] Services:
+  • CurrencyFormatter (VND, KHR, THB)
+  • PeriodHelper (date arithmetic, locale-aware)
+  • RevenueCache (with freshness check)
+
+[TODO] Dark Mode:
+  • HD design tokens light-only; add dark theme tokens
+
+[TODO] Tests:
+  • ReportProvider unit tests (state transitions, caching)
+  • RevenueReportModel round-trip tests (fromJson → toJson)
+  • RevenueBreakdownTable widget tests
+  • Integration tests (fetch → render → export)

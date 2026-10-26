@@ -1,0 +1,38 @@
+[tool.coverage.run]
+branch = true
+# Đo cả các nhánh không được chạy — chỉ đo dòng sẽ báo "xanh" cho một `if`
+# chưa bao giờ đi vào nhánh else.
+source = ["app"]
+omit = [
+    "app/__init__.py",
+    "*/migrations/*",
+    "*/alembic/*",
+    "*/tests/*",
+]
+# Ghi ra .coverage.<host>.<pid> rồi `combine` — cần khi chạy nhiều tiến trình.
+parallel = false
+relative_files = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+precision = 2
+# Chỉ loại trừ những dòng KHÔNG PHẢI logic. Mọi nhánh xử lý lỗi đều phải được
+# test thật, không được cho vào đây để làm đẹp con số.
+exclude_also = [
+    # Điểm vào khi chạy trực tiếp — không phải logic nghiệp vụ.
+    "if __name__ == .__main__.:",
+    # Nhánh chỉ dành cho type checker, không chạy lúc runtime.
+    "if TYPE_CHECKING:",
+    # Thân hàm trừu tượng / protocol.
+    "raise NotImplementedError",
+    "@(abc\\.)?abstractmethod",
+    "^\\s*\\.\\.\\.$",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+show_contexts = true
+
+[tool.coverage.xml]
+output = "coverage.xml"

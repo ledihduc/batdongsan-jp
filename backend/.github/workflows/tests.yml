@@ -1,0 +1,101 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main", "develop", "feature/**"]
+  pull_request:
+    branches: ["main", "develop"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ancu365_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ancu365_test
+      SMOKE_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ancu365_test
+      JWT_SECRET: ci-test-secret-not-for-production-32c
+      PORT: 3000
+      UPLOAD_DIR: ./uploads
+      # backend_cors_origins is a list[str] in pydantic-settings; pass JSON
+      BACKEND_CORS_ORIGINS: '["*"]'
+      # Alembic CLI does not auto-add cwd to sys.path; env.py imports
+      # from `app.database` so we need PYTHONPATH=. for migrations and
+      # for pytest collection that exercises app modules.
+      PYTHONPATH: .
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install system dependencies (for psycopg2 + geoalchemy2)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libpq-dev \
+            gdal-bin \
+            libgdal-dev \
+            postgresql-client
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Enable PostGIS extension + planning schema
+        # planning schema is normally created at app startup by
+        # main.py:_ensure_planning_schema; alembic migration 0001 expects
+        # it to exist, so CI provisions it before `alembic upgrade head`.
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres -d ancu365_test \
+            -c "CREATE EXTENSION IF NOT EXISTS postgis;" \
+            -c "CREATE SCHEMA IF NOT EXISTS planning;"
+
+      - name: AC-52 host_id schema guard
+        run: python scripts/check_no_host_id_alter.py
+
+      - name: Run Alembic migrations
+        run: alembic upgrade head
+
+      - name: Run Postgres smoke tests
+        run: pytest tests/test_smoke_postgres.py -v --tb=short
+
+      - name: Run planning unit tests (mock DB)
+        # Planning tests use FakeSession — no real DB needed for these
+        # Coverage chỉ ở step này vì step smoke chạy 1 file isolation —
+        # gộp 2 step phải dùng --cov-append nhưng smoke step không tạo
+        # .coverage nên vô nghĩa. HTML report → artifact.
+        run: |
+          pytest tests/ --ignore=tests/test_smoke_postgres.py -v --tb=short \
+            --cov=app --cov-report=term-missing \
+            --cov-report=html --cov-report=xml
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: coverage-report
+          path: |
+            htmlcov/
+            coverage.xml
+          retention-days: 7
+          if-no-files-found: warn

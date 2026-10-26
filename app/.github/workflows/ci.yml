@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Lấy thư viện
+        run: flutter pub get
+
+      # Chỉ chặn ở mức `error`. Cảnh báo/gợi ý (deprecated, style) không nên
+      # chặn merge — sẽ khiến người ta quen bỏ qua CI đỏ.
+      - name: Phân tích tĩnh
+        run: flutter analyze lib/ test/
+
+      - name: Test + độ phủ
+        run: flutter test --coverage
+
+      - name: Tóm tắt độ phủ
+        if: always()
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lcov
+          echo '### Độ phủ frontend' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          lcov --summary coverage/lcov.info 2>&1 | grep -E 'lines' >> "$GITHUB_STEP_SUMMARY"
+          echo '' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Các tệp reel:' >> "$GITHUB_STEP_SUMMARY"
+          lcov --extract coverage/lcov.info '*reel*' -o /tmp/reel.info >/dev/null 2>&1 || true
+          lcov --list /tmp/reel.info 2>/dev/null | grep -iE 'reel|Total' >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Build web (bắt lỗi chỉ lộ khi biên dịch thật)
+        run: flutter build web --release
+
+      - name: Lưu báo cáo độ phủ
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-frontend
+          path: coverage/lcov.info
+          if-no-files-found: ignore

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><title>Nhắc nhở phê duyệt - ancu365</title></head>
+<body style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+<div style="background:#F57C00;padding:16px;border-radius:8px 8px 0 0;">
+  <h2 style="color:white;margin:0;">ancu365 — Nhắc nhở</h2>
+</div>
+<div style="border:1px solid #e0e0e0;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
+  <h3 style="color:#F57C00;">Nhắc nhở: Còn 48 giờ để phê duyệt</h3>
+  <p>Xin chào <strong>{{ owner_name }}</strong>,</p>
+  <p>Yêu cầu phê duyệt từ Operator <strong>{{ operator_name }}</strong> chưa được xử lý sau 24 giờ.</p>
+  <div style="background:#fff3e0;padding:16px;border-radius:8px;margin:16px 0;border-left:4px solid #F57C00;">
+    <p><strong>Tài sản:</strong> {{ property_name }}</p>
+    <p><strong>Loại yêu cầu:</strong> {{ request_type_label }}</p>
+    {% if monthly_rent_vnd %}<p><strong>Giá trị:</strong> {{ "{:,.0f}".format(monthly_rent_vnd) }} VND/tháng</p>{% endif %}
+    <p style="color:#d32f2f;font-weight:bold;">Còn lại: ~48 giờ trước khi tự động từ chối</p>
+  </div>
+  <div style="text-align:center;margin:24px 0;">
+    <a href="{{ approval_url }}" style="background:#F57C00;color:white;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold;">
+      Phê duyệt ngay
+    </a>
+  </div>
+  <hr style="border:1px solid #e0e0e0;">
+  <p style="color:#666;font-size:12px;">ancu365 — Quản lý bất động sản thông minh</p>
+</div>
+</body>
+</html>

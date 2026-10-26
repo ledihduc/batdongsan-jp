@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UrbanNest - Chi tiết tài sản</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#ffecea",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-fixed-dim": "#62df7d",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed": "#ffdad6",
+                        "secondary": "#006e2d",
+                        "tertiary": "#ae0010",
+                        "on-background": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "background": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-tint": "#0053db",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005320",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed": "#dbe1ff",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#7ffc97",
+                        "on-secondary-container": "#007230",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#93000b",
+                        "secondary-container": "#7cf994",
+                        "on-secondary-fixed": "#002109",
+                        "on-tertiary-fixed": "#410002",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#dce9ff",
+                        "surface": "#f8f9ff",
+                        "tertiary-container": "#d52022",
+                        "primary-container": "#2563eb",
+                        "outline-variant": "#c3c6d7",
+                        "on-surface-variant": "#434655",
+                        "surface-container-highest": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "2rem",
+                        "stack-md": "1rem",
+                        "margin-mobile": "1rem",
+                        "gutter": "1.5rem",
+                        "margin-desktop": "2.5rem",
+                        "stack-sm": "0.5rem",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top App Bar (Shared Component Strategy) -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm w-full top-0 sticky z-50">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-sm w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container transition-colors rounded-full active:scale-95 duration-150" onclick="history.back()">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim">UrbanNest</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+<button class="p-2 hover:bg-surface-container transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pb-32">
+<!-- Image Carousel Section -->
+<section class="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden bg-surface-container">
+<div class="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar" id="carousel">
+<div class="flex-none w-full h-full snap-start relative">
+<img class="w-full h-full object-cover" data-alt="A wide-angle, cinematic photograph of a luxurious modern penthouse living room in Ho Chi Minh City. The space features floor-to-ceiling windows overlooking a shimmering cityscape at sunset. High-end contemporary furniture in neutral tones is arranged on a plush grey rug. The lighting is warm and ambient, creating a sophisticated corporate modern aesthetic with clean lines and premium textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdO5UCuQyxni5n7edY01El46lEW_LzMuT0IwpLSjp9N3DeQx8TQk900HAP8SKFVe7jBQcJ4iWyC3F9YUqo5qLFY1fOhCx6K2j2hl6BHhWPFtRGw9C28QgheWzHvjUNFZWoSADbHoEAEI-iAzKzA-SXfOqu3NNH_wcddW_T-lPNPil9YWzmBF8TqUZyCVZN7wAXFWUDWUT-hC7Mjhs7u1BzXIiP3QOH8vcfJsO3fkIgWCpOwSOeV-Qm1mXYJq95GzTjHnXXRaHUiF4d"/>
+</div>
+<div class="flex-none w-full h-full snap-start relative">
+<img class="w-full h-full object-cover" data-alt="A high-end modern kitchen with minimalist white cabinetry, a large marble island, and state-of-the-art built-in appliances. The scene is bathed in bright, natural morning light, highlighting the pristine cleanliness and architectural precision. The color palette consists of soft whites, light greys, and subtle metallic accents, embodying a professional and growth-oriented lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPMMdEsHR2XQGXg1naRRbsU6A_RToHS4j_MI-ATc5si_2BgUoj5OyzLKSXTDJWy2pUelmi4OELU2ekVGzXHkb5NwxJg1RHQkwnlThTlXSu_ia299ViMdswTgsdAOBX32F9mj2W0mZHvqbH9h5hAs_j_cIUDknGUz-SNjk35IvpTch6vrpSxyouIV6RPiTu3XBPj3w5J2f-5mNf9Gzo369CYLgTdQVjLCfiaij7cCRj6HYPJJHwgMFKkl7ugtV0amhS659jvFy7CzB9"/>
+</div>
+<div class="flex-none w-full h-full snap-start relative">
+<img class="w-full h-full object-cover" data-alt="A serene and spacious master bedroom with a king-sized bed, high-thread-count white linens, and a velvet upholstered headboard. The room opens onto a private balcony with lush greenery. The atmosphere is peaceful and authoritative, with a soft-key lighting setup that emphasizes the premium materials and sophisticated design typical of an UrbanNest property." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC02GqWQP1gr04yy2xGBR8cYvT61NqpcV6bliDkbnNZ01HjRF_bWNQdd3utPJyieBElmDqX4V95O_mVZjDHmmuHLvMFaWA4sabamEovqr1oWCXMC7QzLIAVRmgrGVvOizG0udSuKk1NrIpuXxBRa2XbVvZQH5GHn8vq0JQlN_YdtD_W6TR__8hCuRl_mLD87o2Zmg9X9toZr4uk1dpahiiXv8USy8SG409R0M6GiGexJ31K_Fmg2KIrOJsI_jiptY3DQw_BFJMzars7"/>
+</div>
+</div>
+<!-- Carousel Indicators -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-white/50"></div>
+<div class="w-2 h-2 rounded-full bg-white/50"></div>
+</div>
+</section>
+<!-- Main Content Wrapper -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-stack-lg flex flex-col md:flex-row gap-gutter">
+<!-- Left Column: Details -->
+<div class="flex-1 space-y-stack-lg">
+<!-- Header Info -->
+<div class="space-y-stack-sm">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Skyline Penthouse - District 1</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+                                15 Lê Thánh Tôn, Bến Nghé, Quận 1, TP. Hồ Chí Minh
+                            </p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary">$3,500<span class="text-label-sm font-label-sm text-on-surface-variant">/tháng</span></p>
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container font-label-sm text-label-sm mt-1">
+                                Sẵn sàng
+                            </span>
+</div>
+</div>
+<div class="flex gap-4 pt-stack-sm border-b border-outline-variant pb-stack-md">
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary">bed</span> 3 PN
+                        </div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary">bathtub</span> 2 PT
+                        </div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary">square_foot</span> 120 m²
+                        </div>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-stack-sm">
+<h3 class="font-label-md text-label-md text-on-background uppercase tracking-wider">Mô tả chi tiết</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Tọa lạc tại vị trí kim cương của Quận 1, Skyline Penthouse mang đến không gian sống đẳng cấp với tầm nhìn 360 độ ra toàn cảnh thành phố. Căn hộ được thiết kế theo phong cách hiện đại tối giản, nội thất nhập khẩu từ Châu Âu, tối ưu hóa ánh sáng tự nhiên và luồng không khí. Lý tưởng cho các chuyên gia và gia đình tìm kiếm một không gian sống yên tĩnh nhưng vẫn đầy đủ tiện nghi ngay giữa lòng đô thị náo nhiệt.
+                    </p>
+</div>
+<!-- Amenities -->
+<div class="space-y-stack-sm">
+<h3 class="font-label-md text-label-md text-on-background uppercase tracking-wider">Tiện ích căn hộ</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<span class="material-symbols-outlined text-primary">wifi</span>
+<span class="font-body-sm text-body-sm">Wifi 5G</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<span class="material-symbols-outlined text-primary">pool</span>
+<span class="font-body-sm text-body-sm">Hồ bơi vô cực</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+<span class="font-body-sm text-body-sm">Phòng Gym</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<span class="material-symbols-outlined text-primary">local_parking</span>
+<span class="font-body-sm text-body-sm">Bãi đỗ xe</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<span class="material-symbols-outlined text-primary">ac_unit</span>
+<span class="font-body-sm text-body-sm">Điều hòa trung tâm</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl">
+<span class="material-symbols-outlined text-primary">security</span>
+<span class="font-body-sm text-body-sm">An ninh 24/7</span>
+</div>
+</div>
+</div>
+<!-- Location Map -->
+<div class="space-y-stack-sm">
+<h3 class="font-label-md text-label-md text-on-background uppercase tracking-wider">Vị trí</h3>
+<div class="rounded-2xl overflow-hidden shadow-sm h-64 border border-outline-variant relative group">
+<div class="w-full h-full bg-surface-container-high flex items-center justify-center" data-location="Ho Chi Minh City, District 1" style="">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A clean, professional digital map interface showing District 1 of Ho Chi Minh City. The map is rendered in a minimalist light-mode aesthetic with soft grey streets and subtle blue water features. A distinct blue primary-colored pin marks the location of a luxury property. The overall visual style is corporate, reliable, and highly legible, integrated perfectly within a modern UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSEN5VGEiSGN071ap7HLsmE9OzkYemdKZQmdW4rjUdQRMNHd4kCMxVFKg8x25dt-QGK01qqYduynOwi16pgG7A8rBkn1VGjOrSLzmlRi0cFp9pTfSGqjoFRs4JjQQfUnrxPN5qDF2hqBT-ohn_5AQQxFceVN39aG_KRU-iGx6JDQpwxLnBMqumlkkB4Z6CyHMW03ycU2XhurL02ZIYLI6jYnGG7YvJJtubHuYQ_KoB5SR1XFJKNeR0iedhXi0fDqlxbUSwUDys9wxQ"/>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-primary text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Host Info (Sticky on Desktop) -->
+<aside class="w-full md:w-80 space-y-stack-md">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant md:sticky md:top-24">
+<h3 class="font-label-md text-label-md text-on-background mb-4 uppercase tracking-wider">Thông tin chủ nhà</h3>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container/30">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly real estate agent in her 30s. She is dressed in business casual attire with a soft, confident smile. The background is a brightly lit, blurred modern office. The image has high-key lighting, emphasizing a clean and trustworthy corporate modern aesthetic consistent with the UrbanNest brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLpT6YeMuUdu5WFkEppTKWzasFtKw5ES6unKfz-qkzwg5vg1YMP4Kxbzbg_TEwu9fbwoHc_4G8NntkIoYCoJGSqDcoptXZbDl2gY4nCnzTAL3nyMUAqMAlwWYQ3IOtM-It5VbuUoChdVfXOI1o5AMHxK3zczkBcnAr1e8ZXEs2SR2WMVvvi9Qr2foYsXnlL3BbqCl0L4g8v7QMzDPcaOGfuLYgxClEOBJbNaEtC_-Q4eNVRaPahQBGR3Pjy3iTY8nDV50I8UnTYOK0"/>
+</div>
+<div>
+<h4 class="font-headline-md text-[18px] text-on-background">Nguyễn Minh Anh</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Thành viên từ 2021</p>
+<div class="flex items-center text-secondary mt-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm ml-1">4.9 (124 đánh giá)</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 px-4 border-2 border-primary text-primary font-label-md text-label-md rounded-xl hover:bg-primary/5 transition-colors flex items-center justify-center gap-2 active:scale-95 duration-150">
+<span class="material-symbols-outlined">chat</span>
+                        Chat với chủ nhà
+                    </button>
+<div class="mt-4 p-4 bg-surface-container rounded-xl">
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+                            "Cam kết phản hồi trong vòng 15 phút. Luôn sẵn sàng hỗ trợ bạn xem nhà vào cuối tuần."
+                        </p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-8px_24px_rgba(0,0,0,0.06)] z-[100] safe-bottom">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex items-center gap-4">
+<button class="p-4 rounded-xl border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined text-[28px]">favorite</span>
+</button>
+<button class="flex-1 bg-primary text-on-primary py-4 px-6 rounded-xl font-label-md text-label-md text-center shadow-md hover:bg-primary-container transition-all active:scale-[0.98] duration-150 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">calendar_today</span>
+                Đặt lịch xem nhà
+            </button>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        // Simple carousel snap tracking
+        const carousel = document.getElementById('carousel');
+        const indicators = document.querySelectorAll('#carousel + div > div');
+        
+        carousel.addEventListener('scroll', () => {
+            const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+            indicators.forEach((dot, i) => {
+                dot.className = `w-2 h-2 rounded-full ${i === index ? 'bg-primary' : 'bg-white/50'}`;
+            });
+        });
+
+        // Favorite Toggle interaction
+        const favBtn = document.querySelector('button .material-symbols-outlined:first-child');
+        let isFav = false;
+        favBtn.parentElement.addEventListener('click', () => {
+            isFav = !isFav;
+            favBtn.style.fontVariationSettings = `'FILL' ${isFav ? 1 : 0}`;
+            favBtn.classList.toggle('text-error', isFav);
+            favBtn.classList.toggle('text-on-surface-variant', !isFav);
+        });
+    </script>
+</body></html>

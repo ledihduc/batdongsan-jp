@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Coverage / pytest cache
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Local config (chứa JWT secret) — share .env.example thay vì
+.env
+*firebase-adminsdk*.json
+firebase-service-account*.json
+
+# Local SQLite (sẽ auto-seed lại khi server start lần đầu)
+urbannest.db
+urbannest.db-journal
+*.db.bak
+*.sqlite
+*.sqlite3
+
+# User uploads
+uploads/*
+!uploads/.gitkeep
+
+# Alembic
+alembic/versions/__pycache__/
+
+# Observability runtime (log, state, run audit, escalations) — KHÔNG commit
+storage/logs/
+# Giấy tờ nhạy cảm runtime (CCCD, giấy chứng tử, hồ sơ pháp lý) — lưu ngoài Git
+storage/sensitive/
+scripts/observability/ENABLE_AUTOFIX
+scripts/observability/ENABLE_AUTODEPLOY
+scripts/observability/KILLSWITCH
+
+# Docker / infra runtime (generated; do NOT commit)
+.env.local
+.env.*.local
+infra/certs/
+infra/postgres-data/
+infra/nominatim-data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Báo cáo độ phủ — sinh ra khi chạy test, không phải mã nguồn.
+coverage.xml
+coverage.json
+htmlcov/
+.coverage
+.coverage.*
+
+# Kho tile trên đĩa — dữ liệu cache, không phải mã nguồn. Sinh ra khi có người
+# xem bản đồ (basemap) hoặc do script nạp sẵn.
+data/basemap-tiles/
+data/planning-tiles/
+.arch.new
+
+# Bản sao lưu env (chứa JWT_SECRET, mật khẩu DB) và log chạy test tay — KHÔNG commit
+.env.bak*
+.be_*.log
+
+# JP-strip scratch (session 5+)
+.venv-strip/
+_smoke.db

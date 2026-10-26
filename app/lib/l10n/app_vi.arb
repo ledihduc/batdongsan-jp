@@ -1,0 +1,3794 @@
+{
+  "loginAccountType": "Loại tài khoản",
+  "loginAccountTypeHint": "Chọn loại tài khoản đăng nhập",
+  "loginAccountTypeRequired": "Vui lòng chọn loại tài khoản đăng nhập",
+  "loginAccountTypeMismatch": "Tài khoản chưa có quyền sử dụng vai trò này. Vui lòng chọn lại loại tài khoản hoặc liên hệ quản trị viên.",
+  "loginAccountPickerHelp": "Chọn vai trò bạn muốn sử dụng. Tài khoản cần được cấp quyền tương ứng để đăng nhập.",
+  "loginAccountPickerClose": "Đóng lựa chọn tài khoản",
+  "loginRoleCustomer": "Người tìm nhà",
+  "loginRoleCustomerDescription": "Tìm mua, thuê nhà và theo dõi lịch hẹn của bạn.",
+  "loginRoleSale": "Sale / Môi giới",
+  "loginRoleSaleDescription": "Quản lý khách hàng, tin đăng và giao dịch.",
+  "loginRoleOwner": "Chủ nhà",
+  "loginRoleOwnerDescription": "Quản lý tài sản, phòng và khách thuê.",
+  "loginRoleAdmin": "Quản trị viên",
+  "loginRoleAdminDescription": "Dành cho tài khoản được cấp quyền quản trị hệ thống.",
+  "loginGuestBrowse": "Tiếp tục không đăng nhập",
+  "@@locale": "vi",
+  "appTitle": "Vua Nhà",
+  "settingsTitle": "Cài đặt & quyền riêng tư",
+  "settingsEyebrow": "Tài khoản",
+  "sectionAccount": "Tài khoản",
+  "editProfile": "Chỉnh sửa hồ sơ",
+  "editProfileSub": "Tên, ảnh, số điện thoại",
+  "changePassword": "Đổi mật khẩu",
+  "sectionPreferences": "Tuỳ chọn",
+  "language": "Ngôn ngữ",
+  "chooseLanguage": "Chọn ngôn ngữ",
+  "notifications": "Thông báo",
+  "darkMode": "Chế độ tối",
+  "comingSoon": "Sắp ra mắt",
+  "logout": "Đăng xuất",
+  "daTitle": "Xoá tài khoản",
+  "daSubtitle": "Xoá vĩnh viễn tài khoản và dữ liệu cá nhân",
+  "daDialogTitle": "Xoá tài khoản?",
+  "daDialogBody": "Hành động này KHÔNG thể hoàn tác. Toàn bộ thông tin cá nhân của bạn sẽ bị xoá và bạn sẽ không thể đăng nhập lại. Nhập mật khẩu để xác nhận.",
+  "daPasswordHint": "Mật khẩu hiện tại",
+  "daPasswordRequired": "Nhập mật khẩu để xác nhận",
+  "daConfirm": "Xoá tài khoản",
+  "daSuccess": "Tài khoản đã được xoá",
+  "daFailed": "Xoá tài khoản thất bại",
+  "blockUser": "Chặn người này",
+  "blockUserSub": "Bạn sẽ không còn thấy nội dung của họ",
+  "blockConfirmTitle": "Chặn người này?",
+  "blockConfirmBody": "Bạn sẽ không còn thấy bài đăng, video và bình luận của họ. Có thể bỏ chặn trong Cài đặt.",
+  "blockAction": "Chặn",
+  "blockDone": "Đã chặn người dùng",
+  "blockFailed": "Không chặn được, thử lại sau",
+  "unblock": "Bỏ chặn",
+  "unblockDone": "Đã bỏ chặn",
+  "blockedUsersTitle": "Người đã chặn",
+  "blockedUsersSub": "Quản lý danh sách người bạn đã chặn",
+  "blockedEmpty": "Bạn chưa chặn ai",
+  "reportComment": "Báo cáo bình luận",
+  "actionsNounComment": "bình luận",
+  "privacyPolicy": "Chính sách quyền riêng tư",
+  "termsOfUse": "Điều khoản sử dụng",
+  "sectionLegal": "Pháp lý",
+  "logoutConfirm": "Bạn chắc chắn muốn đăng xuất?",
+  "loggedOut": "Đã đăng xuất",
+  "cancel": "Hủy",
+  "vietnamese": "Tiếng Việt",
+  "english": "Tiếng Anh",
+  "chinese": "Tiếng Trung",
+  "loginEyebrow": "THUÊ NHÀ NHANH · MINH BẠCH",
+  "loginTagline": "Tìm, thuê và cho thuê nhà — dễ dàng, minh bạch.",
+  "loginEmail": "Email",
+  "loginPassword": "Mật khẩu",
+  "loginForgot": "Quên mật khẩu?",
+  "loginButton": "Đăng nhập",
+  "loginFailed": "Đăng nhập thất bại",
+  "loginExitHome": "Về trang chủ",
+  "loginOr": "hoặc",
+  "loginNoAccount": "Chưa có tài khoản? ",
+  "loginRegisterNow": "Đăng ký ngay",
+  "loginDemoAccounts": "Tài khoản demo",
+  "demoTenant": "Khách thuê",
+  "demoHost": "Chủ nhà",
+  "demoAdmin": "Quản trị",
+  "valEmailRequired": "Nhập email của bạn",
+  "valEmailInvalid": "Email chưa đúng định dạng",
+  "valPasswordRequired": "Nhập mật khẩu",
+  "loginContinueGoogle": "Tiếp tục với Google",
+  "loginContinueFacebook": "Tiếp tục với Facebook",
+  "loginOauthMaintenance": "Đăng nhập {provider} đang bảo trì. Vui lòng thử lại sau.",
+  "demoDesigner": "ĐV Thiết kế",
+  "demoBuilder": "ĐV Xây dựng",
+  "demoInterior": "ĐV Nội thất",
+  "emailHint": "ban@vidu.com",
+  "passwordHint": "Ít nhất 6 ký tự",
+  "registerEyebrow": "Đăng ký",
+  "registerTitle": "Tạo tài khoản",
+  "registerWelcome": "Chào mừng đến với",
+  "registerSubtitle": "Tạo tài khoản miễn phí để bắt đầu tìm và đăng phòng.",
+  "registerName": "Họ và tên",
+  "registerPhoneOptional": "Số điện thoại (tuỳ chọn)",
+  "registerConfirmPassword": "Xác nhận mật khẩu",
+  "registerAgreeTerms": "Tôi đồng ý với Điều khoản & Chính sách bảo mật",
+  "registerNeedAgree": "Bạn cần đồng ý với Điều khoản sử dụng",
+  "registerFailed": "Đăng ký thất bại",
+  "registerHaveAccount": "Đã có tài khoản? ",
+  "valRequired": "Bắt buộc",
+  "valPasswordMin": "Tối thiểu 6 ký tự",
+  "valPasswordMismatch": "Mật khẩu không khớp",
+  "@loginOauthMaintenance": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "svcRealEstate": "BẤT ĐỘNG SẢN",
+  "svcRental": "Nhà cho thuê",
+  "svcIndustrial": "BĐS công nghiệp",
+  "svcMap": "Bản đồ",
+  "svcConstruction": "XÂY DỰNG",
+  "svcNew": "MỚI",
+  "svcDesign": "Thiết kế",
+  "svcBuild": "Xây dựng",
+  "svcInterior": "Nội thất",
+  "svcCommunityTitle": "Cộng đồng bất động sản",
+  "svcCommunitySubtitle": "Hỏi đáp, review khu vực, tìm bạn ở ghép…",
+  "svcLeaderboardTitle": "Bảng xếp hạng đối tác",
+  "svcLeaderboardSubtitle": "Xếp hạng theo ngành: thiết kế, xây dựng, nội thất…",
+  "shellLoginToPostHouse": "Đăng nhập để đăng tin cho thuê nhà của bạn.",
+  "shellBecomeHostTitle": "Trở thành chủ nhà",
+  "shellBecomeHostBody": "Bạn sẽ đăng tin đầu tiên và tự động nâng cấp lên chủ nhà. Tiếp tục?",
+  "shellContinue": "Tiếp tục",
+  "shellLoginToPostConstruction": "Đăng nhập để đăng bài xây dựng.",
+  "shellPostRequest": "Đăng yêu cầu",
+  "shellPostListing": "Đăng tin",
+  "shellNavRealEstate": "Tin tức",
+  "shellNavConstruction": "Xây dựng",
+  "shellNavWishlist": "Yêu thích",
+  "shellNavProfile": "Cá nhân",
+  "shellNavOverview": "Tổng quan",
+  "shellNavRooms": "Nhà trọ",
+  "shellNavRequests": "Yêu cầu",
+  "shellHostBuildingsHeader": "NHÀ TRỌ · SỔ TÒA",
+  "drawerCommonSection": "DÙNG CHUNG",
+  "hubCommonSection": "CHUNG",
+  "drawerMessages": "Tin nhắn",
+  "drawerSystemAdmin": "Quản trị hệ thống",
+  "drawerHelp": "Trợ giúp",
+  "drawerAbout": "Về ứng dụng",
+  "drawerRealEstateSection": "BẤT ĐỘNG SẢN",
+  "drawerMapPlanning": "Bản đồ nhà & quy hoạch",
+  "drawerHousesForRent": "Nhà cho thuê",
+  "drawerIndustrialRealEstate": "BĐS công nghiệp",
+  "drawerPostBusinessSection": "ĐĂNG & KINH DOANH",
+  "drawerConstructionBusinessSection": "Đăng yêu cầu & báo giá",
+  "drawerPostRental": "Đăng tin cho thuê",
+  "drawerBecomeHost": "Trở thành chủ nhà",
+  "drawerConstructionSection": "XÂY DỰNG",
+  "drawerContractorDirectory": "Danh bạ nhà thầu",
+  "drawerDesignLibrary": "Thư viện thiết kế",
+  "drawerPartnerLeaderboard": "Bảng xếp hạng đối tác",
+  "drawerPostConstructionRequest": "Đăng yêu cầu xây dựng",
+  "drawerContractorChannel": "Kênh đơn vị xây dựng",
+  "drawerTagline": "Bất động sản & Xây dựng",
+  "drawerViewProfile": "Xem hồ sơ",
+  "drawerLoginPrompt": "Đăng nhập để lưu tin, nhắn tin và đăng bài.",
+  "drawerLoginRegister": "Đăng nhập / Đăng ký",
+  "actionsNounHouse": "tin đăng",
+  "actionsNounPost": "bài viết",
+  "actionsUnsave": "Bỏ lưu",
+  "actionsSaveNoun": "Lưu {noun}",
+  "@actionsSaveNoun": {
+    "placeholders": {
+      "noun": {}
+    }
+  },
+  "actionsSaveSub": "Xem lại sau trong mục đã lưu",
+  "actionsLoginToSave": "Đăng nhập để lưu {noun}.",
+  "@actionsLoginToSave": {
+    "placeholders": {
+      "noun": {}
+    }
+  },
+  "actionsEdit": "Chỉnh sửa",
+  "actionsDelete": "Xoá",
+  "actionsReportWrongInfo": "Báo sai thông tin",
+  "actionsReportWrongInfoSub": "Gửi cho người đăng để họ sửa — không phải tố cáo",
+  "actionsReportNoun": "Báo cáo {noun}",
+  "@actionsReportNoun": {
+    "placeholders": {
+      "noun": {}
+    }
+  },
+  "actionsReportViolationSub": "Gửi quản trị viên xem xét",
+  "actionsLoginToFeedback": "Đăng nhập để gửi phản hồi.",
+  "actionsFeedbackSent": "Đã gửi phản hồi tới người đăng. Cảm ơn bạn!",
+  "actionsReportSent": "Đã gửi báo cáo. Quản trị viên sẽ xem xét.",
+  "actionsRateLimited": "Bạn gửi hơi nhiều, thử lại sau ít phút.",
+  "actionsSendFailed": "Gửi thất bại. Vui lòng thử lại.",
+  "actionsWrongInfoDesc": "Người đăng sẽ nhận được thông báo để kiểm tra lại. Danh tính của bạn được giữ kín.",
+  "actionsWrongInfoHint": "VD: Giá đã thay đổi, nhà đã cho thuê, sai địa chỉ…",
+  "actionsSend": "Gửi",
+  "actionsChooseReason": "Chọn lý do phù hợp nhất",
+  "actionsReasonScam": "Lừa đảo / tin giả",
+  "actionsReasonSpam": "Spam, đăng trùng lặp nhiều lần",
+  "actionsReasonDuplicate": "Trùng với tin khác",
+  "actionsReasonInappropriate": "Nội dung không phù hợp",
+  "actionsReasonOther": "Lý do khác",
+  "homeMenuTooltip": "Menu",
+  "homeSearchTooltip": "Tìm kiếm",
+  "worldRealEstateLabel": "BẤT ĐỘNG SẢN",
+  "worldConstructionLabel": "XÂY DỰNG · THIẾT KẾ",
+  "homeAdvancedFilterTooltip": "Bộ lọc nâng cao",
+  "homeLoginPromptSaveContactPost": "Đăng nhập để lưu tin, liên hệ và đăng bài.",
+  "homeAll": "Tất cả",
+  "homeRealEstateReels": "Reels bất động sản",
+  "homeNoMoreRooms": "— Đã hết phòng —",
+  "homeLoadListFailed": "Không tải được danh sách",
+  "homeNoMatchingListings": "Chưa có tin phù hợp",
+  "homeCheckNetworkRetry": "Kiểm tra kết nối mạng rồi thử lại.",
+  "homeTryRemoveFilters": "Thử bỏ bớt bộ lọc để xem nhiều tin hơn.",
+  "homeRetry": "Thử lại",
+  "homeClearFilters": "Xoá bộ lọc",
+  "homeLoginToSaveFavorite": "Đăng nhập để lưu tin yêu thích.",
+  "homeHost": "Chủ nhà",
+  "homeSave": "Lưu",
+  "homeContact": "Liên hệ",
+  "homeDetails": "Chi tiết",
+  "homeLoginToMessageHost": "Đăng nhập để nhắn tin với chủ nhà.",
+  "homeAreaM2": "{area} m²",
+  "@homeAreaM2": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "homeDistanceAway": "cách {distance}",
+  "@homeDistanceAway": {
+    "placeholders": {
+      "distance": {}
+    }
+  },
+  "homeFull": "ĐÃ ĐỦ",
+  "homeAvailableUnits": "CÒN {available}/{total}",
+  "@homeAvailableUnits": {
+    "placeholders": {
+      "available": {},
+      "total": {}
+    }
+  },
+  "homeTabRent": "Cho thuê",
+  "homeTabSale": "Mua bán",
+  "homeFilterRent": "Bộ lọc: Cho thuê",
+  "homeFilterSale": "Bộ lọc: Mua bán",
+  "filterTitle": "Tìm kiếm & Bộ lọc",
+  "filterReset": "Đặt lại",
+  "filterSectionSearchArea": "Khu vực tìm kiếm",
+  "filterSectionPriceRange": "Khoảng giá",
+  "filterMaxPriceLabel": "Giá tối đa:",
+  "filterPriceValueVnd": "{value}tr VNĐ",
+  "@filterPriceValueVnd": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "filterPriceValueShort": "{value}tr",
+  "@filterPriceValueShort": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "filterSectionArea": "Diện tích (m²)",
+  "filterAreaFrom": "Từ",
+  "filterAreaTo": "Đến",
+  "filterSectionBedrooms": "Số phòng ngủ",
+  "filterAny": "Bất kỳ",
+  "filterSectionPropertyType": "Loại hình cư trú",
+  "filterClearAll": "Xóa tất cả",
+  "filterApply": "Áp dụng bộ lọc",
+  "filterModeAll": "Toàn bộ",
+  "filterModeNearby": "Quanh đây",
+  "filterModePlace": "Địa danh",
+  "filterPlaceHint": "Nhập địa danh: \"gần Đại học Bách Khoa\"…",
+  "filterLocationUpdate": "Đã có vị trí — chạm để cập nhật",
+  "filterGetCurrentLocation": "Lấy vị trí hiện tại",
+  "filterRadiusLabel": "Bán kính:",
+  "filterRadiusKm": "{value} km",
+  "@filterRadiusKm": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "filterLocationAcquired": "Đã lấy vị trí của bạn ✓",
+  "filterLocServiceOff": "Định vị trên thiết bị đang tắt. Bật rồi thử lại.",
+  "filterLocDenied": "Cần quyền vị trí. Hãy thử lại và cho phép.",
+  "filterLocDeniedForever": "Quyền vị trí bị chặn — mở Cài đặt để cấp.",
+  "filterLocOutOfVietnam": "Vị trí ngoài phạm vi phục vụ.",
+  "filterLocError": "Không lấy được vị trí. Thử lại.",
+  "filterPrimingTitle": "Tìm phòng quanh bạn",
+  "filterPrimingBody": "Bật vị trí để xem phòng gần bạn nhất kèm khoảng cách chính xác. Vua Nhà chỉ dùng vị trí khi bạn tìm quanh đây.",
+  "filterPrimingLater": "Để sau",
+  "filterEnableLocation": "Bật vị trí",
+  "filterNeedLocationFirst": "Hãy lấy vị trí hiện tại trước khi áp dụng.",
+  "addProjPdfUploadError": "Không tải được file PDF",
+  "addProjTitleRequired": "Nhập tên công trình",
+  "addProjWaitImages": "Đợi ảnh tải xong đã nhé",
+  "addProjNeedImage": "Thêm ít nhất 1 ảnh cho công trình",
+  "addProjUpdated": "Đã cập nhật",
+  "addProjPosted": "Đã đăng. Hồ sơ sẽ được quản trị xác nhận.",
+  "addProjError": "Lỗi: {error}",
+  "@addProjError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "addProjEyebrow": "Kênh đơn vị",
+  "addProjEditTitle": "Sửa {type}",
+  "@addProjEditTitle": {
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "addProjTypeDesign": "mẫu thiết kế",
+  "addProjTypeWork": "công trình",
+  "addProjCreateDesign": "Đăng mẫu thiết kế",
+  "addProjCreateWork": "Đăng công trình",
+  "addProjPhotoSection": "Ảnh {type}",
+  "@addProjPhotoSection": {
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "addProjPhotoHelper": "Ảnh đầu tiên là ảnh bìa. Nhấn giữ để đặt bìa/xoá. Tối đa 10 ảnh.",
+  "addProjBasicInfo": "Thông tin cơ bản",
+  "addProjTitleLabel": "Tên công trình",
+  "addProjTitleHintDesign": "VD: Biệt thự hiện đại 3 tầng 9x16m",
+  "addProjTitleHintWork": "VD: Nhà phố 3 tầng anh Nam - Q7",
+  "addProjDescLabel": "Mô tả",
+  "addProjDescHint": "Quy mô, vật liệu, điểm nhấn…",
+  "addProjFieldLabel": "Lĩnh vực",
+  "addProjFieldBuild": "Xây dựng",
+  "addProjFieldInterior": "Nội thất",
+  "addProjYearLabel": "Năm hoàn thành",
+  "addProjSpecsTitle": "Thông số mẫu nhà",
+  "addProjSpecsHelper": "Giúp mẫu lên đúng bộ lọc Thư viện thiết kế.",
+  "addProjHouseTypeLabel": "Loại nhà",
+  "addProjStyleLabel": "Phong cách",
+  "addProjFloorsLabel": "Số tầng",
+  "addProjBedroomsLabel": "Phòng ngủ",
+  "addProjWidthLabel": "Chiều rộng đất (m)",
+  "addProjLengthLabel": "Chiều dài đất (m)",
+  "addProjAreaLabel": "Diện tích XD (m²)",
+  "addProjCostLabel": "Giá tham khảo (VND)",
+  "addProjCostHint": "Để trống nếu chưa có",
+  "addProjPdfSection": "Hồ sơ thiết kế (PDF)",
+  "addProjPdfHelper": "Bản vẽ/hồ sơ — quản trị sẽ xác nhận. Tối đa 10 file.",
+  "addProjPdfItem": "Hồ sơ {number}",
+  "@addProjPdfItem": {
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "addProjUploading": "Đang tải…",
+  "addProjAddPdf": "Thêm file PDF",
+  "addProjSaveChanges": "Lưu thay đổi",
+  "addProjSubmit": "Đăng",
+  "addProjSegWork": "Công trình đã làm",
+  "addProjSegDesign": "Mẫu thiết kế",
+  "bkDetEyebrow": "Đặt lịch",
+  "bkDetTitle": "Chi tiết lịch hẹn",
+  "bkDetCancelAppointment": "Hủy lịch hẹn",
+  "bkDetCancelConfirm": "Bạn chắc chắn muốn hủy lịch hẹn xem nhà này?",
+  "bkDetClose": "Đóng",
+  "bkDetCancelBooking": "Hủy lịch",
+  "bkDetCancelFailed": "Hủy thất bại — thử lại.",
+  "bkDetPhoneCopied": "Đã copy số {phone} — mở app gọi điện để gọi.",
+  "@bkDetPhoneCopied": {
+    "placeholders": {
+      "phone": {}
+    }
+  },
+  "bkDetHostNotFound": "Không tìm thấy thông tin chủ nhà.",
+  "bkDetHost": "Chủ nhà",
+  "bkDetApartment": "Căn hộ",
+  "bkDetRoomImage": "Ảnh phòng",
+  "bkDetScheduleTitle": "Lịch hẹn",
+  "bkDetViewDate": "Ngày xem",
+  "bkDetTime": "Giờ",
+  "bkDetSentAt": "Thời điểm gửi",
+  "bkDetYourMessage": "Lời nhắn của bạn",
+  "bkDetNoMessage": "Không có lời nhắn.",
+  "bkDetHostInfo": "Thông tin chủ nhà",
+  "bkDetMessage": "Nhắn tin",
+  "bkDetProgress": "Tiến trình",
+  "bkDetStepRequested": "Yêu cầu đã gửi",
+  "bkDetStepApproved": "Host duyệt lịch",
+  "bkDetStepCompleted": "Hoàn thành xem nhà",
+  "bkDetStepBooked": "Chốt phòng",
+  "bkDetStepRejected": "Host từ chối",
+  "bkDetStepCancelled": "Bạn đã hủy",
+  "bkDetStepLost": "Người khác chốt trước",
+  "bkDetStepEnded": "Kết thúc",
+  "bkDetCall": "Gọi điện",
+  "bkDetReviewed": "Đã đánh giá",
+  "bkDetWriteReview": "Viết đánh giá",
+  "bkDetExploreOther": "Xem nhà khác",
+  "bkHistEyebrow": "Tài khoản",
+  "bkHistTitle": "Lịch sử đặt lịch",
+  "bkHistRefresh": "Làm mới",
+  "bkHistTabPending": "Chờ duyệt",
+  "bkHistTabApproved": "Đã duyệt",
+  "bkHistCompleted": "Hoàn thành",
+  "bkHistFilterAll": "Tất cả",
+  "bkHistStatusLocked": "Đã chốt phòng",
+  "bkHistStatusCancelled": "Đã hủy",
+  "bkHistStatusRejected": "Bị từ chối",
+  "bkHistStatusLost": "Đã có người chốt",
+  "bkHistSearchHint": "Tìm theo tên / địa chỉ nhà...",
+  "bkHistClearSearch": "Xóa tìm kiếm",
+  "bkHistRoomPhoto": "Ảnh phòng",
+  "bkHistDefaultHouseTitle": "Căn hộ cao cấp",
+  "bkHistCallHost": "Gọi host",
+  "bkHistMessage": "Nhắn tin",
+  "bkHistReviewed": "Đã đánh giá",
+  "bkHistReview": "Đánh giá",
+  "bkHistApartment": "Căn hộ",
+  "bkHistViewOtherHouses": "Xem nhà khác",
+  "bkHistCancelTitle": "Hủy lịch hẹn",
+  "bkHistCancelConfirm": "Bạn có chắc chắn muốn hủy lịch hẹn này?",
+  "bkHistClose": "Đóng",
+  "bkHistCancelAppointment": "Hủy lịch",
+  "bkHistCancelSuccess": "Đã hủy lịch hẹn",
+  "bkHistCancelFailed": "Hủy thất bại",
+  "bkHistNoHostPhone": "Chưa có số điện thoại host",
+  "bkHistPhoneCopied": "Đã copy số: {phone}",
+  "@bkHistPhoneCopied": {
+    "placeholders": {
+      "phone": {}
+    }
+  },
+  "bkHistHostNotFound": "Không tìm thấy host",
+  "bkHistHost": "Host",
+  "bkHistNoRequests": "Không có yêu cầu nào",
+  "bkHistNoResults": "Không tìm thấy kết quả",
+  "bkHistSearchEmpty": "Thử từ khoá khác hoặc xoá bộ lọc tìm kiếm.",
+  "bkHistEmptyHint": "Các yêu cầu đặt lịch hẹn của bạn sẽ hiển thị tại đây.",
+  "bkSchedSuccessMessage": "Gửi yêu cầu đặt lịch hẹn thành công!",
+  "bkSchedSubmitFailed": "Gửi yêu cầu thất bại",
+  "bkSchedEyebrow": "Đặt lịch",
+  "bkSchedAppBarTitle": "Đặt lịch xem nhà",
+  "bkSchedCardHeader": "Đặt lịch hẹn xem nhà",
+  "bkSchedStep1": "1. Chọn ngày xem nhà",
+  "bkSchedDateLabel": "Ngày: {date}",
+  "@bkSchedDateLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "bkSchedStep2": "2. Chọn khung giờ (mỗi khung 1 tiếng)",
+  "bkSchedStep3": "3. Lời nhắn cho chủ nhà (Tùy chọn)",
+  "bkSchedMessageHint": "Ví dụ: Tôi muốn hỏi thêm về chỗ để xe ô tô, hoặc tôi sẽ đi cùng bạn...",
+  "bkSchedSelectSlotPrompt": "Vui lòng chọn khung giờ",
+  "bkSchedSubmit": "Gửi yêu cầu đặt lịch",
+  "bkSchedAfterSubmitTitle": "Sau khi gửi yêu cầu",
+  "bkSchedAfterSubmitDesc": "Chủ nhà sẽ nhận được thông báo và phản hồi xác nhận cho bạn trong vòng tối đa 2 giờ làm việc.",
+  "bkSchedCancelPolicyTitle": "Chính sách hủy lịch",
+  "bkSchedCancelPolicyDesc": "Bạn có thể thay đổi hoặc hủy lịch xem nhà miễn phí trước 4 giờ so với thời gian đã hẹn.",
+  "bkSchedRetry": "Thử lại",
+  "bkSchedNoSlots": "Không có khung giờ trống cho ngày này. Vui lòng chọn ngày khác.",
+  "ccompTitle": "Đăng bài xây dựng",
+  "ccompSend": "Gửi",
+  "ccompPost": "Đăng",
+  "ccompYou": "Bạn",
+  "ccompGuestName": "Khách",
+  "ccompIntentShare": "Chia sẻ công trình",
+  "ccompIntentNeed": "Cần xây dựng",
+  "ccompContentHintNeed": "Bạn cần xây dựng gì? Mô tả nhu cầu, hiện trạng…",
+  "ccompContentHintShare": "Chia sẻ công trình bạn vừa hoàn thành…",
+  "ccompServiceBuild": "Xây dựng",
+  "ccompServiceDesign": "Thiết kế",
+  "ccompServiceInterior": "Nội thất",
+  "ccompServiceIndustrial": "Công nghiệp",
+  "ccompPhoneHint": "Số điện thoại *",
+  "ccompAreaHint": "Diện tích (vd. 80m²)",
+  "ccompBudgetHint": "Ngân sách dự kiến",
+  "ccompLocationOptional": "Vị trí (tuỳ chọn)",
+  "ccompSelectProvince": "Chọn tỉnh/thành",
+  "ccompLoading": "Đang tải…",
+  "ccompSelectWard": "Chọn phường/xã",
+  "ccompMapHint": "Chạm vào bản đồ để ghim vị trí (địa chỉ tự điền).",
+  "ccompPinnedWard": "Đã ghim: {ward}",
+  "@ccompPinnedWard": {
+    "placeholders": {
+      "ward": {}
+    }
+  },
+  "ccompPinnedCoords": "Đã ghim: {lat}, {lng}",
+  "@ccompPinnedCoords": {
+    "placeholders": {
+      "lat": {},
+      "lng": {}
+    }
+  },
+  "ccompPhotosCount": "Ảnh ({count}/{max})",
+  "@ccompPhotosCount": {
+    "placeholders": {
+      "count": {},
+      "max": {}
+    }
+  },
+  "ccompLocation": "Vị trí",
+  "ccompImagePickFailed": "Không chọn được ảnh",
+  "ccompSubmitFailed": "Đăng bài thất bại, thử lại",
+  "cleadTitle": "Bảng xếp hạng đối tác",
+  "cleadSubtitle": "Xếp hạng theo mức độ uy tín & đánh giá",
+  "cleadTradeDesign": "Thiết kế",
+  "cleadTradeBuild": "Xây dựng",
+  "cleadTradeInterior": "Nội thất",
+  "cleadTradeIndustrial": "BĐS công nghiệp",
+  "cleadLoadError": "Không tải được danh sách đối tác",
+  "cleadEmptyTitle": "Chưa có đối tác trong ngành này",
+  "cleadEmptySubtitle": "Hãy thử chọn ngành khác hoặc quay lại sau.",
+  "cleadFallbackCompany": "Đối tác",
+  "cleadNoRating": "Chưa có đánh giá",
+  "cleadRatingCount": "⭐ {rating} ({count} đánh giá)",
+  "@cleadRatingCount": {
+    "placeholders": {
+      "rating": {},
+      "count": {}
+    }
+  },
+  "cleadRatingNew": "⭐ {rating} · {count} đánh giá (mới)",
+  "@cleadRatingNew": {
+    "placeholders": {
+      "rating": {},
+      "count": {}
+    }
+  },
+  "cleadBadgeFeatured": "Nổi bật",
+  "cleadBadgePro": "Pro",
+  "cleadBadgeVerified": "Đã thẩm định",
+  "compareTitle": "So sánh BĐS",
+  "compareEmpty": "Không có BĐS để so sánh",
+  "compareCriteria": "Tiêu chí",
+  "compareHouseFallback": "BĐS",
+  "compareLabelPrice": "Giá",
+  "compareLabelArea": "Diện tích",
+  "compareLabelPricePerSqm": "Giá/m²",
+  "compareLabelLegal": "Pháp lý",
+  "compareLabelBedrooms": "Phòng ngủ",
+  "compareLabelBathrooms": "Phòng tắm",
+  "compareLabelLocation": "Khu vực",
+  "ctrContractor": "Nhà thầu",
+  "ctrLoadFailed": "Không tải được",
+  "ctrRequestQuote": "Yêu cầu báo giá",
+  "ctrContractorRatingSubtitle": "Nhà thầu · ⭐ {rating} ({count} đánh giá)",
+  "@ctrContractorRatingSubtitle": {
+    "placeholders": {
+      "rating": {},
+      "count": {}
+    }
+  },
+  "ctrTrustedUnit": "Đơn vị tin cậy",
+  "ctrVerified": "Đã xác minh",
+  "ctrCertVerified": "Chứng chỉ hành nghề",
+  "ctrProjectsStat": "Dự án",
+  "ctrVerifiedLabel": "Đã kiểm chứng",
+  "ctrDesignFilesStat": "File thiết kế",
+  "ctrReviewsStat": "Đánh giá",
+  "ctrYearsExperience": "{yrs} năm kinh nghiệm",
+  "@ctrYearsExperience": {
+    "placeholders": {
+      "yrs": {}
+    }
+  },
+  "ctrEstablished": "Thành lập {year}",
+  "@ctrEstablished": {
+    "placeholders": {
+      "year": {}
+    }
+  },
+  "ctrTeamSize": "Đội {team} người",
+  "@ctrTeamSize": {
+    "placeholders": {
+      "team": {}
+    }
+  },
+  "ctrWebsite": "Website",
+  "ctrPortfolioTitle": "DỰ ÁN ĐÃ THỰC HIỆN",
+  "ctrNoProjects": "Chưa có dự án",
+  "ctrNoProjectsSubtitle": "Đơn vị chưa đăng công trình nào. Gửi yêu cầu để được tư vấn trực tiếp.",
+  "ctrFilterAll": "Tất cả",
+  "ctrFilterHasFiles": "Có file thiết kế",
+  "ctrNoMatchFilter": "Không có dự án khớp bộ lọc.",
+  "ctrProject": "Dự án",
+  "ctrFilesCount": "{count} file",
+  "@ctrFilesCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ctrReviewsTitle": "ĐÁNH GIÁ ({count})",
+  "@ctrReviewsTitle": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ctrNoReviews": "Chưa có đánh giá",
+  "ctrNoReviewsSubtitle": "Hãy là khách hàng đầu tiên đánh giá đơn vị này.",
+  "ctrCriteriaQuality": "Chất lượng",
+  "ctrCriteriaTimeliness": "Tiến độ",
+  "ctrCriteriaCommunication": "Giao tiếp",
+  "ctrCriteriaBudget": "Ngân sách",
+  "ctrCriteriaProfessionalism": "Chuyên nghiệp",
+  "ctrCriteriaBreakdownTitle": "CHI TIẾT THEO TIÊU CHÍ",
+  "ctrReviewCount": "{count} đánh giá",
+  "@ctrReviewCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ctrNotEnoughReviews": "Chưa đủ đánh giá để xếp hạng chi tiết.",
+  "ctrUser": "Người dùng",
+  "cwLoginToJoinCommunity": "Đăng nhập để tham gia cộng đồng xây dựng.",
+  "cwConstructionReels": "Reels xây dựng",
+  "cwPostDeleted": "Đã xoá bài",
+  "cwPostRemovedModeration": "Đã gỡ bài (kiểm duyệt)",
+  "cwErrorWithMsg": "Lỗi: {msg}",
+  "@cwErrorWithMsg": {
+    "placeholders": {
+      "msg": {}
+    }
+  },
+  "cwProject": "Công trình",
+  "cwLocationPin": "📍 {location}",
+  "@cwLocationPin": {
+    "placeholders": {
+      "location": {}
+    }
+  },
+  "cwViewContractor": "Xem đơn vị",
+  "cwShare": "Chia sẻ",
+  "cwCopyLinkFromBrowser": "Sao chép liên kết từ trình duyệt",
+  "cwNeedConstruction": "Cần xây dựng",
+  "cwQuote": "Báo giá",
+  "cwNeedContractorProfile": "Bạn cần có hồ sơ đơn vị để báo giá (mục Cá nhân → Kênh đơn vị).",
+  "cwQuoteSent": "Đã gửi báo giá cho khách",
+  "cwContractor": "Đơn vị",
+  "cwCatAll": "Tất cả",
+  "cwCatDesign": "Thiết kế",
+  "cwCatBuild": "Xây dựng",
+  "cwCatInterior": "Nội thất",
+  "cwCatIndustrial": "Công nghiệp",
+  "cwFeaturedContractors": "Đơn vị nổi bật",
+  "cwViewAllDesignsGrid": "Xem tất cả thiết kế theo lưới",
+  "cwNoContentInCategory": "Chưa có nội dung ở mục {category}",
+  "@cwNoContentInCategory": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "cwBeFirstToShare": "Hãy là người đầu tiên chia sẻ dự án hoặc đăng yêu cầu.",
+  "cwSendQuote": "Gửi báo giá",
+  "cwAmountVnd": "Số tiền (VND) *",
+  "cwAmountHint": "VD: 1500000000",
+  "cwNoteOptional": "Ghi chú (tùy chọn)",
+  "cwSend": "Gửi",
+  "designAppBarEyebrow": "XÂY DỰNG",
+  "designLibraryTitle": "Thư viện thiết kế",
+  "designPostDesign": "Đăng thiết kế",
+  "designAll": "Tất cả",
+  "designHouseType": "Loại nhà",
+  "designStyle": "Phong cách",
+  "designFloors": "Số tầng",
+  "designFloorsValue": "{floors} tầng",
+  "@designFloorsValue": {
+    "placeholders": {
+      "floors": {}
+    }
+  },
+  "designBedroomsLabel": "Phòng ngủ",
+  "designBedroomsTitle": "Số phòng ngủ",
+  "designBedroomsShort": "{bedrooms} PN",
+  "@designBedroomsShort": {
+    "placeholders": {
+      "bedrooms": {}
+    }
+  },
+  "designBedroomsValue": "{bedrooms} phòng ngủ",
+  "@designBedroomsValue": {
+    "placeholders": {
+      "bedrooms": {}
+    }
+  },
+  "designAreaValue": "{area}m²",
+  "@designAreaValue": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "designVerified": "Đã kiểm chứng",
+  "designClearFilters": "Xoá lọc",
+  "designLoadError": "Không tải được thư viện",
+  "designLoadErrorSubtitle": "Kiểm tra kết nối rồi thử lại.",
+  "designRetry": "Thử lại",
+  "designEmptyFilteredTitle": "Không có mẫu phù hợp",
+  "designEmptyTitle": "Chưa có thiết kế nào",
+  "designEmptyFilteredSubtitle": "Thử bỏ bớt bộ lọc để xem nhiều mẫu hơn.",
+  "designEmptySubtitle": "Các đơn vị thiết kế sẽ đăng mẫu nhà tại đây. Quay lại sau nhé.",
+  "designPostYourDesign": "Đăng thiết kế của bạn",
+  "designEndOfList": "— Đã hết —",
+  "designDefaultTitle": "Mẫu thiết kế",
+  "designUnitFallback": "Đơn vị",
+  "designDesignUnitFallback": "Đơn vị thiết kế",
+  "editProfUploadError": "Lỗi upload: {error}",
+  "@editProfUploadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "editProfCoverChanged": "Đã đổi ảnh bìa",
+  "editProfCoverChangeFailed": "Đổi ảnh bìa thất bại",
+  "editProfPickBirthday": "Chọn ngày sinh",
+  "editProfWaitUpload": "Đợi upload ảnh xong",
+  "editProfSaved": "Đã cập nhật hồ sơ",
+  "editProfUpdateFailed": "Cập nhật thất bại",
+  "editProfEmailInUse": "Email đã được sử dụng",
+  "editProfEyebrow": "Tài khoản",
+  "editProfChangeCover": "Đổi ảnh bìa (chủ nhà)",
+  "editProfSectionPersonal": "Thông tin cá nhân",
+  "editProfFullName": "Họ và tên",
+  "editProfRequired": "Bắt buộc",
+  "editProfEmailHelper": "Email dùng để đăng nhập",
+  "editProfEmailInvalid": "Email không hợp lệ",
+  "editProfPhone": "Số điện thoại",
+  "editProfSectionIntro": "Giới thiệu",
+  "editProfBioLabel": "Giới thiệu bản thân",
+  "editProfBioHint": "VD: Tôi là chủ nhà tại Quận 1, 5 năm cho thuê căn hộ...",
+  "editProfSectionVerify": "Xác thực (tuỳ chọn)",
+  "editProfIdNumber": "CMND / CCCD",
+  "editProfIdHelper": "Để trống nếu chưa muốn xác thực",
+  "editProfSave": "Lưu thay đổi",
+  "editProfNotSelected": "Chưa chọn",
+  "editProfBirthday": "Ngày sinh",
+  "editProfAge": "Tuổi: {age}",
+  "@editProfAge": {
+    "placeholders": {
+      "age": {}
+    }
+  },
+  "hdBack": "Quay lại",
+  "hdShare": "Chia sẻ",
+  "hdLinkCopied": "Đã sao chép link",
+  "hdImageLabel": "{title} — ảnh {n}",
+  "@hdImageLabel": {
+    "placeholders": {
+      "title": {},
+      "n": {}
+    }
+  },
+  "hdPerMonth": "/tháng",
+  "hdLoanCalc": "Tính khoản vay ngân hàng",
+  "hdBedroomsShort": "{n} PN",
+  "@hdBedroomsShort": {
+    "placeholders": {
+      "n": {}
+    }
+  },
+  "hdBathroomsShort": "{n} PT",
+  "@hdBathroomsShort": {
+    "placeholders": {
+      "n": {}
+    }
+  },
+  "hdAreaSqm": "{area} m²",
+  "@hdAreaSqm": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "hdDescriptionTitle": "MÔ TẢ CHI TIẾT",
+  "hdHostInfoTitle": "THÔNG TIN CHỦ NHÀ",
+  "hdLoginToSave": "Đăng nhập để lưu tin yêu thích.",
+  "hdFavUpdateFailed": "Không thể cập nhật yêu thích",
+  "hdApptApprovedTitle": "Lịch xem đã được duyệt",
+  "hdApptApprovedSub": "{sched} · Vui lòng đến đúng giờ",
+  "@hdApptApprovedSub": {
+    "placeholders": {
+      "sched": {}
+    }
+  },
+  "hdApptRejectedTitle": "Lịch xem bị từ chối",
+  "hdApptRejectedSub": "Bạn có thể chọn khung giờ khác",
+  "hdApptCancelledTitle": "Bạn đã hủy lịch xem",
+  "hdApptCancelledSub": "Đặt lại nếu vẫn muốn xem nhà",
+  "hdApptCompletedTitle": "Bạn đã xem nhà này",
+  "hdApptLockedTitle": "Phòng đã được chốt",
+  "hdApptPendingTitle": "Bạn đã đặt lịch xem",
+  "hdApptPendingSub": "{sched} · Đang chờ chủ nhà duyệt",
+  "@hdApptPendingSub": {
+    "placeholders": {
+      "sched": {}
+    }
+  },
+  "hdLegalRedBook": "Sổ đỏ",
+  "hdLegalPinkBook": "Sổ hồng",
+  "hdLegalSaleContract": "HĐ mua bán",
+  "hdLegalPending": "Đang chờ sổ",
+  "hdPricePerMonth": "{s} triệu/tháng",
+  "@hdPricePerMonth": {
+    "placeholders": {
+      "s": {}
+    }
+  },
+  "hdSpecPrice": "Mức giá",
+  "hdSpecArea": "Diện tích",
+  "hdSpecBedrooms": "Số phòng ngủ",
+  "hdSpecBathrooms": "Số phòng tắm, vệ sinh",
+  "hdSpecType": "Loại hình",
+  "hdSpecLegal": "Pháp lý",
+  "hdSpecFurniture": "Nội thất",
+  "hdRoomsCount": "{n} phòng",
+  "@hdRoomsCount": {
+    "placeholders": {
+      "n": {}
+    }
+  },
+  "hdPropertySpecsTitle": "ĐẶC ĐIỂM BẤT ĐỘNG SẢN",
+  "hdYourListing": "Tin đăng của bạn",
+  "hdViewBooking": "Xem lịch đã đặt",
+  "hdRebookViewing": "Đặt lại lịch xem",
+  "hdBookViewing": "Đặt lịch xem nhà",
+  "hdLoginToBook": "Đăng nhập để đặt lịch xem nhà.",
+  "hdAreaHa": "{area} ha",
+  "@hdAreaHa": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "hdIndPower": "Tải điện",
+  "hdPowerMva": "{power} MVA",
+  "@hdPowerMva": {
+    "placeholders": {
+      "power": {}
+    }
+  },
+  "hdIndFireSafety": "PCCC",
+  "hdHas": "Đã có",
+  "hdHasNot": "Chưa có",
+  "hdIndLegal": "Pháp lý KCN",
+  "hdIndustrialSpecsTitle": "THÔNG SỐ CÔNG NGHIỆP",
+  "hdForSale": "Đang bán",
+  "hdFull": "Đã đủ",
+  "hdUnitsAvailable": "Còn {available}/{total} phòng",
+  "@hdUnitsAvailable": {
+    "placeholders": {
+      "available": {},
+      "total": {}
+    }
+  },
+  "hdAvailable": "Sẵn sàng",
+  "hdHost": "Chủ nhà",
+  "hdHostVerifiedTooltip": "Chủ nhà đã xác minh danh tính",
+  "hdHostTrustedTooltip": "Chủ nhà tin cậy: đánh giá cao, phản hồi nhanh",
+  "hdResponseTime": "Phản hồi ~{h}h",
+  "@hdResponseTime": {
+    "placeholders": {
+      "h": {}
+    }
+  },
+  "hdHidden": "· đã ẩn",
+  "hdMessageHost": "Nhắn tin với chủ nhà",
+  "hdReviewsTitle": "ĐÁNH GIÁ",
+  "hdNoReviews": "Chưa có đánh giá nào.",
+  "hdViewAllReviews": "Xem tất cả {count} đánh giá",
+  "@hdViewAllReviews": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hdUser": "Người dùng",
+  "hubProviderChannel": "Kênh đơn vị",
+  "hubEnterNameSelectService": "Nhập tên đơn vị và chọn ít nhất 1 dịch vụ",
+  "hubProfileSubmitted": "Đã gửi hồ sơ. Chờ duyệt để hiển thị trong danh bạ.",
+  "hubErrorWithMsg": "Lỗi: {error}",
+  "@hubErrorWithMsg": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hubBecomeProvider": "Trở thành đơn vị",
+  "hubRegisterService": "Đăng ký cung cấp dịch vụ",
+  "hubRegisterIntro": "Đăng ký để nhận nhu cầu khách hàng và quảng bá đơn vị của bạn (thiết kế / xây dựng / nội thất).",
+  "hubUnitName": "Tên đơn vị *",
+  "hubUnitNameHint": "VD: Kiến An Xây Dựng",
+  "hubField": "Lĩnh vực *",
+  "hubOperatingArea": "Khu vực hoạt động",
+  "hubSelectProvince": "Chọn tỉnh/thành",
+  "hubIntro": "Giới thiệu",
+  "hubIntroHint": "Kinh nghiệm, thế mạnh, quy mô...",
+  "hubContactPhone": "Số điện thoại liên hệ",
+  "hubSubmitRegistration": "Gửi hồ sơ đăng ký",
+  "hubOwnerContact": "Liên hệ chủ nhà",
+  "hubNameLabel": "Tên: {name}",
+  "@hubNameLabel": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "hubPhoneLabel": "SĐT: {phone}",
+  "@hubPhoneLabel": {
+    "placeholders": {
+      "phone": {}
+    }
+  },
+  "hubClose": "Đóng",
+  "hubOwnerNotShared": "Chủ nhà chưa chia sẻ liên hệ. Vui lòng chờ.",
+  "hubCantViewContact": "Không xem được liên hệ: {msg}",
+  "@hubCantViewContact": {
+    "placeholders": {
+      "msg": {}
+    }
+  },
+  "hubEditProfile": "Sửa hồ sơ đơn vị",
+  "hubAddCover": "Thêm ảnh bìa",
+  "hubChangeLogo": "Đổi logo đơn vị",
+  "hubPhone": "Số điện thoại",
+  "hubWebsite": "Website (nếu có)",
+  "hubYearEstablished": "Năm thành lập",
+  "hubTeamSize": "Quy mô đội",
+  "hubPeopleSuffix": "{size} người",
+  "@hubPeopleSuffix": {
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "hubCertNumber": "Số chứng chỉ hành nghề (nếu có)",
+  "hubCertHelper": "Quản trị sẽ đối chiếu rồi cấp huy hiệu",
+  "hubCancel": "Huỷ",
+  "hubSave": "Lưu",
+  "hubNameRequired": "Tên đơn vị không được trống",
+  "hubProfileUpdated": "Đã cập nhật hồ sơ",
+  "hubDeleteProjectTitle": "Xoá công trình?",
+  "hubDeleteProjectConfirm": "Xoá \"{title}\" khỏi hồ sơ? Không hoàn tác được.",
+  "@hubDeleteProjectConfirm": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "hubThisProject": "công trình này",
+  "hubDelete": "Xoá",
+  "hubDeleted": "Đã xoá",
+  "hubImageUploadFailed": "Không tải được ảnh: {error}",
+  "@hubImageUploadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hubQuoteSent": "Đã gửi báo giá cho khách",
+  "hubUnit": "Đơn vị",
+  "hubActive": "Đang hoạt động",
+  "hubPendingApproval": "Chờ duyệt",
+  "hubCertificate": "Chứng chỉ",
+  "hubPendingNote": "Hồ sơ đang chờ quản trị duyệt. Bạn vẫn xem được nhu cầu và gửi báo giá; hồ sơ sẽ hiển thị trong danh bạ sau khi duyệt.",
+  "hubEditProfileShort": "Sửa hồ sơ",
+  "hubPostProject": "Đăng công trình",
+  "hubMatchingNeeds": "NHU CẦU PHÙ HỢP",
+  "hubNoMatchingNeeds": "Chưa có nhu cầu phù hợp. Quay lại sau nhé.",
+  "hubMyQuotes": "BÁO GIÁ CỦA TÔI",
+  "hubProjectsDesigns": "CÔNG TRÌNH & MẪU THIẾT KẾ",
+  "hubNoProjects": "Chưa có công trình nào",
+  "hubNoProjectsSub": "Đăng công trình đã làm hoặc mẫu thiết kế để khách thấy năng lực của bạn.",
+  "hubPostFirstProject": "Đăng công trình đầu tiên",
+  "hubService": "Dịch vụ",
+  "hubContactsYou": "Liên hệ bạn",
+  "hubSendQuote": "Gửi báo giá",
+  "hubWon": "Đã thắng",
+  "hubNotSelected": "Không được chọn",
+  "hubWaiting": "Đang chờ",
+  "hubRequest": "Yêu cầu",
+  "hubQuoteAmount": "Báo giá: {amount}",
+  "@hubQuoteAmount": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "hubMilestoneLine": "• {label} ({percent}%): {amount}",
+  "@hubMilestoneLine": {
+    "placeholders": {
+      "label": {},
+      "percent": {},
+      "amount": {}
+    }
+  },
+  "hubViewContact": "Xem liên hệ",
+  "hubWaitOwnerShare": "Chờ chủ nhà chia sẻ liên hệ",
+  "hubBillion": "tỷ",
+  "hubMillion": "triệu",
+  "hubDong": "đ",
+  "hubProject": "Công trình",
+  "hubVerified": "Đã kiểm chứng",
+  "hubSelfPosted": "Tự đăng",
+  "hubDesignFiles": "{count} file thiết kế",
+  "@hubDesignFiles": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hubEdit": "Sửa",
+  "hubAmount": "Số tiền (VND) *",
+  "hubAmountHint": "VD: 1500000000",
+  "hubNoteOptional": "Ghi chú (tùy chọn)",
+  "hubSplitStages": "Chia theo giai đoạn (30/20/20/30)",
+  "hubStagesSubtitle": "Đặt cọc · Concept · Kỹ thuật · Bàn giao",
+  "hubSend": "Gửi",
+  "myReqTitle": "Yêu cầu dịch vụ của tôi",
+  "myReqEmpty": "Bạn chưa đặt dịch vụ nào",
+  "myReqContactSharedToast": "Đã chia sẻ số điện thoại cho đơn vị",
+  "myReqShareError": "Không chia sẻ được: {error}",
+  "@myReqShareError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "myReqQuoteAccepted": "Đã chấp nhận báo giá",
+  "myReqAcceptError": "Không thể chấp nhận: {error}",
+  "@myReqAcceptError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "myReqReviewThanks": "Cảm ơn đánh giá của bạn!",
+  "myReqReviewError": "Lỗi: {error}",
+  "@myReqReviewError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "myReqServiceDesign": "Thiết kế",
+  "myReqServiceBuild": "Xây dựng",
+  "myReqServiceInterior": "Nội thất",
+  "myReqServiceDefault": "Dịch vụ",
+  "myReqStatusNew": "Đã gửi",
+  "myReqStatusAssigned": "Đã kết nối đơn vị",
+  "myReqStatusQuoted": "Đã có báo giá",
+  "myReqStatusWon": "Đã chốt",
+  "myReqStatusClosed": "Đã đóng",
+  "myReqNoQuotes": "Chưa có báo giá. Đơn vị sẽ phản hồi sớm.",
+  "myReqContractorDefault": "Đơn vị",
+  "myReqQuoteAmount": "Báo giá: {amount}",
+  "@myReqQuoteAmount": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "myReqSelectedContractor": "Đã chọn đơn vị này",
+  "myReqReview": "Đánh giá",
+  "myReqContactSharedLabel": "Đã chia sẻ liên hệ cho đơn vị",
+  "myReqShareContactBtn": "Chia sẻ SĐT với đơn vị",
+  "myReqAccept": "Chấp nhận",
+  "myReqReviewTitle": "Đánh giá đơn vị",
+  "myReqCritQuality": "Chất lượng",
+  "myReqCritTimeliness": "Tiến độ",
+  "myReqCritCommunication": "Giao tiếp",
+  "myReqCritBudget": "Ngân sách",
+  "myReqCritProfessionalism": "Chuyên nghiệp",
+  "myReqDetailedRating": "Chấm chi tiết (tuỳ chọn)",
+  "myReqCommentHint": "Nhận xét (tùy chọn)",
+  "myReqSend": "Gửi",
+  "pgalFileOpenError": "Không mở được file",
+  "pgalVerifySuccess": "Đã xác nhận dự án",
+  "pgalErrorWith": "Lỗi: {error}",
+  "@pgalErrorWith": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "pgalProjectFallback": "Dự án",
+  "pgalVerified": "Đã kiểm chứng",
+  "pgalDesignFilesCount": "FILE THIẾT KẾ ({count})",
+  "@pgalDesignFilesCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pgalDesignUnit": "ĐƠN VỊ THIẾT KẾ",
+  "pgalConfirmReal": "Xác nhận dự án có thật",
+  "pgalViewFirmProfile": "Xem hồ sơ đơn vị",
+  "pgalRequestConsult": "Yêu cầu tư vấn",
+  "pgalSpecCode": "Mã thiết kế",
+  "pgalSpecHouseType": "Loại nhà",
+  "pgalSpecStyle": "Phong cách",
+  "pgalSpecFloors": "Số tầng",
+  "pgalFloorsValue": "{count} tầng",
+  "@pgalFloorsValue": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pgalSpecBedrooms": "Phòng ngủ",
+  "pgalRoomsValue": "{count} phòng",
+  "@pgalRoomsValue": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pgalSpecLandArea": "Diện tích đất",
+  "pgalLandAreaValue": "{width}×{length}m ({total} m²)",
+  "@pgalLandAreaValue": {
+    "placeholders": {
+      "width": {},
+      "length": {},
+      "total": {}
+    }
+  },
+  "pgalSpecBuildArea": "DT xây dựng",
+  "pgalSqmValue": "{area} m²",
+  "@pgalSqmValue": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "pgalSpecYear": "Năm thiết kế",
+  "pgalSpecRegion": "Khu vực",
+  "pgalSpecEstCost": "Giá tham khảo",
+  "pgalSpecTitle": "THÔNG SỐ KỸ THUẬT",
+  "pgalCostBillion": "{value} tỷ",
+  "@pgalCostBillion": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "pgalCostMillion": "{value} triệu",
+  "@pgalCostMillion": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "pgalCostDong": "{value} đ",
+  "@pgalCostDong": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "pgalDescTitle": "MÔ TẢ THIẾT KẾ",
+  "pgalCollapse": "Thu gọn",
+  "pgalExpand": "Xem thêm",
+  "pgalRelatedTitle": "MẪU TƯƠNG TỰ",
+  "pgalDesignTemplate": "Mẫu thiết kế",
+  "pgalBedroomsAbbr": "{count} PN",
+  "@pgalBedroomsAbbr": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "pgalSqmValueCompact": "{area}m²",
+  "@pgalSqmValueCompact": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "pgalDesignFirmName": "Đơn vị thiết kế",
+  "pgalRatingLine": "⭐ {rating} · {count} đánh giá",
+  "@pgalRatingLine": {
+    "placeholders": {
+      "rating": {},
+      "count": {}
+    }
+  },
+  "pgalViewAllFirm": "Xem tất cả mẫu của đơn vị →",
+  "pgalDrawingIndex": "Bản vẽ/thiết kế {index}",
+  "@pgalDrawingIndex": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "postCardEdited": "đã chỉnh sửa",
+  "postCmtErrorLoad": "Không tải được bình luận",
+  "postCmtLoginRequired": "Đăng nhập để bình luận.",
+  "postCmtSendFailed": "Gửi bình luận thất bại",
+  "postCmtDeleteFailed": "Xoá bình luận thất bại",
+  "postCmtTitle": "Bình luận",
+  "postCmtEmpty": "Chưa có bình luận. Hãy là người đầu tiên!",
+  "postCmtEdited": "đã chỉnh sửa",
+  "postCmtMoreImages": "+{count} ảnh",
+  "@postCmtMoreImages": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "postCmtDeleted": "Bình luận đã bị xoá",
+  "postCmtReply": "Trả lời",
+  "postCmtDelete": "Xoá",
+  "postCmtReplyingTo": "Đang trả lời {name}",
+  "@postCmtReplyingTo": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "postCmtHint": "Viết bình luận...",
+  "postCmtReplyHint": "Trả lời {name}...",
+  "@postCmtReplyHint": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "postHouseImagePickError": "Lỗi chọn ảnh: {error}",
+  "@postHouseImagePickError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "postHouseSelectRoomType": "Vui lòng chọn loại phòng",
+  "postHouseWaitUpload": "Vui lòng đợi upload ảnh xong",
+  "postHouseNeedOneImage": "Cần ít nhất 1 ảnh",
+  "postHousePostSuccess": "Đã đăng tin thành công!",
+  "postHousePendingReviewTitle": "Tin đã gửi — đang chờ duyệt",
+  "postHousePendingReviewBody": "Tin bán giá trị lớn cần quản trị viên xác minh trước khi hiển thị công khai (thường trong vòng 24 giờ). Bạn theo dõi trạng thái tại Cá nhân → Tin đã đăng.",
+  "commonUnderstood": "Đã hiểu",
+  "postHousePostFailed": "Đăng phòng thất bại",
+  "postHouseUpdateSuccess": "Đã cập nhật tin",
+  "postHouseUpdateFailed": "Cập nhật thất bại",
+  "postHouseEditTitle": "Chỉnh sửa tin đăng",
+  "postHouseNewTitle": "Đăng phòng mới",
+  "postHousePhotosLabel": "{label} ({current}/{max})",
+  "@postHousePhotosLabel": {
+    "placeholders": {
+      "label": {},
+      "current": {},
+      "max": {}
+    }
+  },
+  "postHousePropertyPhotos": "Ảnh bất động sản",
+  "postHouseRoomPhotos": "Ảnh phòng",
+  "postHouseListingCategory": "Loại tin",
+  "postHouseTitleLabel": "Tiêu đề",
+  "postHouseTitleHint": "VD: Căn hộ 2PN view sông Sài Gòn",
+  "postHouseRequired": "Bắt buộc",
+  "postHouseDescLabel": "Mô tả",
+  "postHouseDescHint": "Mô tả chi tiết về phòng...",
+  "postHouseDraftFoundTitle": "Tiếp tục tin đang soạn dở?",
+  "postHouseDraftFoundBody": "Bạn có một tin chưa đăng xong lần trước. Khôi phục để điền tiếp, hoặc bỏ để bắt đầu tin mới. (Ảnh cần chọn lại.)",
+  "postHouseDraftRestore": "Khôi phục",
+  "postHouseDraftDiscard": "Bỏ nháp",
+  "postHouseDescLabelOptional": "Mô tả (không bắt buộc)",
+  "postHouseDescTemplateBtn": "Chèn khung mô tả mẫu",
+  "postHouseDescTemplate": "• Vị trí: gần chợ/trường/bến xe...\n• Tiện nghi: điều hoà, nóng lạnh, chỗ để xe...\n• Chi phí khác: điện, nước, internet...\n• Liên hệ xem nhà: ",
+  "postHousePropertyType": "Loại bất động sản",
+  "postHouseRoomType": "Loại phòng",
+  "postHouseSelectType": "Chọn loại",
+  "postHouseSalePrice": "Giá bán (₫)",
+  "postHouseRentPrice": "Giá thuê / tháng (₫)",
+  "postHousePerMonth": "/tháng",
+  "postHouseSalePriceHint": "VD: 2.500.000.000",
+  "postHouseRentPriceHint": "VD: 8.000.000",
+  "postHouseArea": "Diện tích (m²)",
+  "postHouseAreaHint": "VD: 65",
+  "postHouseAddress": "Địa chỉ",
+  "postHouseAddressHint": "Số nhà, đường...",
+  "postHouseAddressNeedsDetail": "Bản đồ chỉ xác định được tới phường/xã — vui lòng bổ sung số nhà và tên đường.",
+  "postHouseProvince": "Tỉnh / Thành phố",
+  "postHouseSelectProvince": "Chọn tỉnh/thành",
+  "postHouseWard": "Phường / Xã",
+  "postHouseLoading": "Đang tải...",
+  "postHouseSelectWard": "Chọn phường/xã",
+  "postHouseMapLocation": "Vị trí trên bản đồ",
+  "postHouseMapHint": "Chạm vào bản đồ để đặt ghim vị trí chính xác (địa chỉ tự điền).",
+  "postHousePinnedAt": "Đã ghim: {lat}, {lng}",
+  "@postHousePinnedAt": {
+    "placeholders": {
+      "lat": {},
+      "lng": {}
+    }
+  },
+  "postHouseBedrooms": "Phòng ngủ",
+  "postHouseBathrooms": "Phòng tắm",
+  "postHouseLegal": "Pháp lý",
+  "postHouseSaveChanges": "Lưu thay đổi",
+  "postHouseSell": "Đăng bán",
+  "postHouseRent": "Đăng cho thuê",
+  "postHouseAddPhoto": "Thêm ảnh",
+  "postHouseCoverPhoto": "Ảnh bìa",
+  "postHouseRetry": "Thử lại",
+  "postHouseListingForm": "Hình thức đăng tin",
+  "postHouseSemanticRent": "Loại tin: Cho thuê",
+  "postHouseSemanticSale": "Loại tin: Rao bán",
+  "postHouseSingleTitle": "1 căn / 1 phòng",
+  "postHouseSingleSubtitle": "Nhà nguyên căn, căn hộ riêng",
+  "postHouseMultiTitle": "Nhiều phòng",
+  "postHouseMultiSubtitle": "Dãy trọ, CCMN, hostel...",
+  "postHouseLegalRedBook": "Sổ đỏ",
+  "postHouseLegalPinkBook": "Sổ hồng",
+  "postHouseLegalSaleContract": "HĐ mua bán",
+  "postHouseLegalPending": "Chờ sổ",
+  "postHouseTotalUnits": "Tổng số phòng",
+  "postHouseTotalUnitsHint": "VD: 10",
+  "postHouseAvailableUnits": "Còn trống",
+  "postHouseAvailableUnitsHint": "VD: 7",
+  "postHousePriorityTenant": "Đối tượng ưu tiên",
+  "postHouseGenderAny": "Không yêu cầu",
+  "postHouseGenderMale": "Nam",
+  "postHouseGenderFemale": "Nữ",
+  "profPersonal": "Cá nhân",
+  "profLoginPrompt": "Đăng nhập để quản lý hồ sơ, tin đã đăng, lịch hẹn và cài đặt.",
+  "profAccount": "Tài khoản",
+  "profSettings": "Cài đặt",
+  "profYourPosts": "BÀI VIẾT CỦA BẠN",
+  "profSavedListings": "Tin đã lưu",
+  "profAgeYears": "{count} tuổi",
+  "@profAgeYears": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "profListings": "Tin đăng",
+  "profAppointmentsStat": "Đặt lịch",
+  "profFavorites": "Yêu thích",
+  "profMine": "Của tôi",
+  "profPostedListings": "Tin đã đăng",
+  "profPostedListingsSubtitle": "Quản lý phòng bạn cho thuê",
+  "profViewingAppointments": "Lịch hẹn xem nhà",
+  "profViewingAppointmentsSubtitle": "Các lịch đặt xem nhà của bạn",
+  "profConstructionServices": "Dịch vụ xây dựng",
+  "profMyServiceRequests": "Yêu cầu dịch vụ của tôi",
+  "profMyServiceRequestsSubtitle": "Theo dõi báo giá & chọn đơn vị",
+  "profProviderChannel": "Kênh đơn vị",
+  "profProviderChannelSubtitle": "Hồ sơ năng lực, nhu cầu phù hợp, báo giá của tôi",
+  "profBecomeProvider": "Bạn là đơn vị xây dựng/thiết kế?",
+  "profBecomeProviderSubtitle": "Đăng ký hồ sơ để nhận yêu cầu báo giá từ khách",
+  "profRoleAdmin": "Quản trị",
+  "profRoleMember": "Thành viên",
+  "profModeGuest": "Khách thuê",
+  "profModeHost": "Chủ nhà",
+  "profBecomeHost": "TRỞ THÀNH CHỦ NHÀ",
+  "profBecomeHostSubtitle": "Mở phòng, đón khách, thu tiền — chỉ trong 2 phút.",
+  "reelCmtLoadFailed": "Không tải được bình luận.",
+  "reelCmtLoginToComment": "Đăng nhập để bình luận.",
+  "reelCmtRateLimited": "Bạn bình luận hơi nhanh, thử lại sau ít phút.",
+  "reelCmtSendFailed": "Gửi bình luận thất bại.",
+  "reelCmtDeleteTitle": "Xoá bình luận?",
+  "reelCmtDelete": "Xoá",
+  "reelCmtDeleteFailed": "Xoá bình luận thất bại.",
+  "reelCmtCountLabel": "{count} bình luận",
+  "@reelCmtCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reelCmtReplyingTo": "Đang trả lời {name}",
+  "@reelCmtReplyingTo": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "reelCmtInputHint": "Viết bình luận…",
+  "reelCmtEmpty": "Chưa có bình luận nào.\nHãy là người đầu tiên!",
+  "reelCmtDefaultUser": "Người dùng",
+  "reelCmtDeletedComment": "Bình luận đã bị xoá",
+  "reelCmtReply": "Trả lời",
+  "reelCompTitle": "Tạo reel",
+  "reelCompPost": "Đăng",
+  "reelCompUploading": "Đang tải video lên…",
+  "reelCompUploaded": "Đã tải lên: {name}",
+  "@reelCompUploaded": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "reelCompPickVideo": "Chọn video từ thư viện",
+  "reelCompLimits": "Tối đa 90 giây · 120MB · mọi định dạng",
+  "reelCompCaption": "Chú thích",
+  "reelCompCaptionHint": "Mô tả ngắn về video của bạn…",
+  "reelCompShowIn": "Hiển thị ở phần",
+  "reelCompCatAll": "Mọi phần",
+  "reelCompCatLease": "Cho thuê",
+  "reelCompCatIndustrial": "Công nghiệp",
+  "reelCompCatDesign": "Thiết kế",
+  "reelCompCatBuild": "Xây dựng",
+  "reelCompCatInterior": "Nội thất",
+  "reelCompErrVideoTooLarge": "Video quá lớn (tối đa 120MB). Hãy quay ngắn hơn.",
+  "reelCompErrUploadFailed": "Tải video thất bại. Vui lòng kiểm tra kết nối và thử lại.",
+  "reelCompErrNoVideo": "Vui lòng chọn video trước.",
+  "reelCompSentTitle": "Đã gửi, chờ duyệt",
+  "reelCompSentBody": "Video đang được xử lý (chuẩn hoá + tạo ảnh bìa), sau đó quản trị viên sẽ duyệt trước khi hiển thị công khai. Bạn có thể theo dõi trạng thái ở mục \"Reel của tôi\".",
+  "reelCompGotIt": "Đã hiểu",
+  "reelCompErrRateLimit": "Bạn đã đăng tối đa 5 reel hôm nay. Vui lòng thử lại sau.",
+  "reelCompErrSubmitFailed": "Đăng reel thất bại. Vui lòng thử lại.",
+  "reelViewDataSaverOn": "Đã bật tiết kiệm dữ liệu — video không tự phát.",
+  "reelViewDataSaverOff": "Đã tắt tiết kiệm dữ liệu.",
+  "reelViewLoginToLike": "Đăng nhập để thích reel.",
+  "reelViewLoginToReport": "Đăng nhập để báo cáo reel.",
+  "reelViewReasonSpam": "Spam / quảng cáo",
+  "reelViewReasonInappropriate": "Nội dung không phù hợp",
+  "reelViewReasonCopyright": "Vi phạm bản quyền",
+  "reelViewReasonMisleading": "Sai sự thật / lừa đảo",
+  "reelViewReasonOther": "Lý do khác",
+  "reelViewReportTitle": "Báo cáo reel",
+  "reelViewReportSuccess": "Đã gửi báo cáo. Cảm ơn bạn đã giúp giữ cộng đồng an toàn.",
+  "reelViewReportFailed": "Gửi báo cáo thất bại.",
+  "reelViewLinkCopied": "Đã chép liên kết reel.",
+  "reelViewDataSaverTooltipOn": "Tiết kiệm dữ liệu: BẬT",
+  "reelViewDataSaverTooltipOff": "Tiết kiệm dữ liệu: TẮT",
+  "reelViewVideoError": "Không phát được video này",
+  "reelViewViewCount": "{count} lượt xem",
+  "@reelViewViewCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reelViewShare": "Chia sẻ",
+  "reelViewUnmute": "Bật tiếng",
+  "reelViewMute": "Tắt tiếng",
+  "reelViewReport": "Báo cáo",
+  "roleWelcomeTitle": "Chào mừng đến Vua Nhà",
+  "roleLater": "Để sau",
+  "roleQuestion": "Bạn đến với vai trò nào?",
+  "roleSubtitle": "Chọn để chúng tôi đưa bạn tới đúng nơi. Bạn có thể đổi/bổ sung sau.",
+  "roleSeekerTitle": "Tôi tìm nhà / dịch vụ",
+  "roleSeekerSubtitle": "Xem tin cho thuê, mua bán, tìm đơn vị xây dựng.",
+  "roleHostTitle": "Tôi là chủ nhà",
+  "roleHostSubtitle": "Đăng tin cho thuê / bán bất động sản của bạn.",
+  "roleProviderTitle": "Tôi là đơn vị xây dựng / thiết kế",
+  "roleProviderSubtitle": "Lập hồ sơ đơn vị, nhận yêu cầu báo giá từ khách.",
+  "socialLoginToInteract": "Đăng nhập để tương tác với cộng đồng.",
+  "socialDeletePostTitle": "Xoá bài đăng",
+  "socialDeletePostConfirm": "Bạn chắc chắn muốn xoá bài này?",
+  "socialDelete": "Xoá",
+  "socialDeleteFailed": "Xoá bài thất bại",
+  "socialAll": "Tất cả",
+  "socialWhatsOnMind": "Bạn đang nghĩ gì?",
+  "socialPostPhoto": "Đăng ảnh",
+  "socialNoPostsInCategory": "Chưa có bài trong chuyên mục này",
+  "socialNoPosts": "Chưa có bài đăng nào",
+  "socialBeFirstToShare": "Hãy là người đầu tiên chia sẻ!",
+  "socialEndOfFeed": "— Hết bài đăng —",
+  "socialErrorOccurred": "Có lỗi xảy ra",
+  "socialRetry": "Thử lại",
+  "surveyEyebrow": "Cá nhân",
+  "surveyMyInterestsTitle": "Sở thích của tôi",
+  "surveySkip": "Bỏ qua",
+  "surveyGreeting": "Chào bạn 👋",
+  "surveyIntro": "Cho Vua Nhà biết bạn quan tâm gì để cá nhân hoá trải nghiệm. Có thể chọn nhiều mục.",
+  "surveyWhatDoYouWant": "Bạn muốn làm gì?",
+  "surveyRealEstateSection": "Bất động sản",
+  "surveyConstructionSection": "Xây dựng",
+  "surveyConstructionInterest": "Xây dựng",
+  "surveyAreaOptional": "Khu vực quan tâm (tuỳ chọn)",
+  "surveyYouAreTitle": "Bạn là ai?",
+  "surveyIAmProvider": "Tôi là đơn vị xây dựng / thiết kế / nội thất",
+  "surveyIAmProviderHint": "Chọn để mở thẳng vào mục Xây dựng và nhận yêu cầu báo giá từ khách",
+  "surveyProvinceHint": "Chọn tỉnh/thành",
+  "surveySave": "Lưu",
+  "surveyStartExploring": "Bắt đầu khám phá",
+  "surveyPrefsUpdated": "Đã cập nhật sở thích",
+  "surveyInterestRent": "Thuê nhà",
+  "surveyInterestBuy": "Mua nhà đất",
+  "surveyInterestSellOrList": "Cho thuê / Đăng tin",
+  "surveyInterestFindService": "Tìm đơn vị xây dựng",
+  "surveyInterestFollowConstruction": "Xem tin ngành xây dựng",
+  "surveyServiceDesign": "Thiết kế",
+  "surveyServiceBuild": "Xây dựng",
+  "surveyServiceInterior": "Nội thất",
+  "surveyServiceIndustrial": "Công nghiệp",
+  "loanTitle": "Tính khoản vay",
+  "loanHomePrice": "Giá nhà (VND)",
+  "loanHomePriceHint": "Ví dụ: 2000000000",
+  "loanDownPayment": "Trả trước: {pct}%",
+  "@loanDownPayment": {
+    "placeholders": {
+      "pct": {}
+    }
+  },
+  "loanInterestRate": "Lãi suất (%/năm)",
+  "loanInterestRateHint": "Ví dụ: 10",
+  "loanTerm": "Kỳ hạn: {years} năm",
+  "@loanTerm": {
+    "placeholders": {
+      "years": {}
+    }
+  },
+  "loanYearsShort": "{years} năm",
+  "@loanYearsShort": {
+    "placeholders": {
+      "years": {}
+    }
+  },
+  "loanMethod": "Phương thức trả",
+  "loanMethodReducing": "Dư nợ giảm dần",
+  "loanMethodAnnuity": "Trả đều hàng tháng",
+  "loanInvalidPrice": "Nhập giá nhà hợp lệ",
+  "loanCalcFailed": "Không tính được: {error}",
+  "@loanCalcFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "loanMonthlyPayment": "Trả hàng tháng",
+  "loanFirstMonthPayment": "Trả tháng đầu",
+  "loanLastMonth": "Tháng cuối: {amount}",
+  "@loanLastMonth": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "loanPrincipal": "Số tiền vay",
+  "loanTotalInterest": "Tổng lãi",
+  "loanTotalPayment": "Tổng phải trả",
+  "loanTermLabel": "Kỳ hạn",
+  "loanTermValue": "{months} tháng ({years} năm)",
+  "@loanTermValue": {
+    "placeholders": {
+      "months": {},
+      "years": {}
+    }
+  },
+  "loanDisclaimer": "Kết quả chỉ mang tính tham khảo; lãi suất thực tế do ngân hàng quyết định.",
+  "apptChipPending": "Chờ duyệt",
+  "apptChipApproved": "Đã duyệt",
+  "apptChipCompleted": "Hoàn thành",
+  "apptChipCancelled": "Đã hủy",
+  "apptChipRejected": "Bị từ chối",
+  "apptChipLocked": "Đã chốt phòng",
+  "apptChipLost": "Đã có người chốt",
+  "blockLoginToInteract": "Đăng nhập để tương tác với cộng đồng.",
+  "blockDeletePostTitle": "Xoá bài đăng",
+  "blockDeletePostConfirm": "Bạn chắc chắn muốn xoá bài này?",
+  "blockDelete": "Xoá",
+  "blockDeletePostFailed": "Xoá bài thất bại",
+  "blockCommunity": "Cộng đồng",
+  "blockCompose": "Đăng bài",
+  "blockReelsCategory": "Reels {name}",
+  "@blockReelsCategory": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "blockUnitList": "Danh sách đơn vị",
+  "blockSearchByLocation": "Tìm theo địa danh…",
+  "blockProvince": "Tỉnh / Thành",
+  "blockWard": "Phường / Xã",
+  "blockKeywordHint": "Từ khoá (nội dung / địa danh)…",
+  "blockSearch": "Tìm",
+  "blockClearFilter": "Xoá lọc",
+  "blockNoPostsIn": "Chưa có bài đăng trong {name}",
+  "@blockNoPostsIn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "blockBeFirstToShare": "Hãy là người đầu tiên chia sẻ!",
+  "blockNoMorePosts": "— Hết bài đăng —",
+  "chgpwdSuccess": "Đã đổi mật khẩu thành công",
+  "chgpwdFailed": "Đổi mật khẩu thất bại",
+  "chgpwdCurrentLabel": "Mật khẩu hiện tại",
+  "chgpwdNewLabel": "Mật khẩu mới",
+  "chgpwdConfirmLabel": "Xác nhận mật khẩu mới",
+  "chgpwdRequired": "Bắt buộc",
+  "chgpwdMinLength": "Tối thiểu 6 ký tự",
+  "chgpwdMismatch": "Mật khẩu không khớp",
+  "clandEyebrow": "XÂY DỰNG",
+  "clandDefaultDesc": "Kết nối đơn vị {serviceName} uy tín.",
+  "@clandDefaultDesc": {
+    "placeholders": {
+      "serviceName": {}
+    }
+  },
+  "clandDisclaimer": "Vua Nhà là nền tảng trung gian kết nối — hợp đồng & thanh toán thực hiện trực tiếp giữa hai bên.",
+  "clandRequestQuote": "Yêu cầu tư vấn / báo giá",
+  "clandViewContractors": "Xem nhà thầu",
+  "composerPickImageFailed": "Không chọn được ảnh",
+  "composerSelectCategoryPrompt": "Vui lòng chọn chuyên mục cho bài viết",
+  "composerPostFailed": "Đăng bài thất bại, thử lại",
+  "composerEditTitle": "Chỉnh sửa bài viết",
+  "composerCreateTitle": "Tạo bài viết",
+  "composerSave": "Lưu",
+  "composerPost": "Đăng",
+  "composerContentHint": "Bạn đang nghĩ gì?",
+  "composerSelectCategoryLabel": "Chọn chuyên mục *",
+  "composerLocationHint": "Địa danh (không bắt buộc) — vd. Quận 7, TP.HCM",
+  "composerPhotos": "Ảnh",
+  "composerDiscardTitle": "Bỏ bài viết này?",
+  "composerDiscardBody": "Nội dung bạn đang soạn sẽ không được lưu.",
+  "composerKeepEditing": "Tiếp tục soạn",
+  "composerDiscard": "Bỏ",
+  "composerImagesCount": "{count}/{max} ảnh",
+  "@composerImagesCount": {
+    "placeholders": {
+      "count": {},
+      "max": {}
+    }
+  },
+  "ctrListTitle": "Nhà thầu · {name}",
+  "@ctrListTitle": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "ctrListEmptyTitle": "Chưa có nhà thầu trong khu vực",
+  "ctrListEmptyBody": "Gửi yêu cầu — chúng tôi sẽ kết nối đơn vị phù hợp cho bạn.",
+  "ctrListRequestConsult": "Yêu cầu tư vấn",
+  "ctrListDefaultName": "Nhà thầu",
+  "ctrListBadgePromoted": "Nổi bật",
+  "ctrListBadgePro": "Pro",
+  "myPostsLoadError": "Không tải được bài viết",
+  "myPostsLoadErrorHint": "Kiểm tra kết nối rồi thử lại.",
+  "myPostsRetry": "Thử lại",
+  "myPostsEmptyTitle": "Bạn chưa có bài viết nào",
+  "myPostsEmptyHint": "Bài bạn đăng ở Cộng đồng sẽ hiện tại đây.",
+  "plistSearchHint": "Tìm theo tên, mô tả, địa chỉ…",
+  "plistEmptyTitle": "Không tìm thấy tin đăng phù hợp",
+  "plistEmptySubtitle": "Thử từ khoá khác hoặc quay lại sau.",
+  "plistAreaSqm": "{area} m²",
+  "@plistAreaSqm": {
+    "placeholders": {
+      "area": {}
+    }
+  },
+  "qualityTitle": "Chất lượng cơ sở",
+  "qualityVerified": "Đã thẩm định",
+  "qualitySelfDeclared": "Chủ tự khai",
+  "qualitySubtitle": "Đánh giá tiện nghi — ảnh hưởng khung giá.",
+  "qualityStarRating": "{star}/5",
+  "@qualityStarRating": {
+    "placeholders": {
+      "star": {}
+    }
+  },
+  "qualitySuggestedPrice": "Giá gợi ý theo chất lượng: {price}/tháng",
+  "@qualitySuggestedPrice": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "qualityNotDeclared": "Chưa khai chất lượng.",
+  "qualityUpdateButton": "Cập nhật chất lượng",
+  "qualityDeclareButton": "Khai chất lượng nhà",
+  "qualityVerifRequested": "Đã gửi yêu cầu thẩm định",
+  "qualityRequestVerification": "Yêu cầu thẩm định thực tế",
+  "qualityVerifSubmitted": "Đã gửi yêu cầu thẩm định. Đội ngũ sẽ liên hệ kiểm tra.",
+  "qualityRequestFailed": "Không gửi được yêu cầu: {error}",
+  "@qualityRequestFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "reviewTitle": "Đánh giá",
+  "reviewRatePrompt": "Cho nhà này mấy sao?",
+  "reviewStarTooltip": "{count} sao",
+  "@reviewStarTooltip": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "reviewCommentLabel": "Cảm nhận của bạn",
+  "reviewCommentHint": "VD: Chủ nhà thân thiện, nhà sạch sẽ, đúng mô tả...",
+  "reviewSubmitButton": "Gửi đánh giá",
+  "reviewSubmitSuccess": "Đã gửi đánh giá, cảm ơn bạn!",
+  "reviewSubmitError": "Gửi đánh giá thất bại: {error}",
+  "@reviewSubmitError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "rfqTitle": "Yêu cầu tư vấn · {serviceName}",
+  "@rfqTitle": {
+    "placeholders": {
+      "serviceName": {}
+    }
+  },
+  "rfqSubtitle": "Miễn phí · Không chia sẻ SĐT công khai",
+  "rfqFieldName": "Họ tên *",
+  "rfqFieldPhone": "Số điện thoại *",
+  "rfqFieldArea": "Khu vực (tỉnh/quận)",
+  "rfqFieldBudget": "Ngân sách dự kiến (tuỳ chọn)",
+  "rfqFieldDesc": "Mô tả nhu cầu",
+  "rfqSubmit": "Gửi yêu cầu",
+  "rfqValidation": "Vui lòng nhập tên và số điện thoại hợp lệ",
+  "rfqSendError": "Gửi yêu cầu chưa thành công. Vui lòng kiểm tra kết nối và thử lại.",
+  "rfqSuccessTitle": "Đã gửi yêu cầu!",
+  "rfqSuccessBody": "Đội ngũ {serviceName} sẽ liên hệ bạn trong thời gian sớm nhất.",
+  "@rfqSuccessBody": {
+    "placeholders": {
+      "serviceName": {}
+    }
+  },
+  "rfqClose": "Đóng",
+  "searchHint": "Tìm tin đăng, đơn vị, bài cộng đồng…",
+  "searchEmptyTitle": "Tìm mọi thứ trên Vua Nhà",
+  "searchEmptySubtitle": "Tin cho thuê, đơn vị xây dựng/thiết kế, bài cộng đồng…",
+  "searchRecentTitle": "TÌM KIẾM GẦN ĐÂY",
+  "searchClearAll": "Xoá tất cả",
+  "searchNoResults": "Không tìm thấy “{query}”",
+  "@searchNoResults": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "searchNoResultsSubtitle": "Thử bỏ dấu hoặc dùng từ khoá khác.",
+  "searchGroupHouses": "TIN ĐĂNG",
+  "searchGroupContractors": "ĐƠN VỊ",
+  "searchGroupPosts": "BÀI CỘNG ĐỒNG",
+  "searchHouseFallback": "Tin đăng",
+  "searchContractorFallback": "Đơn vị",
+  "searchRating": "⭐ {rating} · {count} đánh giá",
+  "@searchRating": {
+    "placeholders": {
+      "rating": {},
+      "count": {}
+    }
+  },
+  "settingsMyPreferences": "Sở thích của tôi",
+  "settingsMyPreferencesSub": "Cá nhân hoá theo mục đích & khu vực",
+  "settingsLogoutConfirm": "Bạn chắc chắn muốn đăng xuất?",
+  "settingsLoggedOut": "Đã đăng xuất",
+  "wishEyebrow": "Đã đánh dấu",
+  "wishTitle": "Yêu thích",
+  "wishCompareTooltip": "So sánh",
+  "wishRefreshTooltip": "Làm mới",
+  "wishEmptyTitle": "Chưa có phòng nào",
+  "wishEmptySubtitle": "Bấm trái tim trên phòng bạn thích để lưu vào đây.",
+  "wishUnfavoriteTooltip": "Bỏ yêu thích",
+  "wishUnfavoriteError": "Không thể bỏ yêu thích",
+  "hApprovalInboxTitle": "Hộp phê duyệt",
+  "hApprovalInboxEyebrow": "CHỦ NHÀ · PHÊ DUYỆT",
+  "hApprovalEmptyTitle": "Không có yêu cầu nào",
+  "hApprovalEmptySubtitle": "Khi Operator cần phê duyệt, yêu cầu sẽ xuất hiện ở đây.",
+  "hApprovalBiometricReason": "Xác thực để phê duyệt giao dịch {amount}",
+  "@hApprovalBiometricReason": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "hApprovalBiometricRequired": "Cần xác thực sinh trắc học để tiếp tục",
+  "hApprovalApproveSuccess": "Đã phê duyệt thành công",
+  "hApprovalApproveFailed": "Phê duyệt thất bại. Thử lại.",
+  "hApprovalRejectSuccess": "Đã từ chối yêu cầu",
+  "hApprovalRejectReasonTitle": "Lý do từ chối",
+  "hApprovalRejectReasonHint": "Lý do (không bắt buộc)",
+  "hApprovalSkip": "Bỏ qua",
+  "hApprovalReject": "Từ chối",
+  "hApptTitle": "YÊU CẦU XEM PHÒNG",
+  "hApptEmpty": "Không có yêu cầu nào.",
+  "hApptCompletedDeals": "{count} giao dịch đã hoàn tất",
+  "@hApptCompletedDeals": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hApptRateGuest": "Đánh giá khách",
+  "hApptRateGuestTitle": "Đánh giá {name}",
+  "@hApptRateGuestTitle": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "hApptGuestFallback": "khách",
+  "hApptReviewHint": "Nhận xét (tuỳ chọn)",
+  "hApptCancel": "Huỷ",
+  "hApptSend": "Gửi",
+  "hApptReviewSuccess": "Đã đánh giá khách",
+  "hApptReviewFailed": "Không đánh giá được: {error}",
+  "@hApptReviewFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hApptEmptyHintPending": "Khi khách gửi yêu cầu xem, sẽ hiện tại đây.",
+  "hApptEmptyHintApproved": "Chưa có lịch hẹn nào đã duyệt.",
+  "hApptEmptyHintPast": "Chưa có yêu cầu nào đã đóng hoặc bị từ chối.",
+  "hApptTabPending": "CHỜ DUYỆT",
+  "hApptTabApproved": "ĐÃ DUYỆT",
+  "hApptTabClosed": "ĐÃ ĐÓNG",
+  "hAvailTitle": "Khung giờ nhận xem nhà",
+  "hAvailWeekdaysSection": "Ngày trong tuần nhận khách",
+  "hAvailSlotsSection": "Khung giờ tiếp khách (mỗi khung 1 tiếng)",
+  "hAvailSelectAll": "Chọn tất cả",
+  "hAvailDeselect": "Bỏ chọn",
+  "hAvailSave": "Lưu khung giờ",
+  "hAvailSavedToast": "Đã lưu khung giờ nhận xem nhà.",
+  "hAvailSaveFailed": "Lưu thất bại",
+  "hAvailIntroDefault": "Bạn đang nhận khách xem nhà tất cả các ngày, mọi khung giờ. Thu hẹp lại nếu chỉ muốn tiếp khách vào một số thời điểm.",
+  "hAvailIntroCustom": "Khách chỉ có thể đặt lịch xem nhà trong các ngày và khung giờ bạn chọn dưới đây.",
+  "hAvailEmptyWarning": "Chưa chọn ngày hoặc khung giờ nào — khách sẽ không thể đặt lịch xem nhà.",
+  "hAvailMon": "T2",
+  "hAvailTue": "T3",
+  "hAvailWed": "T4",
+  "hAvailThu": "T5",
+  "hAvailFri": "T6",
+  "hAvailSat": "T7",
+  "hAvailSun": "CN",
+  "hContractDetTitle": "Hợp đồng",
+  "hContractDetNotFound": "Không tìm thấy hợp đồng",
+  "hContractDetStartDate": "Ngày bắt đầu",
+  "hContractDetEndDate": "Ngày kết thúc",
+  "hContractDetRent": "Tiền thuê",
+  "hContractDetRentPerMonth": "{amount} đ/tháng",
+  "@hContractDetRentPerMonth": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "hContractDetDeposit": "Đặt cọc",
+  "hContractDetAmountDong": "{amount} đ",
+  "@hContractDetAmountDong": {
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "hContractDetTenants": "Người thuê",
+  "hContractDetRepresentative": "Đại diện",
+  "hContractDetActivate": "Kích hoạt hợp đồng",
+  "hContractDetCheckout": "Trả phòng (kết thúc)",
+  "hContractDetTransferRoom": "Chuyển phòng",
+  "hContractDetActualEndDate": "Ngày trả thực tế",
+  "hContractDetDepositRefund": "Hoàn cọc",
+  "hContractDetDamage": "Hư hại",
+  "hContractDetStatusDraft": "Bản thảo",
+  "hContractDetStatusActive": "Đang hoạt động",
+  "hContractDetStatusExpired": "Hết hạn",
+  "hContractDetStatusTerminated": "Đã kết thúc",
+  "hContractDetActivateEyebrow": "Kích hoạt",
+  "hContractDetActivateConfirmMsg": "Kích hoạt hợp đồng sẽ chuyển phòng sang trạng thái \"Đang thuê\". Tiếp tục?",
+  "hContractDetActivateSuccess": "Đã kích hoạt hợp đồng",
+  "hContractDetFailed": "Thất bại",
+  "hContractFormTitle": "Hợp đồng mới",
+  "hContractFormEyebrow": "Tờ khai",
+  "hContractFormStartDate": "Ngày bắt đầu *",
+  "hContractFormEndDate": "Ngày kết thúc *",
+  "hContractFormMonthlyRent": "Tiền thuê/tháng (VNĐ) *",
+  "hContractFormRentInvalid": "Nhập số tiền hợp lệ",
+  "hContractFormDeposit": "Tiền đặt cọc (VNĐ)",
+  "hContractFormSubmit": "Tạo hợp đồng",
+  "hContractFormSelectDates": "Vui lòng chọn ngày bắt đầu và kết thúc",
+  "hContractFormEndAfterStart": "Ngày kết thúc phải sau ngày bắt đầu",
+  "hContractFormOnePrimary": "Phải có đúng 1 người thuê chính (đại diện)",
+  "hContractFormTenantNameRequired": "Họ tên người thuê không được để trống",
+  "hContractFormCreated": "Đã tạo hợp đồng (trạng thái: bản thảo)",
+  "hContractFormCreateFailed": "Tạo thất bại",
+  "hContractFormPhotoUploadFailed": "Tải ảnh thất bại: {error}",
+  "@hContractFormPhotoUploadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hContractFormCccdUploadFailed": "Tải ảnh CCCD thất bại: {error}",
+  "@hContractFormCccdUploadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hContractTermUploadFailed": "Tải ảnh thất bại: {error}",
+  "@hContractTermUploadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hContractTermActionEnd": "kết thúc hợp đồng",
+  "hContractTermPickDateFirst": "Vui lòng chọn ngày trả phòng thực tế",
+  "hContractTermEnd": "Kết thúc",
+  "hContractTermConfirmTitle": "Xác nhận kết thúc hợp đồng",
+  "hContractTermConfirmMessage": "Bạn có chắc muốn kết thúc hợp đồng này?\nThao tác không thể hoàn tác.",
+  "hContractTermDoneEnded": "Đã kết thúc hợp đồng",
+  "hContractTermFailed": "Thất bại",
+  "hContractTermMoveOut": "Trả phòng",
+  "hContractTermIntro": "Xác nhận ngày trả phòng thực tế và thông tin hoàn cọc.",
+  "hContractTermActualEndDate": "Ngày trả phòng thực tế *",
+  "hContractTermPickDate": "Chọn ngày",
+  "hContractTermRefundAmount": "Số tiền hoàn cọc (VNĐ)",
+  "hContractTermRefundHelper": "Nhập 0 nếu không hoàn",
+  "hContractTermDamageNote": "Ghi chú hư hại",
+  "hContractTermDamageNoteHelper": "Mô tả thiệt hại nếu có",
+  "hContractTermDamagePhotos": "Ảnh hư hại",
+  "hContractTermAddPhoto": "Thêm ảnh",
+  "hContractTermConfirmMoveOut": "Xác nhận trả phòng",
+  "hContractXferTransferRoom": "Chuyển phòng",
+  "hContractXferActionTransfer": "chuyển phòng",
+  "hContractXferContractEyebrow": "Hợp đồng",
+  "hContractXferIntro": "Chọn tòa nhà và phòng trống để chuyển hợp đồng sang.",
+  "hContractXferBuildingLabel": "Tòa nhà *",
+  "hContractXferNoBuildings": "Không có tòa nhà",
+  "hContractXferSelectBuilding": "Chọn tòa nhà",
+  "hContractXferNoVacantRooms": "Không có phòng trống trong tòa nhà này.",
+  "hContractXferVacantRoomLabel": "Phòng trống *",
+  "hContractXferSelectRoom": "Chọn phòng",
+  "hContractXferRoomOption": "{code} — {price} đ/tháng",
+  "@hContractXferRoomOption": {
+    "placeholders": {
+      "code": {},
+      "price": {}
+    }
+  },
+  "hContractXferConfirmTitle": "Xác nhận chuyển phòng",
+  "hContractXferConfirmMessage": "Bạn có chắc muốn chuyển hợp đồng sang phòng {roomName}?\nPhòng cũ sẽ trở thành \"Trống\".",
+  "@hContractXferConfirmMessage": {
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "hContractXferSuccess": "Đã chuyển hợp đồng sang phòng {roomName}",
+  "@hContractXferSuccess": {
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "hContractXferFailed": "Thất bại",
+  "hContractXferLoadRoomsError": "Không thể tải phòng",
+  "hDelegDetNotFound": "Không tìm thấy",
+  "hDelegDetNotFoundDelegation": "Không tìm thấy ủy thác",
+  "hDelegDetOperator": "Operator",
+  "hDelegDetEyebrow": "CHỦ NHÀ · QUẢN LÝ ỦY THÁC",
+  "hDelegDetPausedToast": "Đã tạm dừng ủy thác",
+  "hDelegDetResumedToast": "Đã tiếp tục ủy thác",
+  "hDelegDetTerminateTitle": "Chấm dứt ủy thác?",
+  "hDelegDetTerminateBody": "Operator sẽ mất quyền truy cập sau 30 ngày. Hành động này không thể hoàn tác.",
+  "hDelegDetTerminate": "Chấm dứt",
+  "hDelegDetTerminatedToast": "Đã chấm dứt ủy thác",
+  "hDelegDetThresholdsUpdatedToast": "Đã cập nhật ngưỡng phê duyệt",
+  "hDelegDetPermissionLabel": "Quyền: {role}",
+  "@hDelegDetPermissionLabel": {
+    "placeholders": {
+      "role": {}
+    }
+  },
+  "hDelegDetStartLabel": "Bắt đầu: {date}",
+  "@hDelegDetStartLabel": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "hDelegDetPropertiesLabel": "Tài sản: {count}",
+  "@hDelegDetPropertiesLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hDelegDetStatusActive": "Đang hoạt động",
+  "hDelegDetStatusPaused": "Tạm dừng",
+  "hDelegDetStatusTerminated": "Đã chấm dứt",
+  "hDelegDetRoleOperatorFull": "Vận hành đầy đủ",
+  "hDelegDetRoleAccountant": "Kế toán",
+  "hDelegDetRoleViewer": "Chỉ xem",
+  "hDelegDetRoleOwnerView": "Chủ nhà (xem)",
+  "hDelegDetPause": "Tạm dừng",
+  "hDelegDetResume": "Tiếp tục",
+  "hDelegDetThresholds": "Ngưỡng phê duyệt",
+  "hDelegDetEdit": "Chỉnh sửa",
+  "hDelegDetSaveThresholds": "Lưu ngưỡng",
+  "hDelegInvTitle": "Mời Operator",
+  "hDelegInvEyebrow": "CHỦ NHÀ · ỦY THÁC",
+  "hDelegInvOperatorInfo": "Thông tin Operator",
+  "hDelegInvOperatorEmail": "Email Operator",
+  "hDelegInvPermissions": "Quyền hạn",
+  "hDelegInvThresholds": "Ngưỡng phê duyệt (VND)",
+  "hDelegInvSend": "Gửi lời mời",
+  "hDelegInvRoleOperatorFull": "Vận hành đầy đủ",
+  "hDelegInvRoleAccountant": "Kế toán",
+  "hDelegInvRoleViewer": "Chỉ xem",
+  "hDelegInvEmailRequired": "Vui lòng nhập email",
+  "hDelegInvEmailInvalid": "Email không hợp lệ",
+  "hDelegInvSendSuccess": "Đã gửi lời mời thành công",
+  "hDelegInvSendFailed": "Không thể gửi lời mời. Thử lại.",
+  "hFeeTitle": "PHÍ DỊCH VỤ",
+  "hFeeCreateBuildingFirst": "Vui lòng tạo toà nhà trước",
+  "hFeeEmptyTitle": "Chưa có phí dịch vụ",
+  "hFeeEmptySubtitle": "Thêm phí dịch vụ để quản lý.",
+  "hFeeMonthly": "Hàng tháng",
+  "hFeeOneTime": "Một lần",
+  "hFeeActive": "Hoạt động",
+  "hFeeInactive": "Ngừng",
+  "hFeeEnterNameBuilding": "Vui lòng nhập tên và toà nhà",
+  "hFeeSaveFailed": "Lưu thất bại",
+  "hFeeCreateTitle": "THÊM PHÍ DỊCH VỤ",
+  "hFeeBuilding": "Toà nhà",
+  "hFeeServiceName": "Tên dịch vụ",
+  "hFeeUnitPrice": "Đơn giá (VND)",
+  "hFeeCycle": "Chu kỳ",
+  "hFeeSave": "Lưu",
+  "hHomeDlgActionDelete": "xoá tin",
+  "hHomeDlgDeleteTitle": "Xoá tin đăng",
+  "hHomeDlgDeleteBody": "Bạn có chắc muốn xoá \"{title}\"?",
+  "@hHomeDlgDeleteBody": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "hHomeDlgDeleteConfirm": "Xoá",
+  "hHomeDlgDeleteSuccess": "Đã xoá tin",
+  "hHomeDlgDeleteFail": "Xoá thất bại",
+  "hHomeDlgActionCloseUnit": "đóng phòng",
+  "hHomeDlgCloseUnitTitle": "Đóng 1 phòng",
+  "hHomeDlgCloseUnitBody": "Xác nhận đã cho thuê 1 phòng tại \"{title}\" cho người ngoài app? Số phòng còn trống sẽ giảm 1, các yêu cầu đặt lịch xem đang chờ sẽ tự được báo \"Đã có người chốt\".",
+  "@hHomeDlgCloseUnitBody": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "hHomeDlgCloseUnitConfirm": "Đóng phòng",
+  "hHomeDlgCloseUnitSuccess": "Đã đóng 1 phòng",
+  "hHomeDlgCloseUnitFail": "Thao tác thất bại",
+  "hHomeDlgLockTitle": "Chốt phòng",
+  "hHomeDlgLockBody": "Xác nhận chốt thuê phòng \"{house}\" với {guest}? Các yêu cầu xem khác cùng phòng sẽ tự đóng và guest được báo.",
+  "@hHomeDlgLockBody": {
+    "placeholders": {
+      "house": {},
+      "guest": {}
+    }
+  },
+  "hHomeDlgLockDefaultHouse": "này",
+  "hHomeDlgLockDefaultGuest": "khách này",
+  "hHomeDlgLockConfirm": "Chốt",
+  "hHomeDlgLockSuccess": "Đã chốt phòng cho khách",
+  "hHomeDlgLockFail": "Chốt thất bại",
+  "hHomeListingsTotalEyebrow": "TỔNG TIN ĐĂNG",
+  "hHomeListingsTotalCaption": "Tin đã đăng từ trước tới nay",
+  "hHomeListingsPendingEyebrow": "CHỜ DUYỆT",
+  "hHomeListingsPendingCaption": "Đang chờ admin",
+  "hHomeListingsApprovedEyebrow": "ĐANG ĐĂNG",
+  "hHomeListingsApprovedCaption": "Hiển thị công khai",
+  "hHomeListingsSectionListings": "Danh sách tin",
+  "hHomeListingsEmptyListingsLine": "Chưa có tin đăng nào.",
+  "hHomeListingsEmptyListingsHint": "Bấm \"Đăng mới\" để tạo tin đầu tiên.",
+  "hHomeListingsSectionAppointments": "Yêu cầu hẹn xem",
+  "hHomeListingsEmptyAppointmentsLine": "Không có yêu cầu xem nhà đang chờ.",
+  "hHomeListingsEmptyAppointmentsHint": "Khi có khách hẹn, sẽ hiện tại đây.",
+  "hHomeListingsPostNew": "ĐĂNG TIN MỚI",
+  "hHomeRoomsKpiCollected": "ĐÃ THU",
+  "hHomeRoomsKpiUnpaid": "CÒN NỢ",
+  "hHomeRoomsKpiOccupancy": "LẤP ĐẦY",
+  "hHomeRoomsQuickCreateInvoice": "Tạo hoá đơn",
+  "hHomeRoomsQuickMeter": "Ghi điện nước",
+  "hHomeRoomsQuickReminder": "Nhắc nợ",
+  "hHomeRoomsQuickReports": "Báo cáo",
+  "hHomeRoomsTodoHeader": "VIỆC CẦN LÀM HÔM NAY",
+  "hHomeRoomsSectionBilling": "THU CHI",
+  "hHomeRoomsInvoicesTitle": "Hoá đơn",
+  "hHomeRoomsInvoicesSubtitle": "Danh sách & phát hành hoá đơn",
+  "hHomeRoomsDebtTitle": "Công nợ",
+  "hHomeRoomsDebtSubtitle": "Theo dõi nợ theo phòng",
+  "hHomeRoomsServiceFeesTitle": "Phí dịch vụ",
+  "hHomeRoomsServiceFeesSubtitle": "Cấu hình phí điện/nước/dịch vụ",
+  "hHomeRoomsSectionOps": "VẬN HÀNH KHÁC",
+  "hHomeRoomsLeadsTitle": "Khách quan tâm",
+  "hHomeRoomsLeadsSubtitle": "Đặt lịch xem & lưu tin",
+  "hHomeRoomsKhaiBaoTitle": "Khai báo tạm trú",
+  "hHomeRoomsHomestayTitle": "Homestay",
+  "hHomeRoomsSyncTitle": "Đồng bộ sang chợ khác",
+  "hHomeRoomsAnalyticsTitle": "THỐNG KÊ DOANH THU",
+  "hHomeRoomsAnalyticsSubtitle": "5 KPI • Doanh thu, lấp đầy, ADR",
+  "hIntroAppBarTitle": "TRỞ THÀNH CHỦ NHÀ",
+  "hIntroEyebrow": "ANCU365  ·  BẢN HOST",
+  "hIntroHeadline": "Mở phòng,\nđón khách,\nthu tiền.",
+  "hIntroSubtitle": "Cùng An Cư 365 vận hành nhà trọ và homestay của bạn ngay trên điện thoại — từ đăng tin, duyệt khách, ký hợp đồng đến chốt hoá đơn.",
+  "hIntroBenefitsLabel": "BẠN ĐƯỢC GÌ",
+  "hIntroBenefit1Title": "Quản lý toà nhà & phòng",
+  "hIntroBenefit1Body": "Theo dõi trạng thái phòng, hợp đồng, công tơ trong một sổ tay điện tử.",
+  "hIntroBenefit2Title": "Nhận yêu cầu xem trực tiếp",
+  "hIntroBenefit2Body": "Khách hẹn lịch — bạn duyệt hoặc từ chối ngay trong app, không phải tin nhắn rời.",
+  "hIntroBenefit3Title": "Xuất hoá đơn & chốt thuê",
+  "hIntroBenefit3Body": "Tự động tính tiền điện nước theo công tơ; ký hợp đồng + lưu trữ tập trung.",
+  "hIntroBenefit4Title": "Hiển thị đa kênh",
+  "hIntroBenefit4Body": "Tin đăng xuất hiện trên Khám phá + bản đồ tin đăng, tiếp cận hàng nghìn khách.",
+  "hIntroCta": "BẮT ĐẦU ĐĂNG KÝ",
+  "hIntroCtaNote": "Mất 2–3 phút. Cần CCCD + thông tin tài khoản nhận tiền.",
+  "hInvBatchTitle": "TẠO HOÁ ĐƠN HÀNG LOẠT",
+  "hInvBatchBuildingLabel": "Toà nhà *",
+  "hInvBatchSelectBuilding": "Chọn toà nhà",
+  "hInvBatchMonthLabel": "Tháng (YYYY-MM) *",
+  "hInvBatchSelectMonth": "Chọn tháng",
+  "hInvBatchElecPriceLabel": "Đơn giá điện (VND/kWh)",
+  "hInvBatchWaterPriceLabel": "Đơn giá nước (VND/m³)",
+  "hInvBatchGenerateButton": "Tạo hoá đơn",
+  "hInvBatchHelpText": "Hệ thống tạo hoá đơn (trạng thái nháp) cho từng hợp đồng đang hoạt động trong toà nhà. Nếu đã có hoá đơn cho kỳ này, hệ thống bỏ qua (idempotent).",
+  "hInvBatchSelectRequired": "Vui lòng chọn toà nhà và tháng",
+  "hInvBatchCreateFailed": "Tạo thất bại",
+  "hInvDetSentSuccess": "Đã gửi hoá đơn — link công khai sẵn sàng",
+  "hInvDetCannotOpen": "Không mở được: {url}",
+  "@hInvDetCannotOpen": {
+    "placeholders": {
+      "url": {}
+    }
+  },
+  "hInvDetTitle": "CHI TIẾT HOÁ ĐƠN",
+  "hInvDetPeriod": "Kỳ {start} → {end}",
+  "@hInvDetPeriod": {
+    "placeholders": {
+      "start": {},
+      "end": {}
+    }
+  },
+  "hInvDetDue": "Hạn {date}",
+  "@hInvDetDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "hInvDetDetails": "CHI TIẾT",
+  "hInvDetTotal": "Tổng",
+  "hInvDetCollected": "Đã thu",
+  "hInvDetRemaining": "Còn lại",
+  "hInvDetSendInvoice": "Gửi hoá đơn",
+  "hInvDetRecordPayment": "Ghi nhận thanh toán",
+  "hInvDetOpenPublicLink": "Mở link công khai",
+  "hInvDetRemindZalo": "Nhắc qua Zalo",
+  "hInvDetCreditNote": "Lập credit note (điều chỉnh)",
+  "hKhaibaoTitle": "CHI TIẾT KHAI BÁO",
+  "hKhaibaoShareSubject": "Phiếu khai báo tạm trú",
+  "hKhaibaoDeclaredRecorded": "Đã ghi nhận khai báo",
+  "hKhaibaoSaveFailed": "Lưu thất bại",
+  "hKhaibaoSkipped": "Đã bỏ qua",
+  "hKhaibaoPhone": "Số điện thoại",
+  "hKhaibaoRoom": "Phòng",
+  "hKhaibaoBuilding": "Toà nhà",
+  "hKhaibaoCheckInDate": "Ngày check-in",
+  "hKhaibaoLinkExpires": "Liên kết hết hạn",
+  "hKhaibaoDeclaredAt": "Đã khai lúc",
+  "hKhaibaoSkipReason": "Lý do bỏ qua",
+  "hKhaibaoViewForm": "Xem phiếu khai báo (TK1)",
+  "hKhaibaoMarkDeclared": "Đã khai báo",
+  "hKhaibaoSkipEarlyLeave": "Bỏ qua (khách rời sớm)",
+  "hKhaibaoSkipHint": "Ví dụ: Khách rời sớm",
+  "hKhaibaoSkip": "Bỏ qua",
+  "hLeadsTitle": "Khách quan tâm",
+  "hLeadsTabTarget": "Mục tiêu ({count})",
+  "@hLeadsTabTarget": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hLeadsTabPotential": "Tiềm năng ({count})",
+  "@hLeadsTabPotential": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hLeadsLoadError": "Không tải được: {error}",
+  "@hLeadsLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "hLeadsEmptyTarget": "Chưa có khách đặt lịch xem tin của bạn.",
+  "hLeadsEmptyPotential": "Chưa có khách lưu tin của bạn vào wishlist.",
+  "hLeadsBadgeBooked": "Đã đặt lịch",
+  "hLeadsBadgeBookViewing": "Đặt lịch xem",
+  "hLeadsBadgeSaved": "Lưu tin",
+  "hLeadsDefaultName": "Khách",
+  "hLeadsDefaultHouse": "BĐS",
+  "hListingsTitle": "Tin đã đăng",
+  "hListingsRefresh": "Làm mới",
+  "hListingsPostRoom": "Đăng phòng",
+  "hListingsEmptyTitle": "Bạn chưa đăng tin nào",
+  "hListingsEmptyHint": "Nhấn nút \"Đăng phòng\" để tạo tin đầu tiên.",
+  "hListingsEdit": "Sửa tin",
+  "hListingsDelete": "Xóa tin",
+  "hListingsDeleteTitle": "Xoá tin đăng",
+  "hListingsDeleteConfirm": "Bạn có chắc muốn xoá \"{title}\"?",
+  "@hListingsDeleteConfirm": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "hListingsDeleteAction": "Xoá",
+  "hListingsDeleteSuccess": "Đã xoá tin",
+  "hListingsDeleteFailed": "Xoá thất bại",
+  "hListingsStatusApproved": "Đang đăng",
+  "hListingsStatusPending": "Chờ duyệt",
+  "hListingsStatusRejected": "Từ chối",
+  "hListingsStatusHidden": "Đã ẩn",
+  "hProfileSavedInfo": "Đã lưu thông tin",
+  "hProfileSaveFailed": "Lưu thất bại",
+  "hProfileEyebrow": "Tài khoản",
+  "hProfileTitle": "Hồ sơ chủ nhà",
+  "hProfileEdit": "Chỉnh sửa",
+  "hProfileEmptyTitle": "Chưa có hồ sơ",
+  "hProfileEmptySubtitle": "Hãy hoàn tất onboarding để tạo hồ sơ chủ nhà.",
+  "hProfileSaveChanges": "Lưu thay đổi",
+  "hProfileVerified": "Tài khoản đã xác minh",
+  "hProfilePending": "Đang chờ xác minh",
+  "hProfileVerifiedDesc": "Bạn có thể đăng phòng và nhận thanh toán.",
+  "hProfilePendingDesc": "Tải lên CCCD để hoàn tất xác minh.",
+  "hProfileIdentitySection": "Xác minh danh tính",
+  "hProfileCccdFront": "CCCD mặt trước",
+  "hProfileCccdBack": "CCCD mặt sau",
+  "hProfileUploaded": "Đã tải",
+  "hProfileNotUploaded": "Chưa tải",
+  "hProfilePaymentSection": "Thông tin thanh toán",
+  "hProfileBank": "Ngân hàng",
+  "hProfileBankHint": "VD: Vietcombank",
+  "hProfileAccountNumber": "Số tài khoản",
+  "hProfileAccountHolder": "Chủ tài khoản",
+  "hProfileAccountHolderHint": "Họ tên trên thẻ",
+  "hProfileTaxId": "Mã số thuế",
+  "hProfilePerformanceSection": "Hiệu suất",
+  "hProfileRating": "Đánh giá",
+  "hProfileAvgResponse": "Phản hồi TB",
+  "hProfileHours": "giờ",
+  "hResvDetTitle": "Chi tiết đặt phòng",
+  "hResvDetNotFound": "Không tìm thấy đơn",
+  "hResvDetError": "Lỗi",
+  "hResvDetReasonHint": "Lý do…",
+  "hResvDetConfirm": "Xác nhận",
+  "hResvDetCheckIn": "Check-in",
+  "hResvDetCheckOut": "Check-out",
+  "hResvDetNights": "Số đêm",
+  "hResvDetPhone": "SĐT",
+  "hResvDetEmail": "Email",
+  "hResvDetTotal": "Tổng tiền",
+  "hResvDetRefund": "Hoàn trả",
+  "hResvDetCancelledAt": "Hủy lúc",
+  "hResvDetReason": "Lý do",
+  "hResvDetApprove": "Duyệt đơn",
+  "hResvDetApproved": "Đã duyệt",
+  "hResvDetReject": "Từ chối",
+  "hResvDetRejectReason": "Lý do từ chối",
+  "hResvDetRejected": "Đã từ chối",
+  "hResvDetCheckedIn": "Đã check-in",
+  "hResvDetCheckedOut": "Đã check-out",
+  "hResvDetCancel": "Hủy đơn",
+  "hResvDetCancelReason": "Lý do hủy",
+  "hResvDetCancelled": "Đã hủy đơn",
+  "hResvListTitle": "Đặt phòng",
+  "hResvListFilterAll": "Tất cả",
+  "hResvListFilterPending": "Chờ duyệt",
+  "hResvListFilterApproved": "Đã duyệt",
+  "hResvListFilterCheckedIn": "Đang ở",
+  "hResvListFilterCheckedOut": "Đã trả",
+  "hResvListFilterCancelled": "Đã hủy",
+  "hResvListEmptyTitle": "Không có đơn nào",
+  "hResvListEmptySubtitle": "Chưa có đặt phòng theo bộ lọc này.",
+  "hResvListNights": "{count} đêm",
+  "@hResvListNights": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hRoomDetMaintEyebrow": "TỜ KHAI BẢO TRÌ",
+  "hRoomDetMaintTitle": "Đặt phòng vào bảo trì",
+  "hRoomDetConfirm": "XÁC NHẬN",
+  "hRoomDetMaintSetFrom": "Đã đặt bảo trì từ {start}",
+  "@hRoomDetMaintSetFrom": {
+    "placeholders": {
+      "start": {}
+    }
+  },
+  "hRoomDetFailed": "Thất bại",
+  "hRoomDetEndMaintEyebrow": "KẾT THÚC BẢO TRÌ",
+  "hRoomDetEndMaintTitle": "Xác nhận kết thúc?",
+  "hRoomDetEndMaintBody": "Phòng sẽ chuyển về trạng thái trống.",
+  "hRoomDetEnd": "KẾT THÚC",
+  "hRoomDetMaintEnded": "Đã kết thúc bảo trì",
+  "hRoomDetDuplicated": "Đã tạo bản sao {code}",
+  "@hRoomDetDuplicated": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "hRoomDetHeader": "HỒ SƠ PHÒNG",
+  "hRoomDetNotFound": "Không tìm thấy phòng",
+  "hRoomDetDuplicate": "Nhân bản phòng",
+  "hRoomDetSetMaint": "Đặt bảo trì",
+  "hRoomDetEndMaint": "Kết thúc bảo trì",
+  "hStep1Eyebrow": "Bước 1 / 3",
+  "hStep1Title": "Đăng ký làm chủ nhà",
+  "hStep1SectionTitle": "Thông tin cá nhân",
+  "hStep1Subtitle": "Vui lòng điền đầy đủ thông tin để xác thực tài khoản chủ nhà.",
+  "hStep1NameLabel": "Họ và tên",
+  "hStep1NameHint": "Nguyễn Văn A",
+  "hStep1NameError": "Vui lòng nhập họ tên",
+  "hStep1PhoneLabel": "Số điện thoại",
+  "hStep1PhoneError": "Số điện thoại không hợp lệ",
+  "hStep1DobLabel": "Ngày sinh",
+  "hStep1AddressLabel": "Địa chỉ thường trú",
+  "hStep1AddressHint": "Số nhà, đường, phường/xã, quận/huyện, tỉnh/TP",
+  "hStep1AddressError": "Vui lòng nhập địa chỉ",
+  "hStep1Next": "Tiếp theo",
+  "hStep1InitError": "Khởi tạo hồ sơ thất bại",
+  "hStep2WarnAtLeastOne": "Vui lòng tải lên ít nhất 1 mặt CCCD",
+  "hStep2UploadFailed": "Tải lên thất bại",
+  "hStep2Eyebrow": "Bước 2 / 3",
+  "hStep2Title": "Xác minh CCCD",
+  "hStep2Heading": "Tải CCCD",
+  "hStep2Subtitle": "Tải lên ảnh CCCD/CMND mặt trước và mặt sau để xác thực danh tính.",
+  "hStep2FrontLabel": "Mặt trước CCCD",
+  "hStep2BackLabel": "Mặt sau CCCD",
+  "hStep2SecurityNote": "Ảnh CCCD được mã hoá và lưu trữ an toàn. Chúng tôi không chia sẻ thông tin này với bên thứ ba.",
+  "hStep2Next": "Tiếp theo",
+  "hStep3Eyebrow": "Bước 3 / 3",
+  "hStep3Title": "Thông tin thanh toán",
+  "hStep3ReceivingAccount": "Tài khoản nhận tiền",
+  "hStep3Subtitle": "Nhập tài khoản ngân hàng để nhận tiền từ người thuê.",
+  "hStep3BankLabel": "Ngân hàng *",
+  "hStep3BankHint": "Chọn ngân hàng",
+  "hStep3BankRequired": "Vui lòng chọn ngân hàng",
+  "hStep3AccountNumber": "Số tài khoản",
+  "hStep3AccountNumberRequired": "Vui lòng nhập số tài khoản",
+  "hStep3AccountNumberInvalid": "Số tài khoản không hợp lệ",
+  "hStep3AccountHolder": "Tên chủ tài khoản",
+  "hStep3AccountHolderRequired": "Vui lòng nhập tên chủ tài khoản",
+  "hStep3TaxId": "Mã số thuế (tùy chọn)",
+  "hStep3SubmitButton": "Hoàn tất đăng ký",
+  "hStep3SaveFailed": "Lưu thất bại",
+  "adminCtrTitle": "Duyệt đơn vị",
+  "adminCtrApproved": "Đã duyệt hồ sơ",
+  "adminCtrCertVerified": "Đã xác minh chứng chỉ",
+  "adminCtrError": "Lỗi: {error}",
+  "@adminCtrError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "adminCtrRejectTitle": "Từ chối hồ sơ?",
+  "adminCtrRejectBody": "Hồ sơ sẽ không hiển thị trong danh bạ.",
+  "adminCtrCancel": "Huỷ",
+  "adminCtrReject": "Từ chối",
+  "adminCtrRejected": "Đã từ chối",
+  "adminCtrLoadFailed": "Không tải được",
+  "adminCtrLoadFailedHint": "Kiểm tra kết nối rồi thử lại.",
+  "adminCtrRetry": "Thử lại",
+  "adminCtrEmptyTitle": "Không có hồ sơ chờ duyệt",
+  "adminCtrEmptyHint": "Hồ sơ mới sẽ hiện ở đây.",
+  "adminCtrCompanyFallback": "Đơn vị",
+  "adminCtrCertNumber": "CCHN: {number}",
+  "@adminCtrCertNumber": {
+    "placeholders": {
+      "number": {}
+    }
+  },
+  "adminCtrCertVerifiedLabel": "đã xác minh",
+  "adminCtrVerify": "Xác minh",
+  "adminCtrApprove": "Duyệt",
+  "adminHomeTitle": "Bảng điều khiển Admin",
+  "adminHomePending": "Chờ duyệt",
+  "adminHomeApproved": "Đã duyệt",
+  "adminHomeRejected": "Đã từ chối",
+  "adminHomePublished": "Đã đăng",
+  "adminHomeUsers": "Người dùng",
+  "adminHomeToolModerateReel": "Kiểm duyệt\nReel",
+  "adminHomeToolVerifyQueue": "Hàng đợi\nthẩm định",
+  "adminHomeToolPlanningRisk": "Rủi ro\nquy hoạch",
+  "adminHomeToolTrustedMark": "Đánh dấu\nuy tín",
+  "adminHomeToolApproveContractor": "Duyệt\nđơn vị",
+  "adminHomeToolMarketResearch": "Điều tra\nthị trường",
+  "adminHomeEmptyPending": "Không có tin nào chờ duyệt",
+  "adminHomeEmptyApproved": "Chưa có tin đã duyệt",
+  "adminHomeEmptyRejected": "Chưa có tin bị từ chối",
+  "adminHomeHost": "Chủ: {name}",
+  "@adminHomeHost": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "adminHomeReject": "Từ chối",
+  "adminHomeApprove": "Duyệt",
+  "adminHomeReapprove": "Duyệt lại",
+  "adminHomeUnpublish": "Gỡ tin",
+  "adminHomeRejectReasonTitle": "Lý do từ chối",
+  "adminHomeRejectReasonHint": "Nhập lý do để host biết cách sửa...",
+  "adminHomeMsgApproved": "Đã duyệt tin",
+  "adminHomeMsgRejected": "Đã từ chối tin",
+  "adminHomeMsgUpdated": "Đã cập nhật tin",
+  "adminHomeMsgFailed": "Thao tác thất bại",
+  "adminReelEyebrow": "Kiểm duyệt",
+  "adminReelTitle": "Video Reel",
+  "adminReelTabPending": "Chờ duyệt",
+  "adminReelTabHidden": "Bị ẩn",
+  "adminReelTabPublished": "Đã đăng",
+  "adminReelEmpty": "Không có reel nào",
+  "adminReelStatsTitle": "Số liệu vận hành (30 ngày)",
+  "adminReelStatReels": "reel",
+  "adminReelStatPending": "chờ duyệt",
+  "adminReelStatViews": "lượt xem",
+  "adminReelStatLikes": "thích",
+  "adminReelStatComments": "bình luận",
+  "adminReelStatStorage": "dung lượng",
+  "adminReelStatFailures": "lỗi xử lý",
+  "adminReelNoCaption": "(không có chú thích)",
+  "adminReelReportCount": "{count} báo cáo",
+  "@adminReelReportCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "adminReelRejectReason": "Lý do: {reason}",
+  "@adminReelRejectReason": {
+    "placeholders": {
+      "reason": {}
+    }
+  },
+  "adminReelApprove": "Duyệt",
+  "adminReelHide": "Ẩn",
+  "adminReelReject": "Từ chối",
+  "adminReelRejectTitle": "Từ chối reel",
+  "adminReelReasonLabel": "Lý do *",
+  "adminReelReasonHint": "VD: nội dung không liên quan",
+  "adminReelApproved": "Đã duyệt — reel hiển thị công khai",
+  "adminReelRejected": "Đã từ chối reel",
+  "adminReelHidden": "Đã ẩn reel",
+  "adminReelActionFailed": "Thao tác thất bại: {error}",
+  "@adminReelActionFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "adminVerifTitle": "Hàng đợi thẩm định",
+  "adminVerifEmpty": "Không có yêu cầu nào",
+  "adminVerifLoadError": "Không tải được: {error}",
+  "@adminVerifLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "adminVerifRateDialogTitle": "Gắn sao thẩm định — {title}",
+  "@adminVerifRateDialogTitle": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "adminVerifProperty": "BĐS",
+  "adminVerifStarsLabel": "{count} sao",
+  "@adminVerifStarsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "adminVerifConfirm": "Xác nhận",
+  "adminVerifRatedToast": "Đã gắn sao thẩm định.",
+  "adminVerifError": "Lỗi: {error}",
+  "@adminVerifError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "adminVerifSubtitle": "Trạng thái: {status} · Yêu cầu: {date}",
+  "@adminVerifSubtitle": {
+    "placeholders": {
+      "status": {},
+      "date": {}
+    }
+  },
+  "adminVerifVerifyButton": "Thẩm định",
+  "hActionItemsHeader": "CẦN ACTION",
+  "hActionItemsOverdueInvoices": "Hoá đơn quá hạn",
+  "hActionItemsExpiringContracts": "Hợp đồng sắp hết hạn",
+  "hActionItemsOverdueKhaiBao": "Khai báo tạm trú quá hạn",
+  "hActionItemsMaintenanceRooms": "Phòng đang bảo trì",
+  "hActionItemsZaloFailed": "Không tạo được nhắc Zalo",
+  "hActionItemsInvoiceDue": "Hạn {dueDate} · còn {amount} VND",
+  "@hActionItemsInvoiceDue": {
+    "placeholders": {
+      "dueDate": {},
+      "amount": {}
+    }
+  },
+  "hActionItemsRemindZalo": "Nhắc qua Zalo",
+  "hActionItemsContractRoom": "HĐ #{contractId} · Phòng {roomId}",
+  "@hActionItemsContractRoom": {
+    "placeholders": {
+      "contractId": {},
+      "roomId": {}
+    }
+  },
+  "hActionItemsContractExpiry": "Hết hạn {endDate} · {rent} VND/th",
+  "@hActionItemsContractExpiry": {
+    "placeholders": {
+      "endDate": {},
+      "rent": {}
+    }
+  },
+  "hActionItemsTenant": "Tenant #{tenantId}",
+  "@hActionItemsTenant": {
+    "placeholders": {
+      "tenantId": {}
+    }
+  },
+  "hActionItemsCheckIn": "Check-in {checkInAt}",
+  "@hActionItemsCheckIn": {
+    "placeholders": {
+      "checkInAt": {}
+    }
+  },
+  "hActionItemsMaintenanceSince": "Từ {startDate}",
+  "@hActionItemsMaintenanceSince": {
+    "placeholders": {
+      "startDate": {}
+    }
+  },
+  "hActionItemsMaintenanceActive": "Đang bảo trì",
+  "hAnalyticsFilterSelectPeriod": "Chọn kỳ",
+  "hAnalyticsFilterTitle": "Lọc",
+  "hAnalyticsFilterActive": "Đang lọc",
+  "hAnalyticsFilterBuilding": "Tòa nhà",
+  "hAnalyticsFilterSource": "Nguồn thu",
+  "hAnalyticsFilterRoomType": "Loại phòng",
+  "hAnalyticsFilterPeriod": "Kỳ",
+  "hAnalyticsFilterClearPeriod": "Xoá kỳ",
+  "hAnalyticsFilterManageSources": "Quản lý nguồn",
+  "hAnalyticsFilterReset": "Reset",
+  "hAnalyticsFilterApply": "Áp dụng",
+  "hCreateContractTitle": "Tạo hợp đồng nháp",
+  "hCreateContractViewRequestEyebrow": "YÊU CẦU XEM NHÀ",
+  "hCreateContractGuest": "Khách",
+  "hCreateContractRequestCode": "Mã yêu cầu",
+  "hCreateContractWhatHappens": "SẼ XẢY RA",
+  "hCreateContractWhatHappensBody": "• Yêu cầu xem nhà → trạng thái \"Đã duyệt\".\n• Một Tenant tạm được tạo (hoặc dùng lại Tenant trùng SĐT).\n• Một Contract nháp (source = marketplace) liên kết Tenant và phòng nguồn.\n• Bạn tiếp tục chỉnh sửa HĐ (ngày bắt đầu, cọc…) trước khi kích hoạt.",
+  "hCreateContractConfirm": "Xác nhận tạo HĐ nháp",
+  "hCreateContractCreating": "Đang tạo…",
+  "hCreateContractError": "Lỗi",
+  "hCreateContractCreatedDraft": "Đã tạo HĐ nháp #{id} {suffix}",
+  "@hCreateContractCreatedDraft": {
+    "placeholders": {
+      "id": {},
+      "suffix": {}
+    }
+  },
+  "hCreateContractPlaceholderTenant": "(tenant tạm)",
+  "hPublishTitle": "Đăng lên marketplace",
+  "hPublishListingType": "LOẠI TIN ĐĂNG",
+  "hPublishTitleLabel": "TIÊU ĐỀ (TUỲ CHỌN)",
+  "hPublishDescLabel": "MÔ TẢ (TUỲ CHỌN)",
+  "hPublishDescHint": "Tiện nghi, vị trí, lưu ý…",
+  "hPublishPriceLabel": "GIÁ HIỂN THỊ (VND, để trống dùng base_price)",
+  "hPublishPriceHint": "VD: 3500000",
+  "hPublishSubmitting": "Đang đăng…",
+  "hPublishSubmit": "Xác nhận đăng tin",
+  "hPublishHelp": "Tin đăng cần admin duyệt trước khi hiển thị công khai. Có thể ẩn lại bất cứ lúc nào từ màn hình Đồng bộ.",
+  "hPublishSyncSuccess": "Đã đồng bộ tin lên marketplace",
+  "hPublishError": "Lỗi",
+  "hPublishTypeBoardingHouse": "Nhà trọ",
+  "hPublishTypeHomestay": "Homestay",
+  "hPublishTypeApartment": "Căn hộ",
+  "hSyncTitle": "Đồng bộ marketplace",
+  "hSyncHideListingTitle": "Ẩn tin đăng",
+  "hSyncHideConfirm": "Ẩn phòng {roomCode} khỏi marketplace? Tin sẽ chuyển trạng thái \"hidden\", không bị xoá. Có thể đăng lại sau.",
+  "@hSyncHideConfirm": {
+    "placeholders": {
+      "roomCode": {}
+    }
+  },
+  "hSyncHideAction": "Ẩn tin",
+  "hSyncHidden": "Đã ẩn tin",
+  "hSyncError": "Lỗi",
+  "hSyncEmptyTitle": "Chưa có phòng nào để đồng bộ",
+  "hSyncEmptySubtitle": "Thêm phòng để bắt đầu đồng bộ với marketplace.",
+  "hSyncMarketplaceStatus": "Trạng thái marketplace: {status}",
+  "@hSyncMarketplaceStatus": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "hSyncLastSynced": "Đồng bộ lần cuối: {time}",
+  "@hSyncLastSynced": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "hSyncPublish": "Đăng lên marketplace",
+  "hSyncResync": "Đồng bộ lại",
+  "hSyncHide": "Ẩn",
+  "opDiscloseTitle": "Thông báo tài khoản chung",
+  "opDiscloseBody": "Bạn đang sử dụng tài khoản doanh nghiệp chung. Vui lòng lưu ý:",
+  "opDisclosePointAudit": "Mọi hành động được ghi lại trong nhật ký kiểm toán dưới danh tính tài khoản chung.",
+  "opDisclosePointPassword": "Việc thay đổi mật khẩu là trách nhiệm của công ty bạn. Hệ thống sẽ không cảnh báo khi có đăng nhập bất thường.",
+  "opDisclosePointRbac": "Phân quyền cá nhân trong doanh nghiệp (RBAC v2) sẽ ra mắt trong phiên bản tới.",
+  "opDiscloseAcknowledge": "Tôi hiểu",
+  "opDiscloseAckError": "Lỗi khi ghi nhận: {error}",
+  "@opDiscloseAckError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "opInviteTitle": "Lời mời ủy thác",
+  "opInviteEyebrow": "OPERATOR · LỜI MỜI",
+  "opInviteEmptyTitle": "Không có lời mời nào",
+  "opInviteEmptySubtitle": "Khi chủ nhà mời bạn, lời mời sẽ xuất hiện ở đây.",
+  "opInviteOwnerFallback": "Chủ nhà",
+  "opInviteSentDate": "Gửi: {date}",
+  "@opInviteSentDate": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "opInviteStatusPending": "Chờ xác nhận",
+  "opInviteReject": "Từ chối",
+  "opInviteAccept": "Chấp nhận",
+  "opInviteAcceptSuccess": "Đã chấp nhận ủy thác thành công",
+  "opInviteAcceptError": "Không thể chấp nhận. Thử lại.",
+  "opInviteRejectSuccess": "Đã từ chối lời mời",
+  "opInviteRoleFull": "Quyền: Vận hành đầy đủ",
+  "opInviteRoleAccountant": "Quyền: Kế toán",
+  "opInviteRoleViewer": "Quyền: Chỉ xem",
+  "opInviteRoleOther": "Quyền: {preset}",
+  "@opInviteRoleOther": {
+    "placeholders": {
+      "preset": {}
+    }
+  },
+  "opInviteRoleUnknown": "Không rõ",
+  "tenantReportSubmittedTitle": "Đã gửi báo cáo",
+  "tenantReportSubmittedHeadline": "Báo cáo đã được ghi nhận",
+  "tenantReportSubmittedSubtitle": "Chúng tôi sẽ xem xét và liên hệ với bạn trong vòng 24 giờ.",
+  "tenantReportBackHome": "Về trang chủ",
+  "tenantReportTitle": "Báo cáo đại diện",
+  "tenantReportEyebrow": "KHÁCH THUÊ · BÁO CÁO",
+  "tenantReportDisclosure": "Nếu bạn không nhận ra người tự xưng là đại diện của chủ nhà, hãy báo cáo ngay. Thông tin của bạn sẽ được bảo mật.",
+  "tenantReportReasonLabel": "Lý do",
+  "tenantReportReasonUnknownPerson": "Người này không phải đại diện tôi biết",
+  "tenantReportReasonDifferentInfo": "Thông tin không khớp với người đến thu tiền",
+  "tenantReportReasonNoNotice": "Chủ nhà chưa thông báo cho tôi",
+  "tenantReportReasonOther": "Lý do khác",
+  "tenantReportDetailLabel": "Chi tiết thêm (không bắt buộc)",
+  "tenantReportDetailHint": "Mô tả thêm về sự việc...",
+  "tenantReportSubmitButton": "Gửi báo cáo",
+  "tenantReportSubmitFailed": "Gửi báo cáo thất bại: {error}",
+  "@tenantReportSubmitFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "auditTitle": "Nhật ký hoạt động",
+  "auditRepresentative": "ĐẠI DIỆN · {name}",
+  "@auditRepresentative": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "auditOwnerFallback": "Chủ nhà",
+  "auditPeriodToday": "Hôm nay",
+  "auditPeriodWeek": "Tuần này",
+  "auditPeriodMonth": "Tháng này",
+  "auditLoadError": "Không tải được dữ liệu",
+  "auditRetry": "Thử lại",
+  "auditEmptyTitle": "Chưa có hoạt động nào",
+  "auditEmptySubtitle": "Các hành động của Operator sẽ xuất hiện ở đây.",
+  "auditTlOperator": "Người thao tác",
+  "auditTlOwner": "Chủ nhà",
+  "auditTlAction": "Hành động",
+  "auditTlJustNow": "Vừa xong",
+  "auditTlMinutesAgo": "{minutes}p trước",
+  "@auditTlMinutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "auditTlHoursAgo": "{hours}h trước",
+  "@auditTlHoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "auditTlDaysAgo": "{days}d trước",
+  "@auditTlDaysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "forgotValidateEmail": "Vui lòng nhập email",
+  "forgotDialogEyebrow": "Khôi phục",
+  "forgotDialogTitle": "Mật khẩu tạm",
+  "forgotDialogBody": "Mật khẩu tài khoản đã được đặt lại. Hãy dùng mật khẩu tạm dưới đây để đăng nhập, rồi đổi ngay:",
+  "forgotCopied": "Đã sao chép",
+  "forgotGotIt": "Đã hiểu",
+  "forgotError": "Lỗi: {error}",
+  "@forgotError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "forgotAppBarEyebrow": "Hỗ trợ",
+  "forgotTitle": "Quên mật khẩu",
+  "forgotIntro": "Nhập email tài khoản của bạn — hệ thống sẽ tạo một mật khẩu tạm để bạn đăng nhập rồi đổi lại ngay.",
+  "forgotEmailHint": "ban@vidu.com",
+  "forgotSubmit": "Tạo mật khẩu tạm",
+  "guestGateTitle": "Đăng nhập để tiếp tục",
+  "guestGateBody": "Bạn cần đăng nhập để lưu tin, liên hệ chủ nhà, đặt lịch xem, đăng tin hoặc tham gia cộng đồng.",
+  "guestGateLoginRegister": "Đăng nhập / Đăng ký",
+  "guestGateLater": "Để sau",
+  "guestGateAccount": "Tài khoản",
+  "hBatchRemindTitle": "Nhắc nợ hàng loạt",
+  "hBatchRemindSummary": "{count} phòng cần nhắc · tổng {total}",
+  "@hBatchRemindSummary": {
+    "placeholders": {
+      "count": {},
+      "total": {}
+    }
+  },
+  "hBatchRemindHint": "Bấm \"Nhắc\" để mở Zalo gửi nhắc từng phòng.",
+  "hBatchRemindEmpty": "Không có phòng nào cần nhắc 🎉",
+  "hBatchRemindOverdue": "Nợ {amount} · quá hạn {days} ngày",
+  "@hBatchRemindOverdue": {
+    "placeholders": {
+      "amount": {},
+      "days": {}
+    }
+  },
+  "hBatchRemindDone": "Đã nhắc",
+  "hBatchRemindRemind": "Nhắc",
+  "hBatchRemindReminding": "Đang nhắc...",
+  "hBatchRemindRemindAll": "Nhắc tất cả qua Zalo ({count})",
+  "@hBatchRemindRemindAll": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hCreditNoteInvalidAmount": "Số tiền không hợp lệ",
+  "hCreditNoteCreated": "Đã lập credit note",
+  "hCreditNoteFailed": "Lập thất bại",
+  "hCreditNoteTitle": "LẬP CREDIT NOTE",
+  "hCreditNoteDescription": "Credit note là điều chỉnh hợp lệ trên hoá đơn đã thu. Hoá đơn gốc không bị thay đổi.",
+  "hCreditNoteAmountLabel": "Số tiền điều chỉnh (VND) *",
+  "hCreditNoteIssuedDateLabel": "Ngày phát hành",
+  "hCreditNoteReasonLabel": "Lý do",
+  "hCreditNoteSubmit": "Lập credit note",
+  "hInvListTitle": "HOÁ ĐƠN",
+  "hInvListBatchCreate": "Tạo hàng loạt",
+  "hInvListFilterAll": "Tất cả",
+  "hInvListStatusDraft": "Nháp",
+  "hInvListStatusSent": "Đã gửi",
+  "hInvListStatusPaid": "Đã thu",
+  "hInvListAllMonths": "Mọi tháng",
+  "hInvListEmpty": "Chưa có hoá đơn",
+  "hInvListCreatedCount": "Đã tạo {count} hoá đơn",
+  "@hInvListCreatedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hInvListPeriod": "Kỳ {start} → {end}",
+  "@hInvListPeriod": {
+    "placeholders": {
+      "start": {},
+      "end": {}
+    }
+  },
+  "hInvPayTitle": "GHI NHẬN THANH TOÁN",
+  "hInvPayRemaining": "Còn lại: ",
+  "hInvPayAmountLabel": "Số tiền (VND) *",
+  "hInvPayMethodLabel": "Phương thức",
+  "hInvPayMethodCash": "Tiền mặt",
+  "hInvPayMethodBank": "Chuyển khoản",
+  "hInvPayMethodOther": "Khác",
+  "hInvPayNoteLabel": "Ghi chú",
+  "hInvPaySubmit": "Ghi nhận",
+  "hInvPayInvalidAmount": "Số tiền không hợp lệ",
+  "hInvPayRecordFailed": "Ghi nhận thất bại",
+  "hMeterOpenFromRoomHint": "Vui lòng vào từ chi tiết phòng để nhập chỉ số",
+  "hMeterTitleRoom": "CHỈ SỐ • {code}",
+  "@hMeterTitleRoom": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "hMeterTitle": "CHỈ SỐ ĐIỆN NƯỚC",
+  "hMeterAddTooltip": "Thêm",
+  "hMeterEmpty": "Chưa có chỉ số",
+  "hMeterUsageLine": "Điện: {kwh} kWh • Nước: {water} m³",
+  "@hMeterUsageLine": {
+    "placeholders": {
+      "kwh": {},
+      "water": {}
+    }
+  },
+  "hMeterFormTitle": "NHẬP CHỈ SỐ",
+  "hMeterReadingDate": "Ngày đọc",
+  "hMeterElectricity": "Điện (kWh)",
+  "hMeterWater": "Nước (m³)",
+  "hMeterSave": "Lưu chỉ số",
+  "hMeterSaveFailed": "Lưu thất bại",
+  "hOccReportOccupancyRate": "Tỷ lệ lấp đầy",
+  "hOccReportRoomsCount": "{count} phòng",
+  "@hOccReportRoomsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hOccReportByRoom": "THEO PHÒNG",
+  "hOccReportNoData": "Chưa có dữ liệu",
+  "hRevReportExportFailed": "Xuất CSV thất bại",
+  "hRevReportInvoiceSubject": "Hoá đơn {month}",
+  "@hRevReportInvoiceSubject": {
+    "placeholders": {
+      "month": {}
+    }
+  },
+  "hRevReportTotalRevenue": "Tổng doanh thu",
+  "hRevReportGrossRevenue": "Doanh thu gộp",
+  "hRevReportNetRevenue": "Doanh thu thực",
+  "hRevReportNoData": "Chưa có dữ liệu",
+  "hRevReportViewNewStats": "Xem thống kê doanh thu mới",
+  "hRevReportExporting": "Đang xuất...",
+  "hRevReportExportCsv": "Xuất CSV hoá đơn tháng này",
+  "notifInbox": "Hộp thư",
+  "notifMarkAllRead": "Đọc tất cả",
+  "notifEmpty": "Chưa có thông báo nào",
+  "notifContentGone": "Nội dung không còn",
+  "notifJustNow": "Vừa xong",
+  "notifMinutesAgo": "{count} phút trước",
+  "@notifMinutesAgo": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "notifHoursAgo": "{count} giờ trước",
+  "@notifHoursAgo": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "notifDaysAgo": "{count} ngày trước",
+  "@notifDaysAgo": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "planErrTitle": "Báo cáo dữ liệu sai",
+  "planErrReasonLabel": "Lý do (≥10 ký tự)",
+  "planErrReasonHint": "VD: Thực tế zone đây là dân cư, không phải cây xanh",
+  "planErrAttachImage": "Đính kèm ảnh (tuỳ chọn)",
+  "planErrImageAttached": "Đã đính kèm ảnh",
+  "planErrSubmit": "Gửi báo cáo",
+  "planErrSuccessMsg": "Đã gửi báo cáo. Cảm ơn bạn!",
+  "planErrMinLength": "Lý do tối thiểu 10 ký tự",
+  "planErrUploading": "Đang tải ảnh lên...",
+  "planErrImageTooLarge": "Ảnh quá lớn (tối đa 5 MB)",
+  "planErrRemoveImage": "Xoá ảnh",
+  "planErrParcelId": "Parcel ID: {id}",
+  "@planErrParcelId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
+  "planErrUploadFailed": "Tải ảnh thất bại: {error}",
+  "@planErrUploadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "planErrSubmitFailed": "Gửi thất bại: {error}",
+  "@planErrSubmitFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "planProvSelectHint": "Chọn tỉnh / địa chỉ",
+  "planProvTitle": "Chọn tỉnh / Tìm địa chỉ",
+  "planProvSearchHint": "Tỉnh, địa chỉ, đường, địa điểm...",
+  "planProvNoResults": "Không tìm thấy kết quả",
+  "planProvEmptyPrompt": "Nhập tên tỉnh hoặc địa chỉ",
+  "planProvSectionProvince": "Tỉnh / Thành",
+  "planProvSectionAddress": "Địa chỉ",
+  "planProvHasOverlay": "Có overlay quy hoạch 2030",
+  "planProvNoOverlay": "Chỉ địa chỉ — chưa có overlay",
+  "planWarnTitle": "Thông tin và quy hoạch",
+  "planWarnReport": "Báo cáo nếu thông tin sai",
+  "planWarnOk": "Đã hiểu",
+  "planWarnLoadError": "Không tải được: {error}",
+  "@planWarnLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "planWarnNotFound": "Không tìm thấy thông tin quy hoạch tại vị trí này.",
+  "planWarnRisky": "Khu vực này có thể ảnh hưởng kế hoạch sử dụng đất ({zone}). Bạn vẫn có thể đăng tin nhưng nên cân nhắc.",
+  "@planWarnRisky": {
+    "placeholders": {
+      "zone": {}
+    }
+  },
+  "planWarnSuitable": "Khu vực này phù hợp đăng tin.",
+  "planWarnZoneLabel": "Zone",
+  "planWarnAreaLabel": "Diện tích",
+  "planWarnDistrictLabel": "Quận",
+  "hDebtAgingTitle": "CÔNG NỢ",
+  "hDebtAgingEmptyTitle": "Chưa có dữ liệu công nợ",
+  "hDebtAgingTotal": "TỔNG CÔNG NỢ",
+  "hDebtAgingByBucket": "PHÂN BUCKET",
+  "hDebtAgingNeedsReminder": "CẦN NHẮC THUÊ ({count})",
+  "@hDebtAgingNeedsReminder": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hDebtAgingBucketDays": "Bucket {days} ngày",
+  "@hDebtAgingBucketDays": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "hDebtAgingInvoiceCount": "{count} hoá đơn",
+  "@hDebtAgingInvoiceCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "hDebtAgingOverdue": "Trễ {days} ngày • {phone}",
+  "@hDebtAgingOverdue": {
+    "placeholders": {
+      "days": {},
+      "phone": {}
+    }
+  },
+  "ctrFilterTitle": "Lọc đơn vị xây dựng",
+  "ctrFilterService": "Ngành",
+  "ctrFilterProvince": "Khu vực",
+  "ctrFilterSort": "Sắp xếp",
+  "ctrFilterSortHelper": "\"Đề xuất\" là thứ tự hệ thống: đơn vị nổi bật · gói Pro · đã thẩm định · điểm đánh giá.",
+  "ctrFilterAllServices": "Tất cả ngành",
+  "ctrFilterAllProvinces": "Toàn quốc",
+  "ctrFilterProvinceUnavailable": "Chưa tải được danh sách tỉnh/thành — thử lại sau.",
+  "ctrFilterSortRecommend": "Đề xuất",
+  "ctrFilterSortRating": "Điểm cao nhất",
+  "ctrFilterSortReviews": "Nhiều đánh giá nhất",
+  "ctrFilterApply": "Áp dụng",
+  "ctrFilterReset": "Xoá lọc",
+  "ctrListTitleAll": "Đơn vị xây dựng",
+  "ctrListFilterTooltip": "Bộ lọc đơn vị",
+  "ctrListResultCount": "{count} đơn vị",
+  "@ctrListResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ctrListEmptyWidenFilter": "Nới bộ lọc",
+  "homeConstructionFilterTooltip": "Lọc đơn vị xây dựng",
+  "onboardingSkip": "Bỏ qua",
+  "onboardingNext": "Tiếp theo",
+  "onboardingStart": "Bắt đầu",
+  "onboardingHeroTitle": "Chào mừng đến Vua Nhà",
+  "onboardingHeroSubtitle": "Một ứng dụng, hai thế giới — Bất động sản và Xây dựng.",
+  "onboardingHeroCardReTitle": "Bất động sản",
+  "onboardingHeroCardReDesc": "Tìm thuê, cho thuê, quản lý nhà trọ",
+  "onboardingHeroCardBuildTitle": "Xây dựng",
+  "onboardingHeroCardBuildDesc": "Thiết kế, thi công, nội thất, báo giá",
+  "onboardingReTitle": "Bất động sản trong tầm tay",
+  "onboardingReSubtitle": "Tìm chỗ ở, cho thuê và quản lý — tất cả một nơi.",
+  "onboardingReSearch": "Tìm nhà",
+  "onboardingReListings": "Xem tin thuê",
+  "onboardingRePost": "Đăng cho thuê",
+  "onboardingReBooking": "Đặt lịch xem",
+  "onboardingReRooms": "Nhà trọ, phòng trọ",
+  "onboardingReManage": "Quản lý nhà trọ",
+  "onboardingBuildTitle": "Xây dựng từ ý tưởng đến hoàn thiện",
+  "onboardingBuildSubtitle": "Ý tưởng, đơn vị thi công và báo giá — kết nối nhanh.",
+  "onboardingBuildDesign": "Thiết kế",
+  "onboardingBuildInterior": "Nội thất",
+  "onboardingBuildConstruct": "Thi công",
+  "onboardingBuildGallery": "Mẫu nhà đẹp",
+  "onboardingBuildKnowledge": "Kinh nghiệm xây dựng",
+  "onboardingBuildRfq": "Đăng yêu cầu báo giá",
+  "onboardingBuildCaption": "Kèm danh bạ đơn vị & bảng xếp hạng",
+  "leadSheetTitle": "Để lại thông tin, chúng tôi gọi lại",
+  "leadSheetSubtitle": "Chỉ cần Tên và số điện thoại — không cần đăng nhập.",
+  "leadFieldName": "Họ tên",
+  "leadFieldPhone": "Số điện thoại",
+  "leadFieldNote": "Ghi chú (tuỳ chọn)",
+  "leadSubmit": "Gửi",
+  "leadValidation": "Vui lòng nhập tên và số điện thoại hợp lệ.",
+  "leadSendError": "Gửi không thành công, bạn thử lại giúp mình nhé.",
+  "leadSuccessTitle": "Đã nhận thông tin!",
+  "leadSuccessBody": "Chúng tôi sẽ liên hệ với bạn sớm.",
+  "leadClose": "Đóng",
+  "guestGateLeaveContact": "Để lại SĐT, chúng tôi gọi lại",
+  "adminLeadsTitle": "Lead gọi lại",
+  "adminLeadsEmpty": "Chưa có lead nào.",
+  "hubGuest": "Khách",
+  "hubSearchHint": "Nhập từ khoá, khu vực, dự án...",
+  "hubBannerTitle": "Vua Nhà — Tìm đúng nhà, sống đúng chất",
+  "hubBannerSubtitle": "Mua bán, cho thuê, đăng tin dễ dàng với hàng ngàn bất động sản mới mỗi ngày",
+  "hubNeedTitle": "Tôi đang cần",
+  "hubNeedSubtitle": "Tìm nhà thuê · mua · đăng tin bán",
+  "hubHaveTitle": "Tôi có nhà cho thuê",
+  "hubHaveSubtitle": "Đăng tin, chọn khách trong ngày",
+  "demandChooserTitle": "Bạn muốn đăng gì?",
+  "demandChooserHave": "TÔI CÓ BẤT ĐỘNG SẢN",
+  "demandChooserNeed": "TÔI ĐANG TÌM",
+  "demandChooserPostRent": "Đăng tin cho thuê",
+  "demandChooserPostSale": "Đăng tin bán",
+  "demandChooserNeedRent": "Tôi cần thuê",
+  "demandChooserNeedBuy": "Tôi cần mua",
+  "demandChooserHaveHint": "Đăng một bất động sản có thật: địa chỉ, ảnh, giá.",
+  "demandChooserNeedHint": "Nói bạn đang tìm gì — không cần ảnh, xong trong 30 giây.",
+  "demandFormTitleRent": "Tôi cần thuê",
+  "demandFormTitleBuy": "Tôi cần mua",
+  "demandSecArea": "Khu vực mong muốn",
+  "demandSecType": "Loại hình mong muốn",
+  "demandSecBudget": "Ngân sách",
+  "demandSecMore": "Thêm vài chi tiết (tuỳ chọn)",
+  "demandProvinceHint": "Chọn tỉnh/thành",
+  "demandBudgetFrom": "Từ",
+  "demandBudgetTo": "Đến",
+  "demandBudgetUnitRent": "triệu/tháng",
+  "demandBudgetUnitBuy": "tỷ",
+  "demandAreaMin": "Diện tích tối thiểu (m²)",
+  "demandBedroomsMin": "Số phòng ngủ tối thiểu",
+  "demandMoveIn": "Thời điểm dọn vào",
+  "demandDuration": "Thuê trong (tháng)",
+  "demandOccupants": "Số người ở",
+  "demandPayment": "Thanh toán",
+  "demandPaymentCash": "Tiền mặt",
+  "demandPaymentLoan": "Cần vay",
+  "demandPurpose": "Mục đích",
+  "demandPurposeLive": "Để ở",
+  "demandPurposeInvest": "Đầu tư",
+  "demandNeeds": "Yêu cầu bắt buộc",
+  "demandNeedParking": "Chỗ để xe",
+  "demandNeedFreeHours": "Giờ tự do",
+  "demandNeedAircon": "Máy lạnh",
+  "demandNeedPrivate": "Không chung chủ",
+  "demandNeedPet": "Nuôi thú cưng",
+  "demandNeedBalcony": "Ban công",
+  "demandNote": "Mô tả thêm",
+  "demandNoteHint": "Ví dụ: cần gần trường học, ưu tiên tầng thấp…",
+  "demandSubmit": "Đăng tin nhu cầu",
+  "demandSubmitted": "Đã đăng. Tin có hiệu lực 30 ngày.",
+  "demandListTitle": "Tin nhu cầu",
+  "demandTabAll": "Tất cả",
+  "demandTabRent": "Cần thuê",
+  "demandTabBuy": "Cần mua",
+  "demandTabMine": "Tin của tôi",
+  "demandEmpty": "Chưa có tin nhu cầu nào.",
+  "demandEmptyMine": "Bạn chưa đăng tin nhu cầu nào.",
+  "demandExpired": "Đã hết hạn",
+  "demandClosed": "Đã đóng",
+  "demandActionClose": "Đóng tin",
+  "demandActionExtend": "Gia hạn 30 ngày",
+  "demandContact": "Nhắn tin",
+  "demandDaysLeft": "Còn {days} ngày",
+  "@demandDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "demandNeedLogin": "Đăng nhập để đăng tin nhu cầu",
+  "demandPickTypeFirst": "Hãy chọn ít nhất một loại hình",
+  "svcCatalogTitle": "Dịch vụ nhà cửa",
+  "svcGroupQuick": "Thợ & dịch vụ nhanh",
+  "svcGroupBuild": "Thiết kế · Xây dựng",
+  "svcQuickHint": "Gửi yêu cầu, Vua Nhà gọi lại và xếp thợ giúp bạn.",
+  "svcBookNow": "Đặt dịch vụ · {serviceName}",
+  "@svcBookNow": {
+    "placeholders": {
+      "serviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "svcBookedBody": "Chúng tôi sẽ gọi lại để xác nhận và xếp lịch thợ.",
+  "svcReqTitle": "Yêu cầu dịch vụ",
+  "svcReqEmpty": "Chưa có yêu cầu nào.",
+  "svcReqFilterAll": "Tất cả",
+  "svcReqFilterNew": "Mới",
+  "svcReqFilterDoing": "Đang xử lý",
+  "svcReqFilterDone": "Xong",
+  "svcReqSearchHint": "Tìm theo SĐT hoặc tên",
+  "svcReqCall": "Gọi",
+  "svcReqSchedule": "Xếp lịch",
+  "svcReqNote": "Ghi chú của admin",
+  "svcReqSave": "Lưu",
+  "svcReqSaved": "Đã lưu",
+  "svcStatusNew": "Mới",
+  "svcStatusContacted": "Đã liên hệ",
+  "svcStatusScheduled": "Đã xếp lịch",
+  "svcStatusDone": "Hoàn thành",
+  "svcStatusCancelled": "Đã huỷ",
+  "svcStatusSpam": "Rác",
+  "hubActionTrade": "Mua bán · Cho thuê",
+  "hubActionPost": "Đăng tin nhu cầu",
+  "hubActionPlanning": "Thông tin và quy hoạch",
+  "hubActionServices": "Dịch vụ",
+  "hubRowBrokers": "Môi giới giỏi",
+  "hubRowOwners": "Chủ nhà tự đăng",
+  "hubActionLease": "Cho thuê",
+  "hubActionRent": "Cần thuê",
+  "hubActionSell": "Cần bán",
+  "hubActionBuy": "Cần mua",
+  "hubFeaturedUnits": "Đơn vị tiêu biểu",
+  "hubServiceUnits": "Đơn vị dịch vụ",
+  "hubHighlights": "Tin nổi bật",
+  "hubViewAll": "Xem tất cả",
+  "hubNotifications": "Thông báo",
+  "shellNavHome": "Trang chủ",
+  "hubFeaturedBrokers": "Môi giới tiêu biểu",
+  "brokerProfileTitle": "Hồ sơ môi giới",
+  "brokerNotFound": "Không tìm thấy hồ sơ này.",
+  "brokerListings": "Tin đang đăng",
+  "brokerNoListings": "Chưa có tin nào đang hiển thị.",
+  "brokerListingCount": "{count} tin đang đăng",
+  "brokerReviewCount": "{count} đánh giá",
+  "@brokerListingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@brokerReviewCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "brokerStatListings": "Tin đăng",
+  "brokerStatAreas": "Khu vực",
+  "brokerStatReviews": "Đánh giá",
+  "brokerStatYears": "Năm",
+  "brokerMapTitle": "Bản đồ điểm chốt",
+  "brokerReviewsTitle": "Nhận xét khách hàng",
+  "mapLegendTitle": "Chú giải",
+  "mapLegendSale": "Tin bán",
+  "mapLegendStayLong": "Cho thuê · dài hạn",
+  "mapLegendStayShort": "Cho thuê · ngắn hạn",
+  "mapLegendBusiness": "Cho thuê · kinh doanh",
+  "postGroupStep": "Nhóm bất động sản",
+  "postTypeStep": "Loại hình",
+  "postGroupStayLong": "Lưu trú dài hạn",
+  "postGroupStayShort": "Lưu trú ngắn hạn",
+  "postGroupBusiness": "Kinh doanh",
+  "postPickGroupFirst": "Chọn nhóm trước",
+  "brokerShare": "Chia sẻ hồ sơ",
+  "brokerShareCopied": "Đã sao chép liên kết hồ sơ",
+  "pfBasicInfo": "Thông tin cơ bản",
+  "pfBasicHelper": "Đây là tên và mô tả khách nhìn thấy đầu tiên.",
+  "pfContact": "Liên hệ",
+  "pfContactHelper": "Khách bấm gọi trực tiếp từ hồ sơ của bạn.",
+  "pfCapacity": "Năng lực",
+  "pfCapacityHelper": "Khách nhìn phần này để đánh giá bạn có làm nổi việc không.",
+  "pfDocs": "Giấy tờ & xác minh",
+  "pfDocsHelper": "Hồ sơ có giấy tờ được duyệt sẽ hiện huy hiệu và xếp trên trong danh bạ.",
+  "pfNameHint": "VD: Nhà thầu Minh Phát",
+  "pfIntroHint": "Bạn làm gì, ở khu vực nào, thế mạnh là gì?",
+  "pfPhoneHint": "09xx xxx xxx",
+  "pfPhoneInvalid": "Số điện thoại không hợp lệ",
+  "pfWebHint": "facebook.com/... hoặc website",
+  "pfCertHint": "Nhập nếu bạn có chứng chỉ hành nghề",
+  "pfUnitScale": "Quy mô đơn vị",
+  "pfChangeCover": "Đổi ảnh bìa",
+  "pfPickPrefix": "Chọn {field}",
+  "pfEstablishedYear": "Năm thành lập: {year}",
+  "pfEstVerified": "Đã xác minh bằng giấy tờ",
+  "pfEstPending": "Đang chờ duyệt",
+  "pfEstPendingHint": "Quản trị viên đang đối chiếu giấy tờ",
+  "pfEstRejected": "Chưa đạt",
+  "pfEstRejectedHint": "Chạm để xem lý do và nộp lại",
+  "pfEstNone": "Chưa xác minh năm thành lập",
+  "pfEstNoneHint": "Chạm để nộp giấy chứng nhận ĐKDN",
+  "pfDiscardTitle": "Bỏ thay đổi?",
+  "pfDiscardBody": "Bạn đã sửa hồ sơ nhưng chưa lưu. Thoát bây giờ sẽ mất các thay đổi đó.",
+  "pfKeepEditing": "Tiếp tục sửa",
+  "pfDiscard": "Bỏ thay đổi",
+  "pfScaleCorporation": "Tập đoàn lớn",
+  "pfScaleMedium": "Công ty vừa",
+  "pfScaleSmall": "Công ty nhỏ",
+  "pfScaleCrew": "Đội thi công",
+  "pfScaleIndividual": "Cá nhân nhận thầu",
+  "pfScaleArchitect": "KTS / nhóm KTS",
+  "pfScaleSpecialist": "Nhà thầu chuyên biệt",
+  "@pfPickPrefix": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "@pfEstablishedYear": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "sellerStep": "Bạn đăng tin này với vai trò gì?",
+  "sellerStepHelper": "Khách rất quan tâm điều này. Thông tin do bạn tự khai, Vua Nhà chưa xác minh giấy tờ.",
+  "sellerOwner": "Chủ nhà tự đăng",
+  "sellerOwnerDesc": "Nhà của chính bạn",
+  "sellerBroker": "Đăng hộ / môi giới",
+  "sellerBrokerDesc": "Bạn đăng giúp chủ nhà",
+  "sellerRequired": "Vui lòng chọn vai trò",
+  "sellerBadgeOwner": "Chủ nhà tự đăng (tự khai)",
+  "sellerBadgeBroker": "Môi giới (tự khai)",
+  "hubFeaturedSellers": "Người bán tiêu biểu",
+  "brokerMapExpand": "Mở rộng",
+  "brokerMapHint": "Chạm ghim để mở tin · kéo và chụm 2 ngón để phóng to",
+  "brokerMapHintShort": "Chụm 2 ngón hoặc bấm +/− để phóng to · chạm ghim để mở tin",
+  "planningScreenTitle": "Thông tin và quy hoạch",
+  "planningCheckAction": "Thông tin và quy hoạch",
+  "planningTabShort": "Quy hoạch",
+  "planningLayerToggle": "Lớp quy hoạch SDĐ 2030",
+  "planningOpacityLabel": "Độ trong suốt",
+  "planningZoneLegendTitle": "Chú giải quy hoạch",
+  "planningZoneLegendEmpty": "Phóng to để xem loại đất trong khu vực",
+  "planningZoneLegendRasterNote": "Chú giải theo nguồn của tỉnh · chạm vào thửa để xem chi tiết",
+  "planningZoneLegendOther": "Loại khác",
+  "mapClusterTooltip": "Chạm để tách cụm",
+  "mapSearchHint": "Tìm địa điểm",
+  "mapZoomIn": "Phóng to",
+  "mapZoomOut": "Thu nhỏ",
+  "mapMyLocation": "Vị trí của tôi",
+  "mapLocationOff": "Định vị đang tắt trên thiết bị",
+  "mapLocationDenied": "Chưa được cấp quyền vị trí",
+  "mapLocationOutside": "Vị trí của bạn nằm ngoài Việt Nam",
+  "mapLocationError": "Không lấy được vị trí, thử lại sau",
+  "mapSearchEmpty": "Không tìm thấy địa điểm nào",
+  "mapLegendHelp": "Giải thích",
+  "mapLegendStayShortDesc": "Thuê theo ngày hoặc vài hôm, phù hợp nghỉ ngơi, công tác, du lịch.",
+  "mapLegendStayLongDesc": "Thuê theo tháng hoặc lâu dài, phù hợp để ở và sinh hoạt ổn định.",
+  "mapLegendBusinessDesc": "Mặt bằng cho thuê để kinh doanh, buôn bán, làm văn phòng hoặc cửa hàng.",
+  "mapLegendSaleDesc": "Mua hoặc bán bất động sản để sở hữu và sử dụng lâu dài.",
+  "tradeTabBuy": "Tìm nhà",
+  "tradeTabSell": "Tìm khách",
+  "tradeBuyHint": "Nhà đang rao bán và cho thuê",
+  "tradeSellHint": "Người đang cần mua, cần thuê — đăng tin để họ tìm thấy bạn",
+  "tradeChipAll": "Tất cả",
+  "tradeChipSale": "Bán",
+  "tradeChipShort": "Ngắn hạn",
+  "tradeShortStaySearchTitle": "Tìm phòng trống theo giờ",
+  "tradeShortStaySearchSub": "Theo giờ · qua đêm · theo ngày — xem giá và đặt ngay",
+  "tradeChipLong": "Dài hạn",
+  "tradeChipBusiness": "Kinh doanh",
+  "tradeChipNeedBuy": "Cần mua",
+  "tradeChipNeedRent": "Cần thuê",
+  "tradeSearchHint": "Tìm theo tiêu đề, khu vực",
+  "tradeFilter": "Bộ lọc",
+  "tradeFilterTitle": "Lọc kết quả",
+  "tradePriceRange": "Khoảng giá",
+  "tradeAreaFrom": "Diện tích từ (m²)",
+  "tradeBedrooms": "Phòng ngủ",
+  "tradeApply": "Áp dụng",
+  "tradeClear": "Xoá lọc",
+  "tradeEmptyBuy": "Chưa có tin nào khớp",
+  "tradeEmptySell": "Chưa có nhu cầu nào khớp",
+  "tradeEmptyHint": "Thử bỏ bớt bộ lọc hoặc đổi từ khoá.",
+  "tradeResultCount": "{n} kết quả",
+  "@tradeResultCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tfTitle": "Lọc kết quả",
+  "tfPrice": "Khoảng giá",
+  "tfArea": "Diện tích",
+  "tfBedrooms": "Phòng ngủ",
+  "tfSort": "Sắp xếp",
+  "tfAny": "Tất cả",
+  "tfAreaUnder": "Dưới 30 m²",
+  "tfArea3050": "30 – 50 m²",
+  "tfArea5080": "50 – 80 m²",
+  "tfAreaOver": "Trên 80 m²",
+  "tfSortNewest": "Mới nhất",
+  "tfSortPriceAsc": "Giá thấp → cao",
+  "tfSortPriceDesc": "Giá cao → thấp",
+  "tfReset": "Đặt lại",
+  "tfSeeCount": "Xem {n} tin",
+  "@tfSeeCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tfSeeNone": "Không có tin nào khớp",
+  "tfCounting": "Đang đếm…",
+  "tfBillion": "tỷ",
+  "tfMillion": "triệu",
+  "tfNoLimit": "không giới hạn",
+  "tfAdvanced": "Lọc nâng cao",
+  "tfPropertyType": "Loại hình",
+  "tfDirection": "Hướng nhà (phong thuỷ)",
+  "tfTrust": "Uy tín & Chất lượng",
+  "tfTrustedOnly": "Chỉ hiện nhà uy tín",
+  "tfMinRating": "Điểm đánh giá tối thiểu",
+  "tfMinQuality": "Sao chất lượng tối thiểu",
+  "tfQualityStar": "{n} sao",
+  "tfSortTrust": "Uy tín",
+  "tfSortRating": "Đánh giá cao",
+  "tfDirN": "Bắc",
+  "tfDirNE": "Đông Bắc",
+  "tfDirE": "Đông",
+  "tfDirSE": "Đông Nam",
+  "tfDirS": "Nam",
+  "tfDirSW": "Tây Nam",
+  "tfDirW": "Tây",
+  "tfDirNW": "Tây Bắc",
+  "@tfQualityStar": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "reelSectionTitle": "Reel nổi bật",
+  "reelSeeAll": "Xem tất cả",
+  "exploreTradeTitlePlain": "Khám phá ",
+  "exploreTradeTitleAccent": "Mua bán · Cho thuê",
+  "exploreTradeSubtitle": "Tổng hợp tin nhà đất, cho thuê,\nmua bán và bộ lọc nhanh",
+  "exploreTradeCta": "Xem tổng hợp",
+  "homeNewsSection": "Tin tức",
+  "homeNewsEmpty": "Chưa có tin nào",
+  "tfArea2": "Khu vực tìm kiếm",
+  "tfAreaAll": "Toàn bộ",
+  "tfAreaNear": "Quanh đây",
+  "tfAreaPlace": "Địa danh",
+  "tfPlaceHint": "Nhập địa danh: \"gần Đại học Hồng Đức\"…",
+  "tfRadius": "Bán kính",
+  "tfLocating": "Đang lấy vị trí…",
+  "tfLocated": "Đã có vị trí ✓",
+  "tfGeoOnlyBasic": "Khi lọc theo khu vực, kết quả sắp theo khoảng cách.",
+  "tfNoMatchPlace": "Không tìm thấy địa danh này",
+  "filterLocInsecureContext": "Trang đang mở qua HTTP nên trình duyệt chặn định vị.",
+  "profHostSection": "Quản lý cho thuê",
+  "profHostBuildings": "Nhà trọ & phòng",
+  "profHostBuildingsSub": "Toà nhà, phòng, khách đang thuê",
+  "profHostContracts": "Hợp đồng",
+  "profHostContractsSub": "Hợp đồng thuê và hạn kết thúc",
+  "profHostInvoices": "Hoá đơn",
+  "profHostInvoicesSub": "Tiền phòng, điện nước, thu chi",
+  "profHostAppointments": "Lịch khách xem nhà",
+  "profHostAppointmentsSub": "Duyệt và xếp lịch dẫn xem",
+  "profHostKyc": "Hồ sơ chủ nhà",
+  "profHostKycSub": "Giấy tờ, tài khoản nhận tiền, xác minh",
+  "myReqSubtitle": "Thợ và dịch vụ bạn đã đặt",
+  "myReqEmptyHint": "Cần thợ điện, thợ nước hay dọn nhà? Đặt một lần, chúng tôi gọi lại xếp thợ.",
+  "myReqEmptyCta": "Xem các dịch vụ",
+  "myReqStatusContacted": "Đã liên hệ",
+  "myReqStatusScheduled": "Đã hẹn lịch",
+  "myReqStatusDone": "Hoàn thành",
+  "myReqStatusCancelled": "Đã huỷ",
+  "myReqSentAt": "Gửi {d}",
+  "myReqScheduledAt": "Hẹn {d}",
+  "profMessages": "Tin nhắn",
+  "profMessagesSub": "Trao đổi với chủ nhà và người bán",
+  "@myReqSentAt": {
+    "placeholders": {
+      "d": {
+        "type": "String"
+      }
+    }
+  },
+  "@myReqScheduledAt": {
+    "placeholders": {
+      "d": {
+        "type": "String"
+      }
+    }
+  },
+  "profNextViewing": "Lịch hẹn sắp tới",
+  "profNextViewingAt": "{d} · {t}",
+  "@profNextViewingAt": {
+    "placeholders": {
+      "d": {
+        "type": "String"
+      },
+      "t": {
+        "type": "String"
+      }
+    }
+  },
+  "saleCall": "Nhắn tin",
+  "saleCallNamed": "Nhắn cho {ten}",
+  "saleShareBtn": "Chia sẻ",
+  "saleQrTitle": "Quét để mở trang",
+  "saleQrHint": "Đưa khách quét mã này",
+  "saleAreaCover": "Khu vực đang có tin",
+  "saleReviewsShort": "Khách nói gì",
+  "@saleCallNamed": {
+    "placeholders": {
+      "ten": {
+        "type": "String"
+      }
+    }
+  },
+  "albumSection": "Dự án",
+  "albumUnits": "{n} căn",
+  "albumEmpty": "Dự án chưa có tin nào",
+  "albumTitle": "Dự án",
+  "albumHidden": "Đang ẩn",
+  "@albumUnits": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "albumMine": "Dự án của tôi",
+  "albumMineSub": "Gom tin theo toà, theo khu",
+  "albumNew": "Tạo dự án",
+  "albumNameLabel": "Tên dự án",
+  "albumNameHint": "Vinhomes Grand Park — toà S1",
+  "albumDescLabel": "Mô tả (tuỳ chọn)",
+  "albumPublicLabel": "Công khai trên trang cá nhân",
+  "albumPublicHint": "Tắt khi đang gom dở, khách sẽ không thấy",
+  "albumSave": "Lưu",
+  "albumDelete": "Xoá dự án",
+  "albumDeleteAsk": "Xoá dự án này?",
+  "albumDeleteNote": "Tin bên trong VẪN CÒN, chỉ không còn thuộc dự án nào.",
+  "albumNoneYet": "Chưa có dự án nào",
+  "albumNoneHint": "Gom các căn cùng một toà vào một dự án để khách xem một lượt.",
+  "albumAddListings": "Thêm tin vào dự án",
+  "albumPickTitle": "Chọn tin",
+  "albumPickEmpty": "Bạn chưa có tin đăng nào",
+  "albumPickSave": "Thêm {n} tin",
+  "albumUnitLabel": "Nhãn căn",
+  "albumUnitHint": "Căn 1201",
+  "albumRemove": "Gỡ khỏi dự án",
+  "albumSaved": "Đã lưu",
+  "albumNeedName": "Nhập tên dự án",
+  "@albumPickSave": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tfActiveCount": "{n} bộ lọc",
+  "@tfActiveCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "homeMapPreviewTitle": "Nhà đăng quanh bạn",
+  "homeMapPreviewOpen": "Mở bản đồ",
+  "homeMapPreviewEmpty": "Chưa có tin nào có toạ độ",
+  "homeMapLocate": "Về vị trí của tôi",
+  "mapLocationInsecure": "Trình duyệt chỉ cho lấy vị trí trên HTTPS. Hãy mở trang bằng địa chỉ https://",
+  "mapLocationBlocked": "Trang này đang bị chặn quyền vị trí. Bấm biểu tượng ổ khoá cạnh thanh địa chỉ → cho phép Vị trí → tải lại trang.",
+  "homeMapExpand": "Mở rộng",
+  "hubMapSection": "Khu vực mua bán",
+  "shellNavServices": "Dịch vụ",
+  "cardOnMap": "Xem trên bản đồ",
+  "tradeOpenMap": "Bản đồ",
+  "hubGreeting": "Xin chào,",
+  "svcGroupDeal": "Mua bán & pháp lý",
+  "svcGroupDealHint": "Định giá, sang tên, vay vốn, kiểm định",
+  "svcGroupDesignBuild": "Thiết kế & Thi công",
+  "svcGroupDesignBuildHint": "Từ bản vẽ tới bàn giao, có gói trọn gói",
+  "svcGroupRepair": "Sửa chữa nhanh",
+  "svcGroupRepairHint": "Thợ tới trong ngày",
+  "svcGroupHomeCare": "Dọn dẹp & Chuyển nhà",
+  "svcGroupHomeCareHint": "Vệ sinh, chuyển nhà, giúp việc",
+  "svcGroupOther": "Dịch vụ khác",
+  "svcCount": "{n} dịch vụ",
+  "@svcCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "svcHeroTitle": "Cần gì cũng có thợ",
+  "svcHeroSubtitle": "Gửi yêu cầu, Vua Nhà gọi lại và xếp thợ giúp bạn",
+  "svcSearchHint": "Bạn cần làm gì hôm nay?",
+  "svcStat": "{n} dịch vụ · {g} nhóm",
+  "@svcStat": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "g": {
+        "type": "int"
+      }
+    }
+  },
+  "svcNoMatch": "Không có dịch vụ nào khớp",
+  "svcNoMatchHint": "Thử từ khoá ngắn hơn, ví dụ “điện” hoặc “sơn”.",
+  "svcGroupCount": "{n} nhóm",
+  "@svcGroupCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "loginIdentifier": "Email hoặc số điện thoại",
+  "identifierHint": "0912345678 hoặc ban@vidu.com",
+  "valIdentifierRequired": "Nhập email hoặc số điện thoại",
+  "registerEmailOptional": "Email (nếu có)",
+  "registerNeedEmailOrPhone": "Cần ít nhất email hoặc số điện thoại",
+  "registerNoEmailWarning": "Không có email thì khi quên mật khẩu bạn phải nhờ hỗ trợ — liên kết đặt lại chỉ gửi qua email.",
+  "valPhoneInvalid": "Số điện thoại chưa đúng (VD: 0912345678)",
+  "primingBtnEnable": "Bật ngay",
+  "primingBtnDefer": "Để sau",
+  "primingBtnContinue": "Tiếp tục",
+  "primingBtnCancel": "Hủy",
+  "primingBtnClose": "Đóng",
+  "primingTrustCanDisable": "Tắt bất kỳ lúc nào",
+  "primingTrustNoSpam": "Không spam — chỉ thông tin hữu ích",
+  "primingSoftReaskNotif": "Bạn đã tắt thông báo. Bật trong Cài đặt để không bỏ lỡ tin nhắn.",
+  "primingSoftReaskCamera": "Bạn đã tắt camera. Bật trong Cài đặt để chụp ảnh phòng.",
+  "primingSoftReaskOpenSettings": "Mở Cài đặt",
+  "primingSoftReaskDismiss": "Bỏ qua",
+  "primingSettingsNotifTitle": "Thông báo",
+  "primingSettingsCameraTitle": "Camera",
+  "primingSettingsStatusEnabled": "Đã bật",
+  "primingSettingsStatusDisabled": "Đã tắt",
+  "primingSettingsActionEnable": "Bật → Đi tới Cài đặt",
+
+  "@@comment_jp_section": "── JP Market keys (Phase 01) ─────────────────────────────────",
+
+  "jp_shikikin": "Tiền đặt cọc (敷金)",
+  "jp_reikin": "Tiền lễ (礼金)",
+  "jp_koushinryo": "Phí gia hạn (更新料)",
+  "jp_hoshou": "Tiền bảo đảm (保証金)",
+  "jp_brokerage": "Phí môi giới (仲介手数料)",
+  "jp_management_fee": "Phí quản lý (管理費)",
+  "jp_monthly_rent": "Tiền thuê hàng tháng (月額家賃)",
+  "jp_shouhizei": "Thuế tiêu thụ (消費税)",
+  "jp_kyouekihi": "Chi phí chung (共益費)",
+
+  "jp_layout": "Sơ đồ phòng (間取り)",
+  "jp_floor_area": "Diện tích (専有面積)",
+  "jp_building_year": "Năm xây dựng (築年数)",
+  "jp_structure_rc": "Bê tông cốt thép (RC)",
+  "jp_structure_wood": "Gỗ (木造)",
+  "jp_structure_steel": "Thép (鉄骨)",
+  "jp_structure_src": "Thép + Bê tông (SRC)",
+  "jp_orientation_n": "Hướng Bắc (北)",
+  "jp_orientation_ne": "Hướng Đông Bắc (北東)",
+  "jp_orientation_e": "Hướng Đông (東)",
+  "jp_orientation_se": "Hướng Đông Nam (南東)",
+  "jp_orientation_s": "Hướng Nam (南)",
+  "jp_orientation_sw": "Hướng Tây Nam (南西)",
+  "jp_orientation_w": "Hướng Tây (西)",
+  "jp_orientation_nw": "Hướng Tây Bắc (北西)",
+  "jp_available_from": "Ngày có thể vào ở (入居可能日)",
+  "jp_floor": "Tầng (階数)",
+
+  "jp_nearest_station": "Ga gần nhất (最寄り駅)",
+  "jp_walk_min_from_station": "Đi bộ từ ga (徒歩分)",
+  "jp_train_line": "Tuyến tàu (路線)",
+
+  "jp_viewing_request": "Yêu cầu xem nhà (内見リクエスト)",
+  "jp_select_slots": "Chọn khung giờ",
+  "jp_slot_confirmed": "Khung giờ đã xác nhận",
+  "jp_viewing_status_pending": "Đang chờ xác nhận",
+  "jp_viewing_status_confirmed": "Đã xác nhận",
+  "jp_viewing_status_rejected": "Đã từ chối",
+  "jp_viewing_status_cancelled": "Đã huỷ",
+  "jp_viewing_status_completed": "Đã hoàn thành",
+  "jp_slot_label": "Khung giờ {n}",
+  "@jp_slot_label": {
+    "placeholders": {
+      "n": { "type": "int" }
+    }
+  },
+  "jp_slots_hint": "Chọn tối đa 3 khung giờ",
+  "jp_slots_max_warning": "Chỉ có thể chọn tối đa 3 khung giờ",
+
+  "jp_apply": "Nộp đơn thuê nhà (入居申込)",
+  "jp_employer": "Nơi làm việc (勤務先)",
+  "jp_annual_income": "Thu nhập hàng năm (年収)",
+  "jp_guarantor": "Người bảo lãnh (連帯保証人)",
+  "jp_emergency_contact": "Liên lạc khẩn cấp (緊急連絡先)",
+  "jp_upload_documents": "Tải lên hồ sơ (書類アップロード)",
+  "jp_application_status_draft": "Bản nháp",
+  "jp_application_status_submitted": "Đã nộp",
+  "jp_application_status_under_review": "Đang xem xét",
+  "jp_application_status_approved": "Đã duyệt",
+  "jp_application_status_rejected": "Đã từ chối",
+  "jp_application_status_withdrawn": "Đã rút",
+
+  "jp_chat_greeting_formal": "Xin chào, tôi có thể giúp gì cho bạn?",
+  "jp_chat_viewing_confirm": "Tôi xác nhận lịch xem nhà.",
+  "jp_chat_apology": "Xin lỗi vì sự bất tiện này.",
+  "jp_chat_available": "Tôi có thể xem nhà vào thời điểm này.",
+
+  "jp_submit": "Gửi",
+  "jp_cancel_viewing": "Huỷ lịch xem",
+  "jp_reschedule": "Đổi lịch",
+
+  "jp_step_basic_info": "Thông tin cơ bản",
+  "jp_step_employer": "Thông tin công việc",
+  "jp_step_guarantor": "Người bảo lãnh",
+  "jp_step_documents": "Hồ sơ giấy tờ",
+  "jp_step_confirm": "Xác nhận",
+
+  "jp_search_facets_title": "Lọc tìm kiếm",
+  "jp_layout_filter": "Loại phòng",
+  "jp_rent_range": "Khoảng giá thuê",
+  "jp_area_range": "Diện tích",
+  "jp_building_age_max": "Niên đại tối đa (築年数)",
+  "jp_walk_min_max": "Đi bộ tối đa từ ga",
+  "jp_flag_pets_ok": "Cho phép thú cưng (ペット可)",
+  "jp_flag_no_guarantor": "Không cần bảo lãnh (保証会社不要)",
+  "jp_flag_instruments_ok": "Cho phép nhạc cụ (楽器可)",
+  "jp_flag_corporate_ok": "Hợp đồng doanh nghiệp (法人契約可)",
+
+  "jp_sales_dashboard_title": "Bảng điều khiển (担当)",
+  "jp_assigned_listings": "Tin đăng phụ trách",
+  "jp_pending_viewings": "Lịch xem chờ duyệt",
+  "jp_pending_applications": "Đơn thuê chờ xử lý",
+  "jp_viewing_inbox_title": "Yêu cầu xem nhà",
+  "jp_application_queue_title": "Hàng đợi đơn thuê",
+  "jp_confirm_slot": "Xác nhận khung giờ",
+  "jp_reject_viewing": "Từ chối yêu cầu",
+  "jp_application_decision": "Quyết định đơn thuê",
+  "jp_approve_application": "Phê duyệt",
+  "jp_reject_application": "Từ chối",
+
+  "jp_honorific_toggle": "Dùng kính ngữ (丁寧語)",
+  "jp_honorific_on": "Bật",
+  "jp_honorific_off": "Tắt",
+
+  "appi_consent_title": "Xử lý thông tin cá nhân",
+  "appi_purpose_service_use": "Cung cấp dịch vụ — tìm kiếm bất động sản và xử lý hợp đồng",
+  "appi_purpose_marketing": "Tiếp thị — đề xuất bất động sản và khuyến mãi",
+  "appi_purpose_analytics": "Phân tích — cải thiện dịch vụ và phân tích sử dụng",
+  "appi_purpose_data_sharing_broker": "Chia sẻ dữ liệu với môi giới được cấp phép để xử lý giao dịch",
+  "appi_purpose_data_sharing_hoshou": "Chia sẻ dữ liệu với công ty bảo lãnh (保証会社) để thẩm định",
+  "appi_consent_required_notice": "Các mục đích được đánh dấu bắt buộc là cần thiết để cung cấp dịch vụ. Bạn phải đồng ý để tiếp tục.",
+  "appi_privacy_policy_link": "Chính sách bảo mật (個人情報保護方針)",
+  "appi_i_agree": "Tôi đồng ý (同意する)",
+  "appi_revoke_consent": "Thu hồi",
+  "appi_consent_revoked": "Đã thu hồi đồng ý",
+  "appi_consent_granted_on": "Ngày đồng ý",
+  "appi_privacy_settings_title": "Thông tin cá nhân (個人情報の取扱い)",
+  "appi_consent_list_title": "Lịch sử đồng ý",
+  "appi_no_consents": "Chưa có lịch sử đồng ý",
+
+  "data_export_request": "Yêu cầu xuất dữ liệu",
+  "data_export_processing": "Dữ liệu của bạn đang được chuẩn bị. Vui lòng chờ trong giây lát.",
+  "data_export_ready": "Dữ liệu đã sẵn sàng. Nhấn để tải xuống.",
+  "data_export_submit": "Gửi yêu cầu",
+  "data_export_title": "Xuất dữ liệu cá nhân",
+  "data_export_description": "Chúng tôi sẽ tổng hợp toàn bộ dữ liệu cá nhân liên kết với tài khoản của bạn và gửi đường dẫn tải xuống.",
+
+  "data_delete_title": "Xóa dữ liệu cá nhân",
+  "data_delete_warning": "Thao tác này sẽ xóa vĩnh viễn toàn bộ dữ liệu cá nhân liên kết với tài khoản của bạn. Không thể hoàn tác.",
+  "data_delete_cool_off": "Thời gian hủy 30 ngày được áp dụng. Bạn có thể hủy yêu cầu trong thời gian này bằng cách liên hệ hỗ trợ.",
+  "data_delete_confirm": "Nhập DELETE để xác nhận",
+  "data_delete_submit": "Gửi yêu cầu xóa",
+  "data_delete_type_hint": "Nhập DELETE",
+  "data_delete_type_error": "Vui lòng nhập DELETE để xác nhận",
+
+  "checkout_title": "Thanh toán",
+  "checkout_invoice_summary": "Tóm tắt hóa đơn",
+  "checkout_total": "Tổng cộng",
+  "payment_method_card": "Thẻ tín dụng / thẻ ghi nợ",
+  "payment_method_konbini": "Cửa hàng tiện lợi (コンビニ)",
+  "payment_method_bank_transfer": "Chuyển khoản ngân hàng (振込)",
+  "payment_card_placeholder": "Thanh toán bằng thẻ sắp ra mắt",
+  "payment_bank_placeholder": "Thông tin chuyển khoản sẽ được cung cấp sau khi xác nhận",
+  "konbini_voucher_title": "Phiếu thanh toán",
+  "konbini_voucher_number": "Mã phiếu",
+  "konbini_voucher_deadline": "Hạn thanh toán",
+  "konbini_voucher_instructions": "Mang mã phiếu này đến bất kỳ cửa hàng tiện lợi nào để thanh toán tại quầy hoặc máy đa năng.",
+  "konbini_copy_number": "Sao chép mã",
+  "konbini_number_copied": "Đã sao chép mã phiếu",
+  "konbini_stores": "Cửa hàng chấp nhận",
+  "payment_status_pending": "Chờ thanh toán",
+  "payment_status_processing": "Đang xử lý",
+  "payment_status_succeeded": "Thanh toán thành công",
+  "payment_status_failed": "Thanh toán thất bại",
+  "payment_status_expired": "Hết hạn thanh toán",
+  "payment_status_title": "Trạng thái thanh toán",
+  "payment_status_checking": "Đang kiểm tra trạng thái…",
+  "payment_retry": "Thử lại",
+  "payment_contact_support": "Liên hệ hỗ trợ",
+
+  "review_decision": "Quyết định xét duyệt",
+  "review_approve": "Phê duyệt",
+  "review_reject": "Từ chối",
+  "review_needs_info": "Yêu cầu thêm thông tin",
+  "review_reason": "Lý do (tùy chọn)",
+  "review_reason_hint": "Cung cấp lý do cho quyết định này",
+  "review_submit": "Gửi quyết định",
+  "review_submitting": "Đang gửi…",
+  "review_submitted": "Đã gửi quyết định",
+  "review_applicant_info": "Thông tin người nộp đơn",
+  "review_employer_info": "Thông tin việc làm",
+  "review_guarantor_info": "Thông tin người bảo lãnh",
+  "review_documents": "Tài liệu",
+  "review_no_documents": "Chưa có tài liệu",
+
+  "it_session_title": "IT重説 — Giải thích trực tuyến",
+  "it_session_takken_shi_info": "Đại lý bất động sản có giấy phép (宅建士)",
+  "it_session_license_number": "Số giấy phép",
+  "it_session_consent_notice": "Phiên này sẽ được ghi lại để tuân thủ pháp lý. Bản ghi sẽ được lưu giữ trong 5 năm theo Luật Môi giới Bất động sản.",
+  "it_session_i_consent": "Tôi đồng ý với việc ghi âm và giải thích các điều khoản quan trọng",
+  "it_session_join_zoom": "Tham gia qua Zoom",
+  "it_session_recording_notice": "Thông báo ghi âm",
+  "it_session_consent_required": "Bạn phải đồng ý với việc ghi âm trước khi tham gia",
+
+  "econtract_title": "Hợp đồng điện tử (電子契約)",
+  "econtract_status_pending": "Chờ ký",
+  "econtract_status_signed": "Đã ký",
+  "econtract_status_expired": "Hết hạn",
+  "econtract_status_cancelled": "Đã hủy",
+  "econtract_sign_button": "Ký hợp đồng",
+  "econtract_download_signed": "Tải hợp đồng đã ký",
+  "econtract_open_external": "Mở trong trình duyệt",
+  "econtract_signing_note": "Bạn sẽ được chuyển hướng đến dịch vụ ký. Vui lòng quay lại sau khi ký xong.",
+  "econtract_status_label": "Trạng thái hợp đồng",
+
+  "jp_renewal_eyebrow": "Gia hạn",
+  "jp_renewal_title": "Gia hạn hợp đồng",
+  "jp_renewal_contract_summary": "Tóm tắt hợp đồng",
+  "jp_renewal_property": "Bất động sản",
+  "jp_renewal_room": "Số phòng",
+  "jp_renewal_current_term_end": "Ngày kết thúc hiện tại",
+  "jp_renewal_new_term_end": "Ngày kết thúc sau gia hạn",
+  "jp_renewal_total_fee": "Tổng phí gia hạn",
+  "jp_renewal_confirm_cta": "Xác nhận gia hạn",
+  "jp_renewal_decline_cta": "Yêu cầu đàm phán lại",
+  "jp_renewal_confirm_title": "Xác nhận gia hạn",
+  "jp_renewal_confirm_notice": "Hóa đơn phí gia hạn sẽ được phát hành sau khi xác nhận.",
+  "jp_renewal_confirm_submit": "Xác nhận & Gia hạn",
+  "jp_renewal_status_confirmed": "Đã xác nhận gia hạn.",
+  "jp_renewal_status_declined": "Đã nhận yêu cầu đàm phán lại.",
+
+  "jp_settlement_eyebrow": "Hoàn trả tiền đặt cọc",
+  "jp_settlement_owner_title": "Nhập các khoản khấu trừ",
+  "jp_settlement_tenant_title": "Xem xét kết toán",
+  "jp_settlement_deposit_summary": "Tóm tắt tiền đặt cọc",
+  "jp_settlement_property": "Bất động sản",
+  "jp_settlement_room": "Số phòng",
+  "jp_settlement_tenant": "Người thuê",
+  "jp_settlement_deductions": "Các khoản khấu trừ",
+  "jp_settlement_no_deductions": "Không có khoản khấu trừ",
+  "jp_settlement_add_deduction": "Thêm khoản mục",
+  "jp_settlement_remove_deduction": "Xóa",
+  "jp_settlement_deduction_item": "Khoản mục",
+  "jp_settlement_deduction_title": "Tên khoản mục",
+  "jp_settlement_deduction_amount": "Số tiền (¥)",
+  "jp_settlement_deduction_photos": "Ảnh (tùy chọn, tối đa 3 ảnh)",
+  "jp_settlement_net_refund": "Số tiền hoàn trả",
+  "jp_settlement_submit_to_tenant": "Gửi cho người thuê",
+  "jp_settlement_accept_cta": "Đồng ý kết toán",
+  "jp_settlement_dispute_cta": "Khiếu nại",
+  "jp_settlement_dispute_title": "Khiếu nại",
+  "jp_settlement_dispute_description": "Vui lòng mô tả lý do khiếu nại.",
+  "jp_settlement_dispute_reason_label": "Lý do khiếu nại",
+  "jp_settlement_dispute_submit": "Nộp khiếu nại",
+  "jp_settlement_status_accepted": "Đã đồng ý kết toán. Bắt đầu quy trình hoàn tiền.",
+  "jp_settlement_status_disputed": "Đã nộp khiếu nại.",
+
+  "jp_kpi_eyebrow": "Quản trị",
+  "jp_kpi_dashboard_title": "Bảng KPI",
+  "jp_kpi_prefecture_label": "Tỉnh/thành",
+  "jp_kpi_all_japan": "Toàn Nhật Bản",
+  "jp_kpi_active_listings": "Tin đang đăng",
+  "jp_kpi_pending_applications": "Đơn đang xét duyệt",
+  "jp_kpi_active_contracts": "Hợp đồng đang hoạt động",
+  "jp_kpi_avg_days_to_sign": "Số ngày ký TB",
+  "jp_kpi_monthly_revenue": "Doanh thu tháng",
+
+  "jp_deletion_eyebrow": "Tài khoản",
+  "jp_deletion_title": "Xóa tài khoản",
+  "jp_deletion_settings_subtitle": "Tài khoản và toàn bộ dữ liệu sẽ bị xóa sau 30 ngày",
+  "jp_deletion_warning": "Xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu bên dưới. Thao tác này không thể hoàn tác.",
+  "jp_deletion_bullet_data": "Thông tin cá nhân & hồ sơ",
+  "jp_deletion_bullet_contracts": "Hợp đồng & lịch sử giao dịch",
+  "jp_deletion_bullet_irreversible": "Thao tác này không thể hoàn tác",
+  "jp_deletion_cooloff_notice": "Thời gian ngâm 30 ngày áp dụng kể từ ngày yêu cầu xóa. Liên hệ hỗ trợ để hủy trong thời gian này.",
+  "jp_deletion_schedule_cta": "Lên lịch xóa",
+  "jp_deletion_days_remaining": "ngày còn lại đến khi xóa",
+  "jp_deletion_scheduled_notice": "Tài khoản của bạn đã được lên lịch xóa. Bạn có thể hủy trong thời gian ngâm.",
+  "jp_deletion_support_contact": "Để hủy, liên hệ support@ancu365.jp.",
+  "jp_deletion_cancel_cta": "Hủy yêu cầu xóa",
+  "jp_deletion_cancel_confirm_title": "Hủy yêu cầu xóa",
+  "jp_deletion_cancel_confirm_body": "Bạn có chắc muốn hủy yêu cầu xóa không?",
+  "jp_deletion_cancel_no": "Quay lại",
+  "jp_deletion_cancel_yes": "Có, Hủy",
+  "jp_deletion_confirm_sheet_title": "Xác nhận cuối cùng",
+  "jp_deletion_confirm_sheet_body": "Vui lòng nhập địa chỉ email đã đăng ký để tiếp tục.",
+  "jp_deletion_confirm_email_label": "Địa chỉ email",
+  "jp_deletion_confirm_email_hint": "Nhập email đã đăng ký",
+  "jp_deletion_confirm_email_error": "Địa chỉ email không khớp",
+  "jp_deletion_confirm_submit": "Lên lịch xóa",
+
+  "jp_facet_pets_ok_label": "Cho phép thú cưng",
+  "jp_facet_walk_min_label": "Đi bộ từ ga (phút)",
+  "jp_facet_walk_min_value": "Trong vòng {min} phút đi bộ",
+  "@jp_facet_walk_min_value": {
+    "placeholders": {
+      "min": { "type": "int" }
+    }
+  },
+  "jp_facet_layout_label": "Kiểu phòng",
+
+  "helpCenterTitle": "Trung tâm hỗ trợ",
+  "helpCenterSearchHint": "Tìm kiếm câu hỏi...",
+  "helpCenterNoResults": "Không tìm thấy kết quả nào",
+  "helpCenterArticleNotFound": "Bài viết không tìm thấy",
+  "helpCenterLoadError": "Không thể tải bài viết. Vui lòng thử lại.",
+  "helpCenterComingSoon": "Nội dung đang được chuẩn bị. Vui lòng quay lại sau.",
+
+  "legalFooterTokusho": "特定商取引法に基づく表記",
+  "legalFooterTerms": "Điều khoản sử dụng",
+  "legalFooterPrivacy": "Chính sách bảo mật",
+  "legalFooterAppiRequest": "Yêu cầu công khai APPI",
+  "legalFooterOperator": "Thông tin công ty",
+  "legalFooterCopyright": "© 2026 Synora K.K. All rights reserved."
+}

@@ -1,0 +1,33 @@
+# Flutter / Dart
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.pub-cache/
+app/.pub/
+app/build/
+app/ios/Pods/
+app/ios/.symlinks/
+app/macos/Pods/
+app/macos/.symlinks/
+app/android/.gradle/
+app/android/local.properties
+
+# Python
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+backend/.venv/
+backend/venv/
+backend/.env
+backend/.env.local
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Secrets
+*.pem
+*.key
+.env

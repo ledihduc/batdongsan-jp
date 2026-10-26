@@ -1,0 +1,113 @@
+# ancu365 Production Override — docker-compose.prod.yml
+#
+# Use with:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# This file:
+#   - Adds restart: unless-stopped to all services
+#   - Injects production env vars into backend
+#   - Replaces nginx with Caddy (auto-TLS via Let's Encrypt)
+#   - Adds uptime-kuma (accessed via SSH tunnel only)
+#   - Binds all internal ports to 127.0.0.1 (never exposed to Internet)
+#
+# Security:
+#   - Only Caddy publishes :80/:443 to all interfaces
+#   - postgis/martin/nominatim/backend/uptime-kuma: 127.0.0.1-only binds
+#   - nginx service from docker-compose.yml is disabled via empty ports override
+
+services:
+
+  # ── PostGIS — pin to 127.0.0.1, add restart ──────────────────────────────
+  postgis:
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:5432:5432"   # Already set in base; explicit here for clarity
+    restart: unless-stopped
+
+  # ── Martin — pin to 127.0.0.1, add restart ───────────────────────────────
+  martin:
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:3001:3000"   # Host 3001 for local debug; Caddy uses container network
+    restart: unless-stopped
+
+  # ── Backend — production env vars + restart ───────────────────────────────
+  backend:
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:3000:3000"   # Internal only; Caddy reaches via Docker network on :3000
+    environment:
+      ENVIRONMENT: "production"
+      # Must be JSON array string; use actual domain at deploy time
+      BACKEND_CORS_ORIGINS: '["https://${ANCU_DOMAIN}"]'
+      CRON_ENABLED: "1"         # Enable APScheduler daily ETL at 2 AM ICT
+    restart: unless-stopped
+
+  # ── Nominatim — pin to 127.0.0.1, add restart ────────────────────────────
+  nominatim:
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8080:8080"   # Never exposed; FastAPI proxies internally
+    restart: unless-stopped
+
+  # ── Nginx — DISABLED in prod (Caddy replaces it) ─────────────────────────
+  # Override ports to empty list prevents nginx from binding 80/443.
+  # The nginx service still exists in the compose graph but publishes nothing.
+  nginx:
+    ports: []
+    profiles:
+      - disabled   # Move out of "full" profile so it never starts in prod
+
+  # ── Caddy — TLS termination + reverse proxy ───────────────────────────────
+  caddy:
+    image: caddy:2-alpine
+    container_name: ancu365-caddy
+    ports:
+      - "80:80"     # HTTP → Caddy handles ACME HTTP-01 challenge + redirect to HTTPS
+      - "443:443"   # HTTPS (TLS 1.2/1.3, Let's Encrypt auto-managed)
+    volumes:
+      - ./infra/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data     # Let's Encrypt certs + Caddy state (persist across restarts)
+      - caddy-config:/config # Runtime config cache
+    environment:
+      ANCU_DOMAIN: "${ANCU_DOMAIN}"   # Injected into Caddyfile via {$ANCU_DOMAIN}
+    depends_on:
+      backend:
+        condition: service_healthy
+      martin:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+  # ── Uptime-Kuma — monitoring dashboard (SSH tunnel access only) ───────────
+  # Access: ssh -L 3010:127.0.0.1:3010 ancu365@<vps-ip>  → http://localhost:3010
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: ancu365-monitor
+    ports:
+      - "127.0.0.1:3010:3001"   # 127.0.0.1 only — SSH tunnel required for admin access
+    volumes:
+      - uptime-data:/app/data
+    restart: unless-stopped
+    networks:
+      - ancu-net
+
+# ── Named volumes for Caddy TLS state + Uptime-Kuma data ─────────────────────
+volumes:
+  caddy-data:
+    name: ancu365-caddy-data
+  caddy-config:
+    name: ancu365-caddy-config
+  uptime-data:
+    name: ancu365-uptime-data
+
+networks:
+  ancu-net:
+    name: ancu365-net
+    # External: true here because base compose.yml already creates this network.
+    # Do NOT set external: true if running this override alone — base file must be loaded first.

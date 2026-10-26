@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head><meta charset="UTF-8"><title>Tổng kết tuần - ancu365</title></head>
+<body style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+<div style="background:#1A73E8;padding:16px;border-radius:8px 8px 0 0;">
+  <h2 style="color:white;margin:0;">Tổng kết tuần — ancu365</h2>
+</div>
+<div style="border:1px solid #e0e0e0;border-top:none;padding:24px;border-radius:0 0 8px 8px;">
+  <h3>Xin chào {{ owner_name }}, đây là tổng kết tuần {{ week_label }}</h3>
+
+  {% if total_revenue_vnd is defined %}
+  <div style="background:#e8f5e9;padding:16px;border-radius:8px;margin:16px 0;">
+    <h4 style="color:#2E7D32;margin:0 0 8px;">Doanh thu</h4>
+    <p style="font-size:24px;font-weight:bold;color:#2E7D32;margin:0;">
+      {{ "{:,.0f}".format(total_revenue_vnd) }} VND
+    </p>
+    {% if prev_week_revenue_vnd is defined %}
+    <p style="color:#666;font-size:12px;">
+      Tuần trước: {{ "{:,.0f}".format(prev_week_revenue_vnd) }} VND
+    </p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if new_contracts_count is defined and new_contracts_count > 0 %}
+  <p><strong>Hợp đồng mới:</strong> {{ new_contracts_count }}</p>
+  {% endif %}
+
+  {% if pending_approvals_count is defined and pending_approvals_count > 0 %}
+  <div style="background:#fff3e0;padding:12px;border-radius:8px;margin:8px 0;border-left:4px solid #F57C00;">
+    <p style="margin:0;"><strong style="color:#E65100;">{{ pending_approvals_count }} yêu cầu đang chờ phê duyệt</strong></p>
+  </div>
+  {% endif %}
+
+  {% if overdue_invoices_count is defined and overdue_invoices_count > 0 %}
+  <p><strong style="color:#D32F2F;">Hoá đơn quá hạn:</strong> {{ overdue_invoices_count }}</p>
+  {% endif %}
+
+  {% if alerts %}
+  <h4>Cảnh báo</h4>
+  <ul>
+  {% for alert in alerts %}<li>{{ alert }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  <div style="text-align:center;margin:24px 0;">
+    <a href="{{ dashboard_url }}" style="background:#1A73E8;color:white;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold;">
+      Xem Dashboard
+    </a>
+  </div>
+  <hr style="border:1px solid #e0e0e0;">
+  <p style="color:#666;font-size:12px;">
+    Bạn nhận email này vì đã bật thông báo tổng kết tuần trong ancu365.<br>
+    <a href="{{ unsubscribe_url }}">Tắt thông báo tổng kết tuần</a>
+  </p>
+</div>
+</body>
+</html>

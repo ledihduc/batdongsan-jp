@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nền adaptive icon = màu kem của logo Vua Nhà. Giữ xanh #001A4A cũ thì
+         viền vàng của logo nằm trên nền xanh navy, lệch hẳn bộ nhận diện. -->
+    <color name="ic_launcher_background">#FAF5F1</color>
+</resources>

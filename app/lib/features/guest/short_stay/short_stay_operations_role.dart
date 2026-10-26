@@ -1,0 +1,1 @@
+enum ShortStayOperationsRole { sale, owner }

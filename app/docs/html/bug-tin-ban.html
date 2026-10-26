@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Bug: tin bán không hiển thị · ancu365</title>
+<style>
+:root{--ink:#050505;--muted:#65676B;--line:#CED0D4;--accent:#1877F2;--paper:#F0F2F5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ -webkit-text-size-adjust:100%}
+main{max-width:820px;margin:0 auto;padding:24px 20px 80px;background:#fff;
+ min-height:100vh;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+h1{font-size:1.6rem;line-height:1.25;margin:.2em 0 .6em;letter-spacing:-.02em}
+h2{font-size:1.25rem;margin:2em 0 .5em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+blockquote{margin:1em 0;padding:.6em 1em;background:#EBF2FE;border-left:3px solid var(--accent);
+ color:var(--muted);font-size:.92rem;border-radius:0 6px 6px 0}
+code{background:#E4E6EB;padding:.12em .4em;border-radius:4px;font-size:.88em}
+pre{background:#050505;color:#E4E6EB;padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:.82rem;line-height:1.5}
+pre code{background:none;color:inherit;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.92rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--paper);font-weight:600}
+hr{border:0;border-top:1px solid var(--line);margin:2.2em 0}
+a{color:var(--accent)}
+ul,ol{padding-left:1.4em}
+li{margin:.3em 0}
+strong{font-weight:650}
+.foot{margin-top:3em;padding-top:1em;border-top:1px solid var(--line);
+ color:var(--muted);font-size:.82rem}
+@media(max-width:600px){main{padding:16px 14px 60px}h1{font-size:1.35rem}}
+</style></head><body><main>
+<h1>Điều tra: đăng tin BÁN nhà xong không hiển thị</h1>
+<blockquote>
+<p>Ngày 26/07/2026 · Trạng thái: <strong>đã tìm ra nguyên nhân, xác nhận bằng dữ liệu production + gọi API thật</strong></p>
+</blockquote>
+<h2>TL;DR</h2>
+<p>Tin bán <strong>không mất</strong> — nó bị đẩy vào <strong>hàng chờ admin duyệt</strong> vì có một "chốt an toàn": tin bán giá <strong>≥ 2 tỷ</strong> thì không tự lên. Nhà bán ở VN gần như luôn ≥ 2 tỷ ⇒ <strong>hầu hết mọi tin bán đều bị chặn</strong>. Tệ hơn, app vẫn báo <em>"Đã đăng tin thành công!"</em> nên người dùng tưởng hỏng.</p>
+<hr />
+<h2>1. Bằng chứng</h2>
+<h3>a) Dữ liệu thật trong DB</h3>
+<pre><code>  tx  |     status     | n  |    giá min    |    giá max
+------+----------------+----+---------------+----------------
+ rent | published      | 17 | 2,000,000     | 25,000,000,000
+ sale | pending_review |  1 | 2,000,000,000 | 2,000,000,000   ← TIN BỊ KẸT
+ sale | published      |  1 | 25,000,000    | 25,000,000      ← 25 triệu (dưới ngưỡng) nên lên được
+</code></pre>
+<h3>b) Gọi API thật</h3>
+<pre><code>GET /api/admin/houses?status=pending_review  → admin thấy 1 tin: id=30 &quot;bán nhà&quot; 2.000.000.000
+GET /api/houses?transaction_type=sale        → khách thấy 1 tin: id=23 &quot;bán nhà&quot; 25.000.000
+</code></pre>
+<p>⇒ Tin id=30 <strong>có trong DB</strong>, <strong>admin thấy</strong>, nhưng <strong>feed công khai không có</strong>. Cơ chế duyệt hoạt động đúng — vấn đề là <strong>ngưỡng giá quá thấp</strong> và <strong>không nói cho người dùng biết</strong>.</p>
+<hr />
+<h2>2. Nguyên nhân gốc</h2>
+<h3>🔴 Nguyên nhân #1 — Ngưỡng chặn quá thấp</h3>
+<p><code>ancu365-backend/app/routers/houses.py:23</code></p>
+<pre><code class="language-python">SALE_REVIEW_THRESHOLD = 2_000_000_000  # 2 tỷ VND
+</code></pre>
+<p><code>houses.py:331</code></p>
+<pre><code class="language-python">if tx_type == &quot;sale&quot; and price_val &gt;= SALE_REVIEW_THRESHOLD and not _is_admin_poster:
+    post_status = HouseStatus.PENDING_REVIEW      # ⇒ KHÔNG hiển thị công khai
+</code></pre>
+<p>Giá nhà bán trung bình tại VN: <strong>2–10 tỷ</strong>. Ngưỡng 2 tỷ + toán tử <code>&gt;=</code> ⇒ <strong>~100% tin bán thật đều rơi vào hàng chờ</strong>. Chốt an toàn này (chống tin giá ảo/lừa đảo) đúng về ý định nhưng <strong>sai về con số</strong>.</p>
+<h3>🔴 Nguyên nhân #2 — App báo "thành công" dù tin chưa lên</h3>
+<p><code>ancu365-app/lib/features/host/post/post_house_screen.dart:426</code></p>
+<pre><code class="language-dart">ok ? l.postHousePostSuccess : l.postHousePostFailed   // &quot;Đã đăng tin thành công!&quot;
+</code></pre>
+<p>Không hề đọc <code>status</code> trả về từ server. Người dùng nhận thông báo xanh "thành công", quay ra feed → <strong>không thấy gì</strong> → kết luận "app lỗi". Đây là lý do bạn báo bug.</p>
+<h3>🟠 Nguyên nhân #3 — Badge trạng thái ở "Tin đã đăng" dùng mã CŨ</h3>
+<p><code>ancu365-app/lib/features/host/profile/my_listings_screen.dart:253</code></p>
+<pre><code class="language-dart">switch (status) {
+  case 'approved': …   // backend giờ trả 'published'
+  case 'pending':  …   // backend giờ trả 'pending_review'
+  case 'rejected': …
+  default: label = status;   // ⇒ in thẳng chuỗi thô
+}
+</code></pre>
+<p>Backend đã đổi sang <code>published</code> / <code>pending_review</code> (xem <code>app/house_status.py</code>) nhưng FE chưa cập nhật ⇒ chủ nhà thấy badge xám ghi <strong>"pending_review"</strong> / <strong>"published"</strong> (chữ Anh, thô), thay vì "Chờ duyệt" (cam) / "Đang đăng" (xanh). Mất luôn manh mối duy nhất để tự hiểu chuyện gì đang xảy ra.</p>
+<hr />
+<h2>3. Phương án xử lý</h2>
+<h3>Bước 0 — Mở khoá ngay tin đang kẹt (1 phút)</h3>
+<p>Duyệt tin id=30 để nó lên feed ngay:</p>
+<pre><code class="language-bash">curl -X POST http://127.0.0.1:3010/api/admin/houses/30/moderate \
+  -H &quot;Authorization: Bearer &lt;admin_token&gt;&quot; \
+  -H 'Content-Type: application/json' -d '{&quot;action&quot;:&quot;approve&quot;}'
+</code></pre>
+<p>Hoặc vào <strong>Admin → Chờ duyệt → Duyệt</strong>. <em>(Cần bạn xác nhận vì đây là hành động công khai nội dung.)</em></p>
+<h3>Bước 1 — Sửa ngưỡng (quyết định nghiệp vụ, cần bạn chọn)</h3>
+<table>
+<thead>
+<tr>
+<th>Phương án</th>
+<th>Nội dung</th>
+<th>Ưu</th>
+<th>Nhược</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Bỏ tiền kiểm, chuyển hậu kiểm</strong> ⭐ <em>khuyến nghị</em></td>
+<td>Tin bán <strong>lên ngay</strong>; admin có quyền ẩn/xoá sau; giữ nút "Báo cáo tin sai"</td>
+<td>Không chặn nguồn cung — app đang có <strong>19 tin</strong>, chặn tin là tự sát</td>
+<td>Tin xấu có thể lên vài giờ trước khi bị ẩn</td>
+</tr>
+<tr>
+<td><strong>B. Nâng ngưỡng</strong></td>
+<td><code>2 tỷ → 50 tỷ</code> (chỉ chặn tin dị thường)</td>
+<td>Giữ chốt chống giá ảo, 1 dòng code</td>
+<td>Vẫn chặn biệt thự/đất lớn hợp lệ</td>
+</tr>
+<tr>
+<td><strong>C. Giữ nguyên, chỉ sửa UX</strong></td>
+<td>Chỉ làm Bước 2+3</td>
+<td>An toàn nhất về nội dung</td>
+<td>Mọi tin bán vẫn phải chờ người duyệt → chậm, cần admin trực</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Khuyến nghị: A + phần chống lạm dụng của B</strong> — cho lên ngay, chỉ tiền kiểm khi giá <strong>&gt; 50 tỷ</strong> <em>hoặc</em> tài khoản mới &lt; 24h <em>hoặc</em> đã có tin bị từ chối. Lý do: theo đo lường 19/07 app <strong>chưa có người dùng từ Internet</strong>; ưu tiên số 1 là <strong>có tin đăng</strong>, không phải kiểm duyệt.</p>
+<pre><code class="language-python"># houses.py — bản đề xuất
+SALE_REVIEW_THRESHOLD = 50_000_000_000  # 50 tỷ: chỉ chặn tin dị thường
+</code></pre>
+<h3>Bước 2 — Nói thật với người dùng (bắt buộc, làm dù chọn phương án nào)</h3>
+<p><code>post_house_screen.dart</code> — đọc <code>status</code> từ response:
+- <code>published</code> → "Đã đăng tin thành công! Tin đã hiển thị công khai."
+- <code>pending_review</code> → <strong>dialog</strong> (không phải snackbar): <em>"Tin đã gửi — đang chờ duyệt. Tin bán giá trị lớn cần quản trị viên xác minh (thường trong 24h). Bạn theo dõi trạng thái tại Cá nhân → Tin đã đăng."</em></p>
+<h3>Bước 3 — Sửa badge trạng thái (bug #3)</h3>
+<p><code>my_listings_screen.dart:253</code> — thêm mã mới, giữ mã cũ để tương thích:</p>
+<pre><code class="language-dart">case 'published':
+case 'approved':        → &quot;Đang đăng&quot;  (xanh)
+case 'pending_review':
+case 'pending':         → &quot;Chờ duyệt&quot;  (cam)
+case 'rejected':        → &quot;Bị từ chối&quot; (đỏ)
+case 'hidden':          → &quot;Đã ẩn&quot;      (xám)
+</code></pre>
+<p>Nên gom thành <strong>1 hàm dùng chung</strong> (<code>core/</code> hoặc extension trên <code>House</code>) vì <code>admin_home_screen</code>, <code>host_home_tin_dang_tab</code>, <code>my_listings</code> đang mỗi nơi tự map một kiểu.</p>
+<h3>Bước 4 — Chống tái diễn</h3>
+<ul>
+<li><strong>Test hồi quy</strong>: tin bán dưới ngưỡng → <code>published</code>; trên ngưỡng → <code>pending_review</code>; đảm bảo có test cho <strong>cả 2 nhánh</strong> (hiện chỉ có nhánh trên ngưỡng).</li>
+<li><strong>Thông báo cho admin</strong> khi có tin vào hàng chờ (hiện tin nằm im, không ai biết).</li>
+<li>Cân nhắc <strong>badge "Chờ duyệt"</strong> ngay trên feed của chính chủ (chỉ chủ thấy) để không bao giờ có cảm giác "tin bốc hơi".</li>
+</ul>
+<hr />
+<h2>4. Ước lượng</h2>
+<table>
+<thead>
+<tr>
+<th>Việc</th>
+<th>File</th>
+<th>Thời gian</th>
+<th>Rủi ro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B0 duyệt tin kẹt</td>
+<td>(API/UI admin)</td>
+<td>1 phút</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B1 sửa ngưỡng</td>
+<td><code>houses.py:23</code></td>
+<td>5 phút + rebuild BE</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td>B2 thông báo theo status</td>
+<td><code>post_house_screen.dart</code> + 3 khoá i18n</td>
+<td>30 phút</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td>B3 badge dùng chung</td>
+<td><code>my_listings</code> + 2 màn khác</td>
+<td>45 phút</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td>B4 test + thông báo admin</td>
+<td><code>tests/</code> + notification</td>
+<td>1–2 giờ</td>
+<td>Trung bình</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Deploy:</strong> B1 cần rebuild image backend + chạy lại container (thủ công, <code>--env-file</code>); B2/B3 chỉ cần <code>flutter build web</code> (bind-mount ⇒ build xong là live).</p>
+<p class="foot">Nguồn: <code>ancu365-app/docs/BUG-TIN-BAN-KHONG-HIEN.md</code> · <a href="./bug-tin-ban.md">bản Markdown</a></p>
+</main></body></html>

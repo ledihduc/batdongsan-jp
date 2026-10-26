@@ -1,0 +1,200 @@
+name: house_booking
+description: "ancu365 — Ứng dụng đặt và cho thuê nhà thông minh"
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.12.0 <4.0.0"
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.5+1
+  sqflite: ^2.4.3
+  path: ^1.9.1
+  path_provider: ^2.1.6
+  google_fonts: ^8.1.0
+  http: ^1.6.0
+  sqflite_common_ffi_web: ^0.4.3+1
+  image_picker: ^1.1.2
+  # Camera TRỰC TIẾP trong app (chụp công tơ): image_picker trên web chỉ mở
+  # hộp chọn tệp — người dùng gửi được ảnh cũ trong thư viện, mất hết giá trị
+  # làm bằng chứng. camera_web dùng getUserMedia nên là khung hình thật.
+  camera: ^0.11.0
+  # Đóng dấu giờ + toạ độ lên ảnh rồi nén JPEG (canvas dart:ui chỉ xuất PNG,
+  # ảnh chụp PNG nặng gấp mấy lần mức /api/upload chịu được).
+  image: ^4.9.2
+  # Chọn file PDF thiết kế cho portfolio đơn vị (Đợt 2 profile uy tín).
+  # Web dùng input file HTML sẵn có, không cần cấu hình thêm.
+  file_picker: ^8.1.6
+  # Video Reel ngắn (kiểu Facebook Reels) — phát video ở ReelViewerScreen.
+  # Web: dùng HTML5 <video>; autoplay bắt buộc muted (chính sách trình duyệt).
+  video_player: ^2.9.2
+  flutter_secure_storage: ^9.2.4
+  web_socket_channel: ^3.0.1
+  # Thanh điều hướng dưới: tab đang chọn NHÔ LÊN trên mảng cong và vẫn có nhãn.
+  # Không dùng Material NavigationBar được vì nó tự chạy cross-fade icon ~500ms,
+  # nuốt mọi hiệu ứng tự thêm.
+  convex_bottom_bar: ^3.2.0
+  # Dải sáng quét ngang cho khung xương chờ tải. Bản tự viết chỉ nhấp nháy độ
+  # mờ — dễ bị đọc thành "màn hình lỗi" chứ không phải "đang tải".
+  shimmer: ^3.0.0
+  # Chấm chỉ báo trang. Trước có HAI bản tự vẽ ở hai nơi, mỗi nơi một kích thước.
+  smooth_page_indicator: ^1.2.0+3
+  # Xem ảnh: chạm hai lần để phóng + vuốt sang ảnh kế. InteractiveViewer trần
+  # không có cả hai.
+  photo_view: ^0.15.0
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  vector_map_tiles: ^8.0.0
+  vector_tile_renderer: ^5.0.0
+  dio: ^5.7.0
+  cached_network_image: ^3.4.1
+  intl: ^0.20.0
+  flutter_form_builder: ^10.0.0
+  form_builder_validators: ^11.0.0
+  http_parser: ^4.0.2
+  go_router: ^14.6.2
+  flutter_web_plugins:
+    sdk: flutter
+
+  # --- Geo-search: "Tìm quanh đây" cần toạ độ GPS (permission_handler chỉ xin quyền) ---
+  geolocator: ^13.0.1
+
+  # --- Permission priming & push notifications (Phase 1: pinned for Dart 3.12.2) ---
+  # Nâng lên ^12: Flutter 3.44 (Dart 3.9) đã xoá v1 embedding (PluginRegistry.Registrar)
+  # nên v10.x không compile APK được. v12 bỏ v1 embedding. API Permission.x.request()
+  # dùng trong app không đổi.
+  permission_handler: ^12.0.0
+  firebase_core: ^3.1.0
+  firebase_messaging: ^15.0.0
+  flutter_local_notifications: ^17.0.0
+  app_settings: ^5.2.0
+  # device_info_plus: Huawei/non-GMS detection (AC-N9)
+  device_info_plus: ^11.0.0
+  # google_api_availability: GMS availability check on Android (AC-N9)
+  google_api_availability: ^5.0.0
+
+  # --- Phase 04: Billing — Zalo deep link share + browser open for public invoice ---
+  url_launcher: ^6.3.1
+  share_plus: ^10.1.2
+  # Mã QR cho trang cá nhân sale: đưa khách quét tại chỗ thay vì đọc link.
+  qr_flutter: ^4.1.0
+
+  # --- Phase 04 (analytics): Timezone support for Asia/Ho_Chi_Minh display ---
+  # Pinned to ^0.9.4 for compatibility with flutter_local_notifications ^17.0.0
+  timezone: ^0.9.4
+
+  # --- Phase 06 (charts): Revenue trend + source breakdown charts ---
+  # fl_chart ^0.68.0 — MIT, mobile-optimized, no platform channels.
+  fl_chart: ^0.68.0
+
+  # --- Phase 04 JP launch: Help Center markdown rendering ---
+  # flutter_markdown — MIT, renders bundled .md files offline-first.
+  flutter_markdown: ^0.7.5
+  flutter_map_cancellable_tile_provider: ^3.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  # Chỉ dùng trong test: cài nền tảng video_player giả để widget test dựng được
+  # VideoPlayerController mà không cần nền tảng thật.
+  video_player_platform_interface: ^6.2.2
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+# Icon app: sinh từ bản DẪN XUẤT của logo Vua Nhà, không phải logo đầy đủ.
+# Logo đầy đủ có chữ "VUA NHÀ" + dòng "THUÊ • Ở • MUA • BÁN"; ở cỡ launcher
+# (~48dp) chữ đó thành vệt nâu, và mặt nạ tròn của Android cắt cụt thành
+# "'UA NH`". Nên icon dùng bản chỉ-ghim: `tools/gen_brand_icons.py` sinh ra
+# app_icon.png (thẻ + ghim) và app_icon_foreground.png (ghim, đệm rộng).
+# Chạy lại khi đổi logo:
+#   python3 tools/gen_brand_icons.py && dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "tools/icon_src/app_icon.png"
+  # Nền cream lấy từ chính thẻ trong logo. Trước đây là #001A4A (xanh navy của
+  # thương hiệu ancu365 cũ) — chọi hẳn với bảng màu đỏ mận/vàng của Vua Nhà.
+  adaptive_icon_background: "#FAF5F1"
+  adaptive_icon_foreground: "tools/icon_src/app_icon_foreground.png"
+  remove_alpha_ios: true
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # i18n P0 — sinh AppLocalizations từ lib/l10n/*.arb (l10n.yaml). Việt=nguồn.
+  generate: true
+
+  # Bundled Google Fonts — Editorial Cockpit design system.
+  # Loaded by `google_fonts` package from local assets so cold-start
+  # has no FOUT, app works offline, and web build does not call Google CDN.
+  # main.dart sets `GoogleFonts.config.allowRuntimeFetching = false`.
+  assets:
+    - assets/google_fonts/
+    # Ảnh nền đầu trang chủ. Khai báo cả THƯ MỤC để thả thêm ảnh không phải sửa
+    # pubspec — nhưng nhớ: mọi thứ trong đây đi thẳng ra bản build công khai.
+    - assets/branding/
+    # Icon minh hoạ 3D cho danh mục dịch vụ, đặt tên theo SLUG của dịch vụ
+    # (vd `electric.png`). Thiếu tệp nào thì ô đó tự dùng icon vẽ bằng mã.
+    - assets/services/
+    # JP market — Noto Sans JP bundled (OFL, OTF). Applied via AppFonts when
+    # --dart-define=REGION=jp. Full CJK set bundled; subset via tools/subset_fonts.py
+    # if web size budget is exceeded (see phase-00 risk note).
+    - assets/fonts/
+    # JP Help Center articles — bundled .md files for offline-first reading.
+    # Content populated by ops team; structure owned by Phase 04 FE.
+    - assets/jp/help/
+
+  # JP market — Noto Sans JP (OFL licence, Noto CJK source).
+  # Applied in app_fonts.dart when FeatureFlags.isJapan; no-op for VN builds.
+  fonts:
+    - family: NotoSansJP
+      fonts:
+        - asset: assets/fonts/NotoSansJP-Regular.otf
+        - asset: assets/fonts/NotoSansJP-Bold.otf
+          weight: 700

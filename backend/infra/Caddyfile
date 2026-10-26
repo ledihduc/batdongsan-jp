@@ -1,0 +1,107 @@
+# ancu365 Caddyfile — Production reverse proxy
+# Caddy 2 auto-manages Let's Encrypt TLS (no manual cert config needed).
+#
+# Usage:
+#   Set ANCU_DOMAIN env var before starting caddy container, e.g.:
+#     ANCU_DOMAIN=ancu365.vn docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Security:
+#   - /nominatim/* is NOT routed — internal only via Docker network
+#   - All backend services bind 127.0.0.1 in docker-compose.prod.yml
+#   - Caddy enforces HTTPS and HSTS automatically
+
+{$ANCU_DOMAIN} {
+
+    # ── Compression ────────────────────────────────────────────────────────────
+    encode gzip zstd
+
+    # ── Logging ────────────────────────────────────────────────────────────────
+    log {
+        output file /var/log/caddy/access.log {
+            roll_size     100mb
+            roll_keep     10
+            roll_keep_for 720h
+        }
+        format json
+        level  INFO
+    }
+
+    # ── Rate limiting ──────────────────────────────────────────────────────────
+    # TODO: add caddy-rate-limit plugin (https://github.com/mholt/caddy-ratelimit)
+    # to enable per-IP rate limiting.  The standard Caddy 2 distribution does NOT
+    # include a built-in rate_limit directive — it requires the plugin.
+    #
+    # To build Caddy with the plugin:
+    #   xcaddy build --with github.com/mholt/caddy-ratelimit
+    # Or use the Docker image: caddybuilder/caddy-ratelimit or build your own.
+    #
+    # When the plugin is present, uncomment the following inside the @api handle:
+    #
+    # rate_limit {
+    #     zone api_zone {
+    #         key        {http.request.header.X-Real-IP}
+    #         events     100
+    #         window     1m
+    #     }
+    # }
+    #
+    # For now, rely on upstream firewall (UFW) and OS-level conntrack for
+    # basic DDoS mitigation.  Cloudflare free-tier proxy is also an option.
+
+    # ── Security headers ───────────────────────────────────────────────────────
+    header {
+        # Propagate real client IP to upstream services
+        X-Real-IP               {http.request.header.X-Forwarded-For}
+        X-Forwarded-Proto       https
+        # Security hardening
+        X-Frame-Options         SAMEORIGIN
+        X-Content-Type-Options  nosniff
+        Referrer-Policy         no-referrer-when-downgrade
+        # HSTS — 1 year; include subdomains; preload (submit to hstspreload.org after go-live)
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        # Remove server fingerprint
+        -Server
+    }
+
+    # ── API → FastAPI backend ──────────────────────────────────────────────────
+    @api path /api/*
+    handle @api {
+        # Uncomment rate_limit block here when caddy-ratelimit plugin is installed (see above)
+        reverse_proxy backend:3000 {
+            header_up X-Real-IP         {http.request.header.X-Forwarded-For}
+            header_up X-Forwarded-Proto https
+            # Health-check backend before forwarding
+            health_uri      /health
+            health_interval 15s
+            health_timeout  5s
+        }
+    }
+
+    # ── Vector tiles → Martin (7-day public cache + CORS) ────────────────────
+    @tiles path /tiles/*
+    handle @tiles {
+        reverse_proxy martin:3000 {
+            header_up X-Forwarded-Proto https
+            header_up X-Real-IP         {http.request.header.X-Forwarded-For}
+        }
+        header {
+            Cache-Control                 "public, max-age=604800, immutable"
+            Access-Control-Allow-Origin   "*"
+            Access-Control-Allow-Methods  "GET, HEAD, OPTIONS"
+            Access-Control-Allow-Headers  "Content-Type, Accept"
+            Access-Control-Max-Age        "86400"
+        }
+    }
+
+    # ── Nominatim — NEVER expose publicly (FastAPI proxies internally) ─────────
+    # Any request reaching /nominatim/* at Caddy level is rejected.
+    @nominatim path /nominatim/*
+    handle @nominatim {
+        respond "Not Found" 404
+    }
+
+    # ── Fallback: 404 everything else ─────────────────────────────────────────
+    handle {
+        respond "Not Found" 404
+    }
+}

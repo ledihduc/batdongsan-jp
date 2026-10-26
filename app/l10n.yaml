@@ -1,0 +1,16 @@
+# i18n P0 — sinh AppLocalizations từ lib/l10n/*.arb (Việt là ngôn ngữ nguồn/template).
+arb-dir: lib/l10n
+template-arb-file: app_vi.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+nullable-getter: false
+# Sinh vào lib/l10n/ (không dùng synthetic package đang bị deprecate) → import
+# chuẩn: package:house_booking/l10n/app_localizations.dart
+synthetic-package: false
+# JP market (Phase 00): app_ja.arb bootstrapped with TODO:JA markers.
+# Translators replace TODO:JA values; code generation picks up ja automatically.
+preferred-supported-locales:
+  - vi
+  - en
+  - zh
+  - ja

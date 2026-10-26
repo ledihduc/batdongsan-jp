@@ -1,0 +1,27 @@
+# Martin Tile Server config for ancu365
+# https://martin.maplibre.org/run-with-config.html
+# Mounted read-only: ./infra/martin/config.yaml:/config.yaml:ro
+
+listen_addresses: "0.0.0.0:3000"
+keep_alive: 75
+worker_processes: 4
+
+postgres:
+  # DATABASE_URL injected by docker-compose environment
+  connection_string: ${DATABASE_URL}
+  pool_size: 10
+  auto_publish:
+    tables:
+      # Only publish tables in the planning schema
+      from_schemas:
+        - planning
+      id_format: "{schema}.{table}"
+    functions: false
+
+cors_policy:
+  allowed_origins:
+    - "*"
+  allowed_methods:
+    - GET
+    - HEAD
+    - OPTIONS

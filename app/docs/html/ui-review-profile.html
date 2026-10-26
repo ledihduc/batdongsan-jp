@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Review UI/UX — Màn Cá nhân · ancu365</title>
+<style>
+:root{--ink:#050505;--muted:#65676B;--line:#CED0D4;--accent:#1877F2;--paper:#F0F2F5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ -webkit-text-size-adjust:100%}
+main{max-width:820px;margin:0 auto;padding:24px 20px 80px;background:#fff;
+ min-height:100vh;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+h1{font-size:1.6rem;line-height:1.25;margin:.2em 0 .6em;letter-spacing:-.02em}
+h2{font-size:1.25rem;margin:2em 0 .5em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+blockquote{margin:1em 0;padding:.6em 1em;background:#EBF2FE;border-left:3px solid var(--accent);
+ color:var(--muted);font-size:.92rem;border-radius:0 6px 6px 0}
+code{background:#E4E6EB;padding:.12em .4em;border-radius:4px;font-size:.88em}
+pre{background:#050505;color:#E4E6EB;padding:14px 16px;border-radius:8px;overflow-x:auto;font-size:.82rem;line-height:1.5}
+pre code{background:none;color:inherit;padding:0}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.92rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--paper);font-weight:600}
+hr{border:0;border-top:1px solid var(--line);margin:2.2em 0}
+a{color:var(--accent)}
+ul,ol{padding-left:1.4em}
+li{margin:.3em 0}
+strong{font-weight:650}
+.foot{margin-top:3em;padding-top:1em;border-top:1px solid var(--line);
+ color:var(--muted);font-size:.82rem}
+@media(max-width:600px){main{padding:16px 14px 60px}h1{font-size:1.35rem}}
+</style></head><body><main>
+<h1 id="review-uiux-man-ca-nhan-profile-ancu365-mobile-web">Review UI/UX — màn "Cá nhân" (Profile), ancu365 mobile web</h1>
+<blockquote>
+<p>Ngày 26/07/2026 · Phạm vi: 1 màn trong ảnh chụp (tài khoản <code>interior.pro@housebooking.com</code> — "Nội Thất Mộc Décor")
+File nguồn: <code>lib/features/guest/profile/profile_screen.dart</code>, <code>lib/features/guest/guest_shell.dart</code>, token <code>lib/core/theme/design_tokens.dart</code></p>
+</blockquote>
+<hr />
+<h2 id="0-muc-tieu-man-hinh-loi-goc">0. Mục tiêu màn hình — lỗi gốc</h2>
+<p>Người dùng vào Profile để <strong>(a)</strong> vào nhanh việc của mình (tin đã đăng, lịch hẹn, yêu cầu dịch vụ) và <strong>(b)</strong> đổi vai/cài đặt.</p>
+<p><strong>Màn hiện tại không có hành động chính nào nổi bật.</strong> Thứ nổi nhất về thị giác lại là <em>"Chỉnh sửa hồ sơ"</em> — một việc người dùng làm 1–2 lần trong đời. Việc dùng hằng ngày (danh sách "Của tôi") bị đẩy xuống dưới nếp gấp: <strong>chỉ ~1,5 dòng danh sách hiện ra</strong> trên màn 6.1".</p>
+<p>Nguyên nhân: 8 tầng nội dung xếp chồng trước khi tới danh sách — eyebrow → title → cover → avatar → tên → email → 2 nút → segmented → 3 thẻ số → nhãn "Của tôi".</p>
+<hr />
+<h2 id="1-van-e-theo-muc-tac-ong">1. Vấn đề theo mức tác động</h2>
+<h3 id="p0-1-segmented-khach-thue-chu-nha-mau-en-lech-he-mau">🔴 P0-1. Segmented "Khách thuê / Chủ nhà" màu ĐEN — lệch hệ màu</h3>
+<p><strong>Vị trí:</strong> <code>profile_screen.dart:457</code> → <code>color: selected ? HD.ink : Colors.transparent</code> (<code>HD.ink = #050505</code>).
+<strong>Vì sao sai:</strong> toàn app đã chuyển sang hệ xanh Facebook (<code>HD.accent = #1877F2</code>). Mảng đen đặc này là <strong>di sản của theme "editorial" đen-trắng cũ</strong>, giờ đứng cạnh avatar xanh + nút xanh trông như widget chưa style / lỗi render. Nó cũng <strong>hút mắt mạnh hơn cả nút hành động chính</strong>, phá thứ bậc.
+<strong>Sửa:</strong> đổi nền chọn sang <code>HD.accent</code> (chữ trắng), hoặc nhẹ hơn: nền <code>HD.paperRaised</code> + chữ <code>HD.accent</code> + viền <code>HD.accent</code> (kiểu iOS segmented). Bo góc <code>HD.r8</code> cho khớp các thành phần khác — hiện đang vuông góc 0px trong khi nút bên trên bo tròn.</p>
+<h3 id="p0-2-sai-danh-tinh-vai-tro-tai-khoan-on-vi-ma-hien-thanh-vien-khach-thue-chu-nha">🔴 P0-2. Sai danh tính vai trò — tài khoản ĐƠN VỊ mà hiện "Thành viên / Khách thuê / Chủ nhà"</h3>
+<p><strong>Vị trí:</strong> badge cạnh tên + segmented + danh sách "Của tôi".
+<strong>Vì sao sai:</strong> đây là tài khoản <strong>đơn vị nội thất</strong>. Nhưng:
+- Badge ghi <em>"Thành viên"</em> — không phản ánh vai trò;
+- Bộ chuyển vai chỉ có <em>Khách thuê / Chủ nhà</em> — không có <strong>Đơn vị</strong>;
+- Danh sách thiếu lối vào <strong>"Kênh đơn vị"</strong> (provider hub: hồ sơ năng lực, nhu cầu phù hợp, báo giá của tôi). Đối chiếu code: <code>profile_screen.dart</code> <strong>không hề</strong> trỏ tới <code>ProviderHubScreen</code> — lối vào duy nhất nằm trong drawer (<code>drawerContractorChannel</code>).
+<strong>Hệ quả:</strong> đơn vị đăng nhập vào không thấy đường tới nơi kiếm tiền của họ. Đây là lỗi <strong>chức năng</strong>, không chỉ thẩm mỹ.
+<strong>Sửa:</strong> badge hiển thị đúng vai (<code>Đơn vị nội thất</code>); nếu tài khoản có <code>contractor profile</code> → thêm mục <strong>"Kênh đơn vị"</strong> lên ĐẦU danh sách "Của tôi" kèm badge trạng thái duyệt; cân nhắc segmented 3 trạng thái hoặc ẩn segmented với tài khoản đơn vị.</p>
+<h3 id="p1-3-ba-loi-vao-trung-nhau-cho-a-luu-yeu-thich">🟠 P1-3. Ba lối vào trùng nhau cho "đã lưu / yêu thích"</h3>
+<p>Nút <strong>"Tin đã lưu"</strong> + thẻ số <strong>"Yêu thích 1"</strong> + tab đáy <strong>"Yêu thích"</strong> → cùng một đích.
+<strong>Sửa:</strong> bỏ nút <em>"Tin đã lưu"</em> (đã có tab đáy). Ô trống dùng cho nút phụ có giá trị hơn: <em>"Chia sẻ hồ sơ"</em> hoặc <em>"Xem hồ sơ công khai"</em> — thứ đơn vị thực sự cần.</p>
+<h3 id="p1-4-ba-the-so-mau-vo-nghia-so-0-gay-nan-khong-bam-uoc">🟠 P1-4. Ba thẻ số: màu vô nghĩa, số 0 gây nản, không bấm được</h3>
+<p><strong>Vì sao sai:</strong> xanh–<strong>lục</strong>–xanh: màu lục ở "Đặt lịch" không mang nghĩa gì (không phải trạng thái tốt/xấu) → nhiễu. Hai số 0 to đùng là thông điệp tiêu cực đầu màn. Thẻ trông như nút nhưng (theo ảnh) không có affordance bấm.
+<strong>Sửa:</strong>
+- Thống nhất 1 tông: nền <code>HD.accentTint</code>, số <code>HD.accent</code>, nhãn <code>HD.inkMuted</code>.
+- Khi giá trị = 0 → <strong>không in số 0 đậm</strong>; hiện gạch <code>–</code> mờ, hoặc gộp cả cụm thành 1 dòng CTA: <em>"Chưa có tin đăng — Đăng tin đầu tiên →"</em>.
+- Cho bấm được (mỗi thẻ nhảy tới đúng danh sách), thêm ripple + vùng chạm ≥44px.</p>
+<h3 id="p1-5-mat-o-qua-thap-nep-gap-nuot-het-noi-dung-huu-ich">🟠 P1-5. Mật độ quá thấp — nếp gấp nuốt hết nội dung hữu ích</h3>
+<p><strong>Sửa (thứ tự ưu tiên, thu ~180–220px):</strong>
+1. <strong>Gộp header trang vào cover</strong>: bỏ khối <code>TÀI KHOẢN / Cá nhân</code> (tab đáy đã cho biết đang ở đâu) → tiết kiệm ~96px.
+2. <strong>Ẩn email</strong> hoặc rút gọn (<code>inte•••@housebooking.com</code>): với đơn vị, email đầy đủ là thông tin nhạy cảm hiển thị vô ích ~40px.
+3. Nhãn <strong>"Của tôi"</strong> đang canh giữa, xám nhạt, chiếm ~60px → chuyển canh trái, <code>HD.eyebrow()</code>, padding trên 16 dưới 8 (khớp nhãn "Dịch vụ thi công" phía dưới).
+4. Giảm khoảng cách cover→tên→nút từ 24 xuống 16.</p>
+<h3 id="p2-6-avatar-trong-tab-ay-khong-nhat-quan-kho-oc">🟡 P2-6. Avatar trong tab đáy — không nhất quán &amp; khó đọc</h3>
+<p>3 tab kia là icon nét, tab "Cá nhân" là <strong>ảnh avatar</strong> trong pill. Ở 24px, ảnh nhân vật thành đốm màu, lại <strong>trùng lặp</strong> avatar đã to ở đầu màn.
+<strong>Sửa:</strong> dùng icon <code>person</code> nét/đặc như 3 tab còn lại (giữ pill nền <code>HD.accentSoft</code> khi active). Nếu muốn giữ avatar → bỏ viền xanh, thêm mask tròn 20px và fallback chữ cái.</p>
+<h3 id="p2-7-cover-xanh-tron-chua-dung-uoc">🟡 P2-7. Cover xanh trơn, chưa dùng được</h3>
+<p>Dải xanh phẳng chỉ để làm nền cho avatar. Với <strong>đơn vị</strong>, đây là chỗ đắt giá nhất để tạo uy tín.
+<strong>Sửa:</strong> cho phép tải <strong>ảnh bìa</strong> (đã có <code>editProfChangeCover</code> trong i18n!) — hiện màn này chưa lộ nút đó; khi chưa có ảnh thì dùng gradient <code>accent → accentDeep</code> thay vì màu phẳng.</p>
+<h3 id="p2-8-thieu-safe-area-ay-tren-trinh-duyet-mobile">🟡 P2-8. Thiếu safe-area đáy trên trình duyệt mobile</h3>
+<p>Thanh tab đáy nằm sát thanh công cụ Safari → 2 thanh dính nhau, dễ bấm nhầm.
+<strong>Sửa:</strong> <code>SafeArea(bottom: true)</code> + <code>padding.bottom</code> cho nav bar; hoặc <code>viewport-fit=cover</code> + <code>env(safe-area-inset-bottom)</code>.</p>
+<h3 id="ghi-chu-ngoai-ui-nhung-anh-huong-niem-tin">⚪ Ghi chú ngoài UI (nhưng ảnh hưởng niềm tin)</h3>
+<p>Safari hiện <strong>"Không bảo mật"</strong> → đang mở bằng <strong>HTTP</strong> (IP:port). Domain thật <code>https://ancu365.vn</code> đã có SSL — nên test/demo bằng domain HTTPS, tránh khách nhìn thấy cảnh báo.</p>
+<hr />
+<h2 id="2-bo-cuc-e-xuat-sau-khi-sua">2. Bố cục đề xuất (sau khi sửa)</h2>
+<pre><code>┌──────────────────────────────────────┐
+│ [cover gradient / ảnh bìa]      ⚙ ⏻ │  ← gộp header vào cover, action nổi lên
+│   (avatar)                           │
+│ Nội Thất Mộc Décor  ⟨Đơn vị nội thất⟩│  ← badge đúng vai
+│                                      │
+│ [ Chỉnh sửa hồ sơ ] [ Xem hồ sơ ↗ ]  │  ← bỏ &quot;Tin đã lưu&quot; (trùng tab đáy)
+│ ┌ Khách thuê │ Chủ nhà ┐ (xanh, bo)  │  ← bỏ nền đen
+│                                      │
+│  ▸ Kênh đơn vị            ⟨Chờ duyệt⟩│  ← MỚI: lối vào chính của đơn vị
+│  CỦA TÔI                             │  ← canh trái
+│  ▸ Tin đã đăng            Quản lý…  →│
+│  ▸ Lịch hẹn xem nhà       Các lịch…→ │
+│  DỊCH VỤ THI CÔNG                    │
+│  ▸ Yêu cầu dịch vụ của tôi          →│
+└──────────────────────────────────────┘
+   🏢 Bất động sản │ 🔧 Thi công │ ♡ Yêu thích │ 👤 Cá nhân
+</code></pre>
+<p>Thẻ số: chuyển xuống <strong>dưới</strong> danh sách hoặc thu thành 1 dòng ngang mảnh — chúng là thông tin tham khảo, không phải hành động.</p>
+<hr />
+<h2 id="3-thu-tu-thi-cong-e-xuat">3. Thứ tự thi công đề xuất</h2>
+<table>
+<thead>
+<tr>
+<th>Đợt</th>
+<th>Việc</th>
+<th>Ước lượng</th>
+<th>Rủi ro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>P0-1 đổi màu segmented (1 dòng token)</td>
+<td>5 phút</td>
+<td>Rất thấp</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>P1-3 bỏ nút "Tin đã lưu"</td>
+<td>10 phút</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>P1-5 gộp header + ẩn email + nhãn canh trái</td>
+<td>30 phút</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>P0-2 badge đúng vai + mục "Kênh đơn vị"</td>
+<td>1–2 giờ</td>
+<td>Trung bình (cần biết tài khoản có hồ sơ đơn vị hay không)</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>P1-4 thẻ số: 1 tông + trạng thái rỗng + bấm được</td>
+<td>1 giờ</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>P2-6/7/8 icon nav, ảnh bìa, safe-area</td>
+<td>2 giờ</td>
+<td>Thấp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc bắt buộc khi sửa màu:</strong> chỉ đổi trong <code>lib/core/theme/design_tokens.dart</code> hoặc dùng token có sẵn — <strong>không hard-code màu</strong> trong widget (luật repo).</p>
+<hr />
+<h2 id="4-tom-tat-1-cau">4. Tóm tắt 1 câu</h2>
+<p>Màn đang <strong>đẹp phần trang trí, yếu phần việc</strong>: một mảng đen lạc hệ hút hết sự chú ý, ba lối vào trùng nhau, và tài khoản đơn vị không tìm thấy đường vào kênh của mình — sửa 3 điểm đó trước, phần còn lại chỉ là tinh chỉnh nhịp và mật độ.</p>
+<p class="foot">Nguồn: <code>ancu365-app/docs/UI-REVIEW-PROFILE.md</code> · bản Markdown:
+<a href="./ui-review-profile.md">ui-review-profile.md</a></p>
+</main></body></html>
