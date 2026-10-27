@@ -355,7 +355,9 @@ _jp_scheduler = None
 async def startup():
     global _jp_scheduler  # noqa: PLW0603
     print(f"UrbanNest backend (FastAPI) đang lắng nghe http://localhost:{settings.port}")
-    if settings.region == "jp":
+    from app.core.jp_scheduler_gate import should_start_jp_scheduler  # noqa: PLC0415
+
+    if should_start_jp_scheduler(settings.region, settings.jp_scheduler_enabled):
         from apscheduler.schedulers.background import BackgroundScheduler  # noqa: PLC0415
         from app.services.renewal.cron import start_renewal_cron  # noqa: PLC0415
         from app.services.privacy.deletion_cron import start_deletion_cron  # noqa: PLC0415
