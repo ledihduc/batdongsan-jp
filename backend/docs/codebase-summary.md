@@ -340,7 +340,12 @@ sqlalchemy==2.0.23
 alembic==1.13.1
 psycopg2-binary==2.9.9          # PostgreSQL driver
 geoalchemy2==0.14.5             # PostGIS ORM
-pydantic==2.5.0
+pydantic==2.14.1
+uvicorn[standard]==0.54.0
+mcp==2.3.0                       # chỉ pin (plan 20261027-1102); chưa có code import
+anthropic==2.3.0                 # chỉ pin (plan 20261027-1102); chưa có code import
+jsonschema==4.26.0
+PyYAML==6.0.3
 python-jose==3.3.0               # JWT
 passlib==1.7.4                  # bcrypt
 aiofiles==23.2.1
