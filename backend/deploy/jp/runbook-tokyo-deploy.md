@@ -201,6 +201,21 @@ aws ec2 create-snapshot \
 
 ## 4. Cron Verification
 
+### 4.0 JP scheduler gate (`JP_SCHEDULER_ENABLED`)
+
+The backend starts the JP APScheduler (renewal + deletion cron) at startup only when
+`REGION=jp` **and** `JP_SCHEDULER_ENABLED` is true (`backend/app/core/jp_scheduler_gate.py`,
+called from `startup()` in `backend/main.py`). The setting is `jp_scheduler_enabled` in
+`backend/app/config.py`; the default is `true`.
+
+**Known issue:** `app/services/renewal/cron.py` does not exist yet, and `startup()` imports
+`start_renewal_cron` from it. With `REGION=jp` and `JP_SCHEDULER_ENABLED` unset or `true`,
+startup fails. For local or demo runs of the JP build, set `JP_SCHEDULER_ENABLED=false`.
+Until the module exists, the "Renewal cron" log line in 4.1 will not appear.
+
+`deploy/jp/docker-compose.jp.yml` does not list `JP_SCHEDULER_ENABLED` in the `backend`
+`environment` block, so the container uses the default (`true`) unless you add it.
+
 ### 4.1 Verify Deletion Cron Running
 
 After startup, confirm APScheduler registered the deletion cron:

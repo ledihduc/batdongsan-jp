@@ -142,6 +142,9 @@ class Settings(BaseSettings):
     # default_tz: múi giờ mặc định cho app (ISO tz string).
     # VN mặc định: 'Asia/Ho_Chi_Minh'. JP mặc định: 'Asia/Tokyo'.
     default_tz: str = "Asia/Ho_Chi_Minh"
+    # jp_scheduler_enabled: bật cron JP (renewal/deletion) khi region=jp.
+    # D9: demo đặt false; thiếu module cron vẫn fail rõ khi true.
+    jp_scheduler_enabled: bool = True
 
     # ── Geo-search (tìm theo địa danh / tỉnh-thành / quanh đây) ────────────────
     # Feature flag: bật sau khi migration 0037 + backfill toạ độ hoàn tất.
