@@ -7,8 +7,10 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
+from app.config import settings
 from app.database import get_db
 from app import models
+from app.services.market_scope import market_scope_on, scope_houses
 from app.helpers import (
     house_to_dict,
     nap_san_cho_tin,
@@ -38,8 +40,11 @@ def unified_search(
     # 1) Tin đăng (nhà) — chỉ tin CÔNG KHAI. Status hiển thị công khai là
     # 'published' (list_houses lọc PUBLISHED); 'approved' là alias cũ → gộp cả 2
     # cho chắc. Khớp tiêu đề/địa chỉ/mô tả/thành phố/quận.
+    hq = db.query(models.House)
+    if market_scope_on():  # demo: chỉ tin của thị trường đang chạy (T14)
+        hq = scope_houses(hq, settings.region)
     houses = (
-        db.query(models.House)
+        hq
         .filter(
             models.House.status.in_(["published", "approved"]),
             or_(

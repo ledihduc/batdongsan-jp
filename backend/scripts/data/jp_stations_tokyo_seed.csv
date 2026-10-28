@@ -19,3 +19,34 @@ line_cd,line_name_ja,line_name_en,operator,station_cd,station_name_ja,station_na
 28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802103,東京,Tokyo,東京都,35.6812,139.7671
 28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802104,後楽園,Korakuen,東京都,35.7075,139.7515
 28021,東京メトロ丸ノ内線,Marunouchi Line,東京メトロ,2802105,池袋,Ikebukuro,東京都,35.7281,139.7139
+11302,山手線,Yamanote Line,JR東日本,1130211,原宿,Harajuku,東京都,35.6702,139.7027
+11302,山手線,Yamanote Line,JR東日本,1130212,代々木,Yoyogi,東京都,35.6830,139.7020
+11302,山手線,Yamanote Line,JR東日本,1130213,高田馬場,Takadanobaba,東京都,35.7128,139.7038
+11302,山手線,Yamanote Line,JR東日本,1130214,大塚,Otsuka,東京都,35.7317,139.7286
+11302,山手線,Yamanote Line,JR東日本,1130215,日暮里,Nippori,東京都,35.7281,139.7707
+11302,山手線,Yamanote Line,JR東日本,1130216,神田,Kanda,東京都,35.6918,139.7709
+11302,山手線,Yamanote Line,JR東日本,1130217,有楽町,Yurakucho,東京都,35.6751,139.7630
+11302,山手線,Yamanote Line,JR東日本,1130218,浜松町,Hamamatsucho,東京都,35.6554,139.7571
+11302,山手線,Yamanote Line,JR東日本,1130219,田町,Tamachi,東京都,35.6457,139.7476
+11302,山手線,Yamanote Line,JR東日本,1130220,大崎,Osaki,東京都,35.6197,139.7286
+26001,東急東横線,Tokyu Toyoko Line,東急電鉄,2600101,渋谷,Shibuya,東京都,35.6580,139.7016
+26001,東急東横線,Tokyu Toyoko Line,東急電鉄,2600102,代官山,Daikanyama,東京都,35.6481,139.7031
+26001,東急東横線,Tokyu Toyoko Line,東急電鉄,2600103,中目黒,Naka-Meguro,東京都,35.6441,139.6990
+26001,東急東横線,Tokyu Toyoko Line,東急電鉄,2600104,祐天寺,Yutenji,東京都,35.6371,139.6911
+26001,東急東横線,Tokyu Toyoko Line,東急電鉄,2600105,学芸大学,Gakugei-daigaku,東京都,35.6287,139.6853
+26001,東急東横線,Tokyu Toyoko Line,東急電鉄,2600106,自由が丘,Jiyugaoka,東京都,35.6074,139.6688
+24002,京王井の頭線,Keio Inokashira Line,京王電鉄,2400201,渋谷,Shibuya,東京都,35.6580,139.7016
+24002,京王井の頭線,Keio Inokashira Line,京王電鉄,2400202,下北沢,Shimo-Kitazawa,東京都,35.6613,139.6680
+24002,京王井の頭線,Keio Inokashira Line,京王電鉄,2400203,明大前,Meidaimae,東京都,35.6686,139.6503
+24002,京王井の頭線,Keio Inokashira Line,京王電鉄,2400204,吉祥寺,Kichijoji,東京都,35.7031,139.5797
+11312,中央線快速,Chuo Line (Rapid),JR東日本,1131201,新宿,Shinjuku,東京都,35.6896,139.7006
+11312,中央線快速,Chuo Line (Rapid),JR東日本,1131202,中野,Nakano,東京都,35.7056,139.6657
+11312,中央線快速,Chuo Line (Rapid),JR東日本,1131203,高円寺,Koenji,東京都,35.7052,139.6498
+11312,中央線快速,Chuo Line (Rapid),JR東日本,1131204,荻窪,Ogikubo,東京都,35.7045,139.6200
+11312,中央線快速,Chuo Line (Rapid),JR東日本,1131205,吉祥寺,Kichijoji,東京都,35.7031,139.5797
+11312,中央線快速,Chuo Line (Rapid),JR東日本,1131206,三鷹,Mitaka,東京都,35.7027,139.5607
+28002,東京メトロ日比谷線,Hibiya Line,東京メトロ,2800201,中目黒,Naka-Meguro,東京都,35.6441,139.6990
+28002,東京メトロ日比谷線,Hibiya Line,東京メトロ,2800202,恵比寿,Ebisu,東京都,35.6467,139.7101
+28002,東京メトロ日比谷線,Hibiya Line,東京メトロ,2800203,六本木,Roppongi,東京都,35.6628,139.7313
+28002,東京メトロ日比谷線,Hibiya Line,東京メトロ,2800204,秋葉原,Akihabara,東京都,35.6981,139.7731
+28002,東京メトロ日比谷線,Hibiya Line,東京メトロ,2800205,上野,Ueno,東京都,35.7141,139.7774
