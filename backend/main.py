@@ -47,6 +47,7 @@ from app.middleware.rate_limit import limiter
 from app.routers import (
     admin_houses,
     auth_router,
+    catalog,
     chat,
     money_ledger_v2,
     host_room,
@@ -228,6 +229,7 @@ def api_health(db: Session = Depends(get_db)):
 app.include_router(auth_router.router)
 app.include_router(users.router)
 app.include_router(houses.router)
+app.include_router(catalog.router)
 app.include_router(admin_houses.router)
 app.include_router(notifications.router)
 app.include_router(chat.router)
