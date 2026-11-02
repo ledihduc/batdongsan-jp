@@ -1,0 +1,894 @@
+[
+ {
+  "title": "[SBY-OK1] 渋谷 1LDK 南向きマンション",
+  "description": "渋谷駅から徒歩5分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区神南1丁目",
+  "category": "マンション",
+  "rent_jpy": 120000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2015,
+  "structure": "RC",
+  "floor_number": 5,
+  "orientation": "S",
+  "transit": [
+   {
+    "station_cd": 1130201,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "[SBY-OK2] 渋谷 1LDK 銀座線徒歩圏",
+  "description": "渋谷駅から徒歩8分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区渋谷2丁目",
+  "category": "マンション",
+  "rent_jpy": 145000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2012,
+  "structure": "RC",
+  "floor_number": 7,
+  "orientation": "SE",
+  "transit": [
+   {
+    "station_cd": 2800105,
+    "walk_min": 8
+   }
+  ]
+ },
+ {
+  "title": "[SBY-OK3] 渋谷 1LDK 駅徒歩10分",
+  "description": "渋谷駅から徒歩10分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区桜丘町",
+  "category": "マンション",
+  "rent_jpy": 150000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2018,
+  "structure": "RC",
+  "floor_number": 3,
+  "orientation": "E",
+  "transit": [
+   {
+    "station_cd": 1130201,
+    "walk_min": 10
+   }
+  ]
+ },
+ {
+  "title": "[SBY-NG-RENT] 渋谷 1LDK 高層階",
+  "description": "渋谷駅から徒歩6分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区道玄坂1丁目",
+  "category": "マンション",
+  "rent_jpy": 152000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2020,
+  "structure": "RC",
+  "floor_number": 12,
+  "orientation": "SW",
+  "transit": [
+   {
+    "station_cd": 1130201,
+    "walk_min": 6
+   }
+  ]
+ },
+ {
+  "title": "[SBY-NG-LAYOUT] 渋谷 1K コンパクト",
+  "description": "渋谷駅から徒歩4分、鉄筋コンクリート造のマンションです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区宇田川町",
+  "category": "マンション",
+  "rent_jpy": 98000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2010,
+  "structure": "RC",
+  "floor_number": 4,
+  "orientation": "W",
+  "transit": [
+   {
+    "station_cd": 1130201,
+    "walk_min": 4
+   }
+  ]
+ },
+ {
+  "title": "[SBY-NG-WALK] 渋谷 1LDK 閑静な立地",
+  "description": "渋谷駅から徒歩12分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区松濤1丁目",
+  "category": "マンション",
+  "rent_jpy": 140000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2016,
+  "structure": "RC",
+  "floor_number": 2,
+  "orientation": "N",
+  "transit": [
+   {
+    "station_cd": 1130201,
+    "walk_min": 12
+   }
+  ]
+ },
+ {
+  "title": "[EBS-NG-STATION] 恵比寿 1LDK デザイナーズ",
+  "description": "恵比寿駅から徒歩5分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区恵比寿南1丁目",
+  "category": "マンション",
+  "rent_jpy": 130000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2017,
+  "structure": "RC",
+  "floor_number": 6,
+  "orientation": "NE",
+  "transit": [
+   {
+    "station_cd": 1130208,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "新宿 1K 駅近ワンルーム",
+  "description": "新宿駅から徒歩6分、鉄筋コンクリート造のマンションです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "新宿区",
+  "address": "新宿区西新宿7丁目",
+  "category": "マンション",
+  "rent_jpy": 92000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2008,
+  "structure": "RC",
+  "floor_number": 9,
+  "orientation": "NW",
+  "transit": [
+   {
+    "station_cd": 1130202,
+    "walk_min": 6
+   },
+   {
+    "station_cd": 1131201,
+    "walk_min": 7
+   }
+  ]
+ },
+ {
+  "title": "新宿 2LDK ファミリー向け",
+  "description": "新宿駅から徒歩9分、鉄筋コンクリート造のマンションです。間取りは2LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "新宿区",
+  "address": "新宿区北新宿2丁目",
+  "category": "マンション",
+  "rent_jpy": 245000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2LDK",
+  "floor_area_sqm": 55.0,
+  "building_year": 2014,
+  "structure": "RC",
+  "floor_number": 11,
+  "orientation": "S",
+  "transit": [
+   {
+    "station_cd": 2802101,
+    "walk_min": 9
+   }
+  ]
+ },
+ {
+  "title": "池袋 1DK 日当たり良好",
+  "description": "池袋駅から徒歩8分、閑静な住宅街のアパートです。間取りは1DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "豊島区",
+  "address": "豊島区西池袋3丁目",
+  "category": "アパート",
+  "rent_jpy": 88000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1DK",
+  "floor_area_sqm": 28.0,
+  "building_year": 2003,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "SE",
+  "transit": [
+   {
+    "station_cd": 1130203,
+    "walk_min": 8
+   }
+  ]
+ },
+ {
+  "title": "池袋 2DK 丸ノ内線利用可",
+  "description": "池袋駅から徒歩6分、鉄筋コンクリート造のマンションです。間取りは2DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "豊島区",
+  "address": "豊島区東池袋1丁目",
+  "category": "マンション",
+  "rent_jpy": 128000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2DK",
+  "floor_area_sqm": 40.0,
+  "building_year": 2011,
+  "structure": "RC",
+  "floor_number": 6,
+  "orientation": "E",
+  "transit": [
+   {
+    "station_cd": 2802105,
+    "walk_min": 6
+   },
+   {
+    "station_cd": 1130203,
+    "walk_min": 9
+   }
+  ]
+ },
+ {
+  "title": "上野 1K 公園そば",
+  "description": "上野駅から徒歩5分、閑静な住宅街のアパートです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "台東区",
+  "address": "台東区上野7丁目",
+  "category": "アパート",
+  "rent_jpy": 79000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 1998,
+  "structure": "WOOD",
+  "floor_number": 3,
+  "orientation": "SW",
+  "transit": [
+   {
+    "station_cd": 1130205,
+    "walk_min": 5
+   },
+   {
+    "station_cd": 2800102,
+    "walk_min": 6
+   }
+  ]
+ },
+ {
+  "title": "上野 1LDK 日比谷線直結",
+  "description": "上野駅から徒歩3分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "台東区",
+  "address": "台東区東上野3丁目",
+  "category": "マンション",
+  "rent_jpy": 138000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2019,
+  "structure": "RC",
+  "floor_number": 8,
+  "orientation": "W",
+  "transit": [
+   {
+    "station_cd": 2800205,
+    "walk_min": 3
+   }
+  ]
+ },
+ {
+  "title": "秋葉原 1K 新築マンション",
+  "description": "秋葉原駅から徒歩4分、鉄筋コンクリート造のマンションです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "千代田区",
+  "address": "千代田区外神田3丁目",
+  "category": "マンション",
+  "rent_jpy": 110000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2024,
+  "structure": "RC",
+  "floor_number": 10,
+  "orientation": "N",
+  "transit": [
+   {
+    "station_cd": 1130206,
+    "walk_min": 4
+   },
+   {
+    "station_cd": 2800204,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "秋葉原 2LDK 角部屋",
+  "description": "秋葉原駅から徒歩7分、鉄筋コンクリート造のマンションです。間取りは2LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "千代田区",
+  "address": "千代田区神田佐久間町2丁目",
+  "category": "マンション",
+  "rent_jpy": 230000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2LDK",
+  "floor_area_sqm": 55.0,
+  "building_year": 2013,
+  "structure": "RC",
+  "floor_number": 9,
+  "orientation": "NE",
+  "transit": [
+   {
+    "station_cd": 1130206,
+    "walk_min": 7
+   }
+  ]
+ },
+ {
+  "title": "品川 1LDK 港南口",
+  "description": "品川駅から徒歩6分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "港区",
+  "address": "港区港南2丁目",
+  "category": "マンション",
+  "rent_jpy": 175000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2016,
+  "structure": "RC",
+  "floor_number": 15,
+  "orientation": "NW",
+  "transit": [
+   {
+    "station_cd": 1130207,
+    "walk_min": 6
+   }
+  ]
+ },
+ {
+  "title": "品川 3LDK タワーマンション",
+  "description": "品川駅から徒歩9分、鉄筋コンクリート造のマンションです。間取りは3LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "港区",
+  "address": "港区港南4丁目",
+  "category": "マンション",
+  "rent_jpy": 320000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "3LDK",
+  "floor_area_sqm": 68.0,
+  "building_year": 2009,
+  "structure": "RC",
+  "floor_number": 28,
+  "orientation": "S",
+  "transit": [
+   {
+    "station_cd": 1130207,
+    "walk_min": 9
+   }
+  ]
+ },
+ {
+  "title": "中目黒 1LDK 目黒川沿い",
+  "description": "中目黒駅から徒歩4分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "目黒区",
+  "address": "目黒区上目黒1丁目",
+  "category": "マンション",
+  "rent_jpy": 168000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2015,
+  "structure": "RC",
+  "floor_number": 4,
+  "orientation": "SE",
+  "transit": [
+   {
+    "station_cd": 2600103,
+    "walk_min": 4
+   },
+   {
+    "station_cd": 2800201,
+    "walk_min": 4
+   }
+  ]
+ },
+ {
+  "title": "中目黒 1K デザイナーズ",
+  "description": "中目黒駅から徒歩7分、閑静な住宅街のアパートです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "目黒区",
+  "address": "目黒区中目黒3丁目",
+  "category": "アパート",
+  "rent_jpy": 105000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2012,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "E",
+  "transit": [
+   {
+    "station_cd": 2600103,
+    "walk_min": 7
+   }
+  ]
+ },
+ {
+  "title": "恵比寿 2DK 閑静な住宅街",
+  "description": "恵比寿駅から徒歩6分、鉄筋コンクリート造のマンションです。間取りは2DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区恵比寿西2丁目",
+  "category": "マンション",
+  "rent_jpy": 198000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2DK",
+  "floor_area_sqm": 40.0,
+  "building_year": 2006,
+  "structure": "RC",
+  "floor_number": 5,
+  "orientation": "SW",
+  "transit": [
+   {
+    "station_cd": 2800202,
+    "walk_min": 6
+   },
+   {
+    "station_cd": 1130208,
+    "walk_min": 8
+   }
+  ]
+ },
+ {
+  "title": "代官山 1DK おしゃれな街並み",
+  "description": "代官山駅から徒歩5分、鉄筋コンクリート造のマンションです。間取りは1DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "渋谷区",
+  "address": "渋谷区代官山町",
+  "category": "マンション",
+  "rent_jpy": 135000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1DK",
+  "floor_area_sqm": 28.0,
+  "building_year": 2010,
+  "structure": "RC",
+  "floor_number": 3,
+  "orientation": "W",
+  "transit": [
+   {
+    "station_cd": 2600102,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "自由が丘 2LDK テラスハウス",
+  "description": "自由が丘駅から徒歩8分、メゾネットタイプのテラスハウスです。間取りは2LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "目黒区",
+  "address": "目黒区自由が丘2丁目",
+  "category": "テラスハウス",
+  "rent_jpy": 215000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "2LDK",
+  "floor_area_sqm": 55.0,
+  "building_year": 2005,
+  "structure": "STEEL",
+  "floor_number": 1,
+  "orientation": "N",
+  "transit": [
+   {
+    "station_cd": 2600106,
+    "walk_min": 8
+   }
+  ]
+ },
+ {
+  "title": "学芸大学 1K 商店街すぐ",
+  "description": "学芸大学駅から徒歩3分、閑静な住宅街のアパートです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "目黒区",
+  "address": "目黒区鷹番3丁目",
+  "category": "アパート",
+  "rent_jpy": 84000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2001,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "NE",
+  "transit": [
+   {
+    "station_cd": 2600105,
+    "walk_min": 3
+   }
+  ]
+ },
+ {
+  "title": "下北沢 シェアハウス 個室",
+  "description": "下北沢駅から徒歩5分、共用ラウンジ付きのシェアハウスです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "世田谷区",
+  "address": "世田谷区北沢2丁目",
+  "category": "シェアハウス",
+  "rent_jpy": 70000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 1995,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "NW",
+  "transit": [
+   {
+    "station_cd": 2400202,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "下北沢 2DK レトロアパート",
+  "description": "下北沢駅から徒歩9分、閑静な住宅街のアパートです。間取りは2DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "世田谷区",
+  "address": "世田谷区代沢5丁目",
+  "category": "アパート",
+  "rent_jpy": 125000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "2DK",
+  "floor_area_sqm": 40.0,
+  "building_year": 1990,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "S",
+  "transit": [
+   {
+    "station_cd": 2400202,
+    "walk_min": 9
+   }
+  ]
+ },
+ {
+  "title": "吉祥寺 3LDK 一戸建て",
+  "description": "吉祥寺駅から徒歩12分、庭付きの一戸建てです。間取りは3LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "武蔵野市",
+  "address": "武蔵野市吉祥寺本町4丁目",
+  "category": "一戸建て",
+  "rent_jpy": 280000,
+  "management_fee_jpy": 0,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "3LDK",
+  "floor_area_sqm": 68.0,
+  "building_year": 2000,
+  "structure": "WOOD",
+  "floor_number": 1,
+  "orientation": "SE",
+  "transit": [
+   {
+    "station_cd": 1131205,
+    "walk_min": 12
+   },
+   {
+    "station_cd": 2400204,
+    "walk_min": 13
+   }
+  ]
+ },
+ {
+  "title": "吉祥寺 1LDK 井の頭公園近く",
+  "description": "吉祥寺駅から徒歩6分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "武蔵野市",
+  "address": "武蔵野市御殿山1丁目",
+  "category": "マンション",
+  "rent_jpy": 142000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2014,
+  "structure": "RC",
+  "floor_number": 4,
+  "orientation": "E",
+  "transit": [
+   {
+    "station_cd": 2400204,
+    "walk_min": 6
+   }
+  ]
+ },
+ {
+  "title": "中野 1K 学生向け",
+  "description": "中野駅から徒歩7分、閑静な住宅街のアパートです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "中野区",
+  "address": "中野区中野5丁目",
+  "category": "アパート",
+  "rent_jpy": 76000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 1999,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "SW",
+  "transit": [
+   {
+    "station_cd": 1131202,
+    "walk_min": 7
+   }
+  ]
+ },
+ {
+  "title": "高円寺 1DK 古着の街",
+  "description": "高円寺駅から徒歩6分、閑静な住宅街のアパートです。間取りは1DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "杉並区",
+  "address": "杉並区高円寺南3丁目",
+  "category": "アパート",
+  "rent_jpy": 89000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1DK",
+  "floor_area_sqm": 28.0,
+  "building_year": 2004,
+  "structure": "WOOD",
+  "floor_number": 3,
+  "orientation": "W",
+  "transit": [
+   {
+    "station_cd": 1131203,
+    "walk_min": 6
+   }
+  ]
+ },
+ {
+  "title": "荻窪 2LDK ファミリー向け",
+  "description": "荻窪駅から徒歩8分、鉄筋コンクリート造のマンションです。間取りは2LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "杉並区",
+  "address": "杉並区上荻1丁目",
+  "category": "マンション",
+  "rent_jpy": 185000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2LDK",
+  "floor_area_sqm": 55.0,
+  "building_year": 2011,
+  "structure": "RC",
+  "floor_number": 5,
+  "orientation": "N",
+  "transit": [
+   {
+    "station_cd": 1131204,
+    "walk_min": 8
+   }
+  ]
+ },
+ {
+  "title": "三鷹 3DK 一戸建て 駐車場付",
+  "description": "三鷹駅から徒歩14分、庭付きの一戸建てです。間取りは3DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "三鷹市",
+  "address": "三鷹市下連雀3丁目",
+  "category": "一戸建て",
+  "rent_jpy": 210000,
+  "management_fee_jpy": 0,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "3DK",
+  "floor_area_sqm": 58.0,
+  "building_year": 1997,
+  "structure": "WOOD",
+  "floor_number": 1,
+  "orientation": "NE",
+  "transit": [
+   {
+    "station_cd": 1131206,
+    "walk_min": 14
+   }
+  ]
+ },
+ {
+  "title": "六本木 1LDK 高級マンション",
+  "description": "六本木駅から徒歩5分、鉄筋コンクリート造のマンションです。間取りは1LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "港区",
+  "address": "港区六本木6丁目",
+  "category": "マンション",
+  "rent_jpy": 260000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1LDK",
+  "floor_area_sqm": 38.5,
+  "building_year": 2018,
+  "structure": "RC",
+  "floor_number": 20,
+  "orientation": "NW",
+  "transit": [
+   {
+    "station_cd": 2800203,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "表参道 1K 青山エリア",
+  "description": "表参道駅から徒歩4分、鉄筋コンクリート造のマンションです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "港区",
+  "address": "港区南青山3丁目",
+  "category": "マンション",
+  "rent_jpy": 128000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2012,
+  "structure": "RC",
+  "floor_number": 6,
+  "orientation": "S",
+  "transit": [
+   {
+    "station_cd": 2800104,
+    "walk_min": 4
+   }
+  ]
+ },
+ {
+  "title": "高田馬場 1K 早稲田そば",
+  "description": "高田馬場駅から徒歩5分、閑静な住宅街のアパートです。間取りは1K。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "新宿区",
+  "address": "新宿区高田馬場1丁目",
+  "category": "アパート",
+  "rent_jpy": 82000,
+  "management_fee_jpy": 5000,
+  "shikikin_months": 1.0,
+  "reikin_months": 0.0,
+  "layout": "1K",
+  "floor_area_sqm": 22.5,
+  "building_year": 2002,
+  "structure": "WOOD",
+  "floor_number": 2,
+  "orientation": "SE",
+  "transit": [
+   {
+    "station_cd": 1130213,
+    "walk_min": 5
+   }
+  ]
+ },
+ {
+  "title": "五反田 2LDK 駅近",
+  "description": "五反田駅から徒歩4分、鉄筋コンクリート造のマンションです。間取りは2LDK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "品川区",
+  "address": "品川区西五反田2丁目",
+  "category": "マンション",
+  "rent_jpy": 205000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2LDK",
+  "floor_area_sqm": 55.0,
+  "building_year": 2015,
+  "structure": "RC",
+  "floor_number": 9,
+  "orientation": "E",
+  "transit": [
+   {
+    "station_cd": 1130210,
+    "walk_min": 4
+   }
+  ]
+ },
+ {
+  "title": "浅草 テラスハウス 下町情緒",
+  "description": "浅草駅から徒歩9分、メゾネットタイプのテラスハウスです。間取りは2DK。（デモデータ）",
+  "prefecture": "東京都",
+  "city": "台東区",
+  "address": "台東区浅草3丁目",
+  "category": "テラスハウス",
+  "rent_jpy": 155000,
+  "management_fee_jpy": 10000,
+  "shikikin_months": 1.0,
+  "reikin_months": 1.0,
+  "layout": "2DK",
+  "floor_area_sqm": 40.0,
+  "building_year": 2007,
+  "structure": "STEEL",
+  "floor_number": 1,
+  "orientation": "SW",
+  "transit": [
+   {
+    "station_cd": 2800101,
+    "walk_min": 9
+   }
+  ]
+ }
+]

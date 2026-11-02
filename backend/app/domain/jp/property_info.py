@@ -65,6 +65,11 @@ class JpPropertyInfo(Base):
         String(3), nullable=False, default="jp",
         comment="Defense-in-depth region tag. Always 'jp'.",
     )
+    # Liên kết tới tin `houses` (cùng quy ước jp_transit_access.listing_id).
+    listing_id: Mapped[Optional[str]] = mapped_column(
+        String(64), nullable=True, index=True,
+        comment="houses.id dạng chuỗi (D1, mig 0167). NULL = dữ liệu cũ chưa gắn tin.",
+    )
 
     # 間取り — floor plan layout
     layout: Mapped[Optional[str]] = mapped_column(

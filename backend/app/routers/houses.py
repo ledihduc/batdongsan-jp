@@ -16,6 +16,7 @@ from app.repositories.host_profile_repository import HostProfileRepository
 from app.schemas.host_profile import HostProfileCreate
 from app.schemas.house_search import HouseNearbyResponse, PlaceRef
 from app.services import house_search_service, luot_xem_tin
+from app.services.market_scope import market_scope_on, scope_houses
 from app.services import tin_ngan_han, nominatim_proxy, provinces_service
 
 router = APIRouter(prefix="/api/houses", tags=["houses"])
@@ -220,6 +221,8 @@ def list_houses(
         )
 
     q = db.query(models.House)
+    if market_scope_on():  # demo: chỉ tin của thị trường đang chạy (T14)
+        q = scope_houses(q, settings.region)
 
     if status == "all":
         pass

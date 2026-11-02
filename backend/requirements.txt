@@ -1,7 +1,7 @@
 fastapi==0.115.0
-uvicorn[standard]==0.30.6
+uvicorn[standard]==0.54.0
 sqlalchemy==2.0.35
-pydantic==2.9.2
+pydantic==2.14.1
 pydantic-settings==2.5.2
 python-jose[cryptography]==3.3.0
 bcrypt==4.2.0
@@ -29,6 +29,13 @@ firebase-admin==6.6.0
 
 # Excel export — Phase 09 TT200 export
 openpyxl==3.1.5
+
+# AI: MCP server (/mcp) + chatbot Claude + registry chức năng (plan 20261027-1102)
+# mcp 2.3.0 cần pydantic>=2.12, uvicorn>=0.31.1 (spike D3).
+mcp==2.3.0
+anthropic==2.3.0
+jsonschema==4.26.0
+PyYAML==6.0.3
 
 # Test deps
 pytest==8.3.2

@@ -81,6 +81,9 @@ def import_stations(csv_path: str, *, dry_run: bool = False) -> dict:
 
     # Import after env setup to avoid config validation errors
     from app.database import SessionLocal  # noqa: PLC0415
+    # Nạp model core (User…) trước: mapper Delegation trỏ 'User' bằng chuỗi, thiếu
+    # thì mọi query ORM lỗi "failed to locate a name ('User')".
+    import app.models  # noqa: F401,PLC0415
     from app.repositories.jp.transit import StationRepository, TrainLineRepository  # noqa: PLC0415
 
     db = SessionLocal()

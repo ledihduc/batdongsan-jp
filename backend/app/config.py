@@ -145,6 +145,9 @@ class Settings(BaseSettings):
     # jp_scheduler_enabled: bật cron JP (renewal/deletion) khi region=jp.
     # D9: demo đặt false; thiếu module cron vẫn fail rõ khi true.
     jp_scheduler_enabled: bool = True
+    # demo_market_scope: tách dữ liệu 2 thị trường bằng code (T14). Bật ⇒
+    # /api/categories + /api/houses (nhánh thường) lọc theo region. Prod để tắt.
+    demo_market_scope: bool = False
 
     # ── Geo-search (tìm theo địa danh / tỉnh-thành / quanh đây) ────────────────
     # Feature flag: bật sau khi migration 0037 + backfill toạ độ hoàn tất.
