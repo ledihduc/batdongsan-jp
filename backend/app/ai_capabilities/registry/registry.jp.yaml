@@ -1,0 +1,83 @@
+# Skill hệ thống thị trường jp (plan 20261027-1102 Phase 05). Review như code: file này
+# quyết định AI được gọi handler nào. Định dạng: app/ai_capabilities/registry_file_schema.py
+version: 2
+market: jp
+default_lang: ja
+guide:
+  ja: |
+    東京の賃貸物件を探し、アプリを操作するアシスタントです。
+    物件はアクションで取得したものだけを紹介し、各物件を [#<listing_id>] の形式で引用してください。
+    駅名は search_listings の station_name に渡してください（駅の確認は search_stations）。
+    ペット可・保証人不要・楽器可・法人契約の条件は未対応です。その旨を伝えてください。
+    mode が write のアクションはユーザーが確認した後にだけ実行されます。
+  vi: |
+    Bạn giúp người dùng tìm nhà thuê ở Tokyo và thao tác trong app.
+    Chỉ giới thiệu tin do action trả về, trích mỗi tin theo dạng [#<listing_id>].
+    Tên ga truyền bằng tiếng Nhật vào station_name của search_listings, vd Shibuya → 渋谷 (kiểm ga bằng search_stations).
+    Điều kiện cho nuôi thú, không cần người bảo lãnh, cho chơi nhạc cụ, hợp đồng công ty chưa hỗ trợ; hãy nói rõ.
+    Action mode write chỉ chạy sau khi người dùng xác nhận.
+  en: |
+    You help users find Tokyo rental listings and operate the app.
+    Only present listings returned by actions and cite each one as [#<listing_id>].
+    Pass station names in Japanese as station_name to search_listings, e.g. Shibuya → 渋谷 (use search_stations to check a station).
+    Pet-friendly, no-guarantor, instrument and corporate-contract conditions are not supported yet; say so.
+    Actions with mode write run only after the user confirms.
+actions:
+  - name: search_listings
+    title: {ja: 賃貸物件を検索, vi: Tìm nhà thuê, en: Search rental listings}
+    description:
+      ja: 駅・徒歩分数・家賃・間取り・面積で公開中の賃貸物件を検索します。ペット可・保証人不要・楽器可・法人契約の条件は未対応です。
+      vi: Tìm tin cho thuê đang đăng theo ga, số phút đi bộ, giá thuê, 間取り, diện tích. Chưa hỗ trợ điều kiện thú cưng, người bảo lãnh, nhạc cụ, hợp đồng công ty.
+      en: Search published rentals by station, walking minutes, rent, layout and floor area. Pet, guarantor, instrument and corporate conditions are not supported.
+    mode: read
+    requires_login: false
+    enabled: true
+    handler: {type: python, target: "app.services.jp_search.ai_tools:tool_search_listings"}
+    params:
+      type: object
+      additionalProperties: false
+      properties:
+        station_name: {type: string, minLength: 1, maxLength: 40, description: "駅名（日本語。例: 渋谷）/ station name in Japanese, e.g. 渋谷 for Shibuya"}
+        station_id: {type: integer, minimum: 1}
+        max_walk_min: {type: integer, minimum: 1, maximum: 60}
+        min_rent_jpy: {type: integer, minimum: 0}
+        max_rent_jpy: {type: integer, minimum: 0}
+        layouts: {type: array, maxItems: 10, items: {enum: ["1K", "1DK", "1LDK", "2K", "2DK", "2LDK", "3K", "3DK", "3LDK", "4LDK+"]}}
+        min_area_m2: {type: number, minimum: 0}
+        max_area_m2: {type: number, minimum: 0}
+        limit: {type: integer, minimum: 1, maximum: 10, default: 5}
+
+  - name: get_listing
+    title: {ja: 物件の詳細, vi: Xem chi tiết tin, en: Get listing details}
+    description:
+      ja: listing_id を指定して公開中の物件の詳細（家賃・初期費用・間取り・最寄り駅）を取得します。
+      vi: Lấy chi tiết một tin đang đăng theo listing_id (giá thuê, phí ban đầu, 間取り, ga gần nhất).
+      en: Get details of a published listing by listing_id (rent, move-in costs, layout, nearest stations).
+    mode: read
+    requires_login: false
+    enabled: true
+    handler: {type: python, target: "app.services.jp_search.ai_tools:tool_get_listing"}
+    params:
+      type: object
+      additionalProperties: false
+      required: [listing_id]
+      properties:
+        listing_id: {type: integer, minimum: 1}
+
+  - name: search_stations
+    title: {ja: 駅を検索, vi: Tìm ga, en: Search stations}
+    description:
+      ja: 駅名（日本語または英語）の一部で駅を検索し、路線名と都道府県を返します。
+      vi: Tìm ga theo một phần tên (tiếng Nhật hoặc tiếng Anh), trả tên tuyến và tỉnh.
+      en: Find stations by part of their name (Japanese or English); returns line name and prefecture.
+    mode: read
+    requires_login: false
+    enabled: true
+    handler: {type: python, target: "app.services.jp_search.ai_tools:tool_search_stations"}
+    params:
+      type: object
+      additionalProperties: false
+      required: [q]
+      properties:
+        q: {type: string, minLength: 1, maxLength: 40}
+        limit: {type: integer, minimum: 1, maximum: 20, default: 10}
