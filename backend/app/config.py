@@ -145,6 +145,9 @@ class Settings(BaseSettings):
     # jp_scheduler_enabled: bật cron JP (renewal/deletion) khi region=jp.
     # D9: demo đặt false; thiếu module cron vẫn fail rõ khi true.
     jp_scheduler_enabled: bool = True
+    # ai_registry_dir: thư mục chứa registry.<region>.yaml (skill hệ thống AI).
+    # Rỗng = registry/ đóng gói trong app/ai_capabilities. Đặt mà thiếu file ⇒ không khởi động.
+    ai_registry_dir: str = ""
     # demo_market_scope: tách dữ liệu 2 thị trường bằng code (T14). Bật ⇒
     # /api/categories + /api/houses (nhánh thường) lọc theo region. Prod để tắt.
     demo_market_scope: bool = False

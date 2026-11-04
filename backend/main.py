@@ -303,13 +303,21 @@ app.include_router(
 # All routers already include require_region('jp') at router level; duplicate dep here
 # as defense-in-depth so even if a router forgets, this wrapper catches it.
 from app.api.routes.jp.listings import router as jp_listings_router  # noqa: PLC0415, E402
+from app.api.routes.jp.listing_search import router as jp_listing_search_router  # noqa: PLC0415, E402
 from app.api.routes.jp.viewings import router as jp_viewings_router  # noqa: PLC0415, E402
 from app.api.routes.jp.applications import router as jp_applications_router  # noqa: PLC0415, E402
 from app.api.routes.jp.application_reviews import router as jp_reviews_router  # noqa: PLC0415, E402
 app.include_router(jp_listings_router, dependencies=[Depends(require_region("jp"))])
+app.include_router(jp_listing_search_router, dependencies=[Depends(require_region("jp"))])
 app.include_router(jp_viewings_router, dependencies=[Depends(require_region("jp"))])
 app.include_router(jp_applications_router, dependencies=[Depends(require_region("jp"))])
 app.include_router(jp_reviews_router, dependencies=[Depends(require_region("jp"))])
+
+# AI (plan 20261027-1102 Phase 05) — dùng chung mọi region: bật khi có registry.<region>.yaml (T8).
+# Phase 07–09 mount MCP/chat/xác nhận vào CÙNG khối này.
+from app.ai_capabilities.loader import ai_enabled_for_region, get_registry  # noqa: PLC0415, E402
+if ai_enabled_for_region(settings.region):
+    get_registry()  # fail-fast: registry hỏng ⇒ app không khởi động (AC5)
 
 # JP市場 — Phase 02 transactions routes (payments, invoices, consent, DSR, IT重説, eContract).
 from app.api.routes.jp.payments import router as jp_payments_router  # noqa: PLC0415, E402

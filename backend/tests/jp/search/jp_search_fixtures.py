@@ -55,3 +55,43 @@ def seed_station_fixture(db: Session) -> dict[str, int]:
     db.add_all(rows.values())
     db.commit()
     return {k: s.id for k, s in rows.items()}
+
+
+def _ac3_listing(title: str, rent: int, layout: str, transit: list[tuple[int, int]]) -> dict:
+    return {
+        "title": title, "description": "テスト（デモデータ）", "city": "渋谷区", "address": "渋谷区神南1丁目",
+        "category": "マンション", "rent_jpy": rent, "management_fee_jpy": 8000, "shikikin_months": 1.0,
+        "reikin_months": 1.0, "layout": layout, "floor_area_sqm": 35.2, "building_year": 2015,
+        "structure": "RC", "floor_number": 5, "orientation": "S",
+        "transit": [{"station_cd": cd, "walk_min": walk} for cd, walk in transit],
+    }
+
+
+def seed_search_fixture(db: Session) -> dict[str, int]:
+    """Bộ AC3 (Phase 03 bước 7) + `[SBY-DRAFT]` + 1 tin published không JP.
+
+    Trả `{tiền tố title: house.id}` gộp với khoá ga của `seed_station_fixture`.
+    """
+    from app.services.jp.demo_seed import seed_jp_demo  # noqa: PLC0415
+
+    st = seed_station_fixture(db)
+    sby_y, sby_g, ebs = 1130201, 2800105, 1130208
+    listings = [
+        _ac3_listing("[SBY-OK1] 渋谷 1LDK", 120000, "1LDK", [(sby_y, 5)]),
+        _ac3_listing("[SBY-OK2] 渋谷 1LDK", 145000, "1LDK", [(sby_g, 8)]),
+        _ac3_listing("[SBY-OK3] 渋谷 1LDK", 150000, "1LDK", [(sby_y, 10)]),
+        _ac3_listing("[SBY-NG-RENT] 渋谷 1LDK", 152000, "1LDK", [(sby_y, 6)]),
+        _ac3_listing("[SBY-NG-LAYOUT] 渋谷 1K", 98000, "1K", [(sby_y, 4)]),
+        _ac3_listing("[SBY-NG-WALK] 渋谷 1LDK", 140000, "1LDK", [(sby_y, 12)]),
+        _ac3_listing("[EBS-NG-STATION] 恵比寿 1LDK", 130000, "1LDK", [(ebs, 5)]),
+        _ac3_listing("[SBY-DRAFT] 渋谷 1LDK", 125000, "1LDK", [(sby_y, 5)]),
+    ]
+    seed_jp_demo(db, listings)
+    draft = db.query(House).filter(House.title.startswith("[SBY-DRAFT]")).one()
+    draft.status = "draft"
+    host_id = draft.host_id
+    db.add(House(host_id=host_id, title="[NON-JP] Căn hộ Quận 1", category_id=draft.category_id,
+                 price=120000, status="published", images=[], amenities=[]))
+    db.commit()
+    ids = {h.title.split(" ", 1)[0]: h.id for h in db.query(House).all()}
+    return {**ids, **st}
