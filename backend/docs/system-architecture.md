@@ -218,6 +218,28 @@ Every action by operator is logged with:
 
 ---
 
+### 1.11 MCP Endpoint (`/mcp`)
+
+Code: `app/mcp/`, mounted by `main.py` inside `if ai_enabled_for_region(settings.region):` (AI is on when `registry.<region>.yaml` exists, see `app/ai_capabilities/loader.py`). Without that file `/mcp` is not mounted.
+
+**Surface**
+- `POST /mcp`: MCP over streamable HTTP, stateless, JSON responses (`stateless_http=True, json_response=True` in `app/mcp/sdk_server.py`). Exactly two tools, `get_system_skills` and `run_action`; new capabilities are registry actions, the tool list does not change. The registry is fetched on every call (hot reload).
+- `GET /mcp/SKILL.md`: the fixed skill file as `text/markdown`, same text as the MCP `instructions` (front matter removed in `instructions`).
+- Any other method on `/mcp` (GET, DELETE...): 405 with `Allow: POST`, no stream is opened.
+
+**Request path** (`McpGuardASGI` in `app/mcp/mount.py`, then the SDK)
+1. Method is not POST: 405.
+2. Total limit exceeded (`mcp_rate_limit_total_per_min`): 429, body `{"error": {"code": "RATE_LIMITED", ...}}`. Counted before the Host/Origin check, so rejected hosts also use the budget.
+3. SDK server not running (app not started or already shut down): 503 `MCP_UNAVAILABLE`.
+4. SDK transport security: `Host` not in `mcp_allowed_hosts` gives 421; an `Origin` not in `mcp_allowed_origins` gives 403.
+5. `tools/call` goes through `app/mcp/tool_bridge.py`: per-key limit first (`get_system_skills` or `run_action:<action>`; unknown or missing action shares `run_action:?`), then the fixed tool runs with `ActionContext(channel="mcp")`. Over the per-key limit returns a normal tool result with `isError` true and `{"error": "rate_limited", ...}`, not HTTP 429. Action errors and exceptions from the registry provider are also `isError` results (`upstream_error` for the latter), not HTTP errors.
+
+**Lifecycle.** The SDK `Server` is built in the app `startup` event and closed in `shutdown` (`session_manager.run()` runs once per instance). The app must run its startup/shutdown events; before startup `/mcp` answers 503. In tests use `with TestClient(app)` as `tests/ai/test_mcp_endpoint.py` does. Rate counters live in process memory, reset on restart and are shared by all clients (not per IP).
+
+Settings: see "MCP settings" in `codebase-summary.md`. Tests: `tests/ai/test_mcp_endpoint.py`, `test_mcp_rate_limit.py`, `test_mcp_tool_bridge.py`.
+
+---
+
 ## 2. Data Model — Key Tables
 
 | Table | Purpose | Owner | Operator |
