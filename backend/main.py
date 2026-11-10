@@ -23,7 +23,6 @@ from fastapi import Depends, FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from sqlalchemy import text
 from sqlalchemy.orm import Session
@@ -40,6 +39,7 @@ setup_logging()
 from app.database import SessionLocal, engine, get_db
 from app.middleware.error_handler import (
     http_exception_handler,
+    rate_limit_exceeded_handler,
     unhandled_exception_handler,
     validation_handler,
 )
@@ -127,7 +127,7 @@ app = FastAPI(title="UrbanNest API")
 
 # ── Rate limiter (slowapi) ────────────────────────────────────────────────────
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(RateLimitExceeded, rate_limit_exceeded_handler)  # envelope + Retry-After (P08 QA M2)
 
 # ── Error handlers ────────────────────────────────────────────────────────────
 app.add_exception_handler(RequestValidationError, validation_handler)
@@ -321,6 +321,9 @@ if ai_enabled_for_region(settings.region):
     from app.mcp.mount import mount_mcp  # noqa: PLC0415, E402
 
     mount_mcp(app)  # /mcp + /mcp/SKILL.md, 2 tool cố định (Phase 07, T8, D19)
+    from app.api.routes.ai_chat import router as ai_chat_router  # noqa: PLC0415, E402
+
+    app.include_router(ai_chat_router)  # POST /api/ai/chat — cùng executor với MCP (Phase 08)
 
 # JP市場 — Phase 02 transactions routes (payments, invoices, consent, DSR, IT重説, eContract).
 from app.api.routes.jp.payments import router as jp_payments_router  # noqa: PLC0415, E402

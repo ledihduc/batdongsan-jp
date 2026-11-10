@@ -240,6 +240,45 @@ Settings: see "MCP settings" in `codebase-summary.md`. Tests: `tests/ai/test_mcp
 
 ---
 
+### 1.12 AI Chat Endpoint (`POST /api/ai/chat`)
+
+Code: `app/api/routes/ai_chat.py` (thin router), `app/schemas/ai_chat.py`, `app/services/ai_chat/`. `main.py` includes the router inside the same `if ai_enabled_for_region(settings.region):` block as `/mcp`, so without `registry.<region>.yaml` the route does not exist. Stateless and not streamed: the client resends the history each turn. Login is optional (`optional_user`); a valid Bearer token becomes `ActionContext.user`, and the `Authorization` header is forwarded to actions only in that case.
+
+**Request** (`AiChatRequest`)
+- `messages`: 1 to 20 items `{role: "user" | "assistant", content}`. `content` is 1 to 2000 chars and not blank. The last item must have role `user`. Total `content` length is at most 8000 chars.
+- `lang`: optional, pattern `^[a-z]{2}$`. Omitted: `registry.default_lang`.
+
+**Response** (`AiChatResponse`): `reply` (at most 2000 chars), `listings`, `tool_rounds`, `tool_calls` (`[{name, arguments, is_error}]`), `model` (value of `ai_chat_model`).
+- `listings` are neutral cards with the keys of `CARD_KEYS` in `app/services/ai_chat/listing_cards.py` (`listing_id`, `title`, `price`, `currency`, `area_m2`, `layout`, `bedrooms`, `station_name`, `walk_min`, `city`, `thumbnail_url`). Cards come only from items returned by `run_action` in the same turn. If the reply cites `[#<id>]`, only the cited ids that the tools returned are kept; with no citation, the result of the last `search_listings` is returned. A fallback or refusal reply carries no cards.
+
+**Turn** (`run_chat_turn` in `app/services/ai_chat/chat_service.py`)
+1. System blocks: fixed skill, JSON-encoded system skills (cache_control `ephemeral`), current local time (`local_tz()` from `app/ai_capabilities/fixed_tools.py`, i.e. `default_tz`). Tools: the two fixed tools, cache_control on the last one (`chat_tools.py`).
+2. Call `client.messages.create`. While `stop_reason` is `tool_use`, each tool block runs through `call_fixed_tool`, the same function as MCP, with `ActionContext(channel="chat")`; results go back as `tool_result` blocks.
+3. The loop stops when the model answers, or when rounds would exceed `ai_chat_max_tool_rounds`, or total tool calls would exceed `ai_chat_max_tool_calls`. Then the reply is a fixed fallback text (`ja`, `vi`, `en`; other languages use `en`). A `refusal` stop reason gives a fixed refusal text.
+4. Chat text is not logged. One `ai_chat_tools` log event per turn carries `actions`, `registry_version`, `market`, `tool_rounds`, `model`, `lang`.
+
+**Errors** (envelope `{"error": {"code", "message", ...}}` from `http_exception_handler`)
+
+| Status | `code` | When |
+|---|---|---|
+| 503 | `AI_NOT_CONFIGURED` | `anthropic_api_key` empty. Raised before body validation (see note) |
+| 504 | `AI_TIMEOUT` | Turn deadline `ai_chat_turn_deadline_s` or an Anthropic timeout |
+| 502 | `AI_UPSTREAM_ERROR` | Other Anthropic `APIError` after client retries |
+| 422 | (FastAPI validation) | Body violates the rules above |
+| 429 | `RATE_LIMITED` | `ai_chat_rate_limit` exceeded; has `Retry-After` |
+
+- 503 ordering: `get_anthropic_client` is a route dependency and raises 503 without a key; the handler body repeats the check because tests override that dependency. The code comment marks the check as running before anything else. `test_ai_chat_missing_api_key_returns_503` sends a valid body, so the ordering against an invalid body is stated by the code design, not covered by a test.
+- 429 handler is app-wide: `rate_limit_exceeded_handler` (`app/middleware/error_handler.py`, registered in `main.py`) replaced the slowapi default for every slowapi-limited route. The body is the common envelope (message `Rate limit exceeded: <detail>`) and the response has a `Retry-After` header in seconds.
+- Rate limit key: `user:<sub>` for a valid JWT, else client IP (`app/middleware/rate_limit.py`). Behind nginx the IP is the real client only when `FORWARDED_ALLOW_IPS` lists the proxy hops (comment in `deploy/jp/docker-compose.jp.yml`).
+
+**Deploy (JP).** `deploy/jp/nginx.jp.conf` has `location = /api/ai/chat` with `proxy_read_timeout 75s` (the app deadline is 60 s), so a client gets the JSON 504 and not an nginx HTML page. `deploy/jp/env.jp.template` notes that the ALB idle timeout must be at least 75 s.
+
+**Eval.** `scripts/eval_ai_chat_multilang.py --base-url <url> --out <file>` posts the cases in `scripts/data/ai_chat_eval_multilang.json` to a running backend and exits 1 below the thresholds in that file. It needs a real `ANTHROPIC_API_KEY` on the backend.
+
+Settings: see "AI chat settings" in `codebase-summary.md`. Tests: `tests/ai/test_ai_chat_api.py`, `test_ai_chat_edge_cases.py`, `test_ai_chat_listing_cards.py`, `test_ai_chat_system_prompt.py` (fake client: `tests/ai/fake_anthropic.py`).
+
+---
+
 ## 2. Data Model — Key Tables
 
 | Table | Purpose | Owner | Operator |

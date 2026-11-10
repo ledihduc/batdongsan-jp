@@ -7,7 +7,7 @@ bao giờ đổi; thay đổi nằm trong kết quả `get_system_skills` (kèm 
 from __future__ import annotations
 
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, tzinfo
 from typing import Optional
 from zoneinfo import ZoneInfo
 
@@ -57,13 +57,17 @@ FIXED_TOOLS: tuple[dict, ...] = (
 _VALIDATORS = {t["name"]: Draft202012Validator(t["input_schema"]) for t in FIXED_TOOLS}
 
 
-def _now_local() -> str:
+def local_tz() -> tzinfo:
+    """Múi giờ `settings.default_tz`; tên sai ⇒ UTC + cảnh báo (chat P08 dùng chung)."""
     try:
-        tz = ZoneInfo(settings.default_tz)
+        return ZoneInfo(settings.default_tz)
     except (ValueError, KeyError):  # ZoneInfoNotFoundError là KeyError (QA M2)
         logger.warning("ai_bad_default_tz", extra={"event": "ai_bad_default_tz", "tz": settings.default_tz})
-        tz = timezone.utc
-    return datetime.now(tz).isoformat(timespec="seconds")
+        return timezone.utc
+
+
+def _now_local() -> str:
+    return datetime.now(local_tz()).isoformat(timespec="seconds")
 
 
 def _log_action(registry: Registry, ctx: ActionContext, action: str, outcome: str) -> None:

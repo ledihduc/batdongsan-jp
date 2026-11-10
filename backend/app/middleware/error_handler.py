@@ -6,11 +6,13 @@ Stack trace bị suppress khi ENVIRONMENT=production.
 from __future__ import annotations
 
 import logging
+import time
 import traceback
 
 from fastapi import Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from slowapi.errors import RateLimitExceeded
 from starlette.exceptions import HTTPException
 
 from app.observability.fingerprint import compute_fingerprint, top_frame_of
@@ -116,4 +118,29 @@ async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONR
             message="Lỗi máy chủ nội bộ",
             details=details,
         ),
+    )
+
+
+def _retry_after_seconds(request: Request, exc: RateLimitExceeded) -> int:
+    """Giây tới khi cửa sổ slowapi mở lại; đọc kho đếm thất bại ⇒ cả độ dài cửa sổ (an toàn)."""
+    try:
+        limit, args = request.state.view_rate_limit
+        reset_at, _ = request.app.state.limiter.limiter.get_window_stats(limit, *args)
+        return max(1, int(reset_at - time.time()) + 1)
+    except Exception:  # noqa: BLE001 — header phụ, không được làm hỏng response 429
+        try:
+            return max(1, int(exc.limit.limit.get_expiry()))
+        except Exception:  # noqa: BLE001
+            return 60
+
+
+async def rate_limit_exceeded_handler(request: Request, exc: RateLimitExceeded) -> JSONResponse:
+    """429 theo envelope chung + `Retry-After` cho mọi route slowapi (QA M2, Phase 08).
+
+    Thay `_rate_limit_exceeded_handler` của slowapi (body `{"error": "<chuỗi>"}`, không Retry-After).
+    """
+    return JSONResponse(
+        status_code=429,
+        content=_make_error(code="RATE_LIMITED", message=f"Rate limit exceeded: {exc.detail}"),
+        headers={"Retry-After": str(_retry_after_seconds(request, exc))},
     )
