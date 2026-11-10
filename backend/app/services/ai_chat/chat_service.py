@@ -21,6 +21,7 @@ from app.ai_capabilities.loader import Registry
 from app.database import SessionLocal
 from app.services.ai_chat.chat_tools import build_system_blocks, to_anthropic_tools
 from app.services.ai_chat.listing_cards import detail_to_item, select_cards, to_card
+from app.services.ai_chat.pending_cards import PendingCards
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +45,9 @@ class ChatTurnResult:
     listings: list[dict]
     tool_rounds: int
     tool_calls: list[dict]
-    tool_payloads: list[dict]  # payload `run_action` theo thứ tự (Phase 09 đọc pending)
+    tool_payloads: list[dict]  # payload `run_action` theo thứ tự (bản gửi model, không có token)
+    pending_actions: tuple[dict, ...] = ()  # thẻ xác nhận action ghi (Phase 09, F-6)
+    login_required: bool = False
 
 
 def reply_for(table: dict[str, str], lang: str) -> str:
@@ -79,9 +82,11 @@ class _ToolItems:
 
 
 async def _run_tool_block(block, registry: Registry, ctx: ActionContext, session_scope, items: _ToolItems,
-                          tool_calls: list[dict], payloads: list[dict]) -> dict:
+                          tool_calls: list[dict], payloads: list[dict], pending: PendingCards) -> dict:
     arguments = block.input if isinstance(block.input, dict) else {}
     is_error, payload = await call_fixed_tool(registry, block.name, block.input, ctx, session_scope=session_scope)
+    if block.name == RUN_ACTION:
+        payload = pending.take(payload)  # token xác nhận không đi tới model
     encode_failed, content = _encode(payload)
     is_error = is_error or encode_failed
     tool_calls.append({"name": block.name, "arguments": arguments, "is_error": is_error})
@@ -99,7 +104,7 @@ async def run_chat_turn(
     system = build_system_blocks(registry, lang, datetime.now(local_tz()))
     tools = to_anthropic_tools()
     convo: list[dict] = [dict(m) for m in messages]
-    items, tool_calls, payloads = _ToolItems(), [], []
+    items, tool_calls, payloads, pending = _ToolItems(), [], [], PendingCards(registry, lang)
     rounds, reply, refused = 0, "", False
     while True:
         response = await client.messages.create(
@@ -117,7 +122,7 @@ async def run_chat_turn(
         rounds += 1
         convo.append({"role": "assistant", "content": response.content})
         results = [
-            await _run_tool_block(b, registry, ctx, session_scope, items, tool_calls, payloads)
+            await _run_tool_block(b, registry, ctx, session_scope, items, tool_calls, payloads, pending)
             for b in tool_blocks
         ]
         convo.append({"role": "user", "content": results})
@@ -130,4 +135,5 @@ async def run_chat_turn(
         "event": "ai_chat_tools", "actions": registry.names(), "registry_version": registry.version,
         "market": registry.market, "tool_rounds": rounds, "model": model, "lang": lang,
     })
-    return ChatTurnResult(reply=reply, listings=cards, tool_rounds=rounds, tool_calls=tool_calls, tool_payloads=payloads)
+    return ChatTurnResult(reply=reply, listings=cards, tool_rounds=rounds, tool_calls=tool_calls, tool_payloads=payloads,
+                          pending_actions=tuple(pending.cards), login_required=pending.login_required)

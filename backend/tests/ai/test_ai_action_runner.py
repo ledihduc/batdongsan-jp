@@ -12,8 +12,12 @@ import tests.ai.ai_registry_test_utils  # noqa: F401 — đặt env test trướ
 from app.ai_capabilities.action_runner import ActionError, encode_tool_result, run_action
 from app.ai_capabilities.context import ActionContext
 from app.ai_capabilities.loader import DEFAULT_REGISTRY_PATH, load_registry
-from app.models import House
+from app.config import settings
+from app.domain.ai_pending_action import AiPendingAction
+from app.models import House, Wishlist
+from app.services.ai_actions.pending_store import hash_token
 from tests.ai.ai_registry_test_utils import make_action, write_registry
+from tests.ai.write_test_utils import WRITE_TABLES
 from tests.jp.search.jp_search_fixtures import make_sqlite_session, seed_search_fixture
 
 CTX = ActionContext(channel="mcp")
@@ -34,6 +38,23 @@ def ids(db) -> dict[str, int]:
 @pytest.fixture()
 def scope(db):
     return lambda: nullcontext(db)
+
+
+@pytest.fixture()
+def wdb():
+    session = make_sqlite_session(extra_tables=WRITE_TABLES)
+    yield session
+    session.close()
+
+
+@pytest.fixture()
+def wids(wdb) -> dict[str, int]:
+    return seed_search_fixture(wdb)
+
+
+@pytest.fixture()
+def wscope(wdb):
+    return lambda: nullcontext(wdb)
 
 
 @pytest.fixture(scope="module")
@@ -126,15 +147,29 @@ def test_ai_action_runner_login_required_read_with_user_runs(tmp_path, ids, scop
     assert out["stations"]
 
 
-def test_ai_action_runner_write_action_not_executed_before_confirmation(tmp_path, ids, scope):
-    # Arrange: kể cả đã đăng nhập, action write không chạy thẳng (P09 đổi sang pending)
-    reg = load_registry(write_registry(tmp_path, [make_action(mode="write", requires_login=True)]))
-    ctx = ActionContext(channel="mcp", user={"sub": 1, "role": "guest"})
+def test_ai_action_runner_write_action_creates_pending_not_executed(wdb, wids, wscope):
+    # Arrange — MCP không có user: vẫn tạo pending, người bấm xác nhận phải đăng nhập (P09 F-3)
+    reg = load_registry(DEFAULT_REGISTRY_PATH)
+    # Act
+    out = run_action(reg, "save_favorite", {"listing_id": wids["[SBY-OK1]"]}, ActionContext(channel="mcp"),
+                     session_scope=wscope)
+    # Assert
+    assert out["status"] == "confirmation_required" and out["action"] == "save_favorite"
+    assert out["confirm_url"].startswith(settings.ai_confirm_base_url + "/ai-confirm/")
+    pending = wdb.query(AiPendingAction).one()
+    assert wdb.query(Wishlist).count() == 0 and pending.status == "pending" and pending.owner_user_id is None
+    assert pending.token_sha256 == hash_token(out["confirm_url"].rsplit("/", 1)[1])
+
+
+def test_ai_action_runner_write_action_chat_guest_raises_login_required(wdb, wids, wscope):
+    # Arrange
+    reg = load_registry(DEFAULT_REGISTRY_PATH)
     # Act
     with pytest.raises(ActionError) as exc:
-        run_action(reg, "find_station", {"q": "渋谷"}, ctx, session_scope=scope)
+        run_action(reg, "save_favorite", {"listing_id": wids["[SBY-OK1]"]}, ActionContext(channel="chat"),
+                   session_scope=wscope)
     # Assert
-    assert _code(exc) == "confirmation_unavailable"
+    assert _code(exc) == "login_required" and wdb.query(AiPendingAction).count() == 0
 
 
 def test_ai_tool_result_encoding_keeps_japanese_and_escapes_quotes():

@@ -5,7 +5,7 @@ from __future__ import annotations
 
 class ActionError(Exception):
     """code ∈ unknown_action | invalid_arguments | not_found | login_required |
-    confirmation_unavailable | upstream_error | rate_limited | endpoint_not_allowed."""
+    upstream_error | rate_limited | endpoint_not_allowed."""
 
     def __init__(self, code: str, message: str) -> None:
         super().__init__(f"{code}: {message}")

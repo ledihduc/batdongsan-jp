@@ -23,8 +23,10 @@ _TABLES = [
 ]
 
 
-def make_sqlite_session(all_tables: bool = False) -> Session:
-    """`all_tables=True` khi gọi route thật (`/api/houses`, `/api/search` cần thêm bảng)."""
+def make_sqlite_session(all_tables: bool = False, extra_tables: tuple[str, ...] = ()) -> Session:
+    """`all_tables=True` khi gọi route thật (`/api/houses`, `/api/search` cần thêm bảng).
+    `extra_tables`: thêm bảng theo tên (vd action ghi AI P09: wishlists, jp_viewings, ai_pending_actions)."""
+    import app.domain  # noqa: F401,PLC0415 — đăng ký model domain (ai_pending_actions, jp_viewings)
     import app.models  # noqa: F401,PLC0415 — đăng ký mọi ORM class trước create_all
 
     engine = create_engine(
@@ -32,7 +34,8 @@ def make_sqlite_session(all_tables: bool = False) -> Session:
         connect_args={"check_same_thread": False},
         poolclass=StaticPool,
     )
-    Base.metadata.create_all(bind=engine, tables=None if all_tables else _TABLES)
+    tables = None if all_tables else _TABLES + [Base.metadata.tables[n] for n in extra_tables]
+    Base.metadata.create_all(bind=engine, tables=tables)
     return sessionmaker(bind=engine)()
 
 

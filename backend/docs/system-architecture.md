@@ -236,6 +236,8 @@ Code: `app/mcp/`, mounted by `main.py` inside `if ai_enabled_for_region(settings
 
 **Lifecycle.** The SDK `Server` is built in the app `startup` event and closed in `shutdown` (`session_manager.run()` runs once per instance). The app must run its startup/shutdown events; before startup `/mcp` answers 503. In tests use `with TestClient(app)` as `tests/ai/test_mcp_endpoint.py` does. Rate counters live in process memory, reset on restart and are shared by all clients (not per IP).
 
+Registry actions with `mode: write` do not write through this path: `run_action` returns `status: confirmation_required` with a `confirm_url` (see 1.13).
+
 Settings: see "MCP settings" in `codebase-summary.md`. Tests: `tests/ai/test_mcp_endpoint.py`, `test_mcp_rate_limit.py`, `test_mcp_tool_bridge.py`.
 
 ---
@@ -248,12 +250,13 @@ Code: `app/api/routes/ai_chat.py` (thin router), `app/schemas/ai_chat.py`, `app/
 - `messages`: 1 to 20 items `{role: "user" | "assistant", content}`. `content` is 1 to 2000 chars and not blank. The last item must have role `user`. Total `content` length is at most 8000 chars.
 - `lang`: optional, pattern `^[a-z]{2}$`. Omitted: `registry.default_lang`.
 
-**Response** (`AiChatResponse`): `reply` (at most 2000 chars), `listings`, `tool_rounds`, `tool_calls` (`[{name, arguments, is_error}]`), `model` (value of `ai_chat_model`).
+**Response** (`AiChatResponse`): `reply` (at most 2000 chars), `listings`, `tool_rounds`, `tool_calls` (`[{name, arguments, is_error}]`), `model` (value of `ai_chat_model`), `pending_actions` (default `[]`), `login_required` (default `false`).
+- `pending_actions` are confirmation cards `{token, action, title, params, expires_at}` for write actions the model asked for in this turn (see 1.13). `login_required` is `true` when a write action was called without a logged-in user; the response is still 200.
 - `listings` are neutral cards with the keys of `CARD_KEYS` in `app/services/ai_chat/listing_cards.py` (`listing_id`, `title`, `price`, `currency`, `area_m2`, `layout`, `bedrooms`, `station_name`, `walk_min`, `city`, `thumbnail_url`). Cards come only from items returned by `run_action` in the same turn. If the reply cites `[#<id>]`, only the cited ids that the tools returned are kept; with no citation, the result of the last `search_listings` is returned. A fallback or refusal reply carries no cards.
 
 **Turn** (`run_chat_turn` in `app/services/ai_chat/chat_service.py`)
 1. System blocks: fixed skill, JSON-encoded system skills (cache_control `ephemeral`), current local time (`local_tz()` from `app/ai_capabilities/fixed_tools.py`, i.e. `default_tz`). Tools: the two fixed tools, cache_control on the last one (`chat_tools.py`).
-2. Call `client.messages.create`. While `stop_reason` is `tool_use`, each tool block runs through `call_fixed_tool`, the same function as MCP, with `ActionContext(channel="chat")`; results go back as `tool_result` blocks.
+2. Call `client.messages.create`. While `stop_reason` is `tool_use`, each tool block runs through `call_fixed_tool`, the same function as MCP, with `ActionContext(channel="chat")`; results go back as `tool_result` blocks. A `run_action` payload passes through `PendingCards.take` (`app/services/ai_chat/pending_cards.py`) first: the `pending_token` is removed from what the model sees and a fixed note (`CARD_SHOWN_NOTE`) is added.
 3. The loop stops when the model answers, or when rounds would exceed `ai_chat_max_tool_rounds`, or total tool calls would exceed `ai_chat_max_tool_calls`. Then the reply is a fixed fallback text (`ja`, `vi`, `en`; other languages use `en`). A `refusal` stop reason gives a fixed refusal text.
 4. Chat text is not logged. One `ai_chat_tools` log event per turn carries `actions`, `registry_version`, `market`, `tool_rounds`, `model`, `lang`.
 
@@ -279,6 +282,70 @@ Settings: see "AI chat settings" in `codebase-summary.md`. Tests: `tests/ai/test
 
 ---
 
+### 1.13 AI Write Actions with Pending Confirm
+
+Code: `app/ai_capabilities/action_runner.py`, `app/services/ai_actions/`, `app/services/jp_search/ai_write_tools.py`, `app/api/routes/ai_actions.py`, `app/schemas/ai_actions.py`, `app/domain/ai_pending_action.py` (table `ai_pending_actions`, migration `0168_ai_pending_actions`). `main.py` includes the router in the same `if ai_enabled_for_region(settings.region):` block as `/mcp` and `/api/ai/chat`.
+
+An action with `mode: write` never writes when the AI calls it. The user confirms first, then the write runs under the identity of the user who confirmed. The jp registry has two (`app/ai_capabilities/registry/registry.jp.yaml`): `save_favorite` (`listing_id`) and `request_viewing` (`listing_id`, `slots` 1-3, optional `note`). Both are `requires_login: true` and use python handlers.
+
+**Create pending** (`_create_pending` in `action_runner.py`)
+1. Params are validated against the action schema.
+2. Channel `chat` without a user: `ActionError` `login_required` (surfaces as `login_required` in the chat response). Channel `mcp` has no user, so a pending is still created; login is enforced at confirm time.
+3. Handler runs with `ActionContext(dry_run=True)`: it only checks (listing exists, slots valid) and writes nothing. A rejection reaches the AI as a normal action error and no row is created.
+4. `create_pending` (`pending_store.py`) inserts a `pending` row and commits. Token is `secrets.token_urlsafe(32)` (43 chars); only its SHA-256 is stored. Expiry is `ai_pending_ttl_min` after creation. Pending rows expired for more than 1 day are deleted on each create.
+5. Result: `{status: "confirmation_required", action, params, expires_at}` plus, for `chat`, `pending_token` (stripped before the model, returned as a card) or, for `mcp`, `confirm_url` = `<AI_CONFIRM_BASE_URL>/ai-confirm/<token>`. `ai-confirm` is a client page; the backend has no route for it. Only python handlers can be pending (rest handler: `upstream_error`).
+
+Chat pendings store `owner_user_id` (the creator). MCP pendings store `NULL`, so any logged-in user holding the link can confirm.
+
+**Routes** (`app/api/routes/ai_actions.py`, prefix `/api/ai/actions`, both rate-limited by `ai_confirm_rate_limit`)
+
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| GET | `/api/ai/actions/{token}` | none | Preview: `action`, localized `title` and `description`, `params`, `listing` brief (jp only), `status`, `expires_at` (UTC offset), `owner_bound`. Optional `lang` query. Writes nothing |
+| POST | `/api/ai/actions/{token}/confirm` | Bearer (`require_user`) | Execute once. Body is not read. Returns `{status: "executed", action, result}` |
+
+A token that does not match `^[A-Za-z0-9_-]{43}$` is answered 404 before any DB access.
+
+**Confirm order** (`confirm_pending` in `confirm_service.py`): lookup, owner check, status, expiry, registry check, re-validate params against the current registry, claim, run handler.
+1. Claim = `UPDATE ... SET status='executed' WHERE id=:id AND status='pending' AND expires_at > now`. `rowcount != 1` means 409 `used`.
+2. Handler runs with `ActionContext(channel="confirm", user=<claims>)` in the same transaction; success commits claim, written rows and `result` together.
+3. Handler `ActionError`: rollback, mark `failed` in a new transaction with `error_code`, answer 422 with the handler's code. Any other exception: same, answer 502 `upstream_error`.
+
+**Errors** (envelope `{"error": {"code", "message"}}`, plus `request_id` when the request has one)
+
+| Status | `code` | When |
+|---|---|---|
+| 404 | `not_found` | Unknown token or malformed token |
+| 403 | `forbidden` | Pending has an owner and the confirming user is another user (confirm only) |
+| 409 | `used` | Status is not `pending` (executed, failed, undone) or the claim lost a race |
+| 410 | `expired` | `expires_at <= now` |
+| 410 | `action_unavailable` | Action removed, no longer `write`, or no longer python in the current registry |
+| 422 | handler code (e.g. `invalid_arguments`, `not_found`) | Handler or param validation rejected; row becomes `failed` |
+| 502 | `upstream_error` | Handler raised an unexpected exception; row becomes `failed` |
+| 401 | `HTTP_401` (generic envelope) | Confirm only: no valid Bearer, or the password was changed after the token was issued (`require_user` in `app/auth.py`) |
+| 403 | `HTTP_403` (generic envelope) | Confirm only: account locked or disabled (`require_user`). Not the same as `forbidden` above |
+| 429 | `RATE_LIMITED` | `ai_confirm_rate_limit` exceeded |
+
+Preview applies the same 404/409/410 checks but not 403 (no user).
+
+**Do not make the confirm route or `confirm_pending` async.** The claim `UPDATE` holds a row lock until commit. On the event loop, a second request for the same token would wait on that lock and block the loop, so the first request could never commit. Both routes are plain `def` (run in the threadpool by FastAPI); `tests/ai/test_ai_pending_actions_hardening.py` has a test for this.
+
+**Write handlers** (`ai_write_tools.py`). They write through models/services because there is no `/api/wishlists` route and `POST /api/jp/viewings` always returns 403 (module docstring). They never commit; `confirm_pending` does.
+- `save_favorite`: `save_wishlist` (`wishlist_writer.py`) get-or-create on `Wishlist`; result `{saved, created, wishlist_id}`. `created=false` when the listing was already a favorite.
+- `request_viewing`: `validate_slots` runs at pending creation and again at confirm (time may have passed), then `create_viewing_request`; notes are prefixed `[AI]`. Result `{viewing_id, status: "requested", created: true}`.
+
+**Secrecy of the token.** It is never logged: `app/observability/middleware.py` replaces it with `{token}` in the request log path, and `deploy/jp/nginx.jp.conf` does the same in the access log (`map $request_uri $jp_log_uri`, field `uri`). The chat token goes to the app only, never to the model.
+
+**Rollback / undo.** `scripts/ai_actions_undo.py` (`undo_service.py`) deletes the rows that executed AI actions created: `wishlists` for `save_favorite` with `created=true`, `jp_viewings` for `request_viewing`; every executed row is then marked `undone`. Dry run by default.
+```
+python scripts/ai_actions_undo.py --all|--since <ISO> [--yes]
+```
+`--since` filters on `executed_at`; an offset-aware time is converted to naive UTC. The script docstring shows the `docker compose exec -T -e PYTHONPATH=/app backend ...` form (untested here).
+
+Settings: see "AI write action settings" in `codebase-summary.md`. Tests: `tests/ai/test_ai_write_tools.py`, `test_ai_pending_actions_api.py`, `test_ai_pending_actions_hardening.py`, `test_ai_chat_write_actions.py`, `test_ai_actions_undo.py` (helpers: `write_test_utils.py`).
+
+---
+
 ## 2. Data Model — Key Tables
 
 | Table | Purpose | Owner | Operator |
@@ -292,6 +359,7 @@ Settings: see "AI chat settings" in `codebase-summary.md`. Tests: `tests/ai/test
 | `delegation_approvals` | Threshold approvals | Owner decides | Operator requests |
 | `owner_death_certificates` | Proof of owner death | Heir submits | N/A |
 | `delegation_lockdowns` | 30-day post-termination block | System enforced | N/A |
+| `ai_pending_actions` | AI write actions awaiting user confirm (token SHA-256, status, result ids) | N/A | N/A |
 
 ---
 
@@ -407,6 +475,7 @@ Delegation schema added via migrations 0021–0036 (June 2026):
 - 0023: `delegation_lockdowns`
 - 0024: `owner_death_certificates`, `owner_death_claimants`
 - 0025+: Indexes, audit columns
+- 0168 `ai_pending_actions`: AI write actions pending confirm (revises `0167_jp_listing_link_columns`; additive, idempotent, has `downgrade()`)
 
 ---
 

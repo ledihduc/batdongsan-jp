@@ -15,6 +15,7 @@ backend/
 ├── scripts/
 │   ├── seed_dev.py              # Idempotent dev seed
 │   ├── eval_ai_chat_multilang.py  # AI chat eval (stdlib, needs a running backend); data: scripts/data/ai_chat_eval_multilang.json
+│   ├── ai_actions_undo.py       # Undo executed AI write actions (dry-run default; --all | --since ISO, --yes to delete)
 ├── uploads/                     # User-uploaded images (git-ignored)
 └── app/
     ├── config.py                # Load .env, settings
@@ -31,10 +32,12 @@ backend/
     │   ├── tool_bridge.py       # SDK <-> ai_capabilities fixed tools, per-action rate key, error mapping
     │   └── rate_limit.py        # In-memory fixed 60 s window limiter (total + per key)
     ├── domain/
+    │   ├── ai_pending_action.py # AiPendingAction model (table ai_pending_actions, migration 0168)
     │   ├── delegation.py        # Domain models: Delegation, DelegationInvitation, DelegationApproval, OwnerDeathCertificate
     │   └── ...
     ├── schemas/                 # Pydantic request/response schemas
     │   ├── ai_chat.py           # AiChatRequest / AiChatResponse for POST /api/ai/chat
+    │   ├── ai_actions.py        # AiPendingPreview / AiConfirmResult / AiPendingActionOut (pending-confirm API + chat cards)
     │   ├── user.py
     │   ├── house.py
     │   ├── booking.py
@@ -47,7 +50,16 @@ backend/
     │   │   ├── anthropic_client.py  # get_anthropic_client(): cached AsyncAnthropic, 503 AI_NOT_CONFIGURED without key
     │   │   ├── chat_service.py      # run_chat_turn(): manual tool loop against the two fixed tools
     │   │   ├── chat_tools.py        # Anthropic tool list + system blocks (fixed skill, system skills, current time)
-    │   │   └── listing_cards.py     # Neutral listing cards (CARD_KEYS) from tool results
+    │   │   ├── listing_cards.py     # Neutral listing cards (CARD_KEYS) from tool results
+    │   │   └── pending_cards.py     # PendingCards: strips pending_token from model payload, collects confirm cards + login_required
+    │   ├── ai_actions/          # AI write actions with pending-confirm (system-architecture.md 1.13)
+    │   │   ├── pending_store.py     # create_pending / get_pending, token SHA-256, TTL
+    │   │   ├── confirm_service.py   # preview_pending / confirm_pending (sync on purpose: row lock in threadpool)
+    │   │   ├── undo_service.py      # undo_executed_actions (used by scripts/ai_actions_undo.py)
+    │   │   ├── wishlist_writer.py   # save_wishlist get-or-create on Wishlist
+    │   │   └── listing_brief.py     # Listing summary for the confirm preview (jp only)
+    │   ├── jp_search/
+    │   │   └── ai_write_tools.py    # python handlers tool_save_favorite / tool_request_viewing (registry.jp.yaml)
     │   ├── commission/
     │   │   └── commission_snapshot.py  # Immutable commission lock at paid_at
     │   ├── delegation/
@@ -90,6 +102,7 @@ backend/
     │       ├── planning.py            # Planning lookup (9 endpoints)
     │       ├── health.py              # /health endpoint
     │       ├── ai_chat.py             # POST /api/ai/chat (mounted only when the region has a registry file)
+    │       ├── ai_actions.py          # GET /api/ai/actions/{token}, POST /api/ai/actions/{token}/confirm (same mount condition)
     │       └── ...
     └── tests/
         ├── test_smoke_postgres.py     # Integration tests (needs DB)
@@ -327,6 +340,7 @@ PERMISSION_SETS = {
 | 0023 | delegation_lockdowns |
 | 0024 | owner_death_certificates, owner_death_claimants |
 | 0025–0036 | Indexes, audit columns, constraints |
+| 0168 | ai_pending_actions (AI write actions awaiting confirm) |
 
 ---
 
@@ -417,5 +431,18 @@ Read from env (case-insensitive field names, e.g. `ANTHROPIC_API_KEY`). Defaults
 
 - JP deploy passes `ANTHROPIC_API_KEY`, `AI_CHAT_MODEL`, `AI_CHAT_RATE_LIMIT` and `FORWARDED_ALLOW_IPS` through `deploy/jp/docker-compose.jp.yml`; `deploy/jp/env.jp.template` lists them. The other five `ai_chat_*` settings (timeouts, tool limits, `max_tokens`) are not passed by that compose file, so they keep the defaults there.
 - The route is mounted only when the region has a registry file, the same condition as `/mcp`.
+
+### AI write action settings (`app/config.py`)
+
+Read from env (case-insensitive field names, e.g. `AI_PENDING_TTL_MIN`). Defaults are in `app/config.py`. Used by the pending-confirm flow (see `system-architecture.md`, section 1.13).
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `ai_pending_ttl_min` | `15` | Minutes a pending confirmation stays valid; after that confirm answers 410 `expired` |
+| `ai_confirm_base_url` | `http://localhost:5050` | Base of the confirm page URL: MCP returns `<base>/ai-confirm/<token>` (trailing `/` is stripped). Set it to the real app URL outside local dev |
+| `ai_confirm_rate_limit` | `30/minute` | slowapi limit string for `GET /api/ai/actions/{token}` and `POST /api/ai/actions/{token}/confirm` |
+
+- `deploy/jp/docker-compose.jp.yml` does not pass these three variables to the backend container, and `deploy/jp/env.jp.template` does not list them, so a JP deploy runs with the defaults above (including the `localhost` confirm URL) until the compose file passes them.
+- Undo of executed AI write actions: `python scripts/ai_actions_undo.py --all|--since <ISO> [--yes]` (dry run unless `--yes`).
 
 ---

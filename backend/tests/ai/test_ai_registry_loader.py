@@ -15,12 +15,14 @@ from app.config import settings
 from tests.ai.ai_registry_test_utils import make_action, write_registry
 
 
-def test_ai_registry_loader_packaged_file_loads_three_read_actions():
+def test_ai_registry_loader_packaged_file_loads_registered_actions():
     # Act
     reg = load_registry(DEFAULT_REGISTRY_PATH)
-    # Assert
-    assert reg.names() == ["search_listings", "get_listing", "search_stations"]
-    assert all(a.mode == "read" and a.params["type"] == "object" for a in reg.actions)
+    # Assert — 3 action đọc + 2 action ghi (Phase 09), ghi luôn cần đăng nhập
+    assert reg.names() == ["search_listings", "get_listing", "search_stations", "save_favorite", "request_viewing"]
+    assert [a.mode for a in reg.actions] == ["read", "read", "read", "write", "write"]
+    assert all(a.requires_login for a in reg.actions if a.mode == "write")
+    assert all(a.params["type"] == "object" for a in reg.actions)
     assert reg.market == "jp" and reg.default_lang == "ja"
 
 

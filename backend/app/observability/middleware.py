@@ -27,6 +27,12 @@ from app.observability.context import request_id_var, route_var, user_hash_var
 _logger = logging.getLogger("app.request")
 
 _ID_SEG_RE = re.compile(r"/\d+(?=/|$)")
+# Token xác nhận action AI là bí mật dùng 1 lần ⇒ không bao giờ vào log (Phase 09, NF-1, QA M1).
+_AI_TOKEN_SEG_RE = re.compile(r"(/api/ai/actions/)[A-Za-z0-9_-]{20,}")
+
+
+def _safe_path(path: str) -> str:
+    return _AI_TOKEN_SEG_RE.sub(r"\1{token}", path)
 
 
 def _hash_user(sub: str, salt: str) -> str:
@@ -60,7 +66,8 @@ class RequestContextMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next):
         rid = request.headers.get("x-request-id") or uuid.uuid4().hex[:16]
-        route_tmpl = _ID_SEG_RE.sub("/{id}", request.url.path)
+        path = _safe_path(request.url.path)
+        route_tmpl = _ID_SEG_RE.sub("/{id}", path)
         tok_r = request_id_var.set(rid)
         tok_route = route_var.set(route_tmpl)
         tok_u = user_hash_var.set(_extract_user_hash(request, self._salt))
@@ -86,7 +93,7 @@ class RequestContextMiddleware(BaseHTTPMiddleware):
                 "request",
                 extra={
                     "method": request.method,
-                    "path": request.url.path,
+                    "path": path,
                     "route": route_tmpl,
                     "status": status,
                     "latency_ms": latency_ms,
