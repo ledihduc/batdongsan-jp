@@ -158,6 +158,16 @@ class Settings(BaseSettings):
     mcp_allowed_origins: list[str] = []
     mcp_rate_limit_total_per_min: int = 120
     mcp_rate_limit_per_action_per_min: int = 60
+    # Chat AI POST /api/ai/chat (Phase 08, P3, T6). Key chỉ ở env/compose, không log, không trả client (D5).
+    # Đổi model bằng env, không sửa code (D8). Rate limit theo user/IP (slowapi, T9).
+    anthropic_api_key: str = ""
+    ai_chat_model: str = "claude-haiku-5-5"
+    ai_chat_call_timeout_s: float = 30.0
+    ai_chat_turn_deadline_s: float = 60.0
+    ai_chat_max_tool_rounds: int = 6
+    ai_chat_max_tool_calls: int = 8  # tổng tool_use mỗi lượt (1 vòng có thể đòi nhiều tool) — QA M3
+    ai_chat_max_tokens: int = 1024
+    ai_chat_rate_limit: str = "30/hour"
     # demo_market_scope: tách dữ liệu 2 thị trường bằng code (T14). Bật ⇒
     # /api/categories + /api/houses (nhánh thường) lọc theo region. Prod để tắt.
     demo_market_scope: bool = False

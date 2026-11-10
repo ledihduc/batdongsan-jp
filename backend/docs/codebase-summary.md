@@ -13,7 +13,8 @@ backend/
 ├── alembic.ini                  # Migration config
 ├── alembic/versions/            # Migration files (0001–0036+)
 ├── scripts/
-│   └── seed_dev.py              # Idempotent dev seed
+│   ├── seed_dev.py              # Idempotent dev seed
+│   ├── eval_ai_chat_multilang.py  # AI chat eval (stdlib, needs a running backend); data: scripts/data/ai_chat_eval_multilang.json
 ├── uploads/                     # User-uploaded images (git-ignored)
 └── app/
     ├── config.py                # Load .env, settings
@@ -33,6 +34,7 @@ backend/
     │   ├── delegation.py        # Domain models: Delegation, DelegationInvitation, DelegationApproval, OwnerDeathCertificate
     │   └── ...
     ├── schemas/                 # Pydantic request/response schemas
+    │   ├── ai_chat.py           # AiChatRequest / AiChatResponse for POST /api/ai/chat
     │   ├── user.py
     │   ├── house.py
     │   ├── booking.py
@@ -41,6 +43,11 @@ backend/
     ├── services/
     │   ├── actor_context.py     # ActorContext resolution (owner vs. operator)
     │   ├── permission_set.py    # Preset → permission strings
+    │   ├── ai_chat/             # AI chat turn (POST /api/ai/chat)
+    │   │   ├── anthropic_client.py  # get_anthropic_client(): cached AsyncAnthropic, 503 AI_NOT_CONFIGURED without key
+    │   │   ├── chat_service.py      # run_chat_turn(): manual tool loop against the two fixed tools
+    │   │   ├── chat_tools.py        # Anthropic tool list + system blocks (fixed skill, system skills, current time)
+    │   │   └── listing_cards.py     # Neutral listing cards (CARD_KEYS) from tool results
     │   ├── commission/
     │   │   └── commission_snapshot.py  # Immutable commission lock at paid_at
     │   ├── delegation/
@@ -82,6 +89,7 @@ backend/
     │       ├── admin_delegations.py   # Admin delegation suspension
     │       ├── planning.py            # Planning lookup (9 endpoints)
     │       ├── health.py              # /health endpoint
+    │       ├── ai_chat.py             # POST /api/ai/chat (mounted only when the region has a registry file)
     │       └── ...
     └── tests/
         ├── test_smoke_postgres.py     # Integration tests (needs DB)
@@ -349,7 +357,7 @@ geoalchemy2==0.14.5             # PostGIS ORM
 pydantic==2.14.1
 uvicorn[standard]==0.54.0
 mcp==2.3.0                       # imported by app/mcp/sdk_server.py (low-level Server, streamable HTTP)
-anthropic==2.3.0                 # chỉ pin (plan 20261027-1102); chưa có code import
+anthropic==2.3.0                 # imported by app/services/ai_chat/anthropic_client.py (AsyncAnthropic) and app/api/routes/ai_chat.py
 jsonschema==4.26.0
 PyYAML==6.0.3
 python-jose==3.3.0               # JWT
@@ -391,5 +399,23 @@ Read from env (case-insensitive field names, e.g. `MCP_ALLOWED_HOSTS`). Defaults
 - `MCP_ALLOWED_HOSTS` and `MCP_ALLOWED_ORIGINS` must be JSON lists, e.g. `["localhost:*","127.0.0.1:*","mcp.example.com"]`. When adding a tunnel or nginx host, keep the localhost entries (comment in `app/config.py`).
 - The lists are read at app startup, not at import. Changing them needs a restart.
 - Related: `ai_registry_dir` (`AI_REGISTRY_DIR`) decides where `registry.<region>.yaml` is looked up; no file for `settings.region` means `/mcp` is not mounted.
+
+### AI chat settings (`app/config.py`)
+
+Read from env (case-insensitive field names, e.g. `ANTHROPIC_API_KEY`). Defaults are in `app/config.py`. Used by `POST /api/ai/chat` (see `system-architecture.md`, section 1.12).
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `anthropic_api_key` | empty | Anthropic API key. Empty: the endpoint answers 503 `AI_NOT_CONFIGURED` |
+| `ai_chat_model` | `claude-haiku-5-5` | Model id sent to the Messages API; echoed in the response `model` field |
+| `ai_chat_call_timeout_s` | `30.0` | Timeout of one Anthropic call (client built with `max_retries=2`) |
+| `ai_chat_turn_deadline_s` | `60.0` | Deadline of the whole turn. Over: 504 `AI_TIMEOUT` |
+| `ai_chat_max_tool_rounds` | `6` | Max tool rounds per turn |
+| `ai_chat_max_tool_calls` | `8` | Max `tool_use` blocks run per turn (one round can ask for several) |
+| `ai_chat_max_tokens` | `1024` | `max_tokens` per Anthropic call |
+| `ai_chat_rate_limit` | `30/hour` | slowapi limit string for the endpoint; key = `user:<sub>` for a valid JWT, else client IP |
+
+- JP deploy passes `ANTHROPIC_API_KEY`, `AI_CHAT_MODEL`, `AI_CHAT_RATE_LIMIT` and `FORWARDED_ALLOW_IPS` through `deploy/jp/docker-compose.jp.yml`; `deploy/jp/env.jp.template` lists them. The other five `ai_chat_*` settings (timeouts, tool limits, `max_tokens`) are not passed by that compose file, so they keep the defaults there.
+- The route is mounted only when the region has a registry file, the same condition as `/mcp`.
 
 ---

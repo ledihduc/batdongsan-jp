@@ -31,6 +31,13 @@ services:
       LOG_LEVEL: "${LOG_LEVEL:-INFO}"
       # Disable VN-specific planning module (PostGIS — not in JP stack)
       PLANNING_ENABLED: "false"
+      # uvicorn chỉ tin X-Forwarded-For từ các hop này (nginx container + ALB/VPC). Thiếu ⇒ mọi khách
+      # ẩn danh chung MỘT bucket rate limit (IP nginx). Đừng đặt "*": ai cũng giả được XFF (QA H1, P08).
+      FORWARDED_ALLOW_IPS: "${FORWARDED_ALLOW_IPS:-172.16.0.0/12}"
+      # Chat AI (plan 20261027-1102 Phase 08). Key cấp riêng, chỉ qua env host (D5).
+      ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY:-}"
+      AI_CHAT_MODEL: "${AI_CHAT_MODEL:-claude-haiku-5-5}"
+      AI_CHAT_RATE_LIMIT: "${AI_CHAT_RATE_LIMIT:-30/hour}"
     volumes:
       # Uploads directory — mount encrypted EBS volume in production
       - jp_uploads:/app/uploads
