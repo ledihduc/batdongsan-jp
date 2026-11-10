@@ -152,6 +152,12 @@ class Settings(BaseSettings):
     # không PII; thêm mục = review như code. ai_rest_timeout_s: trần mỗi lần gọi in-process.
     ai_rest_whitelist: list[str] = ["GET /api/jp/listings", "GET /api/jp/stations/search"]
     ai_rest_timeout_s: float = 10.0
+    # MCP /mcp (Phase 07, T9): Host ngoài allowlist ⇒ 421, Origin có mặt mà lạ ⇒ 403.
+    # Env là JSON list và phải GIỮ localhost khi thêm host tunnel/nginx (N107).
+    mcp_allowed_hosts: list[str] = ["localhost:*", "127.0.0.1:*"]
+    mcp_allowed_origins: list[str] = []
+    mcp_rate_limit_total_per_min: int = 120
+    mcp_rate_limit_per_action_per_min: int = 60
     # demo_market_scope: tách dữ liệu 2 thị trường bằng code (T14). Bật ⇒
     # /api/categories + /api/houses (nhánh thường) lọc theo region. Prod để tắt.
     demo_market_scope: bool = False

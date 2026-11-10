@@ -23,6 +23,12 @@ backend/
     ├── chat_hub.py              # WebSocket manager (async)
     ├── seed.py                  # Seed logic (imported by scripts/seed_dev.py)
     ├── helpers.py               # Logging, notifications, rich text helpers
+    ├── ai_capabilities/         # AI action registry, 2 fixed tools (get_system_skills, run_action), fixed skill
+    ├── mcp/                     # MCP server at /mcp (mounted only when the region has a registry file)
+    │   ├── mount.py             # mount_mcp(app): /mcp + /mcp/SKILL.md, startup/shutdown handlers, 405/429/503 guard
+    │   ├── sdk_server.py        # mcp SDK low-level Server, stateless + JSON, Host/Origin allowlists
+    │   ├── tool_bridge.py       # SDK <-> ai_capabilities fixed tools, per-action rate key, error mapping
+    │   └── rate_limit.py        # In-memory fixed 60 s window limiter (total + per key)
     ├── domain/
     │   ├── delegation.py        # Domain models: Delegation, DelegationInvitation, DelegationApproval, OwnerDeathCertificate
     │   └── ...
@@ -342,7 +348,7 @@ psycopg2-binary==2.9.9          # PostgreSQL driver
 geoalchemy2==0.14.5             # PostGIS ORM
 pydantic==2.14.1
 uvicorn[standard]==0.54.0
-mcp==2.3.0                       # chỉ pin (plan 20261027-1102); chưa có code import
+mcp==2.3.0                       # imported by app/mcp/sdk_server.py (low-level Server, streamable HTTP)
 anthropic==2.3.0                 # chỉ pin (plan 20261027-1102); chưa có code import
 jsonschema==4.26.0
 PyYAML==6.0.3
@@ -370,5 +376,20 @@ COMMISSION_LOCK_AT_PAID_AT = True
 LOCKDOWN_DAYS = 30
 APPROVAL_EXPIRY_HOURS = 24
 ```
+
+### MCP settings (`app/config.py`)
+
+Read from env (case-insensitive field names, e.g. `MCP_ALLOWED_HOSTS`). Defaults are in `app/config.py`.
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `mcp_allowed_hosts` | `["localhost:*", "127.0.0.1:*"]` | `Host` header allowlist. Other host: 421 |
+| `mcp_allowed_origins` | `[]` | `Origin` allowlist. Request with an `Origin` not in the list: 403. No `Origin` header is accepted |
+| `mcp_rate_limit_total_per_min` | `120` | POST `/mcp` requests per 60 s window. Over: HTTP 429 |
+| `mcp_rate_limit_per_action_per_min` | `60` | `tools/call` per key per 60 s window. Over: tool result with `isError` |
+
+- `MCP_ALLOWED_HOSTS` and `MCP_ALLOWED_ORIGINS` must be JSON lists, e.g. `["localhost:*","127.0.0.1:*","mcp.example.com"]`. When adding a tunnel or nginx host, keep the localhost entries (comment in `app/config.py`).
+- The lists are read at app startup, not at import. Changing them needs a restart.
+- Related: `ai_registry_dir` (`AI_REGISTRY_DIR`) decides where `registry.<region>.yaml` is looked up; no file for `settings.region` means `/mcp` is not mounted.
 
 ---

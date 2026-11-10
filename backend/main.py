@@ -318,6 +318,9 @@ app.include_router(jp_reviews_router, dependencies=[Depends(require_region("jp")
 from app.ai_capabilities.loader import ai_enabled_for_region, get_registry  # noqa: PLC0415, E402
 if ai_enabled_for_region(settings.region):
     get_registry()  # fail-fast: registry hỏng ⇒ app không khởi động (AC5)
+    from app.mcp.mount import mount_mcp  # noqa: PLC0415, E402
+
+    mount_mcp(app)  # /mcp + /mcp/SKILL.md, 2 tool cố định (Phase 07, T8, D19)
 
 # JP市場 — Phase 02 transactions routes (payments, invoices, consent, DSR, IT重説, eContract).
 from app.api.routes.jp.payments import router as jp_payments_router  # noqa: PLC0415, E402
