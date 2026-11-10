@@ -148,6 +148,10 @@ class Settings(BaseSettings):
     # ai_registry_dir: thư mục chứa registry.<region>.yaml (skill hệ thống AI).
     # Rỗng = registry/ đóng gói trong app/ai_capabilities. Đặt mà thiếu file ⇒ không khởi động.
     ai_registry_dir: str = ""
+    # ai_rest_whitelist: "METHOD /path" handler `rest` được gọi (T5, K11). Chỉ endpoint đọc công khai,
+    # không PII; thêm mục = review như code. ai_rest_timeout_s: trần mỗi lần gọi in-process.
+    ai_rest_whitelist: list[str] = ["GET /api/jp/listings", "GET /api/jp/stations/search"]
+    ai_rest_timeout_s: float = 10.0
     # demo_market_scope: tách dữ liệu 2 thị trường bằng code (T14). Bật ⇒
     # /api/categories + /api/houses (nhánh thường) lọc theo region. Prod để tắt.
     demo_market_scope: bool = False

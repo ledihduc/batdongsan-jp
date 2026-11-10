@@ -50,3 +50,14 @@ def write_registry(
 
 def packaged_registry_dict() -> dict:
     return yaml.safe_load(DEFAULT_REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+def make_rest_action(method: str, path: str, **overrides) -> dict:
+    """Action handler `rest` (Phase 06); mặc định params `q` như `make_action`."""
+    return make_action(handler={"type": "rest", "method": method, "path": path}, **overrides)
+
+
+def bump_mtime(path: pathlib.Path) -> None:
+    """Đẩy mtime lên 1 giây — FS có độ phân giải mtime thô vẫn thấy file đổi."""
+    st = os.stat(path)
+    os.utime(path, ns=(st.st_atime_ns, st.st_mtime_ns + 1_000_000_000))
