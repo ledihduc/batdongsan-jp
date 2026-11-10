@@ -6,6 +6,8 @@ from typing import Literal, Optional
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
+from app.schemas.ai_actions import AiPendingActionOut
+
 
 # Trần tổng ký tự cả lịch sử: mỗi vòng tool gửi lại toàn bộ lịch sử (≤7 lần/lượt), không cache (QA M3).
 MAX_TOTAL_CHARS = 8000
@@ -51,3 +53,5 @@ class AiChatResponse(BaseModel):
     tool_rounds: int
     tool_calls: list[AiChatToolCall]
     model: str
+    pending_actions: list[AiPendingActionOut] = []  # thẻ xác nhận action ghi (Phase 09, F-6)
+    login_required: bool = False  # khách gọi action ghi ⇒ app mời đăng nhập

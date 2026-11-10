@@ -50,8 +50,9 @@ def test_ai_system_skills_lists_enabled_actions_with_schema_mode_login():
     assert [a["name"] for a in out["actions"]] == reg.names()
     for rendered, action in zip(out["actions"], reg.actions):
         assert set(rendered) == ACTION_KEYS
-        assert rendered["params"] == action.params and rendered["mode"] == "read"
-        assert rendered["requires_login"] is False
+        assert rendered["params"] == action.params and rendered["mode"] == action.mode
+        assert rendered["requires_login"] is action.requires_login
+    assert {a["name"] for a in out["actions"] if a["mode"] == "write"} == {"save_favorite", "request_viewing"}
 
 
 def test_ai_fixed_skill_instructions_are_market_neutral():

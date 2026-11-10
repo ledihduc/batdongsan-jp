@@ -324,6 +324,9 @@ if ai_enabled_for_region(settings.region):
     from app.api.routes.ai_chat import router as ai_chat_router  # noqa: PLC0415, E402
 
     app.include_router(ai_chat_router)  # POST /api/ai/chat — cùng executor với MCP (Phase 08)
+    from app.api.routes.ai_actions import router as ai_actions_router  # noqa: PLC0415, E402
+
+    app.include_router(ai_actions_router)  # /api/ai/actions/{token}[/confirm] — xác nhận action ghi (Phase 09)
 
 # JP市場 — Phase 02 transactions routes (payments, invoices, consent, DSR, IT重説, eContract).
 from app.api.routes.jp.payments import router as jp_payments_router  # noqa: PLC0415, E402

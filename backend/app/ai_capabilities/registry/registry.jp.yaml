@@ -81,3 +81,41 @@ actions:
       properties:
         q: {type: string, minLength: 1, maxLength: 40}
         limit: {type: integer, minimum: 1, maximum: 20, default: 10}
+
+  # Action ghi (Phase 09): run_action KHÔNG ghi — tạo yêu cầu xác nhận; chỉ ghi sau khi người dùng
+  # đã đăng nhập bấm xác nhận trong app. Gỡ dữ liệu AI đã ghi: scripts/ai_actions_undo.py.
+  - name: save_favorite
+    title: {ja: お気に入りに保存, vi: Lưu vào yêu thích, en: Save to favorites}
+    description:
+      ja: listing_id の物件をお気に入りに保存します。ユーザーがログインして確認した後にだけ実行されます。
+      vi: Lưu tin listing_id vào danh sách yêu thích. Chỉ chạy sau khi người dùng đăng nhập và xác nhận.
+      en: Save listing listing_id to favorites. Runs only after the logged-in user confirms.
+    mode: write
+    requires_login: true
+    enabled: true
+    handler: {type: python, target: "app.services.jp_search.ai_write_tools:tool_save_favorite"}
+    params:
+      type: object
+      additionalProperties: false
+      required: [listing_id]
+      properties:
+        listing_id: {type: integer, minimum: 1}
+
+  - name: request_viewing
+    title: {ja: 内見を申し込む, vi: Đặt lịch xem nhà, en: Request a viewing}
+    description:
+      ja: 物件の内見を申し込みます。slots は1〜3件、ISO 8601 で +09:00（日本時間）を付け、10:00〜19:00 の間かつ現在から24時間以上先にしてください（例 2026-11-12T14:00:00+09:00）。now_local を基準に日付を計算します。ユーザーがログインして確認した後にだけ実行されます。
+      vi: Gửi yêu cầu xem nhà. slots gồm 1–3 mốc ISO 8601 có +09:00 (giờ Nhật), trong 10:00–19:00 và cách hiện tại ít nhất 24 giờ (vd 2026-11-12T14:00:00+09:00); tính ngày theo now_local. Chỉ chạy sau khi người dùng đăng nhập và xác nhận.
+      en: Request a viewing. slots holds 1-3 ISO 8601 times with +09:00 (Japan time), between 10:00 and 19:00 and at least 24 hours from now (e.g. 2026-11-12T14:00:00+09:00); compute dates from now_local. Runs only after the logged-in user confirms.
+    mode: write
+    requires_login: true
+    enabled: true
+    handler: {type: python, target: "app.services.jp_search.ai_write_tools:tool_request_viewing"}
+    params:
+      type: object
+      additionalProperties: false
+      required: [listing_id, slots]
+      properties:
+        listing_id: {type: integer, minimum: 1}
+        slots: {type: array, minItems: 1, maxItems: 3, items: {type: string, minLength: 16, maxLength: 40}}
+        note: {type: string, maxLength: 200}

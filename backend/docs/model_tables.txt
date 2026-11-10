@@ -1,4 +1,4 @@
-# ORM metadata tables (Base.metadata) — 143 bảng. SINH TỰ ĐỘNG.
+# ORM metadata tables (Base.metadata) — 144 bảng. SINH TỰ ĐỘNG.
 # Phase 01 JP (9 tables added): jp_application_reviews, jp_property_info, jp_rental_terms,
 # jp_stations, jp_tenant_applications, jp_train_lines, jp_transit_access, jp_viewings,
 # listing_sales_assignments. Run: python scripts/gen_model_tables.py --write to regenerate.
@@ -16,6 +16,7 @@ admin_role_permissions
 admin_roles
 admin_sessions
 admin_user_roles
+ai_pending_actions
 amenities
 audit_logs
 availability

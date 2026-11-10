@@ -76,4 +76,5 @@ async def ai_chat(
     return AiChatResponse(
         reply=result.reply, listings=result.listings, tool_rounds=result.tool_rounds,
         tool_calls=result.tool_calls, model=settings.ai_chat_model,
+        pending_actions=list(result.pending_actions), login_required=result.login_required,
     )

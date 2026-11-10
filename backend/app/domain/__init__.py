@@ -28,6 +28,8 @@ from app.domain.jp.transit import TrainLine, Station, TransitAccess
 from app.domain.jp.viewing import JpViewing
 from app.domain.jp.application import JpTenantApplication, JpApplicationReview
 from app.domain.jp.sales_assignment import ListingSalesAssignment
+# AI action ghi chờ xác nhận (plan 20261027-1102 Phase 09)
+from app.domain.ai_pending_action import AiPendingAction
 
 __all__ = [
     "Delegation",

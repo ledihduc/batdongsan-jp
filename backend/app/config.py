@@ -168,6 +168,11 @@ class Settings(BaseSettings):
     ai_chat_max_tool_calls: int = 8  # tổng tool_use mỗi lượt (1 vòng có thể đòi nhiều tool) — QA M3
     ai_chat_max_tokens: int = 1024
     ai_chat_rate_limit: str = "30/hour"
+    # Action ghi AI chờ xác nhận (Phase 09, F-7): hạn token, gốc URL trang xác nhận Flutter
+    # (`<base>/ai-confirm/<token>`), rate limit theo IP cho GET xem trước + POST xác nhận.
+    ai_pending_ttl_min: int = 15
+    ai_confirm_base_url: str = "http://localhost:5050"
+    ai_confirm_rate_limit: str = "30/minute"
     # demo_market_scope: tách dữ liệu 2 thị trường bằng code (T14). Bật ⇒
     # /api/categories + /api/houses (nhánh thường) lọc theo region. Prod để tắt.
     demo_market_scope: bool = False

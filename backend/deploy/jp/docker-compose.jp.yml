@@ -38,6 +38,11 @@ services:
       ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY:-}"
       AI_CHAT_MODEL: "${AI_CHAT_MODEL:-claude-haiku-5-5}"
       AI_CHAT_RATE_LIMIT: "${AI_CHAT_RATE_LIMIT:-30/hour}"
+      # Action ghi AI chờ xác nhận (Phase 09). Link MCP = <AI_CONFIRM_BASE_URL>/ai-confirm/<token>:
+      # thiếu ⇒ compose dừng (default code là localhost:5050 — link chết ở prod).
+      AI_CONFIRM_BASE_URL: "${AI_CONFIRM_BASE_URL:?set AI_CONFIRM_BASE_URL to the public app URL}"
+      AI_PENDING_TTL_MIN: "${AI_PENDING_TTL_MIN:-15}"
+      AI_CONFIRM_RATE_LIMIT: "${AI_CONFIRM_RATE_LIMIT:-30/minute}"
     volumes:
       # Uploads directory — mount encrypted EBS volume in production
       - jp_uploads:/app/uploads
