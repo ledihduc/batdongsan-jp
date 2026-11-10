@@ -20,6 +20,7 @@ from app.ai_capabilities.loader import (
     get_registry,
     load_registry,
 )
+from app.ai_capabilities.registry_store import get_registry_store
 from app.config import settings
 from tests.ai.ai_registry_test_utils import make_action, write_registry
 from tests.jp.search.jp_search_fixtures import make_sqlite_session, seed_search_fixture
@@ -84,13 +85,13 @@ def test_ai_get_registry_market_mismatch_with_region_raises(tmp_path, monkeypatc
     path.rename(tmp_path / "registry.jp.yaml")
     monkeypatch.setattr(settings, "ai_registry_dir", str(tmp_path))
     monkeypatch.setattr(settings, "region", "jp")
-    get_registry.cache_clear()
+    get_registry_store.cache_clear()
     # Act / Assert
     try:
         with pytest.raises(RegistryError, match="REGION"):
             get_registry()
     finally:
-        get_registry.cache_clear()
+        get_registry_store.cache_clear()
 
 
 def test_ai_registry_loader_empty_actions_raises(tmp_path):
@@ -141,14 +142,14 @@ def test_ai_registry_get_registry_broken_file_fails_fast(tmp_path, monkeypatch):
     write_registry(tmp_path, [make_action(handler={"type": "python", "target": "os:system"})])
     monkeypatch.setattr(settings, "ai_registry_dir", str(tmp_path))
     monkeypatch.setattr(settings, "region", "jp")
-    get_registry.cache_clear()
+    get_registry_store.cache_clear()
     # Act / Assert
     try:
         assert ai_enabled_for_region(settings.region) is True
         with pytest.raises(RegistryError, match="whitelist"):
             get_registry()
     finally:
-        get_registry.cache_clear()
+        get_registry_store.cache_clear()
 
 
 def test_ai_registry_loader_action_name_with_trailing_newline_raises(tmp_path):

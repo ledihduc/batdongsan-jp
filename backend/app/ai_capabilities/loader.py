@@ -2,7 +2,8 @@
 
 Lỗi bất kỳ ⇒ `RegistryError`; `main.py` gọi `get_registry()` lúc import để app
 không khởi động với registry hỏng. Handler python bị chặn 3 lớp: tiền tố module
-trong `ALLOWED_HANDLER_PREFIXES`, tên hàm `tool_*`, đối tượng callable.
+trong `ALLOWED_HANDLER_PREFIXES`, tên hàm `tool_*`, đối tượng callable. Handler rest
+(P06): `(method, path)` thuộc whitelist, read ⇒ GET, cấm `/api/ai/`, `{x}` phải required.
 """
 
 from __future__ import annotations
@@ -13,7 +14,6 @@ import inspect
 import logging
 import pathlib
 from dataclasses import dataclass
-from functools import lru_cache
 from typing import Callable, Optional
 
 import yaml
@@ -21,6 +21,7 @@ from jsonschema import Draft202012Validator
 from jsonschema.exceptions import SchemaError
 
 from app.ai_capabilities.registry_file_schema import REGISTRY_FILE_SCHEMA
+from app.ai_capabilities.rest_handler import PATH_PARAM_RE, parse_rest_whitelist, rest_path_allowed
 from app.config import settings
 
 logger = logging.getLogger(__name__)
@@ -102,7 +103,23 @@ def _resolve_python_handler(name: str, target: str) -> Callable:
     return func
 
 
-def _build_action(raw: dict) -> Action:
+RestWhitelist = frozenset[tuple[str, str]]
+
+
+def _check_rest_handler(name: str, mode: str, spec: HandlerSpec, params: dict, whitelist: RestWhitelist) -> None:
+    if not rest_path_allowed(spec.path):
+        raise RegistryError(f"{name}: path rest phải dưới /api/ và không dưới /api/ai/ ({spec.path})")
+    if (spec.method, spec.path) not in whitelist:
+        raise RegistryError(f"{name}: {spec.method} {spec.path} ngoài rest whitelist (AI_REST_WHITELIST)")
+    if mode == "read" and spec.method != "GET":
+        raise RegistryError(f"{name}: mode read chỉ dùng method GET ({spec.method})")
+    required = set(params.get("required", []))
+    for key in PATH_PARAM_RE.findall(spec.path):
+        if key not in params.get("properties", {}) or key not in required:
+            raise RegistryError(f"{name}: tham số path {{{key}}} phải có trong params.properties và params.required")
+
+
+def _build_action(raw: dict, rest_whitelist: RestWhitelist) -> Action:
     name = raw["name"]
     # Thứ tự kiểm: luật write → params → whitelist → import (lỗi whitelist không bị che bởi lỗi import).
     if raw["mode"] == "write" and raw["requires_login"] is not True:
@@ -115,15 +132,21 @@ def _build_action(raw: dict) -> Action:
     if params.get("type") != "object":
         raise RegistryError(f"{name}: params gốc phải type: object")
     spec = HandlerSpec(**raw["handler"])
+    if spec.type == "rest":
+        _check_rest_handler(name, raw["mode"], spec, params, rest_whitelist)
+        func = None
+    else:
+        func = _resolve_python_handler(name, spec.target)
     return Action(
         name=name, title=raw["title"], description=raw["description"], params=params,
-        mode=raw["mode"], requires_login=raw["requires_login"], handler=spec,
-        func=_resolve_python_handler(name, spec.target),
+        mode=raw["mode"], requires_login=raw["requires_login"], handler=spec, func=func,
     )
 
 
-def load_registry(path) -> Registry:
+def load_registry(path, *, rest_whitelist: Optional[RestWhitelist] = None) -> Registry:
     path = pathlib.Path(path)
+    if rest_whitelist is None:
+        rest_whitelist = parse_rest_whitelist(settings.ai_rest_whitelist)
     try:
         raw_bytes = path.read_bytes()
         doc = yaml.safe_load(raw_bytes)  # safe_load: chặn tag Python
@@ -139,7 +162,7 @@ def load_registry(path) -> Registry:
             raise RegistryError(f"trùng tên action {raw['name']}")
         seen.add(raw["name"])
     # Entry tắt vẫn phải hợp lệ (bật lại không làm hỏng khởi động) nhưng không vào danh sách.
-    built = [(_build_action(raw), raw["enabled"]) for raw in doc["actions"]]
+    built = [(_build_action(raw, rest_whitelist), raw["enabled"]) for raw in doc["actions"]]
     registry = Registry(
         version=hashlib.sha256(raw_bytes).hexdigest()[:12],
         market=doc["market"], default_lang=doc["default_lang"], guide=doc["guide"],
@@ -147,15 +170,21 @@ def load_registry(path) -> Registry:
     )
     logger.info("ai_registry_loaded", extra={
         "event": "ai_registry_loaded", "market": registry.market,
-        "actions": registry.names(), "version": registry.version,
+        "actions": registry.names(), "version": registry.version, "path": str(path),
     })
     return registry
 
 
-@lru_cache(maxsize=1)
-def get_registry() -> Registry:
-    """P06 thay thân hàm bằng RegistryStore (nạp lại nóng); chữ ký giữ nguyên."""
-    registry = load_registry(registry_path_for(settings.region))
-    if registry.market != settings.region:  # file nhầm thị trường (QA M3)
+def load_region_registry(path) -> Registry:
+    """`load_registry` + kiểm file đúng thị trường của REGION (QA M3) — loader của RegistryStore."""
+    registry = load_registry(path)
+    if registry.market != settings.region:
         raise RegistryError(f"registry market {registry.market} khác REGION {settings.region}")
     return registry
+
+
+def get_registry() -> Registry:
+    """Bản registry hiện hành (nạp lại nóng theo mtime, P06). Lần nạp đầu lỗi ⇒ RegistryError."""
+    from app.ai_capabilities.registry_store import get_registry_store  # noqa: PLC0415 — tránh vòng import
+
+    return get_registry_store().current()

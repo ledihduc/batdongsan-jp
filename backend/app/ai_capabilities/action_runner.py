@@ -1,7 +1,8 @@
 """Chạy một action của registry: validate tham số → luật login/write → handler (T3, D14).
 
-Phase 05 chỉ chạy action `read` + handler python; action `write` bị chặn tới P09
-(pending + xác nhận). Lỗi luôn là `ActionError(code, message)` ngắn, không stack trace.
+Handler python chạy trong threadpool; handler rest (P06) gọi in-process qua ASGI và
+chỉ chạy được ở bản async. Action `write` bị chặn tới P09 (pending + xác nhận).
+Lỗi luôn là `ActionError(code, message)` ngắn, không stack trace.
 """
 
 from __future__ import annotations
@@ -13,21 +14,16 @@ from jsonschema import Draft202012Validator
 from sqlalchemy.orm import Session
 from starlette.concurrency import run_in_threadpool
 
+from app.ai_capabilities.action_errors import ActionError
 from app.ai_capabilities.context import ActionContext
 from app.ai_capabilities.loader import Action, Registry
+from app.ai_capabilities.rest_handler import call_rest
+from app.config import settings
 from app.database import SessionLocal
 
+__all__ = ["ActionError", "SessionScope", "encode_tool_result", "run_action", "run_action_async", "validate_params"]
+
 SessionScope = Callable[[], ContextManager[Session]]
-
-
-class ActionError(Exception):
-    """code ∈ unknown_action | invalid_arguments | not_found | login_required |
-    confirmation_unavailable | upstream_error | rate_limited."""
-
-    def __init__(self, code: str, message: str) -> None:
-        super().__init__(f"{code}: {message}")
-        self.code = code
-        self.message = message
 
 
 def validate_params(action: Action, params: Optional[dict]) -> dict:
@@ -41,10 +37,8 @@ def validate_params(action: Action, params: Optional[dict]) -> dict:
     return params
 
 
-def run_action(
-    registry: Registry, name: str, params: Optional[dict], ctx: ActionContext,
-    *, session_scope: SessionScope = SessionLocal,
-) -> dict:
+def _prepare(registry: Registry, name: str, params: Optional[dict], ctx: ActionContext) -> tuple[Action, dict]:
+    """Luật chung mọi loại handler: action có thật → params hợp lệ → write bị chặn → login."""
     action = registry.get(name)
     if action is None:
         raise ActionError("unknown_action", f"unknown action: {str(name)[:64]}")
@@ -53,7 +47,21 @@ def run_action(
         raise ActionError("confirmation_unavailable", "write actions require user confirmation (not available yet)")
     if action.requires_login and ctx.user is None:
         raise ActionError("login_required", "this action requires login")
-    if action.func is None:  # handler rest (P06)
+    return action, params
+
+
+def run_action(
+    registry: Registry, name: str, params: Optional[dict], ctx: ActionContext,
+    *, session_scope: SessionScope = SessionLocal,
+) -> dict:
+    action, params = _prepare(registry, name, params, ctx)
+    if action.handler.type == "rest":
+        raise ActionError("upstream_error", "rest handler is async-only")
+    return _run_python(action, params, ctx, session_scope)
+
+
+def _run_python(action: Action, params: dict, ctx: ActionContext, session_scope: SessionScope) -> dict:
+    if action.func is None:
         raise ActionError("upstream_error", "handler not available")
     try:
         with session_scope() as db:
@@ -73,8 +81,11 @@ async def run_action_async(
     registry: Registry, name: str, params: Optional[dict], ctx: ActionContext,
     *, session_scope: SessionScope = SessionLocal,
 ) -> dict:
+    action, params = _prepare(registry, name, params, ctx)
+    if action.handler.type == "rest":
+        return await call_rest(action.handler, params, ctx, timeout_s=settings.ai_rest_timeout_s)
     # Handler + Session đồng bộ ⇒ chạy trong threadpool để không chặn event loop.
-    return await run_in_threadpool(run_action, registry, name, params, ctx, session_scope=session_scope)
+    return await run_in_threadpool(_run_python, action, params, ctx, session_scope)
 
 
 def encode_tool_result(result: dict) -> str:

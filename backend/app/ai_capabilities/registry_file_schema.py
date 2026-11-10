@@ -21,6 +21,17 @@ HANDLER_PYTHON: dict = {
     },
 }
 
+HANDLER_REST: dict = {
+    "type": "object",
+    "required": ["type", "method", "path"],
+    "additionalProperties": False,
+    "properties": {
+        "type": {"const": "rest"},
+        "method": {"enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]},
+        "path": {"type": "string", "pattern": "^/api/[a-z0-9_/{}.-]+\\Z"},
+    },
+}
+
 _ACTION: dict = {
     "type": "object",
     "required": ["name", "title", "description", "params", "mode", "requires_login", "enabled", "handler"],
@@ -33,7 +44,7 @@ _ACTION: dict = {
         "mode": {"enum": ["read", "write"]},
         "requires_login": {"type": "boolean"},
         "enabled": {"type": "boolean"},
-        "handler": {"oneOf": [HANDLER_PYTHON]},  # P06 thêm HANDLER_REST
+        "handler": {"oneOf": [HANDLER_PYTHON, HANDLER_REST]},
     },
 }
 
