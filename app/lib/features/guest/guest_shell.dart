@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:house_booking/core/widgets/nav_tap_bounce.dart';
 import 'package:flutter/services.dart' show SystemNavigator;
@@ -421,6 +422,18 @@ class _GuestShellState extends State<GuestShell> {
               Positioned.fill(child: _shellBody(screens)),
               if (showCenterFab || showFlatFab)
                 _draggablePostFab(constraints, circular: showCenterFab),
+              // Chat AI tìm nhà (plan 20261027-1102 Phase 10, D19): mọi thị trường, góc phải
+              // dưới; FAB "Đăng tin" kéo thả được nên người dùng dời được nếu chồng nhau.
+              Positioned(
+                right: 16,
+                bottom: 96,
+                child: FloatingActionButton.small(
+                  heroTag: 'ai-chat-fab',
+                  tooltip: AppLocalizations.of(context).aiChatOpenTooltip,
+                  onPressed: () => context.push('/ai-chat'),
+                  child: const Icon(Icons.smart_toy_outlined),
+                ),
+              ),
             ],
           ),
         ),

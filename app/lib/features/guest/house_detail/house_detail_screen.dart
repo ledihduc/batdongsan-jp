@@ -37,7 +37,7 @@ import 'package:house_booking/core/config/env.dart';
 // JP market (Phase 01) — gated behind FeatureFlags.isJapan at runtime.
 import 'package:house_booking/features/guest/listing/jp_terms_section.dart';
 import 'package:house_booking/features/guest/listing/jp_property_info_section.dart';
-import 'package:house_booking/data/repositories/jp/mock_jp_listing_repository.dart';
+import 'package:house_booking/data/repositories/jp/api_jp_listing_repository.dart';
 import 'package:house_booking/data/models/jp/jp_listing.dart';
 
 class HouseDetailScreen extends StatefulWidget {
@@ -60,7 +60,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
 
   // ── JP market (Phase 01) ──────────────────────────────────────────────────
   JpListing? _jpListing;
-  final _jpRepo = const MockJpListingRepository();
+  final _jpRepo = const ApiJpListingRepository();
 
   @override
   void dispose() {

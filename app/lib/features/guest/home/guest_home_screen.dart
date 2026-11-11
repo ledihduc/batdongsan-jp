@@ -33,6 +33,9 @@ import 'package:house_booking/l10n/app_localizations.dart';
 // Gated behind FeatureFlags.isJapan at runtime; tree-shaken in VN release builds
 // because the `if (FeatureFlags.isJapan)` blocks are compile-time false.
 import 'package:house_booking/features/guest/search/jp_search_facets_drawer.dart';
+import 'package:house_booking/features/guest/home/widgets/jp_search_results_section.dart';
+import 'package:house_booking/data/models/jp/jp_listing.dart';
+import 'package:house_booking/data/repositories/jp/api_jp_listing_repository.dart';
 import 'package:house_booking/core/widgets/ds_legal_footer.dart';
 
 class GuestHomeScreen extends StatefulWidget {
@@ -115,6 +118,32 @@ class _GuestHomeScreenState extends State<GuestHomeScreen> {
   /// JP: current search filter state; updated by JpSearchFacetsDrawer.onApply.
   JpSearchFilter _jpFilter = const JpSearchFilter();
 
+  /// JP: kết quả `GET /api/jp/listings` của bộ lọc gần nhất (null = chưa lọc) (Phase 10, F-2).
+  List<JpListingSummary>? _jpResults;
+  bool _jpLoading = false;
+  bool _jpFailed = false;
+  int _jpQuery = 0;
+
+  Future<void> _taiKetQuaJp(JpSearchFilter f) async {
+    final query = ++_jpQuery; // bỏ kết quả của lần lọc cũ nếu về sau lần mới
+    setState(() => _jpLoading = true);
+    List<JpListingSummary> items = const [];
+    var failed = false;
+    try {
+      items = await const ApiJpListingRepository().search(f.toSearchParams());
+    } catch (e) {
+      // Lỗi ≠ "không có tin": hiện lỗi + thử lại, không để khách tưởng bộ lọc rỗng (QA M1).
+      debugPrint('JP search failed: $e');
+      failed = true;
+    }
+    if (!mounted || query != _jpQuery) return;
+    setState(() {
+      _jpResults = items;
+      _jpFailed = failed;
+      _jpLoading = false;
+    });
+  }
+
   /// Opens the appropriate filter UI depending on build region.
   ///
   /// JP build: slides in [JpSearchFacetsDrawer] from an endDrawer (caller must
@@ -155,7 +184,10 @@ class _GuestHomeScreenState extends State<GuestHomeScreen> {
         endDrawer: FeatureFlags.isJapan
             ? JpSearchFacetsDrawer(
                 initialFilter: _jpFilter,
-                onApply: (f) => setState(() => _jpFilter = f),
+                onApply: (f) {
+                  setState(() => _jpFilter = f);
+                  _taiKetQuaJp(f);
+                },
               )
             : null,
         appBar: AppBar(
@@ -420,6 +452,17 @@ class _GuestHomeScreenState extends State<GuestHomeScreen> {
                 // không nhét lên AppBar: người mở tab này đang CUỘN, thứ nằm trên
                 // đường cuộn mới được nhìn thấy.
                 const SliverToBoxAdapter(child: ExploreTradeCard()),
+                // JP: kết quả bộ lọc 間取り/家賃/駅徒歩 (Phase 10, F-2) — chỉ hiện sau khi áp lọc.
+                if (FeatureFlags.isJapan && (_jpLoading || _jpResults != null))
+                  SliverToBoxAdapter(
+                    child: JpSearchResultsSection(
+                      items: _jpResults ?? const [],
+                      loading: _jpLoading,
+                      failed: _jpFailed,
+                      onRetry: () => _taiKetQuaJp(_jpFilter),
+                      onOpen: (id) => context.push('/house/$id'),
+                    ),
+                  ),
                 // Feed BĐS 1 cột — SliverList xây LƯỜI: chỉ dựng card trong/gần
                 // viewport (tránh decode toàn bộ ảnh cùng lúc như ListView
                 // shrinkWrap cũ) → cuộn mượt hơn nhiều.

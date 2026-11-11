@@ -8357,4 +8357,73 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get legalFooterCopyright => '© 2026 Synora株式会社 All rights reserved.';
+
+  @override
+  String get aiChatTitle => 'AIチャット';
+
+  @override
+  String get aiChatOpenTooltip => 'AIアシスタントに質問';
+
+  @override
+  String get aiChatInputHint => '賃貸について質問を入力…';
+
+  @override
+  String get aiChatSend => '送信';
+
+  @override
+  String get aiChatEmptyTitle => 'どんなお部屋をお探しですか？';
+
+  @override
+  String get aiChatSuggestionJp1 => '渋谷駅から徒歩10分以内、家賃15万円以下の1LDK';
+
+  @override
+  String get aiChatSuggestionJp2 => '新宿駅の近くで家賃10万円以下の部屋';
+
+  @override
+  String get aiChatSuggestionJp3 => '世田谷区でペット可の2LDK';
+
+  @override
+  String get aiChatSuggestionVn1 => 'ホーチミン1区で2ベッドルーム、2,000万ドン以下のアパート';
+
+  @override
+  String get aiChatSuggestionVn2 => 'ビンタイン区で500万ドン以下の部屋';
+
+  @override
+  String get aiChatSuggestionVn3 => 'ハノイ・カウザイ区の3ベッドルーム';
+
+  @override
+  String get aiChatThinking => 'AIが回答中…';
+
+  @override
+  String get aiChatErrorTimeout => '応答に時間がかかっています。もう一度お試しください。';
+
+  @override
+  String get aiChatErrorRateLimited => 'リクエストが多すぎます。しばらくしてからお試しください。';
+
+  @override
+  String get aiChatErrorServer => 'サーバーでエラーが発生しました。';
+
+  @override
+  String get aiChatErrorNetwork => '通信エラーが発生しました。';
+
+  @override
+  String get aiChatRetry => '再試行';
+
+  @override
+  String aiCardBedrooms(int count) {
+    return '$countベッドルーム';
+  }
+
+  @override
+  String jpSearchResultsTitle(int count) {
+    return '$count件の物件';
+  }
+
+  @override
+  String get jpSearchResultsEmpty => '条件に合う物件がありません。';
+
+  @override
+  String jpStationWalk(String station, int minutes) {
+    return '$station 徒歩$minutes分';
+  }
 }

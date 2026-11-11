@@ -8549,4 +8549,78 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get legalFooterCopyright => '© 2026 Synora K.K. All rights reserved.';
+
+  @override
+  String get aiChatTitle => 'AI chat';
+
+  @override
+  String get aiChatOpenTooltip => 'Ask the AI assistant';
+
+  @override
+  String get aiChatInputHint => 'Ask about rentals…';
+
+  @override
+  String get aiChatSend => 'Send';
+
+  @override
+  String get aiChatEmptyTitle => 'What kind of home are you looking for?';
+
+  @override
+  String get aiChatSuggestionJp1 =>
+      'A 1LDK within 10 minutes\' walk of Shibuya Station, rent up to 150,000 yen';
+
+  @override
+  String get aiChatSuggestionJp2 =>
+      'A room near Shinjuku Station under 100,000 yen';
+
+  @override
+  String get aiChatSuggestionJp3 => 'A pet-friendly 2LDK in Setagaya';
+
+  @override
+  String get aiChatSuggestionVn1 =>
+      'A 2-bedroom apartment in District 1 under 20 million VND';
+
+  @override
+  String get aiChatSuggestionVn2 => 'A room in Binh Thanh under 5 million VND';
+
+  @override
+  String get aiChatSuggestionVn3 => 'A 3-bedroom apartment in Cau Giay, Hanoi';
+
+  @override
+  String get aiChatThinking => 'The AI is replying…';
+
+  @override
+  String get aiChatErrorTimeout =>
+      'The reply is taking too long. Please try again.';
+
+  @override
+  String get aiChatErrorRateLimited =>
+      'Too many requests. Please try again later.';
+
+  @override
+  String get aiChatErrorServer => 'A server error occurred.';
+
+  @override
+  String get aiChatErrorNetwork => 'A network error occurred.';
+
+  @override
+  String get aiChatRetry => 'Retry';
+
+  @override
+  String aiCardBedrooms(int count) {
+    return '$count bedrooms';
+  }
+
+  @override
+  String jpSearchResultsTitle(int count) {
+    return '$count matching listings';
+  }
+
+  @override
+  String get jpSearchResultsEmpty => 'No listings match these filters.';
+
+  @override
+  String jpStationWalk(String station, int minutes) {
+    return '$minutes min walk from $station';
+  }
 }

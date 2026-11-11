@@ -3790,5 +3790,42 @@
   "legalFooterPrivacy": "Chính sách bảo mật",
   "legalFooterAppiRequest": "Yêu cầu công khai APPI",
   "legalFooterOperator": "Thông tin công ty",
-  "legalFooterCopyright": "© 2026 Synora K.K. All rights reserved."
+  "legalFooterCopyright": "© 2026 Synora K.K. All rights reserved.",
+  "aiChatTitle": "Chat AI",
+  "aiChatOpenTooltip": "Hỏi trợ lý AI",
+  "aiChatInputHint": "Nhập câu hỏi về nhà thuê…",
+  "aiChatSend": "Gửi",
+  "aiChatEmptyTitle": "Bạn muốn tìm nhà thế nào?",
+  "aiChatSuggestionJp1": "Căn 1LDK cách ga Shibuya tối đa 10 phút đi bộ, giá thuê dưới 150.000 yên",
+  "aiChatSuggestionJp2": "Phòng gần ga Shinjuku, giá thuê dưới 100.000 yên",
+  "aiChatSuggestionJp3": "Căn 2LDK ở Setagaya, cho nuôi thú cưng",
+  "aiChatSuggestionVn1": "Tìm căn hộ 2 phòng ngủ ở Quận 1 giá dưới 20 triệu",
+  "aiChatSuggestionVn2": "Phòng trọ ở Bình Thạnh dưới 5 triệu",
+  "aiChatSuggestionVn3": "Căn hộ 3 phòng ngủ ở Cầu Giấy, Hà Nội",
+  "aiChatThinking": "AI đang trả lời…",
+  "aiChatErrorTimeout": "Phản hồi đang chậm. Vui lòng thử lại.",
+  "aiChatErrorRateLimited": "Bạn gửi quá nhiều yêu cầu. Vui lòng thử lại sau.",
+  "aiChatErrorServer": "Máy chủ gặp lỗi.",
+  "aiChatErrorNetwork": "Lỗi kết nối mạng.",
+  "aiChatRetry": "Thử lại",
+  "aiCardBedrooms": "{count} phòng ngủ",
+  "@aiCardBedrooms": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "jpSearchResultsTitle": "{count} tin phù hợp",
+  "@jpSearchResultsTitle": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "jpSearchResultsEmpty": "Không có tin phù hợp với bộ lọc.",
+  "jpStationWalk": "{station} · {minutes} phút đi bộ",
+  "@jpStationWalk": {
+    "placeholders": {
+      "station": { "type": "String" },
+      "minutes": { "type": "int" }
+    }
+  }
 }

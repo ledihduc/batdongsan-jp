@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import 'package:house_booking/core/config/feature_flags.dart';
+import 'package:house_booking/features/ai_chat/ai_chat_screen.dart';
 import 'package:house_booking/core/theme/design_tokens.dart';
 import 'package:house_booking/data/services/preferences_service.dart';
 import 'package:house_booking/features/onboarding/intro_survey_screen.dart';
@@ -592,6 +593,12 @@ GoRouter buildAppRouter(AuthProvider auth, {DelegationProvider? delegation}) {
             child: ReportUnauthorizedOperatorScreen(delegationId: delegationId),
           );
         },
+      ),
+      // ───── Chat AI tìm nhà (plan 20261027-1102 Phase 10, D19): CẢ bản jp và vn —
+      // cố ý đặt NGOÀI khối `if (FeatureFlags.isJapan)` bên dưới.
+      GoRoute(
+        path: '/ai-chat',
+        pageBuilder: (ctx, state) => _fadePage(state: state, child: const AiChatScreen()),
       ),
       // ───── JP market (Phase 01): 内見ステータス screen (deep-link for push notif).
       // Gated behind FeatureFlags.isJapan — redirect to /not-available in VN build.
