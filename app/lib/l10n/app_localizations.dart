@@ -15875,6 +15875,132 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'© 2026 Synora K.K. All rights reserved.'**
   String get legalFooterCopyright;
+
+  /// No description provided for @aiChatTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chat AI'**
+  String get aiChatTitle;
+
+  /// No description provided for @aiChatOpenTooltip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hỏi trợ lý AI'**
+  String get aiChatOpenTooltip;
+
+  /// No description provided for @aiChatInputHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập câu hỏi về nhà thuê…'**
+  String get aiChatInputHint;
+
+  /// No description provided for @aiChatSend.
+  ///
+  /// In vi, this message translates to:
+  /// **'Gửi'**
+  String get aiChatSend;
+
+  /// No description provided for @aiChatEmptyTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn muốn tìm nhà thế nào?'**
+  String get aiChatEmptyTitle;
+
+  /// No description provided for @aiChatSuggestionJp1.
+  ///
+  /// In vi, this message translates to:
+  /// **'Căn 1LDK cách ga Shibuya tối đa 10 phút đi bộ, giá thuê dưới 150.000 yên'**
+  String get aiChatSuggestionJp1;
+
+  /// No description provided for @aiChatSuggestionJp2.
+  ///
+  /// In vi, this message translates to:
+  /// **'Phòng gần ga Shinjuku, giá thuê dưới 100.000 yên'**
+  String get aiChatSuggestionJp2;
+
+  /// No description provided for @aiChatSuggestionJp3.
+  ///
+  /// In vi, this message translates to:
+  /// **'Căn 2LDK ở Setagaya, cho nuôi thú cưng'**
+  String get aiChatSuggestionJp3;
+
+  /// No description provided for @aiChatSuggestionVn1.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tìm căn hộ 2 phòng ngủ ở Quận 1 giá dưới 20 triệu'**
+  String get aiChatSuggestionVn1;
+
+  /// No description provided for @aiChatSuggestionVn2.
+  ///
+  /// In vi, this message translates to:
+  /// **'Phòng trọ ở Bình Thạnh dưới 5 triệu'**
+  String get aiChatSuggestionVn2;
+
+  /// No description provided for @aiChatSuggestionVn3.
+  ///
+  /// In vi, this message translates to:
+  /// **'Căn hộ 3 phòng ngủ ở Cầu Giấy, Hà Nội'**
+  String get aiChatSuggestionVn3;
+
+  /// No description provided for @aiChatThinking.
+  ///
+  /// In vi, this message translates to:
+  /// **'AI đang trả lời…'**
+  String get aiChatThinking;
+
+  /// No description provided for @aiChatErrorTimeout.
+  ///
+  /// In vi, this message translates to:
+  /// **'Phản hồi đang chậm. Vui lòng thử lại.'**
+  String get aiChatErrorTimeout;
+
+  /// No description provided for @aiChatErrorRateLimited.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn gửi quá nhiều yêu cầu. Vui lòng thử lại sau.'**
+  String get aiChatErrorRateLimited;
+
+  /// No description provided for @aiChatErrorServer.
+  ///
+  /// In vi, this message translates to:
+  /// **'Máy chủ gặp lỗi.'**
+  String get aiChatErrorServer;
+
+  /// No description provided for @aiChatErrorNetwork.
+  ///
+  /// In vi, this message translates to:
+  /// **'Lỗi kết nối mạng.'**
+  String get aiChatErrorNetwork;
+
+  /// No description provided for @aiChatRetry.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thử lại'**
+  String get aiChatRetry;
+
+  /// No description provided for @aiCardBedrooms.
+  ///
+  /// In vi, this message translates to:
+  /// **'{count} phòng ngủ'**
+  String aiCardBedrooms(int count);
+
+  /// No description provided for @jpSearchResultsTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'{count} tin phù hợp'**
+  String jpSearchResultsTitle(int count);
+
+  /// No description provided for @jpSearchResultsEmpty.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không có tin phù hợp với bộ lọc.'**
+  String get jpSearchResultsEmpty;
+
+  /// No description provided for @jpStationWalk.
+  ///
+  /// In vi, this message translates to:
+  /// **'{station} · {minutes} phút đi bộ'**
+  String jpStationWalk(String station, int minutes);
 }
 
 class _AppLocalizationsDelegate

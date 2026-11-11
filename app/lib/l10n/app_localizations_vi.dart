@@ -8524,4 +8524,77 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get legalFooterCopyright => '© 2026 Synora K.K. All rights reserved.';
+
+  @override
+  String get aiChatTitle => 'Chat AI';
+
+  @override
+  String get aiChatOpenTooltip => 'Hỏi trợ lý AI';
+
+  @override
+  String get aiChatInputHint => 'Nhập câu hỏi về nhà thuê…';
+
+  @override
+  String get aiChatSend => 'Gửi';
+
+  @override
+  String get aiChatEmptyTitle => 'Bạn muốn tìm nhà thế nào?';
+
+  @override
+  String get aiChatSuggestionJp1 =>
+      'Căn 1LDK cách ga Shibuya tối đa 10 phút đi bộ, giá thuê dưới 150.000 yên';
+
+  @override
+  String get aiChatSuggestionJp2 =>
+      'Phòng gần ga Shinjuku, giá thuê dưới 100.000 yên';
+
+  @override
+  String get aiChatSuggestionJp3 => 'Căn 2LDK ở Setagaya, cho nuôi thú cưng';
+
+  @override
+  String get aiChatSuggestionVn1 =>
+      'Tìm căn hộ 2 phòng ngủ ở Quận 1 giá dưới 20 triệu';
+
+  @override
+  String get aiChatSuggestionVn2 => 'Phòng trọ ở Bình Thạnh dưới 5 triệu';
+
+  @override
+  String get aiChatSuggestionVn3 => 'Căn hộ 3 phòng ngủ ở Cầu Giấy, Hà Nội';
+
+  @override
+  String get aiChatThinking => 'AI đang trả lời…';
+
+  @override
+  String get aiChatErrorTimeout => 'Phản hồi đang chậm. Vui lòng thử lại.';
+
+  @override
+  String get aiChatErrorRateLimited =>
+      'Bạn gửi quá nhiều yêu cầu. Vui lòng thử lại sau.';
+
+  @override
+  String get aiChatErrorServer => 'Máy chủ gặp lỗi.';
+
+  @override
+  String get aiChatErrorNetwork => 'Lỗi kết nối mạng.';
+
+  @override
+  String get aiChatRetry => 'Thử lại';
+
+  @override
+  String aiCardBedrooms(int count) {
+    return '$count phòng ngủ';
+  }
+
+  @override
+  String jpSearchResultsTitle(int count) {
+    return '$count tin phù hợp';
+  }
+
+  @override
+  String get jpSearchResultsEmpty => 'Không có tin phù hợp với bộ lọc.';
+
+  @override
+  String jpStationWalk(String station, int minutes) {
+    return '$station · $minutes phút đi bộ';
+  }
 }

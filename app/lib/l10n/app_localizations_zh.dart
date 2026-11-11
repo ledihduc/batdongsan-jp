@@ -8323,4 +8323,73 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get legalFooterCopyright => '© 2026 Synora K.K. All rights reserved.';
+
+  @override
+  String get aiChatTitle => 'AI聊天';
+
+  @override
+  String get aiChatOpenTooltip => '询问AI助手';
+
+  @override
+  String get aiChatInputHint => '输入关于租房的问题…';
+
+  @override
+  String get aiChatSend => '发送';
+
+  @override
+  String get aiChatEmptyTitle => '您想找什么样的房子？';
+
+  @override
+  String get aiChatSuggestionJp1 => '涩谷站步行10分钟以内、租金15万日元以下的1LDK';
+
+  @override
+  String get aiChatSuggestionJp2 => '新宿站附近、租金10万日元以下的房间';
+
+  @override
+  String get aiChatSuggestionJp3 => '世田谷区可养宠物的2LDK';
+
+  @override
+  String get aiChatSuggestionVn1 => '胡志明市第一郡两居室公寓，2000万越南盾以下';
+
+  @override
+  String get aiChatSuggestionVn2 => '平盛郡500万越南盾以下的出租房';
+
+  @override
+  String get aiChatSuggestionVn3 => '河内纸桥郡三居室公寓';
+
+  @override
+  String get aiChatThinking => 'AI正在回复…';
+
+  @override
+  String get aiChatErrorTimeout => '回复时间较长，请重试。';
+
+  @override
+  String get aiChatErrorRateLimited => '请求过多，请稍后再试。';
+
+  @override
+  String get aiChatErrorServer => '服务器发生错误。';
+
+  @override
+  String get aiChatErrorNetwork => '网络连接错误。';
+
+  @override
+  String get aiChatRetry => '重试';
+
+  @override
+  String aiCardBedrooms(int count) {
+    return '$count间卧室';
+  }
+
+  @override
+  String jpSearchResultsTitle(int count) {
+    return '$count条符合条件的房源';
+  }
+
+  @override
+  String get jpSearchResultsEmpty => '没有符合筛选条件的房源。';
+
+  @override
+  String jpStationWalk(String station, int minutes) {
+    return '$station 步行$minutes分钟';
+  }
 }
