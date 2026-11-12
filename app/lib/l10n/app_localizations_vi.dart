@@ -8597,4 +8597,66 @@ class AppLocalizationsVi extends AppLocalizations {
   String jpStationWalk(String station, int minutes) {
     return '$station · $minutes phút đi bộ';
   }
+
+  @override
+  String get aiConfirmTitle => 'Xác nhận yêu cầu từ trợ lý AI';
+
+  @override
+  String get aiConfirmWarning =>
+      'Nếu bạn không yêu cầu việc này, đừng xác nhận.';
+
+  @override
+  String get aiConfirmButton => 'Xác nhận';
+
+  @override
+  String get aiConfirmCancel => 'Huỷ';
+
+  @override
+  String get aiConfirmLoginRequired => 'Vui lòng đăng nhập để xác nhận.';
+
+  @override
+  String get aiConfirmLoginButton => 'Đăng nhập';
+
+  @override
+  String get aiConfirmReopenAfterLogin =>
+      'Sau khi đăng nhập, hãy mở lại liên kết này.';
+
+  @override
+  String get aiConfirmDoneFavorite => 'Đã lưu vào yêu thích.';
+
+  @override
+  String get aiConfirmDoneViewing =>
+      'Đã gửi yêu cầu xem nhà. Vui lòng chờ người phụ trách liên hệ.';
+
+  @override
+  String get aiConfirmDoneGeneric => 'Đã thực hiện.';
+
+  @override
+  String get aiConfirmErrorExpired =>
+      'Liên kết đã hết hạn. Hãy nhờ AI tạo lại.';
+
+  @override
+  String get aiConfirmErrorUsed => 'Yêu cầu này đã được xử lý.';
+
+  @override
+  String get aiConfirmErrorForbidden =>
+      'Yêu cầu được tạo bởi tài khoản khác nên bạn không thể xác nhận.';
+
+  @override
+  String get aiConfirmErrorNotFound => 'Không tìm thấy yêu cầu.';
+
+  @override
+  String get aiConfirmErrorInvalid =>
+      'Không thực hiện được vì không đáp ứng điều kiện.';
+
+  @override
+  String get aiConfirmSlots => 'Thời gian mong muốn';
+
+  @override
+  String aiConfirmExpiresAt(String time) {
+    return 'Hết hạn: $time';
+  }
+
+  @override
+  String get aiConfirmNote => 'Ghi chú (sẽ gửi cho người phụ trách)';
 }

@@ -16001,6 +16001,114 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'{station} · {minutes} phút đi bộ'**
   String jpStationWalk(String station, int minutes);
+
+  /// No description provided for @aiConfirmTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Xác nhận yêu cầu từ trợ lý AI'**
+  String get aiConfirmTitle;
+
+  /// No description provided for @aiConfirmWarning.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nếu bạn không yêu cầu việc này, đừng xác nhận.'**
+  String get aiConfirmWarning;
+
+  /// No description provided for @aiConfirmButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Xác nhận'**
+  String get aiConfirmButton;
+
+  /// No description provided for @aiConfirmCancel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Huỷ'**
+  String get aiConfirmCancel;
+
+  /// No description provided for @aiConfirmLoginRequired.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vui lòng đăng nhập để xác nhận.'**
+  String get aiConfirmLoginRequired;
+
+  /// No description provided for @aiConfirmLoginButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng nhập'**
+  String get aiConfirmLoginButton;
+
+  /// No description provided for @aiConfirmReopenAfterLogin.
+  ///
+  /// In vi, this message translates to:
+  /// **'Sau khi đăng nhập, hãy mở lại liên kết này.'**
+  String get aiConfirmReopenAfterLogin;
+
+  /// No description provided for @aiConfirmDoneFavorite.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã lưu vào yêu thích.'**
+  String get aiConfirmDoneFavorite;
+
+  /// No description provided for @aiConfirmDoneViewing.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã gửi yêu cầu xem nhà. Vui lòng chờ người phụ trách liên hệ.'**
+  String get aiConfirmDoneViewing;
+
+  /// No description provided for @aiConfirmDoneGeneric.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã thực hiện.'**
+  String get aiConfirmDoneGeneric;
+
+  /// No description provided for @aiConfirmErrorExpired.
+  ///
+  /// In vi, this message translates to:
+  /// **'Liên kết đã hết hạn. Hãy nhờ AI tạo lại.'**
+  String get aiConfirmErrorExpired;
+
+  /// No description provided for @aiConfirmErrorUsed.
+  ///
+  /// In vi, this message translates to:
+  /// **'Yêu cầu này đã được xử lý.'**
+  String get aiConfirmErrorUsed;
+
+  /// No description provided for @aiConfirmErrorForbidden.
+  ///
+  /// In vi, this message translates to:
+  /// **'Yêu cầu được tạo bởi tài khoản khác nên bạn không thể xác nhận.'**
+  String get aiConfirmErrorForbidden;
+
+  /// No description provided for @aiConfirmErrorNotFound.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tìm thấy yêu cầu.'**
+  String get aiConfirmErrorNotFound;
+
+  /// No description provided for @aiConfirmErrorInvalid.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không thực hiện được vì không đáp ứng điều kiện.'**
+  String get aiConfirmErrorInvalid;
+
+  /// No description provided for @aiConfirmSlots.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thời gian mong muốn'**
+  String get aiConfirmSlots;
+
+  /// No description provided for @aiConfirmExpiresAt.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hết hạn: {time}'**
+  String aiConfirmExpiresAt(String time);
+
+  /// No description provided for @aiConfirmNote.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ghi chú (sẽ gửi cho người phụ trách)'**
+  String get aiConfirmNote;
 }
 
 class _AppLocalizationsDelegate

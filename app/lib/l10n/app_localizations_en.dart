@@ -8623,4 +8623,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String jpStationWalk(String station, int minutes) {
     return '$minutes min walk from $station';
   }
+
+  @override
+  String get aiConfirmTitle => 'Confirm the AI assistant\'s request';
+
+  @override
+  String get aiConfirmWarning => 'If you did not ask for this, do not confirm.';
+
+  @override
+  String get aiConfirmButton => 'Confirm';
+
+  @override
+  String get aiConfirmCancel => 'Cancel';
+
+  @override
+  String get aiConfirmLoginRequired => 'Please log in to confirm.';
+
+  @override
+  String get aiConfirmLoginButton => 'Log in';
+
+  @override
+  String get aiConfirmReopenAfterLogin =>
+      'After logging in, open this link again.';
+
+  @override
+  String get aiConfirmDoneFavorite => 'Saved to favorites.';
+
+  @override
+  String get aiConfirmDoneViewing =>
+      'Viewing requested. Please wait for the agent to contact you.';
+
+  @override
+  String get aiConfirmDoneGeneric => 'Done.';
+
+  @override
+  String get aiConfirmErrorExpired =>
+      'This link has expired. Please ask the AI again.';
+
+  @override
+  String get aiConfirmErrorUsed => 'This request has already been processed.';
+
+  @override
+  String get aiConfirmErrorForbidden =>
+      'This request was created by another account, so you cannot confirm it.';
+
+  @override
+  String get aiConfirmErrorNotFound => 'Request not found.';
+
+  @override
+  String get aiConfirmErrorInvalid =>
+      'Could not run because the conditions were not met.';
+
+  @override
+  String get aiConfirmSlots => 'Preferred times';
+
+  @override
+  String aiConfirmExpiresAt(String time) {
+    return 'Expires: $time';
+  }
+
+  @override
+  String get aiConfirmNote => 'Note (sent to the agent)';
 }

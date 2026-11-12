@@ -4,6 +4,8 @@
 /// Phase 08), không dùng `JpListingSummary` vì bản vn không có field JP.
 library;
 
+import 'package:house_booking/data/models/ai/ai_pending_action_models.dart';
+
 /// Một lượt hội thoại gửi lên backend (`role` = `user` | `assistant`).
 class AiChatTurn {
   const AiChatTurn({required this.role, required this.content});
@@ -57,13 +59,22 @@ class AiListingCard {
       );
 }
 
-/// Câu trả lời một lượt chat. `pending_actions` / `login_required` (Phase 09) dùng ở Phase 11.
+/// Câu trả lời một lượt chat. [pendingActions] = thẻ chờ xác nhận, [loginRequired] = khách gọi action ghi
+/// (Phase 09 backend, render ở Phase 11). Thiếu field ⇒ rỗng / false.
 class AiChatReply {
-  const AiChatReply({required this.reply, required this.listings, required this.toolRounds});
+  const AiChatReply({
+    required this.reply,
+    required this.listings,
+    required this.toolRounds,
+    this.pendingActions = const [],
+    this.loginRequired = false,
+  });
 
   final String reply;
   final List<AiListingCard> listings;
   final int toolRounds;
+  final List<AiPendingAction> pendingActions;
+  final bool loginRequired;
 
   factory AiChatReply.fromJson(Map<String, dynamic> json) => AiChatReply(
         reply: json['reply'] as String? ?? '',
@@ -73,5 +84,12 @@ class AiChatReply {
             .map(AiListingCard.fromJson)
             .toList(),
         toolRounds: (json['tool_rounds'] as num?)?.toInt() ?? 0,
+        pendingActions: (json['pending_actions'] as List<dynamic>? ?? const [])
+            .whereType<Map<String, dynamic>>()
+            // Thiếu token / hạn dùng hỏng ⇒ bỏ thẻ đó, giữ câu trả lời (không ném lỗi cả lượt).
+            .where((e) => e['token'] is String && DateTime.tryParse('${e['expires_at']}') != null)
+            .map(AiPendingAction.fromJson)
+            .toList(),
+        loginRequired: json['login_required'] as bool? ?? false,
       );
 }

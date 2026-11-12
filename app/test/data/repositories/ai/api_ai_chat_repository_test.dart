@@ -81,4 +81,37 @@ void main() {
       throwsA(isA<ApiException>().having((e) => e.statusCode, 'statusCode', 429)),
     );
   });
+
+  test('ai_chat_reply_from_json_parses_pending_actions_and_login_required', () {
+    // Arrange
+    final json = {
+      'reply': '確認してください',
+      'listings': [],
+      'tool_rounds': 1,
+      'pending_actions': [
+        {'token': 'T' * 43, 'action': 'save_favorite', 'title': 'お気に入りに保存', 'params': {'listing_id': 1},
+         'expires_at': '2026-11-12T03:15:00Z'},
+        {'action': 'save_favorite', 'title': 'no token', 'params': {}, 'expires_at': '2026-11-12T03:15:00Z'},
+        {'token': 'U' * 43, 'action': 'save_favorite', 'title': 'bad date', 'params': {}, 'expires_at': 'soon'},
+      ],
+      'login_required': true,
+    };
+    // Act
+    final r = AiChatReply.fromJson(json);
+    // Assert
+    expect(r.pendingActions, hasLength(1));
+    expect(r.pendingActions.single.token, 'T' * 43);
+    expect(r.pendingActions.single.params['listing_id'], 1);
+    expect(r.pendingActions.single.expiresAt, DateTime.utc(2026, 11, 12, 3, 15));
+    expect(r.loginRequired, isTrue);
+    expect(r.reply, '確認してください');
+  });
+
+  test('ai_chat_reply_from_json_without_action_fields_defaults_empty_and_false', () {
+    // Arrange + Act
+    final r = AiChatReply.fromJson({'reply': 'ok', 'listings': [], 'tool_rounds': 0});
+    // Assert
+    expect(r.pendingActions, isEmpty);
+    expect(r.loginRequired, isFalse);
+  });
 }

@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:house_booking/data/models/ai/ai_chat_models.dart';
+import 'package:house_booking/data/models/ai/ai_pending_action_models.dart';
 import 'package:house_booking/data/services/api_client.dart';
 import 'package:house_booking/features/ai_chat/ai_chat_controller.dart';
 
@@ -116,5 +117,33 @@ void main() {
     pending.complete(const AiChatReply(reply: 'ok', listings: [], toolRounds: 0));
     // Assert
     await expectLater(future, completes);
+  });
+
+  test('ai_chat_controller_reply_with_pending_actions_attaches_cards', () async {
+    // Arrange
+    final pending = AiPendingAction(
+      token: 'T' * 43, action: 'save_favorite', title: 'お気に入りに保存', params: const {}, expiresAt: DateTime.utc(2026, 10, 28),
+    );
+    final c = AiChatController(FakeAiChatRepository([
+      AiChatReply(reply: '確認してください', listings: const [], toolRounds: 1, pendingActions: [pending]),
+    ]));
+    // Act
+    await c.send('保存して');
+    // Assert
+    expect(c.bubbles.last.pendingActions, hasLength(1));
+    expect(c.bubbles.last.pendingActions.single.token, 'T' * 43);
+    expect(c.bubbles.last.loginRequired, isFalse);
+  });
+
+  test('ai_chat_controller_login_required_sets_flag_on_bubble', () async {
+    // Arrange
+    final c = AiChatController(FakeAiChatRepository([
+      const AiChatReply(reply: 'ログインしてください', listings: [], toolRounds: 1, loginRequired: true),
+    ]));
+    // Act
+    await c.send('保存して');
+    // Assert
+    expect(c.bubbles.last.loginRequired, isTrue);
+    expect(c.bubbles.last.pendingActions, isEmpty);
   });
 }

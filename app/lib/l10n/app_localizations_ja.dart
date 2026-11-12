@@ -8426,4 +8426,60 @@ class AppLocalizationsJa extends AppLocalizations {
   String jpStationWalk(String station, int minutes) {
     return '$station 徒歩$minutes分';
   }
+
+  @override
+  String get aiConfirmTitle => 'AIアシスタントからの依頼の確認';
+
+  @override
+  String get aiConfirmWarning => '心当たりがない場合は確認しないでください。';
+
+  @override
+  String get aiConfirmButton => '確認する';
+
+  @override
+  String get aiConfirmCancel => 'キャンセル';
+
+  @override
+  String get aiConfirmLoginRequired => '確認するにはログインしてください。';
+
+  @override
+  String get aiConfirmLoginButton => 'ログイン';
+
+  @override
+  String get aiConfirmReopenAfterLogin => 'ログイン後、もう一度このリンクを開いてください。';
+
+  @override
+  String get aiConfirmDoneFavorite => 'お気に入りに保存しました。';
+
+  @override
+  String get aiConfirmDoneViewing => '内見を申し込みました。担当者からの連絡をお待ちください。';
+
+  @override
+  String get aiConfirmDoneGeneric => '実行しました。';
+
+  @override
+  String get aiConfirmErrorExpired => 'このリンクは有効期限が切れています。AIにもう一度依頼してください。';
+
+  @override
+  String get aiConfirmErrorUsed => 'この依頼はすでに処理されています。';
+
+  @override
+  String get aiConfirmErrorForbidden => 'この依頼は別のアカウントで作成されたため確認できません。';
+
+  @override
+  String get aiConfirmErrorNotFound => '依頼が見つかりません。';
+
+  @override
+  String get aiConfirmErrorInvalid => '条件を満たしていないため実行できませんでした。';
+
+  @override
+  String get aiConfirmSlots => '希望日時';
+
+  @override
+  String aiConfirmExpiresAt(String time) {
+    return '有効期限: $time';
+  }
+
+  @override
+  String get aiConfirmNote => 'メモ（担当者に送信されます）';
 }

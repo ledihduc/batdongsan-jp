@@ -3827,5 +3827,28 @@
       "station": { "type": "String" },
       "minutes": { "type": "int" }
     }
-  }
+  },
+  "aiConfirmTitle": "Xác nhận yêu cầu từ trợ lý AI",
+  "aiConfirmWarning": "Nếu bạn không yêu cầu việc này, đừng xác nhận.",
+  "aiConfirmButton": "Xác nhận",
+  "aiConfirmCancel": "Huỷ",
+  "aiConfirmLoginRequired": "Vui lòng đăng nhập để xác nhận.",
+  "aiConfirmLoginButton": "Đăng nhập",
+  "aiConfirmReopenAfterLogin": "Sau khi đăng nhập, hãy mở lại liên kết này.",
+  "aiConfirmDoneFavorite": "Đã lưu vào yêu thích.",
+  "aiConfirmDoneViewing": "Đã gửi yêu cầu xem nhà. Vui lòng chờ người phụ trách liên hệ.",
+  "aiConfirmDoneGeneric": "Đã thực hiện.",
+  "aiConfirmErrorExpired": "Liên kết đã hết hạn. Hãy nhờ AI tạo lại.",
+  "aiConfirmErrorUsed": "Yêu cầu này đã được xử lý.",
+  "aiConfirmErrorForbidden": "Yêu cầu được tạo bởi tài khoản khác nên bạn không thể xác nhận.",
+  "aiConfirmErrorNotFound": "Không tìm thấy yêu cầu.",
+  "aiConfirmErrorInvalid": "Không thực hiện được vì không đáp ứng điều kiện.",
+  "aiConfirmSlots": "Thời gian mong muốn",
+  "aiConfirmExpiresAt": "Hết hạn: {time}",
+  "@aiConfirmExpiresAt": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "aiConfirmNote": "Ghi chú (sẽ gửi cho người phụ trách)"
 }
