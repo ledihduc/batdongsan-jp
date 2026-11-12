@@ -48,7 +48,8 @@ class AiChatController extends ChangeNotifier {
   static const maxTurnChars = 2000;
 
   final IAiChatRepository _repo;
-  final String lang;
+  /// Ngôn ngữ gửi kèm mỗi lượt; màn chat cập nhật khi khách đổi ngôn ngữ giữa chừng (Phase 14).
+  String lang;
   final List<AiChatBubble> _bubbles = [];
   AiChatStatus _status = AiChatStatus.idle;
   AiChatErrorKind? _errorKind;

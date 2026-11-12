@@ -316,7 +316,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: [
         // PermissionService is placed first so downstream providers can read it.
         Provider<PermissionService>.value(value: _permissionService),
-        // i18n P0 — ngôn ngữ app (vi/en/zh), nạp lựa chọn đã lưu.
+        // Ngôn ngữ app (vi/en/zh/ja): mặc định theo thị trường, rồi nạp lựa chọn đã lưu.
         ChangeNotifierProvider(create: (_) => LocaleProvider()..load()),
         // PermissionAnalyticsUploader is exposed so RootGate can pass it to
         // attachFcm for post-login flush triggering.

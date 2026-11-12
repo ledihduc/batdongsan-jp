@@ -10,9 +10,9 @@ class UserPrefsService {
 
   static const _modeKey = 'last_active_mode';
   static const _fabPosKey = 'post_fab_pos'; // "dx,dy" (góc trái-trên, px)
-  static const _langKey = 'app_lang'; // 'vi' | 'en' | 'zh'
+  static const _langKey = 'app_lang'; // 'vi' | 'en' | 'zh' | 'ja'
 
-  /// Mã ngôn ngữ đã chọn ('vi'|'en'|'zh') hoặc null (dùng mặc định 'vi').
+  /// Mã ngôn ngữ đã chọn ('vi'|'en'|'zh'|'ja') hoặc null (dùng mặc định theo thị trường — `LocaleProvider.initialLocaleFor`).
   Future<String?> getLang() async {
     try {
       return await backend.readToken(_langKey);
