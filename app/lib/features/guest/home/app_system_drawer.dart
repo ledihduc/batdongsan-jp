@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:house_booking/core/config/brand.dart';
 import 'package:house_booking/core/widgets/ds.dart';
+import 'package:house_booking/core/widgets/language_picker_sheet.dart';
 import 'package:house_booking/data/models/user_preferences.dart'
     show kWorldConstruction;
 import 'package:house_booking/features/auth/guest_gate.dart';
@@ -16,6 +17,7 @@ import 'package:house_booking/features/notifications/notifications_screen.dart';
 import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/providers/auth_provider.dart';
 import 'package:house_booking/providers/chat_provider.dart';
+import 'package:house_booking/providers/locale_provider.dart';
 import 'package:house_booking/providers/notification_provider.dart';
 
 /// Menu HỆ THỐNG (hamburger bên trái) — điều hướng ĐỔI THEO THẾ GIỚI đang xem
@@ -218,7 +220,7 @@ class AppSystemDrawer extends StatelessWidget {
         Icons.holiday_village_outlined,
         l.drawerHousesForRent,
         onTap: () =>
-            _go(context, const PropertyListingScreen(title: 'Nhà cho thuê')),
+            _go(context, PropertyListingScreen(title: l.drawerHousesForRent)),
       ),
       _item(
         context,
@@ -226,8 +228,8 @@ class AppSystemDrawer extends StatelessWidget {
         l.drawerIndustrialRealEstate,
         onTap: () => _go(
           context,
-          const PropertyListingScreen(
-            title: 'Mặt bằng kinh doanh',
+          PropertyListingScreen(
+            title: l.drawerBusinessPremises,
             groupKey: 'business',
           ),
         ),
@@ -253,6 +255,13 @@ class AppSystemDrawer extends StatelessWidget {
           l.drawerBecomeHost,
           onTap: () => _go(context, const BecomeHostIntroScreen()),
         ),
+      // Khách đổi ngôn ngữ ngay ở trang chủ (Phase 14, S13). Sheet mở đè lên drawer; chọn xong cả app rebuild.
+      _item(
+        context,
+        Icons.language,
+        '${l.language} · ${appLanguageName(context.watch<LocaleProvider>().locale.languageCode)}',
+        onTap: () => showLanguagePickerSheet(context),
+      ),
     ];
   }
 

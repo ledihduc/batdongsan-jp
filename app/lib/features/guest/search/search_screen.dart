@@ -122,7 +122,7 @@ class _SearchScreenState extends State<SearchScreen> {
           padding: const EdgeInsets.all(12),
           child: TextButton.icon(
             icon: const Icon(Icons.bed_outlined),
-            label: const Text('短期滞在 · 時間・一泊・日単位'),
+            label: Text(AppLocalizations.of(context).searchShortStayCta),
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => const ShortStaySearchScreen()),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 
 /// Cờ "Uy tín" badge — overlaid on house card / detail images when
 /// `house.isTrusted == true`.
@@ -28,8 +29,9 @@ class DsTrustedBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Semantics(
-      label: 'Tin uy tín',
+      label: l.trustedBadgeSemantic,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: _showLabel ? 7 : 5,
@@ -57,9 +59,9 @@ class DsTrustedBadge extends StatelessWidget {
             ),
             if (_showLabel) ...[
               const SizedBox(width: 4),
-              const Text(
-                'Uy tín',
-                style: TextStyle(
+              Text(
+                l.trustedBadgeLabel,
+                style: const TextStyle(
                   color: _labelColor,
                   fontSize: 10,
                   fontWeight: FontWeight.w700,

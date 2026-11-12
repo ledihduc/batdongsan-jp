@@ -1,4 +1,5 @@
 import 'package:house_booking/core/utils/formatters.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 
 class HouseModel {
   final int? id;
@@ -203,6 +204,16 @@ class HouseModel {
   /// đây hardcode "/tháng" hoặc tự format triệu (sai với tin bán tiền tỷ).
   String get priceCompactLabel =>
       '${PriceFormat.compact(price)}$pricePeriodSuffix';
+
+  /// Bản theo ngôn ngữ giao diện của [priceLabel] — dùng trên luồng demo (Phase 12, F-2).
+  String priceLabelOf(AppLocalizations l) => isForSale ? l.hmPriceSale : l.hmPriceRent;
+
+  /// Bản theo ngôn ngữ giao diện của [pricePeriodSuffix]: thuê ⇒ "/月"·"/tháng"·"/month", bán ⇒ ''.
+  String periodSuffixOf(AppLocalizations l) => isForSale ? '' : l.hmPerMonth;
+
+  /// Bản theo ngôn ngữ của [priceCompactLabel]: số tiền theo thị trường, hậu tố theo ngôn ngữ.
+  String priceCompactLabelOf(AppLocalizations l, {bool? japan}) =>
+      '${PriceFormat.compact(price, japan: japan)}${periodSuffixOf(l)}';
 
   factory HouseModel.fromMap(
     Map<String, dynamic> map, {

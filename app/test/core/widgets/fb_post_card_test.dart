@@ -9,11 +9,18 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/core/widgets/fb_post_card.dart';
 
 void main() {
   Future<void> dung(WidgetTester t, Widget w) => t.pumpWidget(
-        MaterialApp(home: Scaffold(body: SingleChildScrollView(child: w))),
+        MaterialApp(
+          // Widget dùng AppLocalizations (Phase 12): bơm delegate + ghim vi như pumpApp.
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale('vi'),
+          home: Scaffold(body: SingleChildScrollView(child: w)),
+        ),
       );
 
   group('Nội dung bài', () {

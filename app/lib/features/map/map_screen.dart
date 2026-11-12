@@ -608,7 +608,7 @@ class _MapScreenState extends State<MapScreen> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      h.priceCompactLabel,
+                      h.priceCompactLabelOf(AppLocalizations.of(context)),
                       style: const TextStyle(
                         color: HD.accent,
                         fontWeight: FontWeight.bold,

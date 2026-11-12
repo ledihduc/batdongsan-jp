@@ -1811,7 +1811,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String hdPricePerMonth(Object s) {
-    return '$s 百万/月';
+    return '$s 百万越南盾/月';
   }
 
   @override
@@ -8448,4 +8448,122 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aiConfirmNote => '备注（将发送给负责人）';
+
+  @override
+  String get hmPriceRent => '租金';
+
+  @override
+  String get hmPriceSale => '售价';
+
+  @override
+  String get hmPerMonth => '/月';
+
+  @override
+  String get shellNavActivity => '动态';
+
+  @override
+  String get drawerBusinessPremises => '商铺';
+
+  @override
+  String get trustedBadgeSemantic => '可信房源';
+
+  @override
+  String get trustedBadgeLabel => '可信';
+
+  @override
+  String get fbPostOptions => '选项';
+
+  @override
+  String fbPostCommentCount(int count) {
+    return '$count 条评论';
+  }
+
+  @override
+  String get fbPostLike => '点赞';
+
+  @override
+  String get fbPostComposerHint => '你在想什么？';
+
+  @override
+  String get hdUnitHour => '小时';
+
+  @override
+  String get hdUnitNight => '晚';
+
+  @override
+  String get hdUnitDay => '天';
+
+  @override
+  String get routerInvalidHouseId => '房源编号无效';
+
+  @override
+  String get routerPageNotFound => '页面不存在';
+
+  @override
+  String get jpInfoTitle => '房源信息';
+
+  @override
+  String jpBuildingAgeValue(int n) {
+    return '房龄$n年';
+  }
+
+  @override
+  String get jpStructureLabel => '结构';
+
+  @override
+  String jpFloorValue(int floor) {
+    return '$floor楼';
+  }
+
+  @override
+  String jpFloorOfTotal(int floor, int total) {
+    return '$floor楼/共$total层';
+  }
+
+  @override
+  String get jpOrientationLabel => '朝向';
+
+  @override
+  String get jpTransitTitle => '交通';
+
+  @override
+  String jpStationOnLine(String line, String station) {
+    return '$line $station站';
+  }
+
+  @override
+  String jpWalkMinutes(int min) {
+    return '步行$min分钟';
+  }
+
+  @override
+  String get jpTermsTitle => '租赁条件';
+
+  @override
+  String jpMonthsOfRent(String n) {
+    return '$n个月租金';
+  }
+
+  @override
+  String get jpTaxIncluded => '（含税）';
+
+  @override
+  String get jpGuaranteeCompanyFee => '担保公司费用';
+
+  @override
+  String get jpFacetPreferences => '偏好条件';
+
+  @override
+  String jpBuildingAgeWithin(int n) {
+    return '房龄$n年以内';
+  }
+
+  @override
+  String get routerNotAvailableTitle => '此功能不可用';
+
+  @override
+  String get routerNotAvailableJpBody => '此功能在日本市场不可用。';
+
+  @override
+  String get searchShortStayCta => '短租 · 按小时、按晚、按天';
 }

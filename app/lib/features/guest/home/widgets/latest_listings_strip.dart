@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/core/config/api_config.dart';
 import 'package:house_booking/core/widgets/ds.dart';
 import 'package:house_booking/data/models/house_model.dart';
@@ -105,7 +106,7 @@ class _LatestListingsStripState extends State<LatestListingsStrip> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    h.priceCompactLabel,
+                    h.priceCompactLabelOf(AppLocalizations.of(context)),
                     style: HD.bodyBold(size: 14, color: HD.accent),
                   ),
                 ],

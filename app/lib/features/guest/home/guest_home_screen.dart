@@ -237,8 +237,8 @@ class _GuestHomeScreenState extends State<GuestHomeScreen> {
                 final mode = user.laSale
                     ? 'Sale'
                     : (user.role == 'host' || user.accountType == 'owner')
-                    ? 'オーナー'
-                    : '入居希望者';
+                    ? l.profModeHost
+                    : l.profModeGuest;
                 final avatar = user.avatarPath.isNotEmpty
                     ? CachedNetworkImageProvider(
                         user.avatarPath.startsWith('http')
@@ -756,7 +756,7 @@ class _GuestHomeScreenState extends State<GuestHomeScreen> {
           child: Row(
             children: [
               Text(
-                house.priceCompactLabel,
+                house.priceCompactLabelOf(AppLocalizations.of(context)),
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,

@@ -3850,5 +3850,65 @@
       "time": { "type": "String" }
     }
   },
-  "aiConfirmNote": "Ghi chú (sẽ gửi cho người phụ trách)"
+  "aiConfirmNote": "Ghi chú (sẽ gửi cho người phụ trách)",
+  "hmPriceRent": "Giá thuê",
+  "hmPriceSale": "Giá bán",
+  "hmPerMonth": "/tháng",
+  "shellNavActivity": "Hoạt động",
+  "drawerBusinessPremises": "Mặt bằng kinh doanh",
+  "trustedBadgeSemantic": "Tin uy tín",
+  "trustedBadgeLabel": "Uy tín",
+  "fbPostOptions": "Tuỳ chọn",
+  "fbPostCommentCount": "{count} bình luận",
+  "@fbPostCommentCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "fbPostLike": "Thích",
+  "fbPostComposerHint": "Bạn đang nghĩ gì?",
+  "hdUnitHour": "giờ",
+  "hdUnitNight": "đêm",
+  "hdUnitDay": "ngày",
+  "routerInvalidHouseId": "Mã tin không hợp lệ",
+  "routerPageNotFound": "Không tìm thấy trang",
+  "jpInfoTitle": "Thông tin bất động sản",
+  "jpBuildingAgeValue": "{n} năm",
+  "@jpBuildingAgeValue": {
+    "placeholders": { "n": { "type": "int" } }
+  },
+  "jpStructureLabel": "Kết cấu",
+  "jpFloorValue": "Tầng {floor}",
+  "@jpFloorValue": {
+    "placeholders": { "floor": { "type": "int" } }
+  },
+  "jpFloorOfTotal": "Tầng {floor}/{total}",
+  "@jpFloorOfTotal": {
+    "placeholders": { "floor": { "type": "int" }, "total": { "type": "int" } }
+  },
+  "jpOrientationLabel": "Hướng",
+  "jpTransitTitle": "Giao thông",
+  "jpStationOnLine": "Ga {station} ({line})",
+  "@jpStationOnLine": {
+    "placeholders": { "line": { "type": "String" }, "station": { "type": "String" } }
+  },
+  "jpWalkMinutes": "{min} phút đi bộ",
+  "@jpWalkMinutes": {
+    "placeholders": { "min": { "type": "int" } }
+  },
+  "jpTermsTitle": "Điều kiện thuê",
+  "jpMonthsOfRent": "{n} tháng tiền thuê",
+  "@jpMonthsOfRent": {
+    "placeholders": { "n": { "type": "String" } }
+  },
+  "jpTaxIncluded": " (đã gồm thuế)",
+  "jpGuaranteeCompanyFee": "Phí công ty bảo lãnh",
+  "jpFacetPreferences": "Điều kiện ưu tiên",
+  "jpBuildingAgeWithin": "Xây trong vòng {n} năm",
+  "@jpBuildingAgeWithin": {
+    "placeholders": { "n": { "type": "int" } }
+  },
+  "routerNotAvailableTitle": "Tính năng này không khả dụng",
+  "routerNotAvailableJpBody": "Tính năng này không khả dụng ở thị trường Nhật Bản.",
+  "searchShortStayCta": "Lưu trú ngắn hạn · theo giờ, đêm, ngày"
 }

@@ -8659,4 +8659,123 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aiConfirmNote => 'Ghi chú (sẽ gửi cho người phụ trách)';
+
+  @override
+  String get hmPriceRent => 'Giá thuê';
+
+  @override
+  String get hmPriceSale => 'Giá bán';
+
+  @override
+  String get hmPerMonth => '/tháng';
+
+  @override
+  String get shellNavActivity => 'Hoạt động';
+
+  @override
+  String get drawerBusinessPremises => 'Mặt bằng kinh doanh';
+
+  @override
+  String get trustedBadgeSemantic => 'Tin uy tín';
+
+  @override
+  String get trustedBadgeLabel => 'Uy tín';
+
+  @override
+  String get fbPostOptions => 'Tuỳ chọn';
+
+  @override
+  String fbPostCommentCount(int count) {
+    return '$count bình luận';
+  }
+
+  @override
+  String get fbPostLike => 'Thích';
+
+  @override
+  String get fbPostComposerHint => 'Bạn đang nghĩ gì?';
+
+  @override
+  String get hdUnitHour => 'giờ';
+
+  @override
+  String get hdUnitNight => 'đêm';
+
+  @override
+  String get hdUnitDay => 'ngày';
+
+  @override
+  String get routerInvalidHouseId => 'Mã tin không hợp lệ';
+
+  @override
+  String get routerPageNotFound => 'Không tìm thấy trang';
+
+  @override
+  String get jpInfoTitle => 'Thông tin bất động sản';
+
+  @override
+  String jpBuildingAgeValue(int n) {
+    return '$n năm';
+  }
+
+  @override
+  String get jpStructureLabel => 'Kết cấu';
+
+  @override
+  String jpFloorValue(int floor) {
+    return 'Tầng $floor';
+  }
+
+  @override
+  String jpFloorOfTotal(int floor, int total) {
+    return 'Tầng $floor/$total';
+  }
+
+  @override
+  String get jpOrientationLabel => 'Hướng';
+
+  @override
+  String get jpTransitTitle => 'Giao thông';
+
+  @override
+  String jpStationOnLine(String line, String station) {
+    return 'Ga $station ($line)';
+  }
+
+  @override
+  String jpWalkMinutes(int min) {
+    return '$min phút đi bộ';
+  }
+
+  @override
+  String get jpTermsTitle => 'Điều kiện thuê';
+
+  @override
+  String jpMonthsOfRent(String n) {
+    return '$n tháng tiền thuê';
+  }
+
+  @override
+  String get jpTaxIncluded => ' (đã gồm thuế)';
+
+  @override
+  String get jpGuaranteeCompanyFee => 'Phí công ty bảo lãnh';
+
+  @override
+  String get jpFacetPreferences => 'Điều kiện ưu tiên';
+
+  @override
+  String jpBuildingAgeWithin(int n) {
+    return 'Xây trong vòng $n năm';
+  }
+
+  @override
+  String get routerNotAvailableTitle => 'Tính năng này không khả dụng';
+
+  @override
+  String get routerNotAvailableJpBody =>
+      'Tính năng này không khả dụng ở thị trường Nhật Bản.';
+
+  @override
+  String get searchShortStayCta => 'Lưu trú ngắn hạn · theo giờ, đêm, ngày';
 }

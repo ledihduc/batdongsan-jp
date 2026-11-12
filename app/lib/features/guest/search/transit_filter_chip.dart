@@ -6,6 +6,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:house_booking/core/widgets/ds.dart';
 import 'package:house_booking/data/models/jp/jp_station.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 
 /// A chip that shows a selected station and allows removal.
 class TransitFilterChip extends StatelessWidget {
@@ -39,7 +40,7 @@ class TransitFilterChip extends StatelessWidget {
             const Icon(Icons.train_outlined, size: 14, color: HD.accent),
             const SizedBox(width: 4),
             Text(
-              '${station.name} 徒歩${walkMin}分以内',
+              '${station.name} · ${AppLocalizations.of(context).jp_facet_walk_min_value(walkMin)}',
               style: const TextStyle(
                 fontSize: 12,
                 color: HD.accent,

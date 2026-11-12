@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:house_booking/core/theme/design_tokens.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 
 /// Khung bài đăng kiểu Facebook — dùng chung cho MỌI feed (BĐS, thi công,
 /// cộng đồng) để ba feed trông như một sản phẩm thay vì ba sản phẩm.
@@ -106,6 +107,7 @@ class FbPostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // FB bỏ bo góc trên điện thoại (card chạm hai mép) và bo 8px trên màn rộng.
     final rong = MediaQuery.sizeOf(context).width >= 600;
+    final l = AppLocalizations.of(context);
 
     return Container(
       margin: EdgeInsets.only(bottom: 8, left: rong ? 0 : 0, right: 0),
@@ -120,12 +122,12 @@ class FbPostCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (loaiNhan != null) _daiLoai(),
-            _dauBai(),
+            _dauBai(l),
             if (body != null && body!.trim().isNotEmpty) _noiDung(),
             ?media,
-            if (likeCount > 0 || commentCount > 0) _hangDem(),
+            if (likeCount > 0 || commentCount > 0) _hangDem(l),
             _duongKe(),
-            _hangNut(),
+            _hangNut(l),
             ?footer,
           ],
         ),
@@ -178,7 +180,7 @@ class FbPostCard extends StatelessWidget {
     );
   }
 
-  Widget _dauBai() {
+  Widget _dauBai(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 12, 4, 8),
       child: Row(
@@ -234,7 +236,7 @@ class FbPostCard extends StatelessWidget {
             IconButton(
               onPressed: onMore,
               icon: const Icon(Icons.more_horiz, color: HD.inkMuted),
-              tooltip: 'Tuỳ chọn',
+              tooltip: l.fbPostOptions,
               splashRadius: 20,
             ),
         ],
@@ -252,7 +254,7 @@ class FbPostCard extends StatelessWidget {
     );
   }
 
-  Widget _hangDem() {
+  Widget _hangDem(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
       child: Row(
@@ -274,7 +276,7 @@ class FbPostCard extends StatelessWidget {
           ],
           const Spacer(),
           if (commentCount > 0)
-            Text('$commentCount bình luận',
+            Text(l.fbPostCommentCount(commentCount),
                 style: const TextStyle(fontSize: 14, color: HD.inkMuted)),
         ],
       ),
@@ -286,23 +288,23 @@ class FbPostCard extends StatelessWidget {
         child: Divider(height: 1, thickness: 1, color: HD.hairline),
       );
 
-  Widget _hangNut() {
+  Widget _hangNut(AppLocalizations l) {
     final ds = actions ??
         [
           FbAction(
             icon: liked ? Icons.thumb_up : Icons.thumb_up_outlined,
-            nhan: 'Thích',
+            nhan: l.fbPostLike,
             dangBat: liked,
             onTap: onLike,
           ),
           FbAction(
             icon: Icons.mode_comment_outlined,
-            nhan: 'Bình luận',
+            nhan: l.postCmtTitle,
             onTap: onComment,
           ),
           FbAction(
             icon: Icons.share_outlined,
-            nhan: 'Chia sẻ',
+            nhan: l.hdShare,
             onTap: onShare,
           ),
         ];
@@ -448,14 +450,15 @@ class FbComposerBar extends StatelessWidget {
     required this.onTap,
     this.avatarUrl,
     this.ten = '',
-    this.goiY = 'Bạn đang nghĩ gì?',
+    this.goiY,
     this.actions = const [],
   });
 
   final VoidCallback onTap;
   final String? avatarUrl;
   final String ten;
-  final String goiY;
+  /// Gợi ý trong ô; null ⇒ `l.fbPostComposerHint` theo ngôn ngữ giao diện.
+  final String? goiY;
 
   /// Hàng nút dưới (vd "Đăng tin", "Ảnh/Video").
   final List<Widget> actions;
@@ -484,7 +487,7 @@ class FbComposerBar extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      goiY,
+                      goiY ?? AppLocalizations.of(context).fbPostComposerHint,
                       style: const TextStyle(fontSize: 15, color: HD.inkMuted),
                     ),
                   ),
