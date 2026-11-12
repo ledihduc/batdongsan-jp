@@ -9,6 +9,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:house_booking/data/models/ai/ai_chat_models.dart';
+import 'package:house_booking/data/models/ai/ai_pending_action_models.dart';
 import 'package:house_booking/data/services/api_client.dart';
 import 'package:house_booking/domain/repositories/ai/i_ai_chat_repository.dart';
 
@@ -17,11 +18,21 @@ enum AiChatStatus { idle, loading, error }
 enum AiChatErrorKind { timeout, rateLimited, server, network }
 
 class AiChatBubble {
-  const AiChatBubble({required this.role, required this.text, this.listings = const []});
+  const AiChatBubble({
+    required this.role,
+    required this.text,
+    this.listings = const [],
+    this.pendingActions = const [],
+    this.loginRequired = false,
+  });
 
   final String role;
   final String text;
   final List<AiListingCard> listings;
+
+  /// Thẻ chờ xác nhận (Phase 11) — chỉ hiển thị, không gửi lại lên backend trong lịch sử.
+  final List<AiPendingAction> pendingActions;
+  final bool loginRequired;
 }
 
 class AiChatController extends ChangeNotifier {
@@ -67,7 +78,13 @@ class AiChatController extends ChangeNotifier {
     notifyListeners();
     try {
       final reply = await _repo.send(_history(), lang: lang);
-      _bubbles.add(AiChatBubble(role: 'assistant', text: reply.reply, listings: reply.listings));
+      _bubbles.add(AiChatBubble(
+        role: 'assistant',
+        text: reply.reply,
+        listings: reply.listings,
+        pendingActions: reply.pendingActions,
+        loginRequired: reply.loginRequired,
+      ));
       _status = AiChatStatus.idle;
     } catch (e) {
       _errorKind = _kindOf(e);

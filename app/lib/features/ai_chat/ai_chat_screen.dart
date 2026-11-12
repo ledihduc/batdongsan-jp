@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:house_booking/core/config/feature_flags.dart';
 import 'package:house_booking/core/widgets/ds.dart';
 import 'package:house_booking/data/repositories/ai/api_ai_chat_repository.dart';
+import 'package:house_booking/domain/repositories/ai/i_ai_action_repository.dart';
 import 'package:house_booking/domain/repositories/ai/i_ai_chat_repository.dart';
 import 'package:house_booking/features/ai_chat/ai_chat_controller.dart';
 import 'package:house_booking/features/ai_chat/widgets/ai_chat_bubble_view.dart';
@@ -17,9 +18,12 @@ import 'package:house_booking/features/ai_chat/widgets/ai_chat_empty_state.dart'
 import 'package:house_booking/l10n/app_localizations.dart';
 
 class AiChatScreen extends StatefulWidget {
-  const AiChatScreen({super.key, this.repository, this.onOpenListing, this.japan});
+  const AiChatScreen({super.key, this.repository, this.onOpenListing, this.japan, this.actionRepository});
 
   final IAiChatRepository? repository;
+
+  /// Repo xác nhận cho thẻ action trong chat; `null` ⇒ `ApiAiActionRepository` (Phase 11).
+  final IAiActionRepository? actionRepository;
   final void Function(int listingId)? onOpenListing;
 
   /// Thị trường của gợi ý; `null` ⇒ `FeatureFlags.isJapan` (tham số để test cả 2 thị trường).
@@ -96,7 +100,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
                           controller: _scroll,
                           padding: const EdgeInsets.all(HD.s16),
                           children: [
-                            for (final b in c.bubbles) AiChatBubbleView(bubble: b, onOpenListing: _open),
+                            for (final b in c.bubbles) AiChatBubbleView(bubble: b, onOpenListing: _open, actionRepository: widget.actionRepository),
                             if (loading) AiChatLoadingBubble(label: l.aiChatThinking),
                           ],
                         ),

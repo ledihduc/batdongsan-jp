@@ -1,16 +1,21 @@
 /// Một bong bóng chat AI (câu hỏi bên phải, trả lời bên trái + thẻ tin) và bong bóng đang chờ (Phase 10).
+/// Phase 11: trả lời kèm thẻ xác nhận action ghi + thẻ mời đăng nhập.
 library;
 
 import 'package:flutter/material.dart';
 import 'package:house_booking/core/widgets/ds.dart';
+import 'package:house_booking/domain/repositories/ai/i_ai_action_repository.dart';
 import 'package:house_booking/features/ai_chat/ai_chat_controller.dart';
+import 'package:house_booking/features/ai_chat/widgets/ai_chat_login_prompt.dart';
+import 'package:house_booking/features/ai_chat/widgets/ai_chat_pending_card.dart';
 import 'package:house_booking/features/ai_chat/widgets/ai_chat_listing_card.dart';
 
 class AiChatBubbleView extends StatelessWidget {
-  const AiChatBubbleView({super.key, required this.bubble, required this.onOpenListing});
+  const AiChatBubbleView({super.key, required this.bubble, required this.onOpenListing, this.actionRepository});
 
   final AiChatBubble bubble;
   final void Function(int listingId) onOpenListing;
+  final IAiActionRepository? actionRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,9 @@ class AiChatBubbleView extends StatelessWidget {
               SelectableText(bubble.text, style: const TextStyle(color: HD.ink)),
               for (final card in bubble.listings)
                 AiChatListingCard(card: card, onTap: () => onOpenListing(card.listingId)),
+              for (final p in bubble.pendingActions)
+                AiChatPendingCard(key: ValueKey(p.token), pending: p, repository: actionRepository),
+              if (bubble.loginRequired) const AiChatLoginPrompt(),
             ],
           ),
         ),

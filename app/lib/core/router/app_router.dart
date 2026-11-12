@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import 'package:house_booking/core/config/feature_flags.dart';
+import 'package:house_booking/features/ai_chat/ai_action_confirm_screen.dart';
 import 'package:house_booking/features/ai_chat/ai_chat_screen.dart';
 import 'package:house_booking/core/theme/design_tokens.dart';
 import 'package:house_booking/data/services/preferences_service.dart';
@@ -599,6 +600,15 @@ GoRouter buildAppRouter(AuthProvider auth, {DelegationProvider? delegation}) {
       GoRoute(
         path: '/ai-chat',
         pageBuilder: (ctx, state) => _fadePage(state: state, child: const AiChatScreen()),
+      ),
+      // Xác nhận action ghi AI qua link MCP (Phase 11, D19): cả 2 thị trường; prefix không bị guard
+      // ⇒ khách mở được để thấy lời mời đăng nhập.
+      GoRoute(
+        path: '/ai-confirm/:token',
+        pageBuilder: (ctx, state) => _fadePage(
+          state: state,
+          child: AiActionConfirmScreen(token: state.pathParameters['token'] ?? ''),
+        ),
       ),
       // ───── JP market (Phase 01): 内見ステータス screen (deep-link for push notif).
       // Gated behind FeatureFlags.isJapan — redirect to /not-available in VN build.

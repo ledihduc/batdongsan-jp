@@ -8392,4 +8392,60 @@ class AppLocalizationsZh extends AppLocalizations {
   String jpStationWalk(String station, int minutes) {
     return '$station 步行$minutes分钟';
   }
+
+  @override
+  String get aiConfirmTitle => '确认AI助手的请求';
+
+  @override
+  String get aiConfirmWarning => '如果这不是您发起的请求，请不要确认。';
+
+  @override
+  String get aiConfirmButton => '确认';
+
+  @override
+  String get aiConfirmCancel => '取消';
+
+  @override
+  String get aiConfirmLoginRequired => '请登录后再确认。';
+
+  @override
+  String get aiConfirmLoginButton => '登录';
+
+  @override
+  String get aiConfirmReopenAfterLogin => '登录后，请重新打开此链接。';
+
+  @override
+  String get aiConfirmDoneFavorite => '已保存到收藏。';
+
+  @override
+  String get aiConfirmDoneViewing => '已申请看房，请等待负责人联系。';
+
+  @override
+  String get aiConfirmDoneGeneric => '已执行。';
+
+  @override
+  String get aiConfirmErrorExpired => '此链接已过期，请让AI重新生成。';
+
+  @override
+  String get aiConfirmErrorUsed => '此请求已被处理。';
+
+  @override
+  String get aiConfirmErrorForbidden => '此请求由其他账号创建，您无法确认。';
+
+  @override
+  String get aiConfirmErrorNotFound => '未找到该请求。';
+
+  @override
+  String get aiConfirmErrorInvalid => '不满足条件，无法执行。';
+
+  @override
+  String get aiConfirmSlots => '希望时间';
+
+  @override
+  String aiConfirmExpiresAt(String time) {
+    return '有效期至：$time';
+  }
+
+  @override
+  String get aiConfirmNote => '备注（将发送给负责人）';
 }
