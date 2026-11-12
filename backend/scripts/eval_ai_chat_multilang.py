@@ -25,6 +25,7 @@ DEFAULT_DATA = pathlib.Path(__file__).parent / "data" / "ai_chat_eval_multilang.
 _PLACEHOLDER = re.compile(r"\{([A-Z0-9-]+)\}")
 _HIRAGANA = re.compile(r"[ぁ-ゖ]")
 _VI_MARKS = re.compile(r"[ăâđêôơưàáạảãằắặẳẵầấậẩẫèéẹẻẽềếệểễìíịỉĩòóọỏõồốộổỗờớợởỡùúụủũừứựửữỳýỵỷỹ]", re.I)
+_WORD = r"[0-9A-Za-z\u00C0-\u024F\u1E00-\u1EFF]"  # chữ số + Latin/Việt (không gồm CJK)
 _EN_WORDS = re.compile(r"\b(the|listing|listings|rent|station|walk|yen|found)\b", re.I)
 
 
@@ -70,7 +71,9 @@ def _fill(value, ids: dict[str, int]):
 
 def _value_ok(expected, actual) -> bool:
     if isinstance(expected, list) and expected and all(isinstance(e, str) for e in expected) and isinstance(actual, str):
-        return any(e.lower() in actual.lower() for e in expected)
+        # Ranh giới chỉ theo chữ số + chữ Latin/Việt: "Quận 10" KHÔNG khớp "Quận 1" (Phase 13 QA F2),
+        # còn CJK không có ranh giới từ ⇒ "中目黒" vẫn khớp "中目黒駅" (code review M1).
+        return any(re.search(rf"(?<!{_WORD}){re.escape(e)}(?!{_WORD})", actual, re.IGNORECASE) for e in expected)
     if isinstance(expected, list):
         return isinstance(actual, list) and set(map(str, expected)) == set(map(str, actual))
     if isinstance(expected, (int, float)) and not isinstance(expected, bool):

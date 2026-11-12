@@ -38,7 +38,10 @@ def _first(seq) -> Optional[dict]:
 
 
 def detail_to_item(detail: dict) -> dict:
-    """Payload `get_listing` (lồng nhau) ⇒ dạng item tìm kiếm phẳng như `to_summary`."""
+    """Payload `get_listing` (lồng nhau) ⇒ dạng item tìm kiếm phẳng như `to_summary`.
+    Payload đã phẳng và có `currency` (bản vn, Phase 13) ⇒ giữ nguyên để `to_card` lấy đúng giá VND."""
+    if "currency" in detail:
+        return detail
     terms = detail.get("rental_terms") or {}
     info = detail.get("property_info") or {}
     transit = _first(detail.get("transit_accesses")) or {}

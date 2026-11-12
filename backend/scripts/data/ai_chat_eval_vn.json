@@ -1,0 +1,106 @@
+{
+  "market": "vn",
+  "_note": "AC18: tổng ≥5/6 (cộng 2 dòng ja + en+vi). Ngưỡng từng dòng dưới chỉ để script không coi 1 ca trượt là hỏng cả lượt.",
+  "thresholds": {
+    "ja": [
+      1,
+      2
+    ],
+    "en+vi": [
+      3,
+      4
+    ]
+  },
+  "cases": [
+    {
+      "q": "Tìm căn hộ 2 phòng ngủ ở Quận 1 giá dưới 20 triệu",
+      "lang_ui": "vi",
+      "reply_lang": "vi",
+      "expect": {
+        "action": "search_listings",
+        "params": {
+          "location": [
+            "Quận 1"
+          ],
+          "max_price_vnd": 20000000,
+          "min_bedrooms": 2
+        }
+      }
+    },
+    {
+      "q": "Có chung cư mini nào ở Cầu Giấy dưới 8 triệu không?",
+      "lang_ui": "vi",
+      "reply_lang": "vi",
+      "expect": {
+        "action": "search_listings",
+        "params": {
+          "location": [
+            "Cầu Giấy"
+          ],
+          "category": [
+            "Chung cư mini"
+          ],
+          "max_price_vnd": 8000000
+        }
+      }
+    },
+    {
+      "q": "Find a 2-bedroom apartment in District 1, Ho Chi Minh City, under 20 million VND",
+      "lang_ui": "en",
+      "reply_lang": "en",
+      "expect": {
+        "action": "search_listings",
+        "params": {
+          "location": [
+            "Quận 1"
+          ],
+          "max_price_vnd": 20000000,
+          "min_bedrooms": 2
+        }
+      }
+    },
+    {
+      "q": "Are there any houses for sale in Hanoi?",
+      "lang_ui": "en",
+      "reply_lang": "en",
+      "expect": {
+        "action": "search_listings",
+        "params": {
+          "location": [
+            "Hà Nội"
+          ],
+          "transaction_type": "sale"
+        }
+      }
+    },
+    {
+      "q": "ホーチミン1区で2ベッドルーム、2,000万ドン以下のアパート",
+      "lang_ui": "ja",
+      "reply_lang": "ja",
+      "expect": {
+        "action": "search_listings",
+        "params": {
+          "location": [
+            "Quận 1"
+          ],
+          "max_price_vnd": 20000000,
+          "min_bedrooms": 2
+        }
+      }
+    },
+    {
+      "q": "ハノイのバーディン区で家賃1,000万ドン以下の物件",
+      "lang_ui": "ja",
+      "reply_lang": "ja",
+      "expect": {
+        "action": "search_listings",
+        "params": {
+          "location": [
+            "Ba Đình"
+          ],
+          "max_price_vnd": 10000000
+        }
+      }
+    }
+  ]
+}

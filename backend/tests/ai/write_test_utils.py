@@ -13,9 +13,8 @@ from fastapi.exceptions import RequestValidationError
 from slowapi.errors import RateLimitExceeded
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.ai_capabilities.loader import Registry, get_registry
+from app.ai_capabilities.loader import Registry
 from app.auth import sign_token
-from app.database import get_db
 from app.mcp.mount import mount_mcp
 from app.middleware.error_handler import http_exception_handler, rate_limit_exceeded_handler, validation_handler
 from app.middleware.rate_limit import limiter
@@ -47,8 +46,11 @@ def add_actions_router(app: FastAPI, db, registry_provider: Callable[[], Registr
     from app.api.routes import ai_actions  # noqa: PLC0415 — import trễ: test FAIL đúng chỗ khi chưa có route
 
     app.include_router(ai_actions.router)
-    app.dependency_overrides[get_db] = lambda: db
-    app.dependency_overrides[get_registry] = registry_provider
+    # Lấy dependency từ CHÍNH module router đang dùng: conftest khác có thể xoá `app.*` khỏi sys.modules
+    # giữa lúc collect và lúc chạy ⇒ `get_db` import đầu file là bản cũ, override không khớp ⇒ route
+    # mở Postgres thật (fail theo thứ tự chạy khi chạy cả `tests/`).
+    app.dependency_overrides[ai_actions.get_db] = lambda: db
+    app.dependency_overrides[ai_actions.get_registry] = registry_provider
     return app
 
 

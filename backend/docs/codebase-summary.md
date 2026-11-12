@@ -16,6 +16,7 @@ backend/
 │   ├── seed_dev.py              # Idempotent dev seed
 │   ├── eval_ai_chat_multilang.py  # AI chat eval (stdlib, needs a running backend); data: scripts/data/ai_chat_eval_multilang.json
 │   ├── ai_actions_undo.py       # Undo executed AI write actions (dry-run default; --all | --since ISO, --yes to delete)
+│   ├── seed_vn_demo.py          # Seed / remove 20 VN demo listings (--undo, --data); exits 2 unless REGION=vn; data: scripts/data/vn_listings_demo.json
 ├── uploads/                     # User-uploaded images (git-ignored)
 └── app/
     ├── config.py                # Load .env, settings
@@ -26,6 +27,7 @@ backend/
     ├── seed.py                  # Seed logic (imported by scripts/seed_dev.py)
     ├── helpers.py               # Logging, notifications, rich text helpers
     ├── ai_capabilities/         # AI action registry, 2 fixed tools (get_system_skills, run_action), fixed skill
+    │   └── registry/            # registry.jp.yaml, registry.vn.yaml (one file per market; file present = AI on for that REGION)
     ├── mcp/                     # MCP server at /mcp (mounted only when the region has a registry file)
     │   ├── mount.py             # mount_mcp(app): /mcp + /mcp/SKILL.md, startup/shutdown handlers, 405/429/503 guard
     │   ├── sdk_server.py        # mcp SDK low-level Server, stateless + JSON, Host/Origin allowlists
@@ -57,9 +59,15 @@ backend/
     │   │   ├── confirm_service.py   # preview_pending / confirm_pending (sync on purpose: row lock in threadpool)
     │   │   ├── undo_service.py      # undo_executed_actions (used by scripts/ai_actions_undo.py)
     │   │   ├── wishlist_writer.py   # save_wishlist get-or-create on Wishlist
-    │   │   └── listing_brief.py     # Listing summary for the confirm preview (jp only)
+    │   │   └── listing_brief.py     # Listing summary for the confirm preview (jp and vn; other regions: None)
     │   ├── jp_search/
     │   │   └── ai_write_tools.py    # python handlers tool_save_favorite / tool_request_viewing (registry.jp.yaml)
+    │   ├── vn_search/               # AI search for the vn market (system-architecture.md 1.14)
+    │   │   ├── listing_search_service.py  # search_vn_listings / get_vn_listing_detail: reads `houses`, VN listings only
+    │   │   ├── vn_location_normalizer.py  # normalize_location(): "Q1", "District 1", "TP. HCM", "Sài Gòn" -> DB names
+    │   │   ├── ai_tools.py          # read handlers tool_search_listings / tool_get_listing (registry.vn.yaml)
+    │   │   └── ai_write_tools.py    # write handler tool_save_favorite (registry.vn.yaml)
+    │   ├── vn_demo_seed.py          # seed_vn_demo / undo_vn_demo (used by scripts/seed_vn_demo.py)
     │   ├── commission/
     │   │   └── commission_snapshot.py  # Immutable commission lock at paid_at
     │   ├── delegation/
@@ -105,6 +113,8 @@ backend/
     │       ├── ai_actions.py          # GET /api/ai/actions/{token}, POST /api/ai/actions/{token}/confirm (same mount condition)
     │       └── ...
     └── tests/
+        ├── vn/                        # vn demo seed + VN search (SQLite fixture: vn_fixtures.py)
+        ├── ai/                        # AI registry / MCP / chat / write actions; vn: test_ai_registry_vn.py, test_ai_vn_market.py
         ├── test_smoke_postgres.py     # Integration tests (needs DB)
         ├── test_*_unit.py             # Unit tests
         └── ...
@@ -413,6 +423,8 @@ Read from env (case-insensitive field names, e.g. `MCP_ALLOWED_HOSTS`). Defaults
 - `MCP_ALLOWED_HOSTS` and `MCP_ALLOWED_ORIGINS` must be JSON lists, e.g. `["localhost:*","127.0.0.1:*","mcp.example.com"]`. When adding a tunnel or nginx host, keep the localhost entries (comment in `app/config.py`).
 - The lists are read at app startup, not at import. Changing them needs a restart.
 - Related: `ai_registry_dir` (`AI_REGISTRY_DIR`) decides where `registry.<region>.yaml` is looked up; no file for `settings.region` means `/mcp` is not mounted.
+- The packaged registry directory (`app/ai_capabilities/registry/`) has both `registry.jp.yaml` and `registry.vn.yaml`, so with `AI_REGISTRY_DIR` empty the AI routes are mounted for `REGION=jp` and for `REGION=vn`. `settings.region` defaults to `vn` (`app/config.py`), and neither `docker-compose.yml` nor `docker-compose.prod.yml` sets `REGION`: a backend started from this code without a `REGION` override mounts `/mcp`, `/api/ai/chat` and `/api/ai/actions/*`. Without `registry.vn.yaml` AI is off for vn when `AI_REGISTRY_DIR` is empty; when `AI_REGISTRY_DIR` is set and the file is missing, startup fails with `RegistryError` (`ai_enabled_for_region` in `app/ai_capabilities/loader.py`).
+- Demo market switch: the local demo compose file (outside the repo) reads `DEMO_REGION` and `DEMO_TZ` into `REGION` and `DEFAULT_TZ`. Steps, seed and checks: `how-to-run-demo-vn-market.md`.
 
 ### AI chat settings (`app/config.py`)
 
