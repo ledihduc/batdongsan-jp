@@ -22,17 +22,17 @@ class _AdvancedFilterScreenState extends State<AdvancedFilterScreen> {
   int? _tempCategoryId;
 
   // ── Tìm kiếm nâng cao (0071) ───────────────────────────────────────────────
-  // Hướng nhà (phong thuỷ): slug -> nhãn tiếng Việt.
-  static const Map<String, String> _directionLabels = {
-    'north': 'Bắc',
-    'northeast': 'Đông Bắc',
-    'east': 'Đông',
-    'southeast': 'Đông Nam',
-    'south': 'Nam',
-    'southwest': 'Tây Nam',
-    'west': 'Tây',
-    'northwest': 'Tây Bắc',
-  };
+  // Hướng nhà (phong thuỷ): slug gửi API -> nhãn theo ngôn ngữ giao diện (ARB `tfDir*`).
+  static Map<String, String> _directionLabels(AppLocalizations l) => {
+        'north': l.tfDirN,
+        'northeast': l.tfDirNE,
+        'east': l.tfDirE,
+        'southeast': l.tfDirSE,
+        'south': l.tfDirS,
+        'southwest': l.tfDirSW,
+        'west': l.tfDirW,
+        'northwest': l.tfDirNW,
+      };
   final Set<String> _selectedDirections = {};
   bool _trustedOnly = false;
   double _minRating = 0; // 0 = không lọc
@@ -359,11 +359,11 @@ class _AdvancedFilterScreenState extends State<AdvancedFilterScreen> {
             const SizedBox(height: 24),
 
             // ── Hướng nhà (phong thuỷ) — chọn nhiều ──────────────────────────
-            _buildSectionHeader(Icons.explore, 'Hướng nhà (phong thuỷ)'),
+            _buildSectionHeader(Icons.explore, l.tfDirection),
             Wrap(
               spacing: 8,
               runSpacing: 4,
-              children: _directionLabels.entries.map((e) {
+              children: _directionLabels(l).entries.map((e) {
                 final sel = _selectedDirections.contains(e.key);
                 return ChoiceChip(
                   selected: sel,
@@ -379,21 +379,21 @@ class _AdvancedFilterScreenState extends State<AdvancedFilterScreen> {
             const SizedBox(height: 24),
 
             // ── Uy tín & Chất lượng ─────────────────────────────────────────
-            _buildSectionHeader(Icons.verified, 'Uy tín & Chất lượng'),
+            _buildSectionHeader(Icons.verified, l.tfTrust),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Chỉ hiện nhà Uy tín'),
+              title: Text(l.tfTrustedOnly),
               secondary: const Icon(Icons.verified_user, color: HD.accent),
               value: _trustedOnly,
               onChanged: (v) => setState(() => _trustedOnly = v),
             ),
             const SizedBox(height: 8),
-            const Text('Điểm đánh giá tối thiểu'),
+            Text(l.tfMinRating),
             Wrap(
               spacing: 8,
               children: [
                 _buildChoiceChip(
-                  'Tất cả',
+                  l.tfAny,
                   _minRating == 0,
                   () => setState(() => _minRating = 0),
                 ),
@@ -415,12 +415,12 @@ class _AdvancedFilterScreenState extends State<AdvancedFilterScreen> {
               ],
             ),
             const SizedBox(height: 12),
-            const Text('Sao chất lượng tối thiểu'),
+            Text(l.tfMinQuality),
             Wrap(
               spacing: 8,
               children: [0, 3, 4, 5].map((s) {
                 return _buildChoiceChip(
-                  s == 0 ? 'Tất cả' : '$s sao',
+                  s == 0 ? l.tfAny : l.tfQualityStar(s),
                   _minQualityStar == s,
                   () => setState(() => _minQualityStar = s),
                 );
@@ -429,32 +429,32 @@ class _AdvancedFilterScreenState extends State<AdvancedFilterScreen> {
             const SizedBox(height: 24),
 
             // ── Sắp xếp ──────────────────────────────────────────────────────
-            _buildSectionHeader(Icons.sort, 'Sắp xếp'),
+            _buildSectionHeader(Icons.sort, l.tfSort),
             Wrap(
               spacing: 8,
               children: [
                 _buildChoiceChip(
-                  'Mới nhất',
+                  l.tfSortNewest,
                   _sort == '',
                   () => setState(() => _sort = ''),
                 ),
                 _buildChoiceChip(
-                  'Uy tín',
+                  l.tfSortTrust,
                   _sort == 'trust',
                   () => setState(() => _sort = 'trust'),
                 ),
                 _buildChoiceChip(
-                  'Đánh giá cao',
+                  l.tfSortRating,
                   _sort == 'rating',
                   () => setState(() => _sort = 'rating'),
                 ),
                 _buildChoiceChip(
-                  'Giá thấp→cao',
+                  l.tfSortPriceAsc,
                   _sort == 'price_asc',
                   () => setState(() => _sort = 'price_asc'),
                 ),
                 _buildChoiceChip(
-                  'Giá cao→thấp',
+                  l.tfSortPriceDesc,
                   _sort == 'price_desc',
                   () => setState(() => _sort = 'price_desc'),
                 ),

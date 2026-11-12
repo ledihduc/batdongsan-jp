@@ -121,7 +121,7 @@ class PropertyListCard extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            house.priceCompactLabel,
+                            house.priceCompactLabelOf(AppLocalizations.of(context)),
                             style: const TextStyle(
                               color: HD.accent,
                               fontWeight: FontWeight.bold,

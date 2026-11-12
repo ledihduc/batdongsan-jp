@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:house_booking/core/utils/formatters.dart';
 
 import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/core/widgets/ds.dart';
@@ -44,16 +45,6 @@ class _QualityCardState extends State<QualityCard> {
     } catch (_) {
       if (mounted) setState(() => _loading = false);
     }
-  }
-
-  static String _fmtVnd(int v) {
-    final s = v.abs().toString();
-    final b = StringBuffer();
-    for (int i = 0; i < s.length; i++) {
-      if (i > 0 && (s.length - i) % 3 == 0) b.write('.');
-      b.write(s[i]);
-    }
-    return '$b đ';
   }
 
   Future<void> _openEditor() async {
@@ -193,7 +184,7 @@ class _QualityCardState extends State<QualityCard> {
             if (r.suggestedPrice != null) ...[
               const SizedBox(height: 8),
               Text(
-                l.qualitySuggestedPrice(_fmtVnd(r.suggestedPrice!)),
+                l.qualitySuggestedPrice(PriceFormat.full(r.suggestedPrice!.toDouble())),
                 style: const TextStyle(
                   fontSize: 12,
                   color: HD.accent,

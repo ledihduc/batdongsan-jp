@@ -350,8 +350,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                     // 短期物件の価格表示は1泊単位。
                                     (house.shortStay != null ||
                                             house.hangPhong != null)
-                                        ? '/泊'
-                                        : l.hdPerMonth,
+                                        ? '/${l.hdUnitNight}'
+                                        : house.periodSuffixOf(l),
                                     style: const TextStyle(
                                       fontSize: 11,
                                       color: HD.inkSoft,
@@ -656,11 +656,14 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
     if (h.isForSale) return PriceFormat.compact(h.price);
     final gia = _giaNganHan(h);
     if (gia != null) return gia;
+    final l = AppLocalizations.of(context);
+    // Bản jp: số tiền ¥ đầy đủ (không quy ra "triệu"), hậu tố theo ngôn ngữ (Phase 12, F-1/F-2).
+    if (FeatureFlags.isJapan) return '${PriceFormat.full(h.price)}${h.periodSuffixOf(l)}';
     final tr = h.price / 1000000;
     final s = tr == tr.roundToDouble()
         ? tr.toStringAsFixed(0)
         : tr.toStringAsFixed(1).replaceAll('.', ',');
-    return AppLocalizations.of(context).hdPricePerMonth(s);
+    return l.hdPricePerMonth(s);
   }
 
   Widget _buildBookingBanner(ViewingAppointmentModel a) {
@@ -893,11 +896,12 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
   String? _giaNganHan(HouseModel h) {
     final hang = h.hangPhong;
     if (hang != null) {
+      final l = AppLocalizations.of(context);
       final ds = <String>[
-        for (final k in const [
-          ('gia_theo_gio', 'giờ'),
-          ('gia_qua_dem', 'đêm'),
-          ('gia_theo_ngay', 'ngày'),
+        for (final k in [
+          ('gia_theo_gio', l.hdUnitHour),
+          ('gia_qua_dem', l.hdUnitNight),
+          ('gia_theo_ngay', l.hdUnitDay),
         ])
           if (hang[k.$1] is num)
             '${PriceFormat.full((hang[k.$1] as num).toDouble())}/${k.$2}',

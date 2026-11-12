@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:house_booking/core/config/feature_flags.dart';
 import 'package:house_booking/core/widgets/ds.dart';
+import 'package:house_booking/core/widgets/language_picker_sheet.dart';
 import 'package:house_booking/data/repositories/ai/api_ai_chat_repository.dart';
 import 'package:house_booking/domain/repositories/ai/i_ai_action_repository.dart';
 import 'package:house_booking/domain/repositories/ai/i_ai_chat_repository.dart';
@@ -41,10 +42,10 @@ class _AiChatScreenState extends State<AiChatScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _controller ??= AiChatController(
-      widget.repository ?? const ApiAiChatRepository(),
-      lang: Localizations.localeOf(context).languageCode,
-    )..addListener(_scrollToEnd);
+    final lang = Localizations.localeOf(context).languageCode;
+    _controller ??= AiChatController(widget.repository ?? const ApiAiChatRepository(), lang: lang)
+      ..addListener(_scrollToEnd);
+    _controller!.lang = lang; // khách đổi ngôn ngữ giữa chừng ⇒ lượt sau gửi `lang` mới (Phase 14)
   }
 
   @override
@@ -85,7 +86,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
     final l = AppLocalizations.of(context);
     final c = _controller!;
     return Scaffold(
-      appBar: AppBar(title: Text(l.aiChatTitle)),
+      appBar: AppBar(title: Text(l.aiChatTitle), actions: const [LanguagePickerButton()]),
       body: SafeArea(
         child: ListenableBuilder(
           listenable: c,

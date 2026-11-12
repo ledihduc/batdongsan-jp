@@ -667,12 +667,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String filterPriceValueVnd(Object value) {
-    return '$value万円';
+    return '$value百万ドン';
   }
 
   @override
   String filterPriceValueShort(Object value) {
-    return '$value万';
+    return '$value百万';
   }
 
   @override
@@ -1817,7 +1817,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String hdPricePerMonth(Object s) {
-    return '$s百万円/月';
+    return '$s百万ドン/月';
   }
 
   @override
@@ -8482,4 +8482,122 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get aiConfirmNote => 'メモ（担当者に送信されます）';
+
+  @override
+  String get hmPriceRent => '賃料';
+
+  @override
+  String get hmPriceSale => '価格';
+
+  @override
+  String get hmPerMonth => '/月';
+
+  @override
+  String get shellNavActivity => 'アクティビティ';
+
+  @override
+  String get drawerBusinessPremises => '店舗・事業用';
+
+  @override
+  String get trustedBadgeSemantic => '信頼できる掲載';
+
+  @override
+  String get trustedBadgeLabel => '信頼';
+
+  @override
+  String get fbPostOptions => 'オプション';
+
+  @override
+  String fbPostCommentCount(int count) {
+    return '$count件のコメント';
+  }
+
+  @override
+  String get fbPostLike => 'いいね';
+
+  @override
+  String get fbPostComposerHint => '今なにを考えていますか？';
+
+  @override
+  String get hdUnitHour => '時間';
+
+  @override
+  String get hdUnitNight => '泊';
+
+  @override
+  String get hdUnitDay => '日';
+
+  @override
+  String get routerInvalidHouseId => '物件IDが正しくありません';
+
+  @override
+  String get routerPageNotFound => 'ページが見つかりません';
+
+  @override
+  String get jpInfoTitle => '物件情報';
+
+  @override
+  String jpBuildingAgeValue(int n) {
+    return '築$n年';
+  }
+
+  @override
+  String get jpStructureLabel => '構造';
+
+  @override
+  String jpFloorValue(int floor) {
+    return '$floor階';
+  }
+
+  @override
+  String jpFloorOfTotal(int floor, int total) {
+    return '$floor階/$total階建';
+  }
+
+  @override
+  String get jpOrientationLabel => '向き';
+
+  @override
+  String get jpTransitTitle => '交通アクセス';
+
+  @override
+  String jpStationOnLine(String line, String station) {
+    return '$line $station駅';
+  }
+
+  @override
+  String jpWalkMinutes(int min) {
+    return '徒歩$min分';
+  }
+
+  @override
+  String get jpTermsTitle => '賃貸条件';
+
+  @override
+  String jpMonthsOfRent(String n) {
+    return '$nヶ月分';
+  }
+
+  @override
+  String get jpTaxIncluded => '（税込）';
+
+  @override
+  String get jpGuaranteeCompanyFee => '保証会社料';
+
+  @override
+  String get jpFacetPreferences => 'こだわり条件';
+
+  @override
+  String jpBuildingAgeWithin(int n) {
+    return '築$n年以内';
+  }
+
+  @override
+  String get routerNotAvailableTitle => 'この機能はご利用いただけません';
+
+  @override
+  String get routerNotAvailableJpBody => 'この機能は日本マーケットではご利用いただけません。';
+
+  @override
+  String get searchShortStayCta => '短期滞在 · 時間・一泊・日単位';
 }

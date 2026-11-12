@@ -2224,7 +2224,7 @@ class _BrokerProfileScreenState extends State<BrokerProfileScreen> {
 
   String _giaGon(HouseModel h) => h.price <= 0
       ? 'Thoả thuận'
-      : '${PriceFormat.compact(h.price)}${h.isForRent ? '/tháng' : ''}';
+      : h.priceCompactLabelOf(AppLocalizations.of(context));
 
   // ── Đánh giá khách hàng ───────────────────────────────────────────────────
   //
@@ -2407,7 +2407,7 @@ class _BrokerProfileScreenState extends State<BrokerProfileScreen> {
           child: Row(
             children: [
               Text(
-                h.priceCompactLabel,
+                h.priceCompactLabelOf(AppLocalizations.of(context)),
                 style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,

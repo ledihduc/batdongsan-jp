@@ -1,10 +1,12 @@
 /// Widget tests for [JpPropertyInfoSection].
 library;
 
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:house_booking/data/models/jp/jp_property_info.dart';
 import 'package:house_booking/data/models/jp/jp_station.dart';
 import 'package:house_booking/features/guest/listing/jp_property_info_section.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 
 import '../../helpers/pump_app.dart';
 
@@ -61,7 +63,9 @@ void main() {
     );
     await tester.pump();
     expect(find.textContaining('渋谷'), findsAtLeastNWidgets(1));
-    expect(find.textContaining('徒歩8分'), findsAtLeastNWidgets(1));
+    // pumpApp ghim locale vi; nhãn đi bộ theo ngôn ngữ giao diện (Phase 12).
+    final l = await AppLocalizations.delegate.load(const Locale('vi'));
+    expect(find.textContaining(l.jpWalkMinutes(8)), findsAtLeastNWidgets(1));
   });
 
   testWidgets('renders without transit when list is empty', (tester) async {
@@ -70,8 +74,9 @@ void main() {
       JpPropertyInfoSection(propertyInfo: info),
     );
     await tester.pump();
-    // 交通アクセス section header should NOT appear
-    expect(find.text('交通アクセス'), findsNothing);
+    // Transit section header (交通アクセス) should NOT appear
+    final l = await AppLocalizations.delegate.load(const Locale('vi'));
+    expect(find.text(l.jpTransitTitle), findsNothing);
   });
 
   testWidgets('renders available date', (tester) async {

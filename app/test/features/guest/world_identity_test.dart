@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/core/theme/design_tokens.dart';
 import 'package:house_booking/core/widgets/fb_post_card.dart';
 import 'package:house_booking/data/models/user_preferences.dart';
@@ -60,6 +61,10 @@ void main() {
   group('dải nhãn loại nội dung trên card', () {
     testWidgets('có loaiNhan → hiện dải nhãn', (tester) async {
       await tester.pumpWidget(const MaterialApp(
+        // Widget dùng AppLocalizations (Phase 12): bơm delegate + ghim vi như pumpApp.
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: Locale('vi'),
         home: Scaffold(
           body: FbPostCard(
             authorName: 'Đơn vị A',
@@ -77,6 +82,10 @@ void main() {
     testWidgets('không truyền loaiNhan → KHÔNG vẽ dải (card nhà giữ nguyên)',
         (tester) async {
       await tester.pumpWidget(const MaterialApp(
+        // Widget dùng AppLocalizations (Phase 12): bơm delegate + ghim vi như pumpApp.
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: Locale('vi'),
         home: Scaffold(
           body: FbPostCard(
             authorName: 'Chủ nhà B',

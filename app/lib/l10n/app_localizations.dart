@@ -16109,6 +16109,210 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'Ghi chú (sẽ gửi cho người phụ trách)'**
   String get aiConfirmNote;
+
+  /// No description provided for @hmPriceRent.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giá thuê'**
+  String get hmPriceRent;
+
+  /// No description provided for @hmPriceSale.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giá bán'**
+  String get hmPriceSale;
+
+  /// No description provided for @hmPerMonth.
+  ///
+  /// In vi, this message translates to:
+  /// **'/tháng'**
+  String get hmPerMonth;
+
+  /// No description provided for @shellNavActivity.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hoạt động'**
+  String get shellNavActivity;
+
+  /// No description provided for @drawerBusinessPremises.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mặt bằng kinh doanh'**
+  String get drawerBusinessPremises;
+
+  /// No description provided for @trustedBadgeSemantic.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tin uy tín'**
+  String get trustedBadgeSemantic;
+
+  /// No description provided for @trustedBadgeLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Uy tín'**
+  String get trustedBadgeLabel;
+
+  /// No description provided for @fbPostOptions.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tuỳ chọn'**
+  String get fbPostOptions;
+
+  /// No description provided for @fbPostCommentCount.
+  ///
+  /// In vi, this message translates to:
+  /// **'{count} bình luận'**
+  String fbPostCommentCount(int count);
+
+  /// No description provided for @fbPostLike.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thích'**
+  String get fbPostLike;
+
+  /// No description provided for @fbPostComposerHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn đang nghĩ gì?'**
+  String get fbPostComposerHint;
+
+  /// No description provided for @hdUnitHour.
+  ///
+  /// In vi, this message translates to:
+  /// **'giờ'**
+  String get hdUnitHour;
+
+  /// No description provided for @hdUnitNight.
+  ///
+  /// In vi, this message translates to:
+  /// **'đêm'**
+  String get hdUnitNight;
+
+  /// No description provided for @hdUnitDay.
+  ///
+  /// In vi, this message translates to:
+  /// **'ngày'**
+  String get hdUnitDay;
+
+  /// No description provided for @routerInvalidHouseId.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mã tin không hợp lệ'**
+  String get routerInvalidHouseId;
+
+  /// No description provided for @routerPageNotFound.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tìm thấy trang'**
+  String get routerPageNotFound;
+
+  /// No description provided for @jpInfoTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thông tin bất động sản'**
+  String get jpInfoTitle;
+
+  /// No description provided for @jpBuildingAgeValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} năm'**
+  String jpBuildingAgeValue(int n);
+
+  /// No description provided for @jpStructureLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Kết cấu'**
+  String get jpStructureLabel;
+
+  /// No description provided for @jpFloorValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tầng {floor}'**
+  String jpFloorValue(int floor);
+
+  /// No description provided for @jpFloorOfTotal.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tầng {floor}/{total}'**
+  String jpFloorOfTotal(int floor, int total);
+
+  /// No description provided for @jpOrientationLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hướng'**
+  String get jpOrientationLabel;
+
+  /// No description provided for @jpTransitTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giao thông'**
+  String get jpTransitTitle;
+
+  /// No description provided for @jpStationOnLine.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ga {station} ({line})'**
+  String jpStationOnLine(String line, String station);
+
+  /// No description provided for @jpWalkMinutes.
+  ///
+  /// In vi, this message translates to:
+  /// **'{min} phút đi bộ'**
+  String jpWalkMinutes(int min);
+
+  /// No description provided for @jpTermsTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Điều kiện thuê'**
+  String get jpTermsTitle;
+
+  /// No description provided for @jpMonthsOfRent.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} tháng tiền thuê'**
+  String jpMonthsOfRent(String n);
+
+  /// No description provided for @jpTaxIncluded.
+  ///
+  /// In vi, this message translates to:
+  /// **' (đã gồm thuế)'**
+  String get jpTaxIncluded;
+
+  /// No description provided for @jpGuaranteeCompanyFee.
+  ///
+  /// In vi, this message translates to:
+  /// **'Phí công ty bảo lãnh'**
+  String get jpGuaranteeCompanyFee;
+
+  /// No description provided for @jpFacetPreferences.
+  ///
+  /// In vi, this message translates to:
+  /// **'Điều kiện ưu tiên'**
+  String get jpFacetPreferences;
+
+  /// No description provided for @jpBuildingAgeWithin.
+  ///
+  /// In vi, this message translates to:
+  /// **'Xây trong vòng {n} năm'**
+  String jpBuildingAgeWithin(int n);
+
+  /// No description provided for @routerNotAvailableTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tính năng này không khả dụng'**
+  String get routerNotAvailableTitle;
+
+  /// No description provided for @routerNotAvailableJpBody.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tính năng này không khả dụng ở thị trường Nhật Bản.'**
+  String get routerNotAvailableJpBody;
+
+  /// No description provided for @searchShortStayCta.
+  ///
+  /// In vi, this message translates to:
+  /// **'Lưu trú ngắn hạn · theo giờ, đêm, ngày'**
+  String get searchShortStayCta;
 }
 
 class _AppLocalizationsDelegate

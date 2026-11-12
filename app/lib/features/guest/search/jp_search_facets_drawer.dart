@@ -11,6 +11,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:house_booking/core/format/currency.dart';
 import 'package:house_booking/core/widgets/ds.dart';
 import 'package:house_booking/domain/repositories/jp/i_jp_listing_repository.dart';
 import 'package:house_booking/l10n/app_localizations.dart';
@@ -151,9 +152,9 @@ class _JpSearchFacetsDrawerState extends State<JpSearchFacetsDrawer> {
                   const Spacer(),
                   TextButton(
                     onPressed: _reset,
-                    child: const Text(
-                      'リセット',
-                      style: TextStyle(color: HD.accent),
+                    child: Text(
+                      l.tfReset,
+                      style: const TextStyle(color: HD.accent),
                     ),
                   ),
                 ],
@@ -191,7 +192,7 @@ class _JpSearchFacetsDrawerState extends State<JpSearchFacetsDrawer> {
                   const SizedBox(height: 4),
                   _buildWalkMin(),
                   const SizedBox(height: 20),
-                  _sectionLabel('こだわり条件'),
+                  _sectionLabel(l.jpFacetPreferences),
                   const SizedBox(height: 8),
                   _buildFlagChips(l),
                   const SizedBox(height: 24),
@@ -321,7 +322,7 @@ class _JpSearchFacetsDrawerState extends State<JpSearchFacetsDrawer> {
           onChanged: (v) => setState(() => _filter = _filter.copyWith(petsOk: v)),
           activeColor: HD.accent,
           title: Text(
-            'ペット可',
+            AppLocalizations.of(context).jp_facet_pets_ok_label,
             style: HD.body(size: 14),
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -417,7 +418,7 @@ class _JpSearchFacetsDrawerState extends State<JpSearchFacetsDrawer> {
           },
         ),
         Text(
-          '築${_filter.maxBuildingAgeYears ?? _maxBuildingAgeCap}年以内',
+          AppLocalizations.of(context).jpBuildingAgeWithin(_filter.maxBuildingAgeYears ?? _maxBuildingAgeCap),
           style: const TextStyle(fontSize: 12, color: HD.inkSoft),
         ),
       ],
@@ -443,7 +444,9 @@ class _JpSearchFacetsDrawerState extends State<JpSearchFacetsDrawer> {
           },
         ),
         Text(
-          displayMin == 0 ? '制限なし' : '徒歩$displayMin分以内',
+          displayMin == 0
+              ? AppLocalizations.of(context).tfNoLimit
+              : AppLocalizations.of(context).jp_facet_walk_min_value(displayMin),
           style: const TextStyle(fontSize: 12, color: HD.inkSoft),
         ),
       ],
@@ -487,9 +490,6 @@ class _JpSearchFacetsDrawerState extends State<JpSearchFacetsDrawer> {
     setState(() => _filter = const JpSearchFilter());
   }
 
-  static String _formatYen(int amount) {
-    if (amount == 0) return '¥0';
-    if (amount >= 10000) return '¥${amount ~/ 10000}万';
-    return '¥$amount';
-  }
+  /// Giá theo thị trường jp (`¥150,000`) — không dùng đơn vị 万 vì không đọc được ở vi/en (Phase 12).
+  static String _formatYen(int amount) => formatPrice(amount);
 }

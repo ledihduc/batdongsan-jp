@@ -3,9 +3,11 @@
 /// Verifies that rental terms are displayed correctly with Japanese labels.
 library;
 
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:house_booking/data/models/jp/jp_rental_terms.dart';
 import 'package:house_booking/features/guest/listing/jp_terms_section.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 
 import '../../helpers/pump_app.dart';
 
@@ -58,7 +60,9 @@ void main() {
   testWidgets('renders brokerage rate as months fraction', (tester) async {
     await pumpApp(tester, const JpTermsSection(terms: terms));
     await tester.pump();
-    // brokerageFeeRate: 1.0 → '1.0ヶ月分'
-    expect(find.textContaining('ヶ月'), findsAtLeastNWidgets(1));
+    // brokerageFeeRate: 1.0 → l.jpMonthsOfRent('1') (ja '1ヶ月分', không còn '1.0'; pumpApp ghim vi)
+    final l = await AppLocalizations.delegate.load(const Locale('vi'));
+    expect(find.textContaining(l.jpMonthsOfRent('1')), findsAtLeastNWidgets(1));
+    expect(find.textContaining(l.jpMonthsOfRent('1.0')), findsNothing);
   });
 }

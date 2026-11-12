@@ -8684,4 +8684,129 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aiConfirmNote => 'Note (sent to the agent)';
+
+  @override
+  String get hmPriceRent => 'Rent';
+
+  @override
+  String get hmPriceSale => 'Price';
+
+  @override
+  String get hmPerMonth => '/month';
+
+  @override
+  String get shellNavActivity => 'Activity';
+
+  @override
+  String get drawerBusinessPremises => 'Business premises';
+
+  @override
+  String get trustedBadgeSemantic => 'Trusted listing';
+
+  @override
+  String get trustedBadgeLabel => 'Trusted';
+
+  @override
+  String get fbPostOptions => 'Options';
+
+  @override
+  String fbPostCommentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count comments',
+      one: '1 comment',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fbPostLike => 'Like';
+
+  @override
+  String get fbPostComposerHint => 'What\'s on your mind?';
+
+  @override
+  String get hdUnitHour => 'hour';
+
+  @override
+  String get hdUnitNight => 'night';
+
+  @override
+  String get hdUnitDay => 'day';
+
+  @override
+  String get routerInvalidHouseId => 'Invalid listing ID';
+
+  @override
+  String get routerPageNotFound => 'Page not found';
+
+  @override
+  String get jpInfoTitle => 'Property details';
+
+  @override
+  String jpBuildingAgeValue(int n) {
+    return '$n years';
+  }
+
+  @override
+  String get jpStructureLabel => 'Structure';
+
+  @override
+  String jpFloorValue(int floor) {
+    return 'Floor $floor';
+  }
+
+  @override
+  String jpFloorOfTotal(int floor, int total) {
+    return 'Floor $floor of $total';
+  }
+
+  @override
+  String get jpOrientationLabel => 'Facing';
+
+  @override
+  String get jpTransitTitle => 'Transit access';
+
+  @override
+  String jpStationOnLine(String line, String station) {
+    return '$station Station ($line)';
+  }
+
+  @override
+  String jpWalkMinutes(int min) {
+    return '$min min walk';
+  }
+
+  @override
+  String get jpTermsTitle => 'Lease terms';
+
+  @override
+  String jpMonthsOfRent(String n) {
+    return '$n month(s) of rent';
+  }
+
+  @override
+  String get jpTaxIncluded => ' (tax incl.)';
+
+  @override
+  String get jpGuaranteeCompanyFee => 'Guarantor company fee';
+
+  @override
+  String get jpFacetPreferences => 'Preferences';
+
+  @override
+  String jpBuildingAgeWithin(int n) {
+    return 'Up to $n years old';
+  }
+
+  @override
+  String get routerNotAvailableTitle => 'This feature is not available';
+
+  @override
+  String get routerNotAvailableJpBody =>
+      'This feature is not available in the Japan market.';
+
+  @override
+  String get searchShortStayCta => 'Short stays · hourly, nightly, daily';
 }

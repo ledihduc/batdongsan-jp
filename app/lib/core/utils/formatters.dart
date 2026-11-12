@@ -1,6 +1,12 @@
-/// Format giá VND dạng "8.000.000đ" (đầy đủ) hoặc "8tr" (compact).
+import 'package:house_booking/core/config/feature_flags.dart';
+import 'package:house_booking/core/format/currency.dart';
+
+/// Format giá theo THỊ TRƯỜNG (không theo ngôn ngữ giao diện):
+/// bản jp ⇒ `¥150,000` (cả `full` lẫn `compact`); bản vn ⇒ "8.000.000đ" / "8tr".
+/// `japan` mặc định [FeatureFlags.isJapan]; test truyền tường minh.
 class PriceFormat {
-  static String full(double price) {
+  static String full(double price, {bool? japan}) {
+    if (japan ?? FeatureFlags.isJapan) return formatPrice(price);
     final v = price.toStringAsFixed(0);
     final buf = StringBuffer();
     for (int i = 0; i < v.length; i++) {
@@ -10,7 +16,8 @@ class PriceFormat {
     return '${buf.toString()}đ';
   }
 
-  static String compact(double price) {
+  static String compact(double price, {bool? japan}) {
+    if (japan ?? FeatureFlags.isJapan) return formatPrice(price);
     if (price >= 1000000000) {
       final b = price / 1000000000;
       return '${b.toStringAsFixed(b % 1 == 0 ? 0 : 1)} tỷ';

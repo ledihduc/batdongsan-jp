@@ -32,9 +32,7 @@ class JpTermsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            l.jp_shikikin.split('(').first.trim().isEmpty
-                ? '賃貸条件'
-                : '賃貸条件',
+            l.jpTermsTitle,
             style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
@@ -67,12 +65,12 @@ class JpTermsSection extends StatelessWidget {
     if (terms.shikikin != null) {
       addRow(l.jp_shikikin, _yen(terms.shikikin!));
     } else if (terms.shikikinMonths != null) {
-      addRow(l.jp_shikikin, '${terms.shikikinMonths}ヶ月分');
+      addRow(l.jp_shikikin, l.jpMonthsOfRent(_months(terms.shikikinMonths!)));
     }
     if (terms.reikin != null) {
       addRow(l.jp_reikin, _yen(terms.reikin!));
     } else if (terms.reikinMonths != null) {
-      addRow(l.jp_reikin, '${terms.reikinMonths}ヶ月分');
+      addRow(l.jp_reikin, l.jpMonthsOfRent(_months(terms.reikinMonths!)));
     }
     if (terms.hoshoukin != null) {
       addRow(l.jp_hoshou, _yen(terms.hoshoukin!));
@@ -80,18 +78,21 @@ class JpTermsSection extends StatelessWidget {
     if (terms.koushinryo != null) {
       addRow(l.jp_koushinryo, _yen(terms.koushinryo!));
     } else if (terms.koushinryoMonths != null) {
-      addRow(l.jp_koushinryo, '${terms.koushinryoMonths}ヶ月分');
+      addRow(l.jp_koushinryo, l.jpMonthsOfRent(_months(terms.koushinryoMonths!)));
     }
     if (terms.brokerageFeeRate != null) {
       addRow(l.jp_brokerage,
-          '${terms.brokerageFeeRate}ヶ月分${terms.taxIncluded ? '（税込）' : ''}');
+          '${l.jpMonthsOfRent(_months(terms.brokerageFeeRate!))}${terms.taxIncluded ? l.jpTaxIncluded : ''}');
     }
     if (terms.guaranteeCompanyFee != null && terms.guaranteeCompanyFee! > 0) {
-      addRow('保証会社料', _yen(terms.guaranteeCompanyFee!));
+      addRow(l.jpGuaranteeCompanyFee, _yen(terms.guaranteeCompanyFee!));
     }
 
     return rows;
   }
+
+  /// Số tháng: 1.0 ⇒ "1", 1.5 ⇒ "1.5" (QA P12 L: tránh "1.0ヶ月分").
+  static String _months(num v) => v % 1 == 0 ? v.toInt().toString() : v.toString();
 
   static String _yen(int amount) {
     // Simple ¥ formatter without intl dependency.

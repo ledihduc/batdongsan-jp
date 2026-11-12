@@ -1,0 +1,91 @@
+# Skill hệ thống thị trường vn (plan 20261027-1102 Phase 13, T8, T17). Review như code: file này
+# quyết định AI được gọi handler nào. Có file này ⇒ bản REGION=vn mount /mcp, /api/ai/chat, /api/ai/actions/*.
+# Định dạng: app/ai_capabilities/registry_file_schema.py. Không có request_viewing ở bản vn (SU §3).
+version: 2
+market: vn
+default_lang: vi
+guide:
+  ja: |
+    ベトナム（ホーチミン市・ハノイ）の賃貸・売買物件を探し、アプリを操作するアシスタントです。
+    物件はアクションで取得したものだけを紹介し、各物件を [#<listing_id>] の形式で引用してください。
+    地名は search_listings の location にベトナム語（声調記号付き）で渡してください。例: 1区 → Quận 1、ハノイ → Hà Nội、バーディン区 → Ba Đình。
+    価格は常にベトナムドン（VND）です。万ドン・百万ドンは VND の整数に換算してください（例 2,000万ドン → 20000000）。
+    購入・売買の希望なら transaction_type を sale、賃貸なら rent にしてください。
+    内見の申し込みはこの版では未対応です。その旨を伝えてください。
+    mode が write のアクションはユーザーが確認した後にだけ実行されます。
+  vi: |
+    Bạn giúp người dùng tìm nhà cho thuê và mua bán ở Việt Nam (Hồ Chí Minh, Hà Nội) và thao tác trong app.
+    Chỉ giới thiệu tin do action trả về, trích mỗi tin theo dạng [#<listing_id>].
+    Địa danh truyền vào location của search_listings bằng tiếng Việt có dấu, vd 'Quận 1', 'Cầu Giấy', 'Hà Nội'.
+    Giá luôn tính bằng VND; đổi "triệu", "tỷ" sang số nguyên VND (vd 20 triệu → 20000000).
+    Người dùng muốn mua (nói "mua", "bán" hoặc giá tính bằng tỷ) ⇒ đặt transaction_type 'sale'; muốn thuê ⇒ 'rent'.
+    Đặt lịch xem nhà chưa hỗ trợ ở bản này; hãy nói rõ.
+    Action mode write chỉ chạy sau khi người dùng xác nhận.
+  en: |
+    You help users find homes for rent and for sale in Vietnam (Ho Chi Minh City, Hanoi) and operate the app.
+    Only present listings returned by actions and cite each one as [#<listing_id>].
+    Pass place names to search_listings location in Vietnamese with diacritics, e.g. District 1 → Quận 1, Hanoi → Hà Nội.
+    Prices are always in VND; convert "million"/"billion" to an integer VND amount (e.g. 20 million → 20000000).
+    If the user wants to buy (or gives a price in billions), set transaction_type 'sale'; to rent, set 'rent'.
+    Booking a viewing is not supported in this version yet; say so.
+    Actions with mode write run only after the user confirms.
+actions:
+  - name: search_listings
+    title: {ja: 物件を検索, vi: Tìm nhà, en: Search listings}
+    description:
+      ja: 地名・物件種別・賃貸/売買・価格（VND）・面積・寝室数で公開中の物件を検索します。location はベトナム語の地名（例 Quận 1、Cầu Giấy、Hà Nội）。
+      vi: Tìm tin đang đăng theo địa danh, loại hình, thuê/bán, giá (VND), diện tích, số phòng ngủ. location là tên địa danh tiếng Việt có dấu, vd 'Quận 1', 'Cầu Giấy', 'Hà Nội'.
+      en: Search published listings by place, property type, rent/sale, price (VND), floor area and bedrooms. location is a Vietnamese place name with diacritics, e.g. 'Quận 1', 'Cầu Giấy', 'Hà Nội'.
+    mode: read
+    requires_login: false
+    enabled: true
+    handler: {type: python, target: "app.services.vn_search.ai_tools:tool_search_listings"}
+    params:
+      type: object
+      additionalProperties: false
+      properties:
+        location: {type: string, minLength: 1, maxLength: 60, description: "Tên quận hoặc thành phố tiếng Việt có dấu, vd 'Quận 1', 'Cầu Giấy', 'Hồ Chí Minh', 'Hà Nội'; quận kèm thành phố viết 'Ba Đình, Hà Nội'. Đổi 'District 1'/'1区' sang 'Quận 1', 'Ho Chi Minh City'/'ホーチミン' sang 'Hồ Chí Minh', 'Hanoi'/'ハノイ' sang 'Hà Nội'"}
+        category: {enum: ["Phòng trọ", "Chung cư mini", "Căn hộ", "Nhà nguyên căn", "Villa", "Hotel", "Motel", "Home stay", "Mặt bằng cửa hàng", "Shop house", "Văn phòng", "Kho xưởng"], description: "Loại hình (tên tiếng Việt). apartment → Căn hộ, mini apartment → Chung cư mini, house → Nhà nguyên căn, room → Phòng trọ"}
+        transaction_type: {enum: ["rent", "sale"], description: "rent = cho thuê, sale = mua bán. Hỏi mua hoặc giá tính bằng tỷ ⇒ sale; không đặt thì trả cả tin thuê lẫn bán"}
+        min_price_vnd: {type: integer, minimum: 0, description: "VND; thuê là giá/tháng"}
+        max_price_vnd: {type: integer, minimum: 0, description: "VND; thuê là giá/tháng"}
+        min_area_m2: {type: number, minimum: 0}
+        max_area_m2: {type: number, minimum: 0}
+        min_bedrooms: {type: integer, minimum: 0, maximum: 20}
+        limit: {type: integer, minimum: 1, maximum: 20, default: 10}
+
+  - name: get_listing
+    title: {ja: 物件の詳細, vi: Xem chi tiết tin, en: Get listing details}
+    description:
+      ja: listing_id を指定して公開中の物件の詳細（価格・面積・寝室数・地区・説明）を取得します。
+      vi: Lấy chi tiết một tin đang đăng theo listing_id (giá, diện tích, số phòng ngủ, quận, mô tả).
+      en: Get details of a published listing by listing_id (price, floor area, bedrooms, district, description).
+    mode: read
+    requires_login: false
+    enabled: true
+    handler: {type: python, target: "app.services.vn_search.ai_tools:tool_get_listing"}
+    params:
+      type: object
+      additionalProperties: false
+      required: [listing_id]
+      properties:
+        listing_id: {type: integer, minimum: 1}
+
+  # Action ghi: run_action KHÔNG ghi — tạo yêu cầu xác nhận; chỉ ghi sau khi người dùng đã đăng nhập
+  # bấm xác nhận trong app. Gỡ dữ liệu AI đã ghi: scripts/ai_actions_undo.py.
+  - name: save_favorite
+    title: {ja: お気に入りに保存, vi: Lưu vào yêu thích, en: Save to favorites}
+    description:
+      ja: listing_id の物件をお気に入りに保存します。ユーザーがログインして確認した後にだけ実行されます。
+      vi: Lưu tin listing_id vào danh sách yêu thích. Chỉ chạy sau khi người dùng đăng nhập và xác nhận.
+      en: Save listing listing_id to favorites. Runs only after the logged-in user confirms.
+    mode: write
+    requires_login: true
+    enabled: true
+    handler: {type: python, target: "app.services.vn_search.ai_write_tools:tool_save_favorite"}
+    params:
+      type: object
+      additionalProperties: false
+      required: [listing_id]
+      properties:
+        listing_id: {type: integer, minimum: 1}

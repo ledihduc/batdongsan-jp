@@ -35,9 +35,9 @@ class JpPropertyInfoSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '物件情報',
-            style: TextStyle(
+          Text(
+            l.jpInfoTitle,
+            style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
@@ -61,22 +61,22 @@ class JpPropertyInfoSection extends StatelessWidget {
               if (propertyInfo.buildingAgeYears != null)
                 _InfoChip(
                   icon: Icons.calendar_today_outlined,
-                  label: '${l.jp_building_year}: 築${propertyInfo.buildingAgeYears}年',
+                  label: '${l.jp_building_year}: ${l.jpBuildingAgeValue(propertyInfo.buildingAgeYears!)}',
                 ),
               _InfoChip(
                 icon: Icons.business_outlined,
-                label: '${l.jp_layout.split('(').first.trim() == '' ? '構造' : '構造'}: ${_structureLabel(propertyInfo.structure, l)}',
+                label: '${l.jpStructureLabel}: ${_structureLabel(propertyInfo.structure, l)}',
               ),
               if (propertyInfo.floorNumber != null)
                 _InfoChip(
                   icon: Icons.layers_outlined,
                   label:
-                      '${l.jp_floor}: ${propertyInfo.floorNumber}階${propertyInfo.totalFloors != null ? '/${propertyInfo.totalFloors}階建' : ''}',
+                      '${l.jp_floor}: ${propertyInfo.totalFloors != null ? l.jpFloorOfTotal(propertyInfo.floorNumber!, propertyInfo.totalFloors!) : l.jpFloorValue(propertyInfo.floorNumber!)}',
                 ),
               if (propertyInfo.orientation != JpOrientation.unknown)
                 _InfoChip(
                   icon: Icons.compass_calibration_outlined,
-                  label: '向き: ${_orientationLabel(propertyInfo.orientation, l)}',
+                  label: '${l.jpOrientationLabel}: ${_orientationLabel(propertyInfo.orientation, l)}',
                 ),
               if (propertyInfo.availableFrom != null)
                 _InfoChip(
@@ -89,9 +89,9 @@ class JpPropertyInfoSection extends StatelessWidget {
             const SizedBox(height: 12),
             const Divider(color: HD.hairline, height: 1),
             const SizedBox(height: 12),
-            const Text(
-              '交通アクセス',
-              style: TextStyle(
+            Text(
+              l.jpTransitTitle,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: HD.inkSoft,
@@ -110,7 +110,7 @@ class JpPropertyInfoSection extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      '${t.station.lineName} ${t.station.name}駅',
+                      l.jpStationOnLine(t.station.lineName, t.station.name),
                       style: const TextStyle(
                         fontSize: 13,
                         color: HD.inkSoft,
@@ -118,7 +118,7 @@ class JpPropertyInfoSection extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      '徒歩${t.walkMinutes}分',
+                      l.jpWalkMinutes(t.walkMinutes),
                       style: const TextStyle(
                         fontSize: 13,
                         color: HD.ink,

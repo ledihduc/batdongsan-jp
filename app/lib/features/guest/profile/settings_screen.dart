@@ -7,6 +7,7 @@ import 'package:house_booking/core/config/feature_flags.dart';
 import 'package:house_booking/core/config/legal_links.dart';
 import 'package:house_booking/features/guest/profile/blocked_users_screen.dart';
 import 'package:house_booking/core/widgets/ds.dart';
+import 'package:house_booking/core/widgets/language_picker_sheet.dart';
 import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/providers/locale_provider.dart';
 import 'package:house_booking/providers/auth_provider.dart';
@@ -166,49 +167,8 @@ class SettingsScreen extends StatelessWidget {
     _ => l.vietnamese,
   };
 
-  /// Bottom sheet chọn ngôn ngữ → LocaleProvider (lưu + rebuild toàn app).
-  void _pickLanguage(BuildContext context, AppLocalizations l) {
-    final provider = context.read<LocaleProvider>();
-    final current = provider.locale.languageCode;
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: HD.paper,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (_) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-              child: Row(
-                children: [Text(l.chooseLanguage, style: HD.eyebrow())],
-              ),
-            ),
-            for (final e in const [
-              ('ja', '日本語'),
-              ('vi', 'Tiếng Việt'),
-              ('en', 'English'),
-              ('zh', '中文'),
-            ])
-              ListTile(
-                leading: Icon(
-                  current == e.$1 ? Icons.check : null,
-                  color: HD.accent,
-                ),
-                title: Text(e.$2),
-                onTap: () {
-                  provider.setLocale(e.$1);
-                  Navigator.pop(context);
-                },
-              ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
-    );
-  }
+  /// Bottom sheet chọn ngôn ngữ dùng chung (Phase 14) → LocaleProvider (lưu + rebuild toàn app).
+  void _pickLanguage(BuildContext context, AppLocalizations l) => showLanguagePickerSheet(context);
 
   Widget _title(String t) => Padding(
     padding: const EdgeInsets.fromLTRB(20, 16, 20, 6),

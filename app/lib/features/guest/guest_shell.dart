@@ -659,7 +659,7 @@ class _GuestShellState extends State<GuestShell> {
           selected: true,
           child: Icon(Icons.assignment),
         ),
-        label: 'Hoạt động',
+        label: l.shellNavActivity,
       ),
       SuperAppNavItem(
         icon: _personIcon(selected: false),
@@ -741,7 +741,7 @@ class _GuestShellState extends State<GuestShell> {
         icon: Icons.assignment_outlined,
         activeIcon: _iconVongTron(Icons.assignment),
         isIconBlend: false,
-        title: 'Hoạt động',
+        title: l.shellNavActivity,
       ),
       // ẢNH ĐẠI DIỆN thật, không phải icon người chung chung: TabItem nhận cả
       // Widget chứ không chỉ IconData. `isIconBlend: false` để avatar giữ màu

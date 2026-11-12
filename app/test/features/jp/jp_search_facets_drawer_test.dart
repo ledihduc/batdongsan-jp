@@ -5,6 +5,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:house_booking/l10n/app_localizations.dart';
 import 'package:house_booking/core/widgets/ds.dart';
 import 'package:house_booking/features/guest/search/jp_search_facets_drawer.dart';
 
@@ -83,8 +84,9 @@ void main() {
     await tester.tap(find.text('open'));
     await tester.pumpAndSettle();
 
-    // Tap reset button (text 'リセット' is hardcoded in the widget)
-    await tester.tap(find.text('リセット'));
+    // Reset button label follows the UI language (tfReset; pumpApp pins vi).
+    final l = await AppLocalizations.delegate.load(const Locale('vi'));
+    await tester.tap(find.text(l.tfReset));
     await tester.pump();
 
     // Confirm the widget did not throw after reset

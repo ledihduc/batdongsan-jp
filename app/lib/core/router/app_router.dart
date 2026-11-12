@@ -504,8 +504,13 @@ GoRouter buildAppRouter(AuthProvider auth, {DelegationProvider? delegation}) {
           if (id == null) {
             return _fadePage(
               state: state,
-              child: const Scaffold(
-                body: Center(child: Text('ID nhà không hợp lệ')),
+              // Builder: lấy Localizations từ cây của trang (dưới MaterialApp.router).
+              child: Scaffold(
+                body: Center(
+                  child: Builder(
+                    builder: (c) => Text(AppLocalizations.of(c).routerInvalidHouseId),
+                  ),
+                ),
               ),
             );
           }
@@ -970,24 +975,26 @@ GoRouter buildAppRouter(AuthProvider auth, {DelegationProvider? delegation}) {
       state: state,
       child: Scaffold(
         body: Center(
-          child: Padding(
+          child: Builder(
+            builder: (c) => Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  'Không tìm thấy trang',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                Text(
+                  AppLocalizations.of(c).routerPageNotFound,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 Text(state.error?.toString() ?? state.uri.toString()),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => ctx.go('/'),
-                  child: const Text('Về trang chủ'),
+                  child: Text(AppLocalizations.of(c).loginExitHome),
                 ),
               ],
             ),
+          ),
           ),
         ),
       ),
@@ -1329,33 +1336,33 @@ class _NotAvailableScreen extends StatelessWidget {
       appBar: AppBar(
         leading: const BackButton(),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Center(
           child: Padding(
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
+                const Icon(
                   Icons.block_rounded,
                   size: 64,
                   color: HD.inkMuted,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Text(
-                  'この機能はご利用いただけません',
+                  AppLocalizations.of(context).routerNotAvailableTitle,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: HD.ink,
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Text(
-                  'この機能は日本マーケットではご利用いただけません。',
+                  AppLocalizations.of(context).routerNotAvailableJpBody,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     color: HD.inkSoft,
                   ),

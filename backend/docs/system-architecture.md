@@ -220,7 +220,7 @@ Every action by operator is logged with:
 
 ### 1.11 MCP Endpoint (`/mcp`)
 
-Code: `app/mcp/`, mounted by `main.py` inside `if ai_enabled_for_region(settings.region):` (AI is on when `registry.<region>.yaml` exists, see `app/ai_capabilities/loader.py`). Without that file `/mcp` is not mounted.
+Code: `app/mcp/`, mounted by `main.py` inside `if ai_enabled_for_region(settings.region):` (AI is on when `registry.<region>.yaml` exists, see `app/ai_capabilities/loader.py`). Without that file `/mcp` is not mounted. The packaged registry directory has `registry.jp.yaml` and `registry.vn.yaml`, so both markets mount `/mcp` (the vn actions are in 1.14).
 
 **Surface**
 - `POST /mcp`: MCP over streamable HTTP, stateless, JSON responses (`stateless_http=True, json_response=True` in `app/mcp/sdk_server.py`). Exactly two tools, `get_system_skills` and `run_action`; new capabilities are registry actions, the tool list does not change. The registry is fetched on every call (hot reload).
@@ -284,9 +284,9 @@ Settings: see "AI chat settings" in `codebase-summary.md`. Tests: `tests/ai/test
 
 ### 1.13 AI Write Actions with Pending Confirm
 
-Code: `app/ai_capabilities/action_runner.py`, `app/services/ai_actions/`, `app/services/jp_search/ai_write_tools.py`, `app/api/routes/ai_actions.py`, `app/schemas/ai_actions.py`, `app/domain/ai_pending_action.py` (table `ai_pending_actions`, migration `0168_ai_pending_actions`). `main.py` includes the router in the same `if ai_enabled_for_region(settings.region):` block as `/mcp` and `/api/ai/chat`.
+Code: `app/ai_capabilities/action_runner.py`, `app/services/ai_actions/`, `app/services/jp_search/ai_write_tools.py`, `app/services/vn_search/ai_write_tools.py`, `app/api/routes/ai_actions.py`, `app/schemas/ai_actions.py`, `app/domain/ai_pending_action.py` (table `ai_pending_actions`, migration `0168_ai_pending_actions`). `main.py` includes the router in the same `if ai_enabled_for_region(settings.region):` block as `/mcp` and `/api/ai/chat`.
 
-An action with `mode: write` never writes when the AI calls it. The user confirms first, then the write runs under the identity of the user who confirmed. The jp registry has two (`app/ai_capabilities/registry/registry.jp.yaml`): `save_favorite` (`listing_id`) and `request_viewing` (`listing_id`, `slots` 1-3, optional `note`). Both are `requires_login: true` and use python handlers.
+An action with `mode: write` never writes when the AI calls it. The user confirms first, then the write runs under the identity of the user who confirmed. The jp registry has two (`app/ai_capabilities/registry/registry.jp.yaml`): `save_favorite` (`listing_id`) and `request_viewing` (`listing_id`, `slots` 1-3, optional `note`). Both are `requires_login: true` and use python handlers. The vn registry (`registry.vn.yaml`) has one write action, `save_favorite`, also `requires_login: true`; it has no `request_viewing`.
 
 **Create pending** (`_create_pending` in `action_runner.py`)
 1. Params are validated against the action schema.
@@ -301,7 +301,7 @@ Chat pendings store `owner_user_id` (the creator). MCP pendings store `NULL`, so
 
 | Method | Path | Auth | Purpose |
 |---|---|---|---|
-| GET | `/api/ai/actions/{token}` | none | Preview: `action`, localized `title` and `description`, `params`, `listing` brief (jp only), `status`, `expires_at` (UTC offset), `owner_bound`. Optional `lang` query. Writes nothing |
+| GET | `/api/ai/actions/{token}` | none | Preview: `action`, localized `title` and `description`, `params`, `listing` brief (jp and vn; `listing_brief` in `app/services/ai_actions/listing_brief.py` returns `None` for other regions), `status`, `expires_at` (UTC offset), `owner_bound`. Optional `lang` query. Writes nothing |
 | POST | `/api/ai/actions/{token}/confirm` | Bearer (`require_user`) | Execute once. Body is not read. Returns `{status: "executed", action, result}` |
 
 A token that does not match `^[A-Za-z0-9_-]{43}$` is answered 404 before any DB access.
@@ -332,6 +332,7 @@ Preview applies the same 404/409/410 checks but not 403 (no user).
 
 **Write handlers** (`ai_write_tools.py`). They write through models/services because there is no `/api/wishlists` route and `POST /api/jp/viewings` always returns 403 (module docstring). They never commit; `confirm_pending` does.
 - `save_favorite`: `save_wishlist` (`wishlist_writer.py`) get-or-create on `Wishlist`; result `{saved, created, wishlist_id}`. `created=false` when the listing was already a favorite.
+- vn `save_favorite` (`app/services/vn_search/ai_write_tools.py`): same `save_wishlist` and result. It first calls `get_vn_listing_detail`; a JP, unpublished or missing listing raises `LookupError`, so no pending row is created. With `dry_run` it returns `{preview: {listing_id, title}}` and writes nothing.
 - `request_viewing`: `validate_slots` runs at pending creation and again at confirm (time may have passed), then `create_viewing_request`; notes are prefixed `[AI]`. Result `{viewing_id, status: "requested", created: true}`.
 
 **Secrecy of the token.** It is never logged: `app/observability/middleware.py` replaces it with `{token}` in the request log path, and `deploy/jp/nginx.jp.conf` does the same in the access log (`map $request_uri $jp_log_uri`, field `uri`). The chat token goes to the app only, never to the model.
@@ -343,6 +344,33 @@ python scripts/ai_actions_undo.py --all|--since <ISO> [--yes]
 `--since` filters on `executed_at`; an offset-aware time is converted to naive UTC. The script docstring shows the `docker compose exec -T -e PYTHONPATH=/app backend ...` form (untested here).
 
 Settings: see "AI write action settings" in `codebase-summary.md`. Tests: `tests/ai/test_ai_write_tools.py`, `test_ai_pending_actions_api.py`, `test_ai_pending_actions_hardening.py`, `test_ai_chat_write_actions.py`, `test_ai_actions_undo.py` (helpers: `write_test_utils.py`).
+
+---
+
+### 1.14 VN Market AI Search (`REGION=vn`)
+
+Code: `app/ai_capabilities/registry/registry.vn.yaml`, `app/services/vn_search/` (`listing_search_service.py`, `vn_location_normalizer.py`, `ai_tools.py`, `ai_write_tools.py`). The vn market uses the same `/mcp`, `/api/ai/chat` and `/api/ai/actions/*` code as jp (1.11-1.13); only the registry file and its handlers differ. `registry.vn.yaml` has `version: 2`, `market: vn`, `default_lang: vi`, a `guide` in `ja`, `vi`, `en`, and three actions.
+
+| Action | Mode | Handler | Params (all `additionalProperties: false`) |
+|---|---|---|---|
+| `search_listings` | read | `app.services.vn_search.ai_tools:tool_search_listings` | `location` (1-60 chars), `category` (enum of 12 VN property types), `transaction_type` (`rent` or `sale`), `min_price_vnd`, `max_price_vnd`, `min_area_m2`, `max_area_m2`, `min_bedrooms` (0-20), `limit` (1-20, default 10) |
+| `get_listing` | read | `app.services.vn_search.ai_tools:tool_get_listing` | `listing_id` (integer >= 1, required) |
+| `save_favorite` | write, `requires_login: true` | `app.services.vn_search.ai_write_tools:tool_save_favorite` | `listing_id` (integer >= 1, required) |
+
+**Search** (`search_vn_listings`). It reads the `houses` table directly, not `/api/houses`, because `house_to_dict` returns `host_phone` and `GET /api/houses/{id}` increments `view_count`.
+- Scope: `status = 'published'` and `scope_houses(q, "vn")` (no `jp_rental_terms` row), applied always, independent of `DEMO_MARKET_SCOPE`. A JP listing is never returned at vn, and `get_listing` / `save_favorite` on a JP listing raise `LookupError`.
+- `location`: `normalize_location` splits on `,` and every part must match. A part matches when `lower(district)` equals it, or `city` contains it (case-insensitive, `%` `_` `\` escaped). It strips `TP.` / `Thành phố` / `Tỉnh` prefixes and a `City` / `Province` suffix, and maps `Q1` / `District 1` / `Quận 1` to `Quận 1`, and `HCM`, `HCMC`, `TP.HCM`, `Sài Gòn`, `Ho Chi Minh` to `Hồ Chí Minh`, `Hanoi` to `Hà Nội`. District is compared for equality, so `Quận 1` does not match `Quận 10`.
+- Other filters: `category` by exact `Category.name`, `transaction_type`, price (VND), area, bedrooms. Order: `price`, then `id`. `total` counts matches before `limit`.
+- Item = the `CARD_KEYS` of 1.12 with `currency: "VND"`, `layout`, `station_name`, `walk_min` set to `None`, `price` as integer. `get_listing` adds `description` (cut at 1500 chars), `category`, `transaction_type`, `bathrooms`, `district`. Neither returns `address`, `host_phone` or email. The description is passed as stored; phone numbers or emails typed into it are not filtered.
+- `detail_to_item` (`app/services/ai_chat/listing_cards.py`) keeps a flat payload that already has `currency`, so the vn `get_listing` card shows VND.
+
+**Demo data.** `scripts/seed_vn_demo.py` runs `seed_vn_demo` from `app/services/vn_demo_seed.py`: 20 listings from `scripts/data/vn_listings_demo.json` (HCM and Hà Nội) under the host `vn-demo-host@example.invalid`, upserted by (`host_id`, `title`). It uses existing categories by name and raises `ValueError` for an unknown one. `--undo` deletes wishlists pointing at the demo listings, the listings and the host. The script exits 2 when `settings.region != "vn"`.
+
+**Market switch (demo).** One image serves both markets; `REGION` and `DEFAULT_TZ` pick the market. The local demo compose file reads them from `DEMO_REGION` and `DEMO_TZ`. Commands, Flutter pairing and checks: `docs/how-to-run-demo-vn-market.md`.
+
+**Eval.** `scripts/data/ai_chat_eval_vn.json` (6 cases) runs with `scripts/eval_ai_chat_multilang.py --data`. `_value_ok` matches expected strings on digit/Latin/Vietnamese word boundaries (`Quận 10` does not satisfy `Quận 1`) and not on CJK.
+
+Tests: `tests/vn/test_vn_demo_seed.py`, `tests/vn/test_vn_listing_search.py` (fixture `tests/vn/vn_fixtures.py`), `tests/ai/test_ai_registry_vn.py`, `tests/ai/test_ai_vn_market.py`, `tests/scripts/test_eval_ai_chat_value_ok.py`.
 
 ---
 
